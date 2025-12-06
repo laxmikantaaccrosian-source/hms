@@ -30,6 +30,15 @@ COPY deploy/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
+# Run artisan commands automatically
+RUN php artisan config:clear \
+    && php artisan cache:clear \
+    && php artisan route:clear \
+    && php artisan view:clear \
+    && php artisan key:generate --force \
+    && php artisan migrate --force \
+    && php artisan storage:link
+
 EXPOSE 80
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisor.conf"]
