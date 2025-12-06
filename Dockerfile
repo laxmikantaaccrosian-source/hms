@@ -34,10 +34,7 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 RUN php artisan config:clear \
     && php artisan cache:clear \
     && php artisan route:clear \
-    && php artisan view:clear \
-    && php artisan key:generate --force \
-    && php artisan migrate --force \
-    && php artisan storage:link
+    && php artisan view:clear
 
 EXPOSE 80
 
