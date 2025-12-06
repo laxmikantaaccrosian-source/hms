@@ -9,7 +9,11 @@
     ],
     "license": "MIT",
     "require": {
+<<<<<<< HEAD
         "php": "^8.1",
+=======
+        "php": "^8.2",
+>>>>>>> 01dc6f4 (Initial project commit)
         "ext-json": "*",
         "barryvdh/laravel-dompdf": "^2.0",
         "doctrine/dbal": "^3.5",
@@ -26,17 +30,25 @@
         "laravel/ui": "^4.2",
         "laravelcollective/html": "^6.4",
         "league/flysystem-aws-s3-v3": "^3.0",
+        "livewire/livewire": "3.0",
+<<<<<<< HEAD
         "maatwebsite/excel": "^3.1",
+=======
+        "maatwebsite/excel": "3.1.48",
+>>>>>>> 01dc6f4 (Initial project commit)
         "macsidigital/laravel-zoom": "^7.0",
         "mariuzzo/laravel-js-localization": "^1.10",
         "mews/purifier": "^3.4",
-        "opcodesio/log-viewer": "^1.9",
         "rap2hpoutre/laravel-log-viewer": "^2.3",
         "rappasoft/laravel-helpers": "^2.0",
-        "rappasoft/laravel-livewire-tables": "dev-master",
+        "rappasoft/laravel-livewire-tables": "3.7",
         "razorpay/razorpay": "^2.8",
         "rennokki/laravel-eloquent-query-cache": "^3.4",
+<<<<<<< HEAD
         "simplesoftwareio/simple-qrcode": "^4.2",
+=======
+        "simplesoftwareio/simple-qrcode": "4.2",
+>>>>>>> 01dc6f4 (Initial project commit)
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-medialibrary": "^10.7",
         "spatie/laravel-permission": "^5.8",
