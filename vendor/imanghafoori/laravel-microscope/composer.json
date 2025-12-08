@@ -1,0 +1,62 @@
+{
+    "name": "imanghafoori/laravel-microscope",
+    "description": "Automatically test your laravel application",
+    "keywords": [
+        "laravel-testing",
+        "laravel-microscope"
+    ],
+    "homepage": "https://github.com/imanghafoori1/laravel-microscope",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Iman",
+            "email": "imanghafoori1@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|8.0.*|8.1.*|8.2.*|8.3.*|8.4.*",
+        "imanghafoori/composer-json": "^2.1.0",
+        "composer/class-map-generator": "^1.0.0",
+        "imanghafoori/php-abstract-filesystem": "^0.1.5",
+        "imanghafoori/php-search-replace": "^1.1.13",
+        "imanghafoori/php-token-analyzer": "^0.1.87",
+        "imanghafoori/php-imports-analyzer": "^1.1.0",
+        "imanghafoori/smart-realtime-facades": "^1.1.8",
+        "jetbrains/phpstorm-attributes": "1.*",
+        "laravel/framework": "5.*|6.*|7.*|8.*|9.*|10.*|11.*|12.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": ">=3.0.0",
+        "phpunit/phpunit": ">=6.0.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Imanghafoori\\LaravelMicroscope\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Imanghafoori\\LaravelMicroscope\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Imanghafoori\\LaravelMicroscope\\LaravelMicroscopeServiceProvider"
+            ]
+        }
+    },
+    "bin": ["microscope"]
+}
