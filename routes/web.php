@@ -127,6 +127,14 @@ Route::get('/users/creates', function () {
     return view('users.new_create');
 });
 
+Route::get('/fix-cache', function () {
+    \Artisan::call('config:clear');
+    \Artisan::call('cache:clear');
+    \Artisan::call('route:clear');
+    \Artisan::call('view:clear');
+    return 'Cache cleared!';
+});
+
 // Routes for Landing Page starts
 Route::middleware('setLanguage')->group(function () {
     Route::get('/', [Web\WebController::class, 'index'])->name('front');
