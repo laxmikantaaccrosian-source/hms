@@ -1,7 +1,4 @@
 /node_modules
-/public/hot
-/public/storage
-/public/fonts
 /storage/*.key
 /vendor
 .env
@@ -11,6 +8,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-public/assets/
 !public/uploads/opd_timelines
 .idea/
