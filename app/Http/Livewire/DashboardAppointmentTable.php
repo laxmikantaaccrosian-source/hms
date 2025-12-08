@@ -27,10 +27,10 @@ class DashboardAppointmentTable extends DataTableComponent
 {
     return [
         Column::make(__('messages.case.patient'), 'patient.patientUser.email')
-            ->hideIf(fn() => true),
+            ->hideIf(true),
 
         Column::make(__('messages.case.doctor'), 'doctor.doctorUser.email')
-            ->hideIf(fn() => true),
+            ->hideIf(true),
 
         Column::make(__('messages.case.patient'), 'patient.patientUser.first_name')
             ->view('appointments.templates.columns.patient_name'),
