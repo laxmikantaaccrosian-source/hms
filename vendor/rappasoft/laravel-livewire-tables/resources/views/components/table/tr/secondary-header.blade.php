@@ -1,31 +1,30 @@
-@aware([ 'tableName'])
+@aware(['component'])
+@props(['rows'])
 
-<x-livewire-tables::table.tr.plain
-    :customAttributes="$this->getSecondaryHeaderTrAttributes($this->getRows)"
-    wire:key="{{ $tableName .'-secondary-header' }}"
+
+<x-livewire-tables::table.tr.plain 
+    :customAttributes="$this->getSecondaryHeaderTrAttributes($rows)" 
+    wire:key="secondary-header-{{ $this->getTableName() }}"
 >
-    {{-- TODO: Remove --}}
-    <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-test' }}" />
+    @if ($this->currentlyReorderingIsEnabled())
+        <x-livewire-tables::table.td.plain />
+    @endif
 
-    @if ($this->showBulkActionsSections)
-        <x-livewire-tables::table.td.plain :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-header-hasBulkActions' }}" />
+    @if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+        <x-livewire-tables::table.td.plain />
     @endif
 
     @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
-        <x-livewire-tables::table.td.collapsed-columns :hidden=true :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'header-collapsed-hide' }}" rowIndex="-1"  />
+        <x-livewire-tables::table.td.row-contents rowIndex="-1" :hidden="true" />
     @endif
 
-    @foreach($this->selectedVisibleColumns as $colIndex => $column)
-        <x-livewire-tables::table.td.plain :column="$column" :displayMinimisedOnReorder="true" wire:key="{{ $tableName .'-secondary-header-show-'.$column->getSlug() }}"  :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $this->getRows, $colIndex)">
-            @if($column->hasSecondaryHeader() && $column->hasSecondaryHeaderCallback())
-                @if( $column->secondaryHeaderCallbackIsFilter())
-                    {{ $column->getSecondaryHeaderFilter($column->getSecondaryHeaderCallback(), $this->getFilterGenericData) }}    
-                @elseif($column->secondaryHeaderCallbackIsString())
-                    {{ $column->getSecondaryHeaderFilter($this->getFilterByKey($column->getSecondaryHeaderCallback()), $this->getFilterGenericData) }}
-                @else
-                    {{ $column->getNewSecondaryHeaderContents($this->getRows) }}
-                @endif
-            @endif
+    @foreach($this->getColumns() as $colIndex => $column)
+        @continue($column->isHidden())
+        @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
+        @continue($this->currentlyReorderingIsDisabled() && $column->isReorderColumn() && $this->hideReorderColumnUnlessReorderingIsEnabled())
+
+        <x-livewire-tables::table.td.plain :column="$column" :customAttributes="$this->getSecondaryHeaderTdAttributes($column, $rows, $colIndex)">
+            {{ $column->getSecondaryHeaderContents($rows) }}
         </x-livewire-tables::table.td.plain>
-    @endforeach
+    @endforeach    
 </x-livewire-tables::table.tr.plain>

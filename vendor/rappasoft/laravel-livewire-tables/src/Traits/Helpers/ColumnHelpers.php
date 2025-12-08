@@ -3,9 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use Rappasoft\LaravelLivewireTables\Views\Columns\AggregateColumn;
 
 trait ColumnHelpers
 {
@@ -14,35 +12,10 @@ trait ColumnHelpers
      */
     public function setColumns(): void
     {
-        $columns = collect($this->getPrependedColumns())->concat($this->columns())->concat(collect($this->getAppendedColumns()));
-        $this->columns = $columns->filter(fn ($column) => $column instanceof Column);
-    }
-
-    protected function setupColumns(): void
-    {
-        $this->columns = $this->columns
+        $columns = collect($this->columns())
             ->filter(fn ($column) => $column instanceof Column)
             ->map(function (Column $column) {
-                $column->setTheme($this->getTheme())
-                    ->setHasTableRowUrl($this->hasTableRowUrl())
-                    ->setIsReorderColumn($this->getDefaultReorderColumn() == $column->getField());
-
-                if ($column->hasFooter()) {
-                    $this->columnsWithFooter = true;
-                }
-                if ($column->hasSecondaryHeader()) {
-                    $this->columnsWithSecondaryHeader = true;
-                }
-
-                if ($column instanceof AggregateColumn) {
-                    if ($column->getAggregateMethod() == 'count' && $column->hasDataSource()) {
-                        $this->addExtraWithCount($column->getDataSource());
-                    } elseif ($column->getAggregateMethod() == 'sum' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithSum($column->getDataSource(), $column->getForeignColumn());
-                    } elseif ($column->getAggregateMethod() == 'avg' && $column->hasDataSource() && $column->hasForeignColumn()) {
-                        $this->addExtraWithAvg($column->getDataSource(), $column->getForeignColumn());
-                    }
-                }
+                $column->setComponent($this);
 
                 if ($column->hasField()) {
                     if ($column->isBaseColumn()) {
@@ -55,18 +28,22 @@ trait ColumnHelpers
                 return $column;
             });
 
-        $this->hasRunColumnSetup = true;
+        $this->columns = $columns;
     }
 
+    /**
+     * @return Collection
+     */
     public function getColumns(): Collection
     {
-        if (! $this->hasRunColumnSetup) {
-            $this->setupColumns();
-        }
-
         return $this->columns;
     }
 
+    /**
+     * @param  string  $qualifiedColumn
+     *
+     * @return Column|null
+     */
     public function getColumn(string $qualifiedColumn): ?Column
     {
         return $this->getColumns()
@@ -74,6 +51,11 @@ trait ColumnHelpers
             ->first();
     }
 
+    /**
+     * @param  string  $qualifiedColumn
+     *
+     * @return Column|null
+     */
     public function getColumnBySelectName(string $qualifiedColumn): ?Column
     {
         return $this->getColumns()
@@ -81,15 +63,8 @@ trait ColumnHelpers
             ->first();
     }
 
-    public function getColumnBySlug(string $columnSlug): ?Column
-    {
-        return $this->getColumns()
-            ->filter(fn (Column $column) => $column->isColumnBySlug($columnSlug))
-            ->first();
-    }
-
     /**
-     * @return array<mixed>
+     * @return array
      */
     public function getColumnRelations(): array
     {
@@ -101,7 +76,7 @@ trait ColumnHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return array
      */
     public function getColumnRelationStrings(): array
     {
@@ -112,6 +87,19 @@ trait ColumnHelpers
             ->toArray();
     }
 
+    /**
+     * @return Collection
+     */
+    public function getSelectableColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->isLabel())
+            ->values();
+    }
+
+    /**
+     * @return Collection
+     */
     public function getSearchableColumns(): Collection
     {
         return $this->getColumns()
@@ -119,42 +107,130 @@ trait ColumnHelpers
             ->values();
     }
 
-    public function getSortableColumns(): Collection
-    {
-        return isset($this->sortableColumns) ? $this->sortableColumns : $this->sortableColumns = $this->getColumns()
-            ->filter(fn (Column $column) => ($column->isSortable() || $column->hasSortCallback()))
-            ->map(fn (Column $column) => $column->getColumnSelectName() ?? $column->getSlug())
-            ->values();
-    }
-
+    /**
+     * @return int
+     */
     public function getColumnCount(): int
     {
         return $this->getColumns()->count();
     }
 
-    public function getPrependedColumns(): Collection
+    /**
+     * @return bool
+     */
+    public function hasCollapsedColumns(): bool
     {
-        return $this->prependedColumns ?? collect($this->prependColumns());
-    }
-
-    public function getAppendedColumns(): Collection
-    {
-        return $this->appendedColumns ?? collect($this->appendColumns());
+        return $this->shouldCollapseOnMobile() + $this->shouldCollapseOnTablet() > 0;
     }
 
     /**
-     * Prepend columns.
+     * @return bool
      */
-    public function prependColumns(): array
+    public function shouldCollapseOnMobile(): bool
     {
-        return [];
+        return $this->getCollapsedMobileColumnsCount();
     }
 
     /**
-     * Append columns.
+     * @return Collection
      */
-    public function appendColumns(): array
+    public function getCollapsedMobileColumns(): Collection
     {
-        return [];
+        return $this->getColumns()
+            ->filter(fn (Column $column) => $column->shouldCollapseOnMobile())
+            ->values();
+    }
+
+    /**
+     * @return int
+     */
+    public function getCollapsedMobileColumnsCount(): int
+    {
+        return $this->getCollapsedMobileColumns()->count();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getVisibleMobileColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->shouldCollapseOnMobile())
+            ->values();
+    }
+
+    /**
+     * @return int
+     */
+    public function getVisibleMobileColumnsCount(): int
+    {
+        return $this->getVisibleMobileColumns()->count();
+    }
+
+    /**
+     * @return bool
+     */
+    public function shouldCollapseOnTablet(): bool
+    {
+        return $this->getCollapsedTabletColumnsCount();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCollapsedTabletColumns(): Collection
+    {
+        return $this->getColumns()
+            ->filter(fn (Column $column) => $column->shouldCollapseOnTablet())
+            ->values();
+    }
+
+    /**
+     * @return int
+     */
+    public function getCollapsedTabletColumnsCount(): int
+    {
+        return $this->getCollapsedTabletColumns()->count();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getVisibleTabletColumns(): Collection
+    {
+        return $this->getColumns()
+            ->reject(fn (Column $column) => $column->shouldCollapseOnTablet())
+            ->values();
+    }
+
+    /**
+     * @return int
+     */
+    public function getVisibleTabletColumnsCount(): int
+    {
+        return $this->getVisibleTabletColumns()->count();
+    }
+
+    // TODO
+    public function getColspanCount(): int
+    {
+        $all = $this->getColumnCount();
+
+        // If Reordering is enabled, but we're hiding the sort column
+        if ($this->reorderIsEnabled() && $this->hideReorderColumnUnlessReorderingIsEnabled()) {
+            $all--;
+        }
+
+        // If reordering is enabled, and we are currently reordering, account for the drag and drop handle
+        if ($this->reorderIsEnabled() && $this->currentlyReorderingIsEnabled()) {
+            $all++;
+        }
+
+        // If bulk actions are enabled, account for the checkbox column
+        if ($this->bulkActionsAreEnabled() && $this->hasBulkActions()) {
+            $all++;
+        }
+
+        return $all;
     }
 }

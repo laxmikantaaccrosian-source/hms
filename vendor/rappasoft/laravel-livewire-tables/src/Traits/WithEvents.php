@@ -2,48 +2,24 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
-use Rappasoft\LaravelLivewireTables\Traits\Configuration\EventConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Helpers\EventHelpers;
-
 trait WithEvents
 {
-    use EventConfiguration,
-        EventHelpers;
-
-    protected array $eventStatuses = ['columnSelected' => true, 'searchApplied' => false, 'filterApplied' => false];
-
-    // No Longer Used
-    /**
-     * @codeCoverageIgnore
-     */
-    public function setSortEvent(string $field, string $direction): void
+    public function setSortEvent($field, $direction)
     {
         $this->setSort($field, $direction);
     }
 
-    // No Longer Used
-    /**
-     * @codeCoverageIgnore
-     */
-    public function clearSortEvent(): void
+    public function clearSortEvent()
     {
         $this->clearSorts();
     }
 
-    // No Longer Used
-    /**
-     * @codeCoverageIgnore
-     */
-    public function setFilterEvent(string $filter, string|array|null $value): void
+    public function setFilterEvent($filter, $value)
     {
         $this->setFilter($filter, $value);
     }
 
-    // No Longer Used
-    /**
-     * @codeCoverageIgnore
-     */
-    public function clearFilterEvent(): void
+    public function clearFilterEvent()
     {
         $this->setFilterDefaults();
     }

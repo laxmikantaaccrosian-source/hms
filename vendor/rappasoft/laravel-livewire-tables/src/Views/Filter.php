@@ -3,15 +3,27 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\IsFilter;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\FilterConfiguration;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\FilterHelpers;
 
 abstract class Filter
 {
-    use IsFilter;
+    use FilterConfiguration,
+        FilterHelpers;
 
-    protected string $view = '';
+    protected string $name;
+    protected string $key;
+    protected bool $hiddenFromMenus = false;
+    protected bool $hiddenFromPills = false;
+    protected bool $hiddenFromFilterCount = false;
+    protected bool $resetByClearButton = true;
+    protected $filterCallback = null;
+    protected array $config = [];
+    protected ?string $filterPillTitle = null;
+    protected array $filterPillValues = [];
 
-    public function __construct(string $name, ?string $key = null)
+    public function __construct(string $name, string $key = null)
     {
         $this->name = $name;
 
@@ -20,14 +32,17 @@ abstract class Filter
         } else {
             $this->key = Str::snake($name);
         }
-        $this->config([]);
     }
 
     /**
      * @return static
      */
-    public static function make(string $name, ?string $key = null): Filter
+    public static function make(string $name, string $key = null): Filter
     {
         return new static($name, $key);
     }
+
+    abstract public function isEmpty(string $value): bool;
+
+    abstract public function render(DataTableComponent $component);
 }

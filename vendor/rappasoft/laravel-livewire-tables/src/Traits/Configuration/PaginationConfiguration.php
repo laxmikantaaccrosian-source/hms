@@ -6,6 +6,11 @@ use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 
 trait PaginationConfiguration
 {
+    /**
+    * @param  string  $name
+    *
+    * @return string
+    */
     public function setPageName(string $name): self
     {
         $this->pageName = $name;
@@ -13,6 +18,11 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @param  string  $theme
+     *
+     * @return $this
+     */
     public function setPaginationTheme(string $theme): self
     {
         $this->paginationTheme = $theme;
@@ -20,6 +30,11 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @param  bool  $status
+     *
+     * @return $this
+     */
     public function setPaginationStatus(bool $status): self
     {
         $this->paginationStatus = $status;
@@ -27,6 +42,9 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function setPaginationEnabled(): self
     {
         $this->setPaginationStatus(true);
@@ -34,6 +52,9 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function setPaginationDisabled(): self
     {
         $this->setPaginationStatus(false);
@@ -41,6 +62,11 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @param  bool  $status
+     *
+     * @return $this
+     */
     public function setPaginationVisibilityStatus(bool $status): self
     {
         $this->paginationVisibilityStatus = $status;
@@ -48,6 +74,9 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function setPaginationVisibilityEnabled(): self
     {
         $this->setPaginationVisibilityStatus(true);
@@ -55,6 +84,9 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function setPaginationVisibilityDisabled(): self
     {
         $this->setPaginationVisibilityStatus(false);
@@ -62,6 +94,11 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @param  bool  $status
+     *
+     * @return $this
+     */
     public function setPerPageVisibilityStatus(bool $status): self
     {
         $this->perPageVisibilityStatus = $status;
@@ -69,6 +106,9 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function setPerPageVisibilityEnabled(): self
     {
         $this->setPerPageVisibilityStatus(true);
@@ -76,6 +116,9 @@ trait PaginationConfiguration
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function setPerPageVisibilityDisabled(): self
     {
         $this->setPerPageVisibilityStatus(false);
@@ -84,7 +127,9 @@ trait PaginationConfiguration
     }
 
     /**
-     * @param  array<mixed>  $accepted
+     * @param  array  $accepted
+     *
+     * @return $this
      */
     public function setPerPageAccepted(array $accepted): self
     {
@@ -94,6 +139,9 @@ trait PaginationConfiguration
     }
 
     /**
+     * @param  int  $perPage
+     *
+     * @return $this
      * @throws DataTableConfigurationException
      */
     public function setPerPage(int $perPage): self
@@ -107,71 +155,14 @@ trait PaginationConfiguration
         return $this;
     }
 
-    public function unsetPerPage(): self
-    {
-        $this->perPage = null;
-
-        return $this;
-    }
-
+    /**
+     * @param  string  $paginationMethod
+     *
+     * @return $this
+     */
     public function setPaginationMethod(string $paginationMethod): self
     {
         $this->paginationMethod = $paginationMethod;
-
-        return $this;
-    }
-
-    public function setDisplayPaginationDetails(bool $status): self
-    {
-        $this->shouldShowPaginationDetails = $status;
-
-        return $this;
-    }
-
-    public function setDisplayPaginationDetailsEnabled(): self
-    {
-        $this->setDisplayPaginationDetails(true);
-
-        return $this;
-    }
-
-    public function setDisplayPaginationDetailsDisabled(): self
-    {
-        $this->setDisplayPaginationDetails(false);
-
-        return $this;
-    }
-
-    /**
-     * Set a default per-page value (if not set already by session or querystring)
-     */
-    public function setDefaultPerPage(int $defaultPerPage): self
-    {
-        if (in_array((int) $defaultPerPage, $this->getPerPageAccepted())) {
-            $this->defaultPerPage = $defaultPerPage;
-        }
-
-        return $this;
-    }
-
-    public function setShouldRetrieveTotalItemCountStatus(bool $status): self
-    {
-        $this->shouldRetrieveTotalItemCount = $status;
-
-        return $this;
-
-    }
-
-    public function setShouldRetrieveTotalItemCountEnabled(): self
-    {
-        $this->setShouldRetrieveTotalItemCountStatus(true);
-
-        return $this;
-    }
-
-    public function setShouldRetrieveTotalItemCountDisabled(): self
-    {
-        $this->setShouldRetrieveTotalItemCountStatus(false);
 
         return $this;
     }

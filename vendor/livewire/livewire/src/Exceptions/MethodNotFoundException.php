@@ -6,10 +6,10 @@ class MethodNotFoundException extends \Exception
 {
     use BypassViewHandler;
 
-    public function __construct($method)
+    public function __construct($method, $component)
     {
         parent::__construct(
-            "Unable to call component method. Public method [{$method}] not found on component"
+            "Unable to call component method. Public method [{$method}] not found on component: [{$component}]"
         );
     }
 }

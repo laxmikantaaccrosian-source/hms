@@ -2,20 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HandlesWildcardStrings, HasWireables, IsStringFilter};
 
 class TextFilter extends Filter
 {
-    use IsStringFilter;
-    use HasWireables;
-    use HandlesWildcardStrings;
-
-    public string $wireMethod = 'blur';
-
-    protected string $view = 'livewire-tables::components.tools.filters.text-field';
-
-    public function validate(string $value): string|bool
+    public function validate($value)
     {
         if ($this->hasConfig('maxlength')) {
             return strlen($value) <= $this->getConfig('maxlength') ? $value : false;
@@ -24,18 +16,16 @@ class TextFilter extends Filter
         return strlen($value) ? $value : false;
     }
 
-    protected function getCoreInputAttributes(): array
+    public function isEmpty($value): bool
     {
-        $attributes = array_merge(parent::getCoreInputAttributes(),
-            [
-                'type' => 'text',
-                'placeholder' => $this->hasConfig('placeholder') ? $this->getConfig('placeholder') : null,
-                'maxlength' => $this->hasConfig('maxlength') ? $this->getConfig('maxlength') : null,
-                'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'text'),
+        return $value === '';
+    }
 
-            ]);
-        ksort($attributes);
-
-        return $attributes;
+    public function render(DataTableComponent $component)
+    {
+        return view('livewire-tables::components.tools.filters.text-field', [
+            'component' => $component,
+            'filter' => $this,
+        ]);
     }
 }

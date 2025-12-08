@@ -2,25 +2,49 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HasOptions, HasWireables, IsArrayFilter};
 
 class MultiSelectDropdownFilter extends Filter
 {
-    use HasOptions,
-        IsArrayFilter;
-    use HasWireables;
+    protected array $options = [];
+    protected string $firstOption = "";
 
-    public string $wireMethod = 'live.debounce.250ms';
+    public function options(array $options = []): MultiSelectDropdownFilter
+    {
+        $this->options = $options;
 
-    protected string $view = 'livewire-tables::components.tools.filters.multi-select-dropdown';
+        return $this;
+    }
 
-    protected string $configPath = 'livewire-tables.multiSelectDropdownFilter.defaultConfig';
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
 
-    protected string $optionsPath = 'livewire-tables.multiSelectDropdownFilter.defaultOptions';
+    public function setFirstOption(string $firstOption): MultiSelectDropdownFilter
+    {
+        $this->firstOption = $firstOption;
 
-    public function validate(int|string|array $value): array|int|string|bool
+        return $this;
+    }
+
+    public function getFirstOption(): string
+    {
+        return $this->firstOption;
+    }
+
+    public function getKeys(): array
+    {
+        return collect($this->getOptions())
+            ->keys()
+            ->map(fn ($value) => (string)$value)
+            ->filter(fn ($value) => strlen($value))
+            ->values()
+            ->toArray();
+    }
+
+    public function validate($value)
     {
         if (is_array($value)) {
             foreach ($value as $index => $val) {
@@ -29,20 +53,23 @@ class MultiSelectDropdownFilter extends Filter
                     unset($value[$index]);
                 }
             }
-
-            return $value;
         }
 
-        return (is_string($value) || is_numeric($value)) ? $value : false;
+        return $value;
     }
 
-    public function getFilterPillValue($value): array|string|bool|null
+    public function getDefaultValue()
+    {
+        return [];
+    }
+
+    public function getFilterPillValue($value): ?string
     {
         $values = [];
 
         foreach ($value as $item) {
             $found = $this->getCustomFilterPillValue($item)
-                        ?? (new Collection($this->getOptions()))
+                        ?? collect($this->getOptions())
                             ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$item]
                         ?? null;
 
@@ -51,17 +78,25 @@ class MultiSelectDropdownFilter extends Filter
             }
         }
 
-        return $values;
+        return implode(', ', $values);
     }
 
-    public function isEmpty(mixed $value): bool
+    public function isEmpty($value): bool
     {
         if (! is_array($value)) {
             return true;
-        } elseif (in_array('all', $value)) {
+        } elseif (in_array("all", $value)) {
             return true;
         }
 
         return false;
+    }
+
+    public function render(DataTableComponent $component)
+    {
+        return view('livewire-tables::components.tools.filters.multi-select-dropdown', [
+            'component' => $component,
+            'filter' => $this,
+        ]);
     }
 }

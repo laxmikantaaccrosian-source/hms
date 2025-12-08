@@ -2,36 +2,37 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
-use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HasOptions, HasWireables, IsStringFilter};
 
 class SelectFilter extends Filter
 {
-    use HasOptions,
-        IsStringFilter;
-    use HasWireables;
+    protected array $options = [];
 
-    public string $wireMethod = 'live';
+    public function options(array $options = []): SelectFilter
+    {
+        $this->options = $options;
 
-    protected string $view = 'livewire-tables::components.tools.filters.select';
+        return $this;
+    }
 
-    protected string $configPath = 'livewire-tables.selectFilter.defaultConfig';
-
-    protected string $optionsPath = 'livewire-tables.selectFilter.defaultOptions';
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
 
     public function getKeys(): array
     {
-        return (new Collection($this->getOptions()))
-            ->map(fn ($value, $key) => is_iterable($value) ? (new Collection($value))->keys() : $key)
+        return collect($this->getOptions())
+            ->map(fn ($value, $key) => is_iterable($value) ? collect($value)->keys() : $key)
             ->flatten()
-            ->map(fn ($value) => (string) $value)
+            ->map(fn ($value) => (string)$value)
             ->filter(fn ($value) => strlen($value) > 0)
             ->values()
             ->toArray();
     }
 
-    public function validate(string $value): array|string|bool
+    public function validate($value)
     {
         if (! in_array($value, $this->getKeys())) {
             return false;
@@ -40,23 +41,24 @@ class SelectFilter extends Filter
         return $value;
     }
 
-    public function getFilterPillValue($value): array|string|bool|null
+    public function getFilterPillValue($value): ?string
     {
-
         return $this->getCustomFilterPillValue($value)
-            ?? (new Collection($this->getOptions()))
+            ?? collect($this->getOptions())
                 ->mapWithKeys(fn ($options, $optgroupLabel) => is_iterable($options) ? $options : [$optgroupLabel => $options])[$value]
             ?? null;
     }
 
-    protected function getCoreInputAttributes(): array
+    public function isEmpty($value): bool
     {
-        $attributes = array_merge(parent::getCoreInputAttributes(),
-            [
-                'wire:key' => $this->generateWireKey($this->getGenericDisplayData()['tableName'], 'select'),
-            ]);
-        ksort($attributes);
+        return $value === '';
+    }
 
-        return $attributes;
+    public function render(DataTableComponent $component)
+    {
+        return view('livewire-tables::components.tools.filters.select', [
+            'component' => $component,
+            'filter' => $this,
+        ]);
     }
 }

@@ -2,65 +2,76 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
-use Livewire\Attributes\Computed;
-use Livewire\Attributes\On;
-
 trait SortingHelpers
 {
+    /**
+     * @return bool
+     */
     public function getSortingStatus(): bool
     {
         return $this->sortingStatus;
     }
 
+    /**
+     * @return bool
+     */
     public function getSingleSortingStatus(): bool
     {
         return $this->singleColumnSortingStatus;
     }
 
+    /**
+     * @return array
+     */
     public function getSorts(): array
     {
-        foreach ($this->sorts as $column => $direction) {
-            if (is_array($direction)) {
-                foreach ($direction as $colAppend => $actualDirection) {
-                    $this->sorts[$column.'.'.$colAppend] = $actualDirection;
-                    unset($this->sorts[$column]);
-                }
-            }
-
-        }
-
-        return $this->sorts;
+        return $this->{$this->getTableName()}['sorts'] ?? [];
     }
 
     /**
-     * @param  array<mixed>  $sorts
-     * @return array<mixed>
+     * @param  array  $sorts
+     *
+     * @return array
      */
-    public function setSorts(array $sorts = []): array
+    public function setSorts(array $sorts): array
     {
-
-        return $this->sorts = collect($sorts)
-            ->reject(fn ($dir, $column) => ! in_array($column, $this->getSortableColumns()->toArray(), true))
-            ->toArray();
+        return $this->{$this->getTableName()}['sorts'] = $sorts;
     }
 
+    /**
+     * @param  string  $field
+     *
+     * @return string|null
+     */
     public function getSort(string $field): ?string
     {
-        return $this->sorts[$field] ?? null;
+        return $this->{$this->getTableName()}['sorts'][$field] ?? null;
     }
 
-    #[On('setSort')]
-    #[On('set-sort')]
+    /**
+     * @param  string  $field
+     * @param  string  $direction
+     *
+     * @return string
+     */
     public function setSort(string $field, string $direction): string
     {
-        return $this->sorts[$field] = $direction;
+        return $this->{$this->getTableName()}['sorts'][$field] = $direction;
     }
 
+    /**
+     * @return bool
+     */
     public function hasSorts(): bool
     {
-        return count($this->getSorts()) > 0;
+        return count($this->getSorts());
     }
 
+    /**
+     * @param  string  $field
+     *
+     * @return bool
+     */
     public function hasSort(string $field): bool
     {
         return $this->getSort($field) !== null;
@@ -69,103 +80,152 @@ trait SortingHelpers
     /**
      * Clear the sorts array
      */
-    #[On('clearSorts')]
-    #[On('clearsorts')]
     public function clearSorts(): void
     {
-        $this->sorts = [];
+        $this->{$this->getTableName()}['sorts'] = [];
     }
 
+    /**
+     * @param  string  $field
+     */
     public function clearSort(string $field): void
     {
-        unset($this->sorts[$field]);
+        unset($this->{$this->getTableName()}['sorts'][$field]);
     }
 
+    /**
+     * @param  string  $field
+     *
+     * @return string
+     */
     public function setSortAsc(string $field): string
     {
         return $this->setSort($field, 'asc');
     }
 
+    /**
+     * @param  string  $field
+     *
+     * @return string
+     */
     public function setSortDesc(string $field): string
     {
         return $this->setSort($field, 'desc');
     }
 
+    /**
+     * @param  string  $field
+     *
+     * @return bool
+     */
     public function isSortAsc(string $field): bool
     {
         return $this->getSort($field) === 'asc';
     }
 
+    /**
+     * @param  string  $field
+     *
+     * @return bool
+     */
     public function isSortDesc(string $field): bool
     {
         return $this->getSort($field) === 'desc';
     }
 
+    /**
+     * @return bool
+     */
     public function sortingIsEnabled(): bool
     {
         return $this->getSortingStatus() === true;
     }
 
+    /**
+     * @return bool
+     */
     public function sortingIsDisabled(): bool
     {
         return $this->getSortingStatus() === false;
     }
 
+    /**
+     * @return bool
+     */
     public function singleSortingIsEnabled(): bool
     {
         return $this->getSingleSortingStatus() === true;
     }
 
+    /**
+     * @return bool
+     */
     public function singleSortingIsDisabled(): bool
     {
         return $this->getSingleSortingStatus() === false;
     }
 
+    /**
+     * @return bool
+     */
     public function hasDefaultSort(): bool
     {
         return $this->getDefaultSortColumn() !== null;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDefaultSortColumn(): ?string
     {
         return $this->defaultSortColumn;
     }
 
+    /**
+     * @return string
+     */
     public function getDefaultSortDirection(): string
     {
         return $this->defaultSortDirection;
     }
 
+    /**
+     * @return bool
+     */
     public function getSortingPillsStatus(): bool
     {
         return $this->sortingPillsStatus;
     }
 
+    /**
+     * @return bool
+     */
     public function sortingPillsAreEnabled(): bool
     {
         return $this->getSortingPillsStatus() === true;
     }
 
+    /**
+     * @return bool
+     */
     public function sortingPillsAreDisabled(): bool
     {
         return $this->getSortingPillsStatus() === false;
     }
 
-    #[Computed]
+    /**
+     * @return string
+     */
     public function getDefaultSortingLabelAsc(): string
     {
         return $this->defaultSortingLabelAsc;
     }
 
-    #[Computed]
+    /**
+     * @return string
+     */
     public function getDefaultSortingLabelDesc(): string
     {
         return $this->defaultSortingLabelDesc;
-    }
-
-    #[Computed]
-    public function showSortPillsSection(): bool
-    {
-        return $this->sortingIsEnabled() && $this->sortingPillsAreEnabled() && $this->hasSorts();
     }
 }

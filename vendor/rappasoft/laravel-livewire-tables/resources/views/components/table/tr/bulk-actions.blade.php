@@ -1,100 +1,120 @@
-@aware([ 'tableName', 'isTailwind', 'isBootstrap', 'localisationPath'])
+@aware(['component'])
+@props(['rows'])
 
-@if ($this->bulkActionsAreEnabled() && $this->hasBulkActions())
+@if ($component->bulkActionsAreEnabled() && $component->hasBulkActions() && $component->hasSelected())
     @php
-        $colspan = $this->getColspanCount();
-        $selectAll = $this->selectAllIsEnabled();
-        $simplePagination = $this->isPaginationMethod('simple');
+        $table = $component->getTableName();
+        $theme = $component->getTheme();
+        $colspan = $component->getColspanCount();
+        $selected = $component->getSelectedCount();
+        $selectAll = $component->selectAllIsEnabled();
+        $simplePagination = ($component->paginationMethod == "simple") ? true : false;
     @endphp
 
-    <x-livewire-tables::table.tr.plain
-        x-cloak x-show="selectedItems.length > 0 && !currentlyReorderingStatus"
-        wire:key="{{ $tableName }}-bulk-select-message"
-        @class([
-            'bg-indigo-50 dark:bg-gray-900 dark:text-white' => $isTailwind,
-        ])
-    >
-        <x-livewire-tables::table.td.plain :colspan="$colspan">
-            <template x-if="selectedItems.length == paginationTotalItemCount || selectAllStatus">
-                <div wire:key="{{ $tableName }}-all-selected">
-                    <span>
-                        {{ __($localisationPath.'You are currently selecting all') }}
-                        @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
-                        {{ __($localisationPath.'rows') }}.
-                    </span>
+    @if ($theme === 'tailwind')
+        <x-livewire-tables::table.tr.plain
+            wire:key="bulk-select-message-{{ $table }}"
+            class="bg-indigo-50 dark:bg-gray-900 dark:text-white"
+        >
+            <x-livewire-tables::table.td.plain :colspan="$colspan">
+                @if ($selectAll)
+                    <div wire:key="all-selected-{{ $table }}">
+                        <span>
+                            @lang('You are currently selecting all')
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @lang('rows').
+                        </span>
 
-                    <button
-                        x-on:click="clearSelected"
-                        wire:loading.attr="disabled"
-                        type="button"
-                        {{ 
-                            $this->getBulkActionsRowButtonAttributesBag->class([
-                                'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
-                                'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
-                                'btn btn-primary btn-sm' => $isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
-                            ])
-                        }}
-                    >
-                        {{ __($localisationPath.'Deselect All') }}
-                    </button>
-                </div>
-            </template>
+                        <button
+                            wire:click="clearSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
+                            @lang('Deselect All')
+                        </button>
+                    </div>
+                @else
+                    <div wire:key="some-selected-{{ $table }}">
+                        <span>
+                            @lang('You have selected')
+                            <strong>{{ $selected }}</strong>
+                            @lang('rows, do you want to select all')
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                        </span>
 
-            <template x-if="selectedItems.length !== paginationTotalItemCount && !selectAllStatus">
-                <div wire:key="{{ $tableName }}-some-selected">
-                    <span>
-                        {{ __($localisationPath.'You have selected') }}
-                        <strong><span x-text="selectedItems.length"></span></strong>
-                        {{ __($localisationPath.'rows, do you want to select all') }}
-                        @if(!$simplePagination) <strong><span x-text="paginationTotalItemCount"></span></strong> @endif
-                    </span>
+                        <button
+                            wire:click="setAllSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
+                            @lang('Select All')
+                        </button>
 
-                    <button
-                        x-on:click="selectAllOnPage()"
-                        wire:loading.attr="disabled"
-                        type="button"
-                        {{ 
-                            $this->getBulkActionsRowButtonAttributesBag->class([
-                                'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
-                                'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
-                                'btn btn-primary btn-sm' => $isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
-                            ])
-                        }}
+                        <button
+                            wire:click="clearSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="ml-1 text-blue-600 underline text-gray-700 text-sm leading-5 font-medium focus:outline-none focus:text-gray-800 focus:underline transition duration-150 ease-in-out dark:text-white dark:hover:text-gray-400"
+                        >
+                            @lang('Deselect All')
+                        </button>
+                    </div>
+                @endif
+            </x-livewire-tables::table.td.plain>
+        </x-livewire-tables::table.tr.plain>
+    @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')
+        <x-livewire-tables::table.tr.plain
+            wire:key="bulk-select-message-{{ $table }}"
+        >
+            <x-livewire-tables::table.td.plain :colspan="$colspan">
+                @if ($selectAll)
+                    <div wire:key="all-selected-{{ $table }}">
+                        <span>
+                            @lang('You are currently selecting all')
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                            @lang('rows').
+                        </span>
 
-                    >{{ __($localisationPath.'Select All On Page') }}
-                    </button>&nbsp;
+                        <button
+                            wire:click="clearSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                        >
+                            @lang('Deselect All')
+                        </button>
+                    </div>
+                @else
+                    <div wire:key="some-selected-{{ $table }}">
+                        <span>
+                            @lang('You have selected')
+                            <strong>{{ $selected }}</strong>
+                            @lang('rows, do you want to select all')
+                            @if(!$simplePagination) <strong>{{ number_format($rows->total()) }}</strong> @endif
+                        </span>
 
-                    <button
-                        x-on:click="setAllSelected()"
-                        wire:loading.attr="disabled"
-                        type="button"
-                        {{ 
-                            $this->getBulkActionsRowButtonAttributesBag->class([
-                                'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
-                                'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
-                                'btn btn-primary btn-sm' => $isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
-                            ])
-                        }}
-                    >
-                        {{ __($localisationPath.'Select All') }}
-                    </button>
+                        <button
+                            wire:click="setAllSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                        >
+                            @lang('Select All')
+                        </button>
 
-                    <button
-                        x-on:click="clearSelected"
-                        wire:loading.attr="disabled"
-                        type="button"
-                        {{ 
-                            $this->getBulkActionsRowButtonAttributesBag->class([
-                                'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
-                                'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
-                                'btn btn-primary btn-sm' => $isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
-                            ])
-                        }}
-                    >
-                        {{ __($localisationPath.'Deselect All') }}
-                    </button>
-                </div>
-            </template>
-        </x-livewire-tables::table.td.plain>
-    </x-livewire-tables::table.tr.plain>
+                        <button
+                            wire:click="clearSelected"
+                            wire:loading.attr="disabled"
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                        >
+                            @lang('Deselect All')
+                        </button>
+                    </div>
+                @endif
+            </x-livewire-tables::table.td.plain>
+        </x-livewire-tables::table.tr.plain>
+    @endif
 @endif

@@ -3,76 +3,101 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\Attributes\Locked;
-use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ComponentConfiguration;
-use Rappasoft\LaravelLivewireTables\Traits\Core\Component\{HandlesComputedProperties,HandlesEmptyMessage, HandlesFingerprint, HandlesOfflineIndicator,HandlesTableName};
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ComponentHelpers;
 
 trait ComponentUtilities
 {
-    use HandlesTableName,
-        HandlesFingerprint,
-        HandlesEmptyMessage,
-        HandlesComputedProperties,
-        HandlesOfflineIndicator,
-        ComponentConfiguration,
+    use ComponentConfiguration,
         ComponentHelpers;
 
     public array $table = [];
-
+    public $theme = null;
+    protected Builder $builder;
     protected $model;
-
-    protected bool $hasRunConfigure = false;
+    protected $primaryKey;
+    protected string $tableName = 'table';
+    protected bool $queryStringStatus = true;
+    protected bool $offlineIndicatorStatus = true;
+    protected bool $eagerLoadAllRelationsStatus = false;
+    protected array $componentWrapperAttributes = [];
+    protected array $tableWrapperAttributes = [];
+    protected array $tableAttributes = [];
+    protected array $theadAttributes = [];
+    protected array $tbodyAttributes = [];
+    protected $thAttributesCallback;
+    protected $thSortButtonAttributesCallback;
+    protected $trAttributesCallback;
+    protected $trUrlCallback;
+    protected $trUrlTargetCallback;
+    protected $tdAttributesCallback;
+    protected $collapsingColumnsStatus = true;
+    protected string $emptyMessage = 'No items found. Try to broaden your search.';
+    protected array $additionalSelects = [];
+    protected bool $hideConfigurableAreasWhenReorderingStatus = true;
+    protected array $configurableAreas = [
+        'before-tools' => null,
+        'toolbar-left-start' => null,
+        'toolbar-left-end' => null,
+        'toolbar-right-start' => null,
+        'toolbar-right-end' => null,
+        'before-toolbar' => null,
+        'after-toolbar' => null,
+        'before-pagination' => null,
+        'after-pagination' => null,
+    ];
 
     /**
-     * Set any configuration options
+     * Set the custom query string array for this specific table
+     *
+     * @return array|\null[][]
      */
-    abstract public function configure(): void;
-
-    /**
-     * Sets the Theme if not set on first mount
-     */
-    public function mountComponentUtilities(): void
+    public function queryString(): array
     {
-        // Sets the Theme - tailwind/bootstrap
-        if (! isset($this->theme) || is_null($this->theme)) {
-            $this->setTheme(config('livewire-tables.theme', 'tailwind'));
+        if ($this->queryStringIsEnabled()) {
+            return [
+                $this->getTableName() => ['except' => null, 'as' => $this->getQueryStringAlias()],
+            ];
         }
-        $this->generateDataTableFingerprint();
 
+        return [];
     }
 
     /**
-     * Runs configure() with Lifecycle Hooks on each Lifecycle
+     * Keep track of any properties on the custom query string key for this specific table
+     *
+     * @param $name
+     * @param $value
      */
-    public function bootedComponentUtilities(): void
+    public function updated($name, $value): void
     {
-        $this->runCoreConfiguration();
+        if ($name === $this->getTableName().'.search') {
+            $this->resetComputedPage();
 
-        // Make sure a primary key is set
-        if (! $this->hasPrimaryKey()) {
-            throw new DataTableConfigurationException('You must set a primary key using setPrimaryKey in the configure method, or configuring/configured lifecycle hooks');
+            // Clear bulk actions on search
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
+
+            if ($value === '') {
+                $this->clearSearch();
+            }
         }
 
-    }
+        if (Str::contains($name, $this->getTableName().'.filters')) {
+            $this->resetComputedPage();
 
-    protected function runCoreConfiguration(): void
-    {
-        if (! $this->hasRunConfigure) {
-            // Fire Lifecycle Hooks for configuring
-            $this->callHook('configuring');
-            $this->callTraitHook('configuring');
+            // Clear bulk actions on filter
+            $this->clearSelected();
+            $this->setSelectAllDisabled();
 
-            // Call the configure() method
-            $this->configure();
+            // Clear filters on empty value
+            $filterName = Str::after($name, $this->getTableName().'.filters.');
+            $filter = $this->getFilterByKey($filterName);
 
-            // Fire Lifecycle Hooks for configured
-            $this->callHook('configured');
-            $this->callTraitHook('configured');
-
-            $this->hasRunConfigure = true;
-
+            if ($filter && $filter->isEmpty($value)) {
+                $this->resetFilter($filterName);
+            }
         }
     }
 

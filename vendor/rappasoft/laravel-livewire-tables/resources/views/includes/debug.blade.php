@@ -1,10 +1,20 @@
 <div>
-    @if ($this->debugIsEnabled())
-        <p><strong>{{ __($this->getLocalisationPath.'Debugging Values') }}:</strong></p>
-        
+    @if ($component->debugIsEnabled())
+        @php
+            $debuggable = [
+                'query' => $component->getQuerySql(),
+                'filters' => $component->getAppliedFilters(),
+                'sorts' => $component->getSorts(),
+                'search' => $component->getSearch(),
+                'select-all' => $component->getSelectAllStatus(),
+                'selected' => $component->getSelected(),
+            ];
+        @endphp
+
+        <p><strong>@lang('Debugging Values'):</strong></p>
 
         @if (! app()->runningInConsole())
-            <div class="mb-4">@dump((new \Rappasoft\LaravelLivewireTables\DataTransferObjects\DebuggableData($this))->toArray())</div>
+            <div class="mb-4">@dump($debuggable)</div>
         @endif
     @endif
 </div>

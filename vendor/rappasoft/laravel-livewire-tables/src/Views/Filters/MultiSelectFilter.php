@@ -2,24 +2,36 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Filters;
 
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\Traits\{HasOptions, HasWireables, IsArrayFilter};
 
 class MultiSelectFilter extends Filter
 {
-    use HasOptions,
-        IsArrayFilter;
-    use HasWireables;
+    protected array $options = [];
 
-    public string $wireMethod = 'live.debounce.250ms';
+    public function options(array $options = []): MultiSelectFilter
+    {
+        $this->options = $options;
 
-    protected string $view = 'livewire-tables::components.tools.filters.multi-select';
+        return $this;
+    }
 
-    protected string $configPath = 'livewire-tables.multiSelectFilter.defaultConfig';
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
 
-    protected string $optionsPath = 'livewire-tables.multiSelectFilter.defaultOptions';
+    public function getKeys(): array
+    {
+        return collect($this->getOptions())
+            ->keys()
+            ->map(fn ($value) => (string)$value)
+            ->filter(fn ($value) => strlen($value))
+            ->values()
+            ->toArray();
+    }
 
-    public function validate(int|string|array $value): array|int|string|bool
+    public function validate($value)
     {
         if (is_array($value)) {
             foreach ($value as $index => $val) {
@@ -33,7 +45,12 @@ class MultiSelectFilter extends Filter
         return $value;
     }
 
-    public function getFilterPillValue($value): array|string|bool|null
+    public function getDefaultValue()
+    {
+        return [];
+    }
+
+    public function getFilterPillValue($value): ?string
     {
         $values = [];
 
@@ -45,6 +62,19 @@ class MultiSelectFilter extends Filter
             }
         }
 
-        return $values;
+        return implode(', ', $values);
+    }
+
+    public function isEmpty($value): bool
+    {
+        return ! is_array($value);
+    }
+
+    public function render(DataTableComponent $component)
+    {
+        return view('livewire-tables::components.tools.filters.multi-select', [
+            'component' => $component,
+            'filter' => $this,
+        ]);
     }
 }

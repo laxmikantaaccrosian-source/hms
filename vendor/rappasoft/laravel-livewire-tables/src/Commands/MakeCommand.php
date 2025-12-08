@@ -3,35 +3,28 @@
 namespace Rappasoft\LaravelLivewireTables\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;
-use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMakeCommand;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
-
-use function Laravel\Prompts\suggest;
-use function Laravel\Prompts\text;
+use Livewire\Commands\ComponentParser;
+use Livewire\Commands\MakeCommand as LivewireMakeCommand;
 
 /**
  * Class MakeCommand
+ *
+ * @package Rappasoft\LaravelLivewireTables\Commands
  */
-class MakeCommand extends Command implements PromptsForMissingInput
+class MakeCommand extends Command
 {
-    protected ComponentParser $parser;
+    /**
+     * @var
+     */
+    protected $parser;
 
     /**
-     * @var string
+     * @var
      */
     protected $model;
-
-    /**
-     * @var string|null
-     */
-    protected $modelPath;
 
     /**
      * The name and signature of the console command.
@@ -41,7 +34,6 @@ class MakeCommand extends Command implements PromptsForMissingInput
     protected $signature = 'make:datatable
         {name : The name of your Livewire class}
         {model : The name of the model you want to use in this table}
-        {modelpath? : The name of the model you want to use in this table}
         {--force}';
 
     /**
@@ -62,7 +54,7 @@ class MakeCommand extends Command implements PromptsForMissingInput
             $this->argument('name')
         );
 
-        $livewireMakeCommand = new LivewireMakeCommand;
+        $livewireMakeCommand = new LivewireMakeCommand();
 
         if ($livewireMakeCommand->isReservedClassName($name = $this->parser->className())) {
             $this->line("<fg=red;options=bold>Class is reserved:</> {$name}");
@@ -71,15 +63,18 @@ class MakeCommand extends Command implements PromptsForMissingInput
         }
 
         $this->model = Str::studly($this->argument('model'));
-        $this->modelPath = $this->argument('modelpath') ?? null;
-
         $force = $this->option('force');
 
         $this->createClass($force);
 
-        $this->info('Livewire Datatable Created: '.$this->parser->className());
+        $this->info('Livewire Datatable Created: ' . $this->parser->className());
     }
 
+    /**
+     * @param  bool  $force
+     *
+     * @return bool
+     */
     protected function createClass(bool $force = false): bool
     {
         $classPath = $this->parser->classPath();
@@ -97,13 +92,19 @@ class MakeCommand extends Command implements PromptsForMissingInput
         return $classPath;
     }
 
-    protected function ensureDirectoryExists(string $path): void
+    /**
+     * @param $path
+     */
+    protected function ensureDirectoryExists($path): void
     {
         if (! File::isDirectory(dirname($path))) {
             File::makeDirectory(dirname($path), 0777, true, true);
         }
     }
 
+    /**
+     * @return string
+     */
     public function classContents(): string
     {
         return str_replace(
@@ -113,87 +114,42 @@ class MakeCommand extends Command implements PromptsForMissingInput
         );
     }
 
+    /**
+     * @return string
+     */
     public function getModelImport(): string
     {
-        if (File::exists(app_path('Models/'.$this->model.'.php'))) {
-            return 'App\Models\\'.$this->model;
+        if (File::exists(app_path('Models/' . $this->model . '.php'))) {
+            return 'App\Models\\' . $this->model;
         }
 
-        if (File::exists(app_path($this->model.'.php'))) {
-            return 'App\\'.$this->model;
-        }
-
-        if (isset($this->modelPath)) {
-            $filename = rtrim($this->modelPath, '/').'/'.$this->model.'.php';
-            if (File::exists($filename)) {
-                // In case the file has more than one class which is highly unlikely but still possible
-                $classes = array_filter($this->getClassesList($filename), function ($class) {
-                    return substr($class, strrpos($class, '\\') + 1) == $this->model;
-                });
-                if (count($classes) == 1) {
-                    return $classes[0];
-                }
-            }
+        if (File::exists(app_path($this->model . '.php'))) {
+            return 'App\\' . $this->model;
         }
 
         $this->error('Could not find path to model.');
 
-        return 'App\Models\\'.$this->model;
-    }
-
-    /*
-    * Credits to Harm Smits: https://stackoverflow.com/a/67099502/2263114
-    */
-    private function getClassesList(string $file): array
-    {
-        $classes = [];
-        $namespace = '';
-        $tokens = \PhpToken::tokenize(file_get_contents($file));
-
-        for ($i = 0; $i < count($tokens); $i++) {
-            if ($tokens[$i]->getTokenName() === 'T_NAMESPACE') {
-                for ($j = $i + 1; $j < count($tokens); $j++) {
-                    if ($tokens[$j]->getTokenName() === 'T_NAME_QUALIFIED') {
-                        $namespace = $tokens[$j]->text;
-                        break;
-                    }
-                }
-            }
-
-            if ($tokens[$i]->getTokenName() === 'T_CLASS') {
-                for ($j = $i + 1; $j < count($tokens); $j++) {
-                    if ($tokens[$j]->getTokenName() === 'T_WHITESPACE') {
-                        continue;
-                    }
-
-                    if ($tokens[$j]->getTokenName() === 'T_STRING') {
-                        $classes[] = $namespace.'\\'.$tokens[$j]->text;
-                    } else {
-                        break;
-                    }
-                }
-            }
-        }
-
-        return $classes;
+        return 'App\Models\\' . $this->model;
     }
 
     /**
-     * @throws \Exception
+     * @param string $modelName
+     * @return string
+     * @throws Exception
      */
     private function generateColumns(string $modelName): string
     {
-        $model = new $modelName;
+        $model = new $modelName();
 
         if ($model instanceof Model === false) {
             throw new \Exception('Invalid model given.');
         }
 
-        $getFillable = [
-            ...[$model->getKeyName()],
-            ...$model->getFillable(),
-            ...['created_at', 'updated_at'],
-        ];
+        $getFillable = array_merge(
+            [$model->getKeyName()],
+            $model->getFillable(),
+            ['created_at', 'updated_at']
+        );
 
         $columns = "[\n";
 
@@ -204,59 +160,11 @@ class MakeCommand extends Command implements PromptsForMissingInput
 
             $title = Str::of($field)->replace('_', ' ')->ucfirst();
 
-            $columns .= '            Column::make("'.$title.'", "'.$field.'")'."\n".'                ->sortable(),'."\n";
+            $columns .= '            Column::make("' . $title . '", "' . $field . '")' . "\n" . '                ->sortable(),' . "\n";
         }
 
-        $columns .= '        ]';
+        $columns .= "        ]";
 
         return $columns;
-    }
-
-    protected function possibleModels(): array
-    {
-        $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
-
-        return collect(Finder::create()->files()->depth(0)->in($modelPath))
-            ->map(fn ($file) => $file->getBasename('.php'))
-            ->sort()
-            ->values()
-            ->all();
-    }
-
-    protected function promptForMissingArguments(InputInterface $input, OutputInterface $output): void
-    {
-
-        if ($this->didReceiveOptions($input)) {
-            return;
-        }
-
-        if (trim($this->argument('name')) === '') {
-            $name = text('What is the name of your Livewire class?', 'TestTable');
-
-            if ($name) {
-                $input->setArgument('name', $name);
-            }
-        }
-
-        if (trim($this->argument('model')) === '') {
-            $model = suggest(
-                'What is the name of the model you want to use in this table?',
-                $this->possibleModels(),
-                'Test'
-            );
-
-            if ($model) {
-                $input->setArgument('model', $model);
-            }
-        }
-
-        if (trim($this->argument('modelpath')) === '' && ! in_array($this->argument('model'), $this->possibleModels())) {
-
-            $modelPath = text('What is the path to the model you want to use in this table?', 'app/TestModels/');
-
-            if ($modelPath) {
-                $input->setArgument('modelpath', $modelPath);
-            }
-        }
     }
 }
