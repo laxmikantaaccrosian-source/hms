@@ -1,5 +1,1173 @@
-/*! For license information please see front-pages.js.LICENSE.txt */
-(()=>{var e={2743:e=>{!function(t,n){var s=n.jQuery;e.exports=s?t(n,s):function(e){if(e&&!e.fn)throw"Provide jQuery or null";return t(n,e)}}((function(e,t){"use strict";var n=!1===t;t=t&&t.fn?t:e.jQuery;var s,i,r,o,a,l,c,d,h,u,p,m,f,g,v,b,w,y,S,E,$,C,L="v1.0.7",k="_ocp",T=/[ \t]*(\r\n|\n|\r)/g,R=/\\(['"\\])/g,_=/['"\\]/g,A=/(?:\x08|^)(onerror:)?(?:(~?)(([\w$.]+):)?([^\x08]+))\x08(,)?([^\x08]+)/gi,x=/^if\s/,P=/<(\w+)[>\s]/,D=/[\x00`><\"'&=]/,M=/^on[A-Z]|^convert(Back)?$/,I=/^\#\d+_`[\s\S]*\/\d+_`$/,F=/[\x00`><"'&=]/g,q=/[&<>]/g,B=/&(amp|gt|lt);/g,j=/\[['"]?|['"]?\]/g,O=0,H={"&":"&amp;","<":"&lt;",">":"&gt;","\0":"&#0;","'":"&#39;",'"':"&#34;","`":"&#96;","=":"&#61;"},N={amp:"&",gt:">",lt:"<"},V="html",U="object",W="data-jsv-tmpl",z="jsvTmpl",Y="For #index in nested block use #getIndex().",K={},J={},G=e.jsrender,Q=G&&t&&!t.render,X={template:{compile:function e(n,s,i,r){function a(s){var o,a;if(""+s===s||s.nodeType>0&&(l=s)){if(!l)if(/^\.?\/[^\\:*?"<>]*$/.test(s))(a=d[n=n||s])?s=a:l=document.getElementById(s);else if(t.fn&&!m.rTmpl.test(s))try{l=t(s,document)[0]}catch(e){}l&&("SCRIPT"!==l.tagName&&Ee(s+": Use script block, not "+l.tagName),r?s=l.innerHTML:((o=l.getAttribute(W))&&(o!==z?(s=d[o],delete d[o]):t.fn&&(s=t.data(l).jsvTmpl)),o&&s||(n=n||(t.fn?z:s),s=e(n,l.innerHTML,i,r)),s.tmplName=n=n||o,n!==z&&(d[n]=s),l.setAttribute(W,n),t.fn&&t.data(l,z,s))),l=void 0}else s.fn||(s=void 0);return s}var l,c,u=s=s||"";m._html=h.html,0===r&&(r=void 0,u=a(u));(r=r||(s.markup?s.bnds?re({},s):s:{})).tmplName=r.tmplName||n||"unnamed",i&&(r._parentTmpl=i);!u&&s.markup&&(u=a(s.markup))&&u.fn&&(u=u.markup);if(void 0!==u)return u.render||s.render?u.tmpls&&(c=u):(s=ge(u,r),Ce(u.replace(_,"\\$&"),s)),c||function(e){var t,n,s;for(t in X)e[n=t+"s"]&&(s=e[n],e[n]={},o[n](s,e))}(c=re((function(){return c.render.apply(c,arguments)}),s)),c}},tag:{compile:function(e,t,n){var s,i,r,o=new m._tg;function a(){var t=this;t._={unlinked:!0},t.inline=!0,t.tagName=e}l(t)?t={depends:t.depends,render:t}:""+t===t&&(t={template:t});if(i=t.baseTag)for(r in t.flow=!!t.flow,(i=""+i===i?n&&n.tags[i]||p[i]:i)||Ee('baseTag: "'+t.baseTag+'" not found'),o=re(o,i),t)o[r]=ee(i[r],t[r]);else o=re(o,t);void 0!==(s=o.template)&&(o.template=""+s===s?d[s]||d(s):s);(a.prototype=o).constructor=o._ctr=a,n&&(o._parentTmpl=n);return o}},viewModel:{compile:function(e,n){var s,i,r,o=this,d=n.getters,h=n.extend,u=n.id,p=t.extend({_is:e||"unnamed",unmap:$,merge:E},h),m="",f="",g=d?d.length:0,v=t.observable,b={};function w(e){i.apply(this,e)}function y(){return new w(arguments)}function S(e,t){for(var n,s,i,r,a,l=0;l<g;l++)n=void 0,(i=d[l])+""!==i&&(i=(n=i).getter,a=n.parentRef),void 0===(r=e[i])&&n&&void 0!==(s=n.defaultVal)&&(r=me(s,e)),t(r,n&&o[n.type],i,a)}function E(e,t,n){e=e+""===e?JSON.parse(e):e;var s,i,r,o,l,d,h,p,m,f,g=0,w=this;if(c(w)){for(h={},m=[],i=e.length,r=w.length;g<i;g++){for(p=e[g],d=!1,s=0;s<r&&!d;s++)h[s]||(l=w[s],u&&(h[s]=d=u+""===u?p[u]&&(b[u]?l[u]():l[u])===p[u]:u(l,p)));d?(l.merge(p),m.push(l)):(m.push(f=y.map(p)),n&&fe(f,n,t))}v?v(w).refresh(m,!0):w.splice.apply(w,[0,w.length].concat(m))}else for(o in S(e,(function(e,t,n,s){t?w[n]().merge(e,w,s):w[n]()!==e&&w[n](e)})),e)o===a||b[o]||(w[o]=e[o])}function $(){var e,t,n,s,i=0,r=this;function h(e){for(var t=[],n=0,s=e.length;n<s;n++)t.push(e[n].unmap());return t}if(c(r))return h(r);for(e={};i<g;i++)n=void 0,(t=d[i])+""!==t&&(t=(n=t).getter),s=r[t](),e[t]=n&&s&&o[n.type]?c(s)?h(s):s.unmap():s;for(t in r)!r.hasOwnProperty(t)||"_"===t.charAt(0)&&b[t.slice(1)]||t===a||l(r[t])||(e[t]=r[t]);return e}for(w.prototype=p,s=0;s<g;s++)!function(e){e=e.getter||e,b[e]=s+1;var t="_"+e;m+=(m?",":"")+e,f+="this."+t+" = "+e+";\n",p[e]=p[e]||function(n){if(!arguments.length)return this[t];v?v(this).setProperty(e,n):this[t]=n},v&&(p[e].set=p[e].set||function(e){this[t]=e})}(d[s]);return f=new Function(m,f),(i=function(){f.apply(this,arguments),(r=arguments[g+1])&&fe(this,arguments[g],r)}).prototype=p,p.constructor=i,y.map=function(t){t=t+""===t?JSON.parse(t):t;var n,s,i,r,o=0,l=t,h=[];if(c(t)){for(n=(t=t||[]).length;o<n;o++)h.push(this.map(t[o]));return h._is=e,h.unmap=$,h.merge=E,h}if(t){for(S(t,(function(e,t){t&&(e=t.map(e)),h.push(e)})),l=this.apply(this,h),o=g;o--;)if(i=h[o],(r=d[o].parentRef)&&i&&i.unmap)if(c(i))for(n=i.length;n--;)fe(i[n],r,l);else fe(i,r,l);for(s in t)s===a||b[s]||(l[s]=t[s])}return l},y.getters=d,y.extend=h,y.id=u,y}},helper:{},converter:{}};function Z(e,t){return function(){var n,s=this,i=s.base;return s.base=e,n=t.apply(s,arguments),s.base=i,n}}function ee(e,t){return l(t)&&((t=Z(e?e._d?e:Z(se,e):se,t))._d=(e&&e._d||0)+1),t}function te(e,t){var n,s=t.props;for(n in s)!M.test(n)||e[n]&&e[n].fix||(e[n]="convert"!==n?ee(e.constructor.prototype[n],s[n]):s[n])}function ne(e){return e}function se(){return""}function ie(e){this.name=(t.link?"JsViews":"JsRender")+" Error",this.message=e||this.name}function re(e,t){if(e){for(var n in t)e[n]=t[n];return e}}function oe(){var e=this.get("item");return e?e.index:void 0}function ae(){return this.index}function le(e,t,n,s){var i,r,o,a=0;if(1===n&&(s=1,n=void 0),t)for(o=(r=t.split(".")).length;e&&a<o;a++)i=e,e=r[a]?e[r[a]]:e;return n&&(n.lt=n.lt||a<o),void 0===e?s?se:"":s?function(){return e.apply(i,arguments)}:e}function ce(n,s,i){var r,o,a,c,d,h,p,f=this,g=!C&&arguments.length>1,v=f.ctx;if(n){if(f._||(d=f.index,f=f.tag),h=f,v&&v.hasOwnProperty(n)||(v=u).hasOwnProperty(n)){if(a=v[n],"tag"===n||"tagCtx"===n||"root"===n||"parentTags"===n)return a}else v=void 0;if((!C&&f.tagCtx||f.linked)&&(a&&a._cxp||(f=f.tagCtx||l(a)?f:!(f=f.scope||f).isTop&&f.ctx.tag||f,void 0!==a&&f.tagCtx&&(f=f.tagCtx.view.scope),v=f._ocps,(a=v&&v.hasOwnProperty(n)&&v[n]||a)&&a._cxp||!i&&!g||((v||(f._ocps=f._ocps||{}))[n]=a=[{_ocp:a,_vw:h,_key:n}],a._cxp={path:k,ind:0,updateValue:function(e,n){return t.observable(a[0]).setProperty(k,e),this}})),c=a&&a._cxp)){if(arguments.length>2)return(o=a[1]?m._ceo(a[1].deps):[k]).unshift(a[0]),o._cxp=c,o;if(d=c.tagElse,p=a[1]?c.tag&&c.tag.cvtArgs?c.tag.cvtArgs(d,1)[c.ind]:a[1](a[0].data,a[0],m):a[0]._ocp,g)return m._ucp(n,s,f,c),f;a=p}return a&&l(a)&&re(r=function(){return a.apply(this&&this!==e?this:h,arguments)},a),r||a}}function de(e,t){var n,s,i,r,o,a,l,d=this;if(d.tagName){if(!(d=((a=d).tagCtxs||[d])[e||0]))return}else a=d.tag;if(o=a.bindFrom,r=d.args,(l=a.convert)&&""+l===l&&(l="true"===l?void 0:d.view.getRsc("converters",l)||Ee("Unknown converter: '"+l+"'")),l&&!t&&(r=r.slice()),o){for(i=[],n=o.length;n--;)s=o[n],i.unshift(he(d,s));t&&(r=i)}if(l){if(void 0===(l=l.apply(a,i||r)))return r;if(n=(o=o||[0]).length,c(l)&&l.length===n||(l=[l],o=[0],n=1),t)r=l;else for(;n--;)+(s=o[n])===s&&(r[s]=l[n])}return r}function he(e,t){return(e=e[+t===t?"args":"props"])&&e[t]}function ue(e){return this.cvtArgs(e,1)}function pe(e,t,n,s,i,r,o,a){var l,c,d,h=this,u="array"===t;h.content=a,h.views=u?[]:{},h.data=s,h.tmpl=i,d=h._={key:0,useKey:u?0:1,id:""+O++,onRender:o,bnds:{}},h.linked=!!o,h.type=t||"top",t&&(h.cache={_ct:f._cchCt}),n&&"top"!==n.type||((h.ctx=e||{}).root=h.data),(h.parent=n)?(h.root=n.root||h,l=n.views,c=n._,h.isTop=c.scp,h.scope=(!e.tag||e.tag===n.ctx.tag)&&!h.isTop&&n.scope||h,c.useKey?(l[d.key="_"+c.useKey++]=h,h.index=Y,h.getIndex=oe):l.length===(d.key=h.index=r)?l.push(h):l.splice(r,0,h),h.ctx=e||n.ctx):t&&(h.root=h)}function me(e,t){return l(e)?e.call(t):e}function fe(e,t,n){Object.defineProperty(e,t,{value:n,configurable:!0})}function ge(e,n){var s,i=g._wm||{},r={tmpls:[],links:{},bnds:[],_is:"template",render:ye};return n&&(r=re(r,n)),r.markup=e,r.htmlTag||(s=P.exec(e),r.htmlTag=s?s[1].toLowerCase():""),(s=i[r.htmlTag])&&s!==i.div&&(r.markup=t.trim(r.markup)),r}function ve(e,t){var n=e+"s";o[n]=function s(i,r,a){var l,c,d,h=m.onStore[e];if(i&&typeof i===U&&!i.nodeType&&!i.markup&&!i.getTgt&&!("viewModel"===e&&i.getters||i.extend)){for(c in i)s(c,i[c],r);return r||o}return i&&""+i!==i&&(a=r,r=i,i=void 0),d=a?"viewModel"===e?a:a[n]=a[n]||{}:s,l=t.compile,void 0===r&&(r=l?i:d[i],i=void 0),null===r?i&&delete d[i]:(l&&((r=l.call(d,i,r,a,0)||{})._is=e),i&&(d[i]=r)),h&&h(i,r,a,l),r}}function be(e){v[e]=v[e]||function(t){return arguments.length?(f[e]=t,v):f[e]}}function we(e){function t(t,n){this.tgt=e.getTgt(t,n),n.map=this}return l(e)&&(e={getTgt:e}),e.baseMap&&(e=re(re({},e.baseMap),e)),e.map=function(e,n){return new t(e,n)},e}function ye(e,t,n,s,i,o){var a,d,h,u,p,f,v,b,w=s,y="";if(!0===t?(n=t,t=void 0):typeof t!==U&&(t=void 0),(h=this.tag)?(p=this,u=(w=w||p.view)._getTmpl(h.template||p.tmpl),arguments.length||(e=h.contentCtx&&l(h.contentCtx)?e=h.contentCtx(e):w)):u=this,u){if(!s&&e&&"view"===e._is&&(w=e),w&&e===w&&(e=w.data),f=!w,C=C||f,f&&((t=t||{}).root=e),!C||g.useViews||u.useViews||w&&w!==r)y=Se(u,e,t,n,w,i,o,h);else{if(w?(v=w.data,b=w.index,w.index=Y):(v=(w=r).data,w.data=e,w.ctx=t),c(e)&&!n)for(a=0,d=e.length;a<d;a++)w.index=a,w.data=e[a],y+=u.fn(e[a],w,m);else w.data=e,y+=u.fn(e,w,m);w.data=v,w.index=b}f&&(C=void 0)}return y}function Se(e,t,n,s,i,r,o,a){var l,d,h,u,p,f,g,v,b,w,y,S,E,$="";if(a&&(b=a.tagName,S=a.tagCtx,n=n?_e(n,a.ctx):a.ctx,e===i.content?g=e!==i.ctx._wrp?i.ctx._wrp:void 0:e!==S.content?e===a.template?(g=S.tmpl,n._wrp=S.content):g=S.content||i.content:g=i.content,!1===S.props.link&&((n=n||{}).link=!1)),i&&(o=o||i._.onRender,(E=n&&!1===n.link)&&i._.nl&&(o=void 0),n=_e(n,i.ctx),S=!a&&i.tag?i.tag.tagCtxs[i.tagElse]:S),(w=S&&S.props.itemVar)&&("~"!==w[0]&&$e("Use itemVar='~myItem'"),w=w.slice(1)),!0===r&&(f=!0,r=0),o&&a&&a._.noVws&&(o=void 0),v=o,!0===o&&(v=void 0,o=i._.onRender),y=n=e.helpers?_e(e.helpers,n):n,c(t)&&!s)for((h=f?i:void 0!==r&&i||new pe(n,"array",i,t,e,r,o,g))._.nl=E,i&&i._.useKey&&(h._.bnd=!a||a._.bnd&&a,h.tag=a),l=0,d=t.length;l<d;l++)u=new pe(y,"item",h,t[l],e,(r||0)+l,o,h.content),w&&((u.ctx=re({},y))[w]=m._cp(t[l],"#data",u)),p=e.fn(t[l],u,m),$+=h._.onRender?h._.onRender(p,u):p;else h=f?i:new pe(y,b||"data",i,t,e,r,o,g),w&&((h.ctx=re({},y))[w]=m._cp(t,"#data",h)),h.tag=a,h._.nl=E,$+=e.fn(t,h,m);return a&&(h.tagElse=S.index,S.contentView=h),v?v($,h):$}function Ee(e){throw new m.Err(e)}function $e(e){Ee("Syntax error\n"+e)}function Ce(e,t,n,s,r){function o(t){(t-=g)&&E.push(e.substr(g,t).replace(T,"\\n"))}function a(t,n){t&&(t+="}}",$e((n?"{{"+n+"}} block has {{/"+t+" without {{"+t:"Unmatched or missing {{/"+t)+", in template:\n"+e))}var l,c,d,h,u,p=f.allowCode||t&&t.allowCode||!0===v.allowCode,m=[],g=0,w=[],E=m,$=[,,m];if(p&&t._is&&(t.allowCode=p),n&&(void 0!==s&&(e=e.slice(0,-s.length-2)+y),e=b+e+S),a(w[0]&&w[0][2].pop()[0]),e.replace(i,(function(i,l,c,u,m,f,v,b,y,S,C,L){(v&&l||y&&!c||b&&":"===b.slice(-1)||S)&&$e(i),f&&(m=":",u=V);var k,_,P,D=(l||n)&&[[]],I="",F="",q="",B="",j="",O="",H="",N="",U=!(y=y||n&&!r)&&!m;c=c||(b=b||"#data",m),o(L),g=L+i.length,v?p&&E.push(["*","\n"+b.replace(/^:/,"ret+= ").replace(R,"$1")+";\n"]):c?("else"===c&&(x.test(b)&&$e('For "{{else if expr}}" use "{{else expr}}"'),D=$[9]&&[[]],$[10]=e.substring($[10],L),_=$[11]||$[0]||$e("Mismatched: "+i),$=w.pop(),E=$[2],U=!0),b&&Te(b.replace(T," "),D,t,n).replace(A,(function(e,t,n,s,i,r,o,a){return"this:"===s&&(r="undefined"),a&&(P=P||"@"===a[0]),s="'"+i+"':",o?(F+=n+r+",",B+="'"+a+"',"):n?(q+=s+"j._cp("+r+',"'+a+'",view),',O+=s+"'"+a+"',"):t?H+=r:("trigger"===i&&(N+=r),"lateRender"===i&&(k="false"!==a),I+=s+r+",",j+=s+"'"+a+"',",h=h||M.test(i)),""})).slice(0,-1),D&&D[0]&&D.pop(),d=[c,u||!!s||h||"",U&&[],ke(B||(":"===c?"'#data',":""),j,O),ke(F||(":"===c?"data,":""),I,q),H,N,k,P,D||0],E.push(d),U&&(w.push($),($=d)[10]=g,$[11]=_)):C&&(a(C!==$[0]&&C!==$[11]&&C,$[0]),$[10]=e.substring($[10],L),$=w.pop()),a(!$&&C),E=$[2]})),o(e.length),(g=m[m.length-1])&&a(""+g!==g&&+g[10]===g[10]&&g[0]),n){for(c=Re(m,e,n),u=[],l=m.length;l--;)u.unshift(m[l][9]);Le(c,u)}else c=Re(m,t);return c}function Le(e,t){var n,s,i=0,r=t.length;for(e.deps=[],e.paths=[];i<r;i++)for(n in e.paths.push(s=t[i]),s)"_jsvto"!==n&&s.hasOwnProperty(n)&&s[n].length&&!s[n].skp&&(e.deps=e.deps.concat(s[n]))}function ke(e,t,n){return[e.slice(0,-1),t.slice(0,-1),n.slice(0,-1)]}function Te(e,n,s,i){var r,o,a,l,c,d=n&&n[0],h={bd:d},u={0:h},p=0,f=0,v=0,b={},w=0,y={},S={},E={},$={0:0},C={0:""},L=0;return"@"===e[0]&&(e=e.replace(j,".")),a=(e+(s?" ":"")).replace(m.rPrm,(function(s,a,k,T,R,A,x,P,D,M,I,F,q,B,j,O,H,N,V,U,W){T&&!P&&(R=T+R),A=A||"",q=q||"",k=k||a||q,R=R||D,M&&(M=!/\)|]/.test(W[U-1]))&&(R=R.slice(1).split(".").join("^")),I=I||N||"";var z,Y,J,G,Q,X,Z,ee=U;if(!c&&!l){if(x&&$e(e),H&&d){if(z=E[v-1],W.length-1>ee-(z||0)){if(z=t.trim(W.slice(z,ee+s.length)),Y=o||u[v-1].bd,(J=Y[Y.length-1])&&J.prm){for(;J.sb&&J.sb.prm;)J=J.sb;G=J.sb={path:J.sb,bnd:J.bnd}}else Y.push(G={path:Y.pop()});J&&J.sb===G&&(C[v]=C[v-1].slice(J._cpPthSt)+C[v],C[v-1]=C[v-1].slice(0,J._cpPthSt)),G._cpPthSt=$[v-1],G._cpKey=z,C[v]+=W.slice(L,U),L=U,G._cpfn=K[z]=K[z]||new Function("data,view,j","//"+z+"\nvar v;\nreturn ((v="+C[v]+("]"===O?")]":O)+")!=null?v:null);"),C[v-1]+=S[f]&&g.cache?'view.getCache("'+z.replace(_,"\\$&")+'"':C[v],G.prm=h.bd,G.bnd=G.bnd||G.path&&G.path.indexOf("^")>=0}C[v]=""}"["===I&&(I="[j._sq("),"["===k&&(k="[j._sq(")}return Z=c?(c=!B)?s:q+'"':l?(l=!j)?s:q+'"':(k?(y[++f]=!0,b[f]=0,d&&(E[v++]=ee++,h=u[v]={bd:[]},C[v]="",$[v]=1),k):"")+(V?f?"":(p=W.slice(p,ee),(r?(r=o=!1,"\b"):"\b,")+p+(p=ee+s.length,d&&n.push(h.bd=[]),"\b")):P?(v&&$e(e),d&&n.pop(),r="_"+R,T,p=ee+s.length,d&&((d=h.bd=n[r]=[]).skp=!T),R+":"):R?R.split("^").join(".").replace(m.rPath,(function(e,t,s,a,l,c,u,p){if(Q="."===s,s&&(R=R.slice(t.length),/^\.?constructor$/.test(p||R)&&$e(e),Q||(e=(M?(i?"":"(ltOb.lt=ltOb.lt||")+"(ob=":"")+(a?'view.ctxPrm("'+a+'")':l?"view":"data")+(M?")===undefined"+(i?"":")")+'?"":view._getOb(ob,"':"")+(p?(c?"."+c:a||l?"":"."+s)+(u||""):(p=a?"":l?c||"":s,"")),e=t+("view.data"===(e+=p?"."+p:"").slice(0,9)?e.slice(5):e)+(M?(i?'"':'",ltOb')+(I?",1)":")"):"")),d)){if(Y="_linkTo"===r?o=n._jsvto=n._jsvto||[]:h.bd,J=Q&&Y[Y.length-1]){if(J._cpfn){for(;J.sb;)J=J.sb;J.prm&&(J.bnd&&(R="^"+R.slice(1)),J.sb=R,J.bnd=J.bnd||"^"===R[0])}}else Y.push(R);I&&!Q&&(E[v]=ee,$[v]=C[v].length)}return e}))+(I||A):A||(O?"]"===O?")]":")":F?(S[f]||$e(e),","):a?"":(c=B,l=j,'"'))),c||l||O&&(S[f]=!1,f--),d&&(c||l||(O&&(y[f+1]&&(h=u[--v],y[f+1]=!1),w=b[f+1]),I&&(b[f+1]=C[v].length+(k?1:0),(R||O)&&(h=u[++v]={bd:[]},y[f+1]=!0))),C[v]=(C[v]||"")+W.slice(L,U),L=U+s.length,c||l||((X=k&&y[f+1])&&(C[v-1]+=k,$[v-1]++),"("===I&&Q&&!G&&(C[v]=C[v-1].slice(w)+C[v],C[v-1]=C[v-1].slice(0,w))),C[v]+=X?Z.slice(1):Z),c||l||!I||(f++,R&&"("===I&&(S[f]=!0)),c||l||!N||(d&&(C[v]+=I),Z+=I),Z})),d&&(a=C[0]),!f&&a||$e(e)}function Re(e,t,n){var s,i,r,o,a,l,c,d,h,u,m,v,b,w,y,S,E,$,C,L,k,_,A,x,P,D,M,I,F,q,B,j,O,H,N=0,U=g.useViews||t.useViews||t.tags||t.templates||t.helpers||t.converters,W="",z={},Y=e.length;for(""+t===t?(E=n?'data-link="'+t.replace(T," ").slice(1,-1)+'"':t,t=0):(E=t.tmplName||"unnamed",t.allowCode&&(z.allowCode=!0),t.debug&&(z.debug=!0),u=t.bnds,S=t.tmpls),s=0;s<Y;s++)if(""+(i=e[s])===i)W+='+"'+i+'"';else if("*"===(r=i[0]))W+=";\n"+i[1]+"\nret=ret";else{if(o=i[1],L=!n&&i[2],O=i[3],H=v=i[4],a="\n\tparams:{args:["+O[0]+"],\n\tprops:{"+O[1]+"}"+(O[2]?",\n\tctx:{"+O[2]+"}":"")+"},\n\targs:["+H[0]+"],\n\tprops:{"+H[1]+"}"+(H[2]?",\n\tctx:{"+H[2]+"}":""),F=i[6],q=i[7],i[8]?(B="\nvar ob,ltOb={},ctxs=",j=";\nctxs.lt=ltOb.lt;\nreturn ctxs;"):(B="\nreturn ",j=""),k=i[10]&&i[10].replace(R,"$1"),(x="else"===r)?m&&m.push(i[9]):(M=i[5]||!1!==f.debugMode&&"undefined",u&&(m=i[9])&&(m=[m],N=u.push(1))),U=U||v[1]||v[2]||m||/view.(?!index)/.test(v[0]),(P=":"===r)?o&&(r=o===V?">":o+r):(L&&(($=ge(k,z)).tmplName=E+"/"+r,$.useViews=$.useViews||U,Re(L,$),U=$.useViews,S.push($)),x||(C=r,U=U||r&&(!p[r]||!p[r].flow),A=W,W=""),_=(_=e[s+1])&&"else"===_[0]),I=M?";\ntry{\nret+=":"\n+",b="",w="",P&&(m||F||o&&o!==V||q)){if((D=new Function("data,view,j","// "+E+" "+ ++N+" "+r+B+"{"+a+"};"+j))._er=M,D._tag=r,D._bd=!!m,D._lr=q,n)return D;Le(D,m),h=!0,b=(y='c("'+o+'",view,')+N+",",w=")"}if(W+=P?(n?(M?"try{\n":"")+"return ":I)+(h?(h=void 0,U=d=!0,y+(D?(u[N-1]=D,N):"{"+a+"}")+")"):">"===r?(c=!0,"h("+v[0]+")"):(!0,"((v="+v[0]+")!=null?v:"+(n?"null)":'"")'))):(l=!0,"\n{view:view,content:false,tmpl:"+(L?S.length:"false")+","+a+"},"),C&&!_){if(W="["+W.slice(0,-1)+"]",y='t("'+C+'",view,this,',n||m){if((W=new Function("data,view,j"," // "+E+" "+N+" "+C+B+W+j))._er=M,W._tag=C,m&&Le(u[N-1]=W,m),W._lr=q,n)return W;b=y+N+",undefined,",w=")"}W=A+I+y+(m&&N||W)+")",m=0,C=0}M&&!_&&(U=!0,W+=";\n}catch(e){ret"+(n?"urn ":"+=")+b+"j._err(e,view,"+M+")"+w+";}"+(n?"":"\nret=ret"))}W="// "+E+(z.debug?"\ndebugger;":"")+"\nvar v"+(l?",t=j._tag":"")+(d?",c=j._cnvt":"")+(c?",h=j._html":"")+(n?(i[8]?", ob":"")+";\n":',ret=""')+W+(n?"\n":";\nreturn ret;");try{W=new Function("data,view,j",W)}catch(e){$e("Compiled template code:\n\n"+W+'\n: "'+(e.message||e)+'"')}return t&&(t.fn=W,t.useViews=!!U),W}function _e(e,t){return e&&e!==t?t?re(re({},t),e):e:t&&re({},t)}function Ae(e,n){var s,i,r,o=n.tag,a=n.props,d=n.params.props,h=a.filter,u=a.sort,p=!0===u,m=parseInt(a.step),f=a.reverse?-1:1;if(!c(e))return e;if(p||u&&""+u===u?((s=e.map((function(e,t){return{i:t,v:""+(e=p?e:le(e,u))===e?e.toLowerCase():e}}))).sort((function(e,t){return e.v>t.v?f:e.v<t.v?-f:0})),e=s.map((function(t){return e[t.i]}))):(u||f<0)&&!o.dataMap&&(e=e.slice()),l(u)&&(e=e.sort((function(){return u.apply(n,arguments)}))),f<0&&(!u||l(u))&&(e=e.reverse()),e.filter&&h&&(e=e.filter(h,n),n.tag.onFilter&&n.tag.onFilter(n)),d.sorted&&(s=u||f<0?e:e.slice(),o.sorted?t.observable(o.sorted).refresh(s):n.map.sorted=s),i=a.start,r=a.end,(d.start&&void 0===i||d.end&&void 0===r)&&(i=r=0),isNaN(i)&&isNaN(r)||(i=+i||0,r=void 0===r||r>e.length?e.length:+r,e=e.slice(i,r)),m>1){for(i=0,r=e.length,s=[];i<r;i+=m)s.push(e[i]);e=s}return d.paged&&o.paged&&$observable(o.paged).refresh(e),e}function xe(e,n,s){var i=this.jquery&&(this[0]||Ee("Unknown template")),r=i.getAttribute(W);return ye.call(r&&t.data(i).jsvTmpl||d(i),e,n,s)}function Pe(e){return H[e]||(H[e]="&#"+e.charCodeAt(0)+";")}function De(e,t){return N[t]||""}function Me(e){return null!=e?D.test(e)&&(""+e).replace(F,Pe)||e:""}if(o={jsviews:L,sub:{rPath:/^(!*?)(?:null|true|false|\d[\d.]*|([\w$]+|\.|~([\w$]+)|#(view|([\w$]+))?)([\w$.^]*?)(?:[.[^]([\w$]+)\]?)?)$/g,rPrm:/(\()(?=\s*\()|(?:([([])\s*)?(?:(\^?)(~?[\w$.^]+)?\s*((\+\+|--)|\+|-|~(?![\w$])|&&|\|\||===|!==|==|!=|<=|>=|[<>%*:?\/]|(=))\s*|(!*?(@)?[#~]?[\w$.^]+)([([])?)|(,\s*)|(?:(\()\s*)?\\?(?:(')|("))|(?:\s*(([)\]])(?=[.^]|\s*$|[^([])|[)\]])([([]?))|(\s+)/g,View:pe,Err:ie,tmplFn:Ce,parse:Te,extend:re,extendCtx:_e,syntaxErr:$e,onStore:{template:function(e,t){null===t?delete J[e]:e&&(J[e]=t)}},addSetting:be,settings:{allowCode:!1},advSet:se,_thp:te,_gm:ee,_tg:function(){},_cnvt:function(e,t,n,s){var i,r,o,a,l,c="number"==typeof n&&t.tmpl.bnds[n-1];void 0===s&&c&&c._lr&&(s="");void 0!==s?n=s={props:{},args:[s]}:c&&(n=c(t.data,t,m));if(c=c._bd&&c,e||c){if(r=t._lc,i=r&&r.tag,n.view=t,!i){if(i=re(new m._tg,{_:{bnd:c,unlinked:!0,lt:n.lt},inline:!r,tagName:":",convert:e,onArrayChange:!0,flow:!0,tagCtx:n,tagCtxs:[n],_is:"tag"}),(a=n.args.length)>1)for(l=i.bindTo=[];a--;)l.unshift(a);r&&(r.tag=i,i.linkCtx=r),n.ctx=_e(n.ctx,(r?r.view:t).ctx),te(i,n)}i._er=s&&o,i.ctx=n.ctx||i.ctx||{},n.ctx=void 0,o=i.cvtArgs()[0],i._er=s&&o}else o=n.args[0];return null!=(o=c&&t._.onRender?t._.onRender(o,t,i):o)?o:""},_tag:function(e,t,n,s,i,o){function a(e){var t=l[e];if(void 0!==t)for(t=c(t)?t:[t],v=t.length;v--;)F=t[v],isNaN(parseInt(F))||(t[v]=parseInt(F));return t||[0]}var l,d,u,p,f,g,v,b,w,y,S,E,$,C,L,k,T,R,_,A,x,P,D,M,F,q,B,j,O,H=0,N="",U=(t=t||r)._lc||!1,W=t.ctx,z=n||t.tmpl,Y="number"==typeof s&&t.tmpl.bnds[s-1];"tag"===e._is?(e=(l=e).tagName,s=l.tagCtxs,l.template):(d=t.getRsc("tags",e)||Ee("Unknown tag: {{"+e+"}} "),d.template);void 0===o&&Y&&(Y._lr=d.lateRender&&!1!==Y._lr||Y._lr)&&(o="");void 0!==o?(N+=o,s=o=[{props:{},args:[],params:{props:{}}}]):Y&&(s=Y(t.data,t,m));for(g=s.length;H<g;H++)y=s[H],k=y.tmpl,(!U||!U.tag||H&&!U.tag.inline||l._er||k&&+k===k)&&(k&&z.tmpls&&(y.tmpl=y.content=z.tmpls[k-1]),y.index=H,y.ctxPrm=ce,y.render=ye,y.cvtArgs=de,y.bndArgs=ue,y.view=t,y.ctx=_e(_e(y.ctx,d&&d.ctx),W)),(n=y.props.tmpl)&&(y.tmpl=t._getTmpl(n),y.content=y.content||y.tmpl),l?U&&U.fn._lr&&(T=!!l.init):(l=new d._ctr,T=!!l.init,l.parent=f=W&&W.tag,l.tagCtxs=s,U&&(l.inline=!1,U.tag=l),l.linkCtx=U,(l._.bnd=Y||U.fn)?(l._.ths=y.params.props.this,l._.lt=s.lt,l._.arrVws={}):l.dataBoundOnly&&Ee(e+" must be data-bound:\n{^{"+e+"}}")),D=l.dataMap,y.tag=l,D&&s&&(y.map=s[H].map),l.flow||(S=y.ctx=y.ctx||{},u=l.parents=S.parentTags=W&&_e(S.parentTags,W.parentTags)||{},f&&(u[f.tagName]=f),u[l.tagName]=S.tag=l,S.tagCtx=y);if(!(l._er=o)){for(te(l,s[0]),l.rendering={rndr:l.rendering},H=0;H<g;H++){if(y=l.tagCtx=s[H],P=y.props,l.ctx=y.ctx,!H){if(T&&(l.init(y,U,l.ctx),T=void 0),y.args.length||!1===y.argDefault||!1===l.argDefault||(y.args=A=[y.view.data],y.params.args=["#data"]),$=a("bindTo"),void 0!==l.bindTo&&(l.bindTo=$),void 0!==l.bindFrom?l.bindFrom=a("bindFrom"):l.bindTo&&(l.bindFrom=l.bindTo=$),C=l.bindFrom||$,B=$.length,q=C.length,l._.bnd&&(j=l.linkedElement)&&(l.linkedElement=j=c(j)?j:[j],B!==j.length&&Ee("linkedElement not same length as bindTo")),(j=l.linkedCtxParam)&&(l.linkedCtxParam=j=c(j)?j:[j],q!==j.length&&Ee("linkedCtxParam not same length as bindFrom/bindTo")),C)for(l._.fromIndex={},l._.toIndex={},b=q;b--;)for(F=C[b],v=B;v--;)F===$[v]&&(l._.fromIndex[v]=b,l._.toIndex[b]=v);U&&(U.attr=l.attr=U.attr||l.attr||U._dfAt),p=l.attr,l._.noVws=p&&p!==V}if(A=l.cvtArgs(H),l.linkedCtxParam)for(x=l.cvtArgs(H,1),v=q,O=l.constructor.prototype.ctx;v--;)(E=l.linkedCtxParam[v])&&(F=C[v],L=x[v],y.ctx[E]=m._cp(O&&void 0===L?O[E]:L,void 0!==L&&he(y.params,F),y.view,l._.bnd&&{tag:l,cvt:l.convert,ind:v,tagElse:H}));(R=P.dataMap||D)&&(A.length||P.dataMap)&&((_=y.map)&&_.src===A[0]&&!i||(_&&_.src&&_.unmap(),R.map(A[0],y,_,!l._.bnd),_=y.map),A=[_.tgt]),w=void 0,l.render&&(w=l.render.apply(l,A),t.linked&&w&&!I.test(w)&&((n={links:[]}).render=n.fn=function(){return w},w=Se(n,t.data,void 0,!0,t,void 0,void 0,l))),A.length||(A=[t]),void 0===w&&(M=A[0],l.contentCtx&&(M=!0===l.contentCtx?t:l.contentCtx(M)),w=y.render(M,!0)||(i?void 0:"")),N=N?N+(w||""):void 0!==w?""+w:void 0}l.rendering=l.rendering.rndr}l.tagCtx=s[0],l.ctx=l.tagCtx.ctx,l._.noVws&&l.inline&&(N="text"===p?h.html(N):"");return Y&&t._.onRender?t._.onRender(N,t,l):N},_er:Ee,_err:function(e,t,n){var s=void 0!==n?l(n)?n.call(t.data,e,t):n||"":"{Error: "+(e.message||e)+"}";f.onError&&void 0!==(n=f.onError.call(t.data,e,n&&s,t))&&(s=n);return t&&!t._lc?h.html(s):s},_cp:ne,_sq:function(e){return"constructor"===e&&$e(""),e}},settings:{delimiters:function e(t,n,s){if(!t)return f.delimiters;if(c(t))return e.apply(o,t);E=s?s[0]:E,/^(\W|_){5}$/.test(t+n+E)||Ee("Invalid delimiters");return b=t[0],w=t[1],y=n[0],S=n[1],f.delimiters=[b+w,y+S,E],t="\\"+b+"(\\"+E+")?\\"+w,n="\\"+y+"\\"+S,i="(?:(\\w+(?=[\\/\\s\\"+y+"]))|(\\w+)?(:)|(>)|(\\*))\\s*((?:[^\\"+y+"]|\\"+y+"(?!\\"+S+"))*?)",m.rTag="(?:"+i+")",i=new RegExp("(?:"+t+i+"(\\/)?|\\"+b+"(\\"+E+")?\\"+w+"(?:(?:\\/(\\w+))\\s*|!--[\\s\\S]*?--))"+n,"g"),m.rTmpl=new RegExp("^\\s|\\s$|<.*>|([^\\\\]|^)[{}]|"+t+".*"+n),v},advanced:function(e){return e?(re(g,e),m.advSet(),v):g}},map:we},(ie.prototype=new Error).constructor=ie,oe.depends=function(){return[this.get("item"),"index"]},ae.depends="index",pe.prototype={get:function(e,t){t||!0===e||(t=e,e=void 0);var n,s,i,r,o=this,a="root"===t;if(e){if(!(r=t&&o.type===t&&o))if(n=o.views,o._.useKey){for(s in n)if(r=t?n[s].get(e,t):n[s])break}else for(s=0,i=n.length;!r&&s<i;s++)r=t?n[s].get(e,t):n[s]}else if(a)r=o.root;else if(t)for(;o&&!r;)r=o.type===t?o:void 0,o=o.parent;else r=o.parent;return r||void 0},getIndex:ae,ctxPrm:ce,getRsc:function(e,t){var n,s,i=this;if(""+t===t){for(;void 0===n&&i;)n=(s=i.tmpl&&i.tmpl[e])&&s[t],i=i.parent;return n||o[e][t]}},_getTmpl:function(e){return e&&(e.fn?e:this.getRsc("templates",e)||d(e))},_getOb:le,getCache:function(e){return f._cchCt>this.cache._ct&&(this.cache={_ct:f._cchCt}),this.cache[e]||(this.cache[e]=K[e](this.data,this,m))},_is:"view"},m=o.sub,v=o.settings,!(G||t&&t.render)){for(s in X)ve(s,X[s]);if(h=o.converters,u=o.helpers,p=o.tags,m._tg.prototype={baseApply:function(e){return this.base.apply(this,e)},cvtArgs:de,bndArgs:ue,ctxPrm:ce},r=m.topView=new pe,t){if(t.fn.render=xe,a=t.expando,t.observable){if(L!==(L=t.views.jsviews))throw"jquery.observable.js requires jsrender.js "+L;re(m,t.views.sub),o.map=t.views.map}}else t={},n&&(e.jsrender=t),t.renderFile=t.__express=t.compile=function(){throw"Node.js: use npm jsrender, or jsrender-node.js"},t.isFunction=function(e){return"function"==typeof e},t.isArray=Array.isArray||function(e){return"[object Array]"==={}.toString.call(e)},m._jq=function(e){e!==t&&(re(e,t),(t=e).fn.render=xe,delete t.jsrender,a=t.expando)},t.jsrender=L;for($ in(f=m.settings).allowCode=!1,l=t.isFunction,t.render=J,t.views=o,t.templates=d=o.templates,f)be($);(v.debugMode=function(e){return void 0===e?f.debugMode:(f._clFns&&f._clFns(),f.debugMode=e,f.onError=e+""===e?function(){return e}:l(e)?e:void 0,v)})(!1),g=f.advanced={cache:!0,useViews:!1,_jsv:!1},p({if:{render:function(e){var t=this,n=t.tagCtx;return t.rendering.done||!e&&(n.args.length||!n.index)?"":(t.rendering.done=!0,void(t.selected=n.index))},contentCtx:!0,flow:!0},for:{sortDataMap:we(Ae),init:function(e,t){this.setDataMap(this.tagCtxs)},render:function(e){var t,n,s,i,r,o=this,a=o.tagCtx,l=!1===a.argDefault,d=a.props,h=l||a.args.length,u="",p=0;if(!o.rendering.done){if(t=h?e:a.view.data,l)for(l=d.reverse?"unshift":"push",i=+d.end,r=+d.step||1,t=[],s=+d.start||0;(i-s)*r>0;s+=r)t[l](s);void 0!==t&&(n=c(t),u+=a.render(t,!h||d.noIteration),p+=n?t.length:1),(o.rendering.done=p)&&(o.selected=a.index)}return u},setDataMap:function(e){for(var t,n,s,i=e.length;i--;)n=(t=e[i]).props,s=t.params.props,t.argDefault=void 0===n.end||t.args.length>0,n.dataMap=!1!==t.argDefault&&c(t.args[0])&&(s.sort||s.start||s.end||s.step||s.filter||s.reverse||n.sort||n.start||n.end||n.step||n.filter||n.reverse)&&this.sortDataMap},flow:!0},props:{baseTag:"for",dataMap:we((function(e,n){var s,i,r=n.map,o=r&&r.propsArr;if(!o){if(o=[],typeof e===U||l(e))for(s in e)i=e[s],s===a||!e.hasOwnProperty(s)||n.props.noFunctions&&t.isFunction(i)||o.push({key:s,prop:i});r&&(r.propsArr=r.options&&o)}return Ae(o,n)})),init:se,flow:!0},include:{flow:!0},"*":{render:ne,flow:!0},":*":{render:ne,flow:!0},dbg:u.dbg=h.dbg=function(e){try{throw console.log("JsRender dbg breakpoint: "+e),"dbg breakpoint"}catch(e){}return this.base?this.baseApply(arguments):e}}),h({html:Me,attr:Me,encode:function(e){return""+e===e?e.replace(q,Pe):e},unencode:function(e){return""+e===e?e.replace(B,De):e},url:function(e){return null!=e?encodeURI(""+e):null===e?e:""}})}return f=m.settings,c=(t||G).isArray,v.delimiters("{{","}}","^"),Q&&G.views.sub._jq(t),t||G}),window)}},t={};function n(s){var i=t[s];if(void 0!==i)return i.exports;var r=t[s]={exports:{}};return e[s](r,r.exports,n),r.exports}n.d=(e,t)=>{for(var s in t)n.o(t,s)&&!n.o(e,s)&&Object.defineProperty(e,s,{enumerable:!0,get:t[s]})},n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),n.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},(()=>{"use strict";var e={};n.r(e),n.d(e,{PageRenderer:()=>le,PageSnapshot:()=>U,clearCache:()=>Se,connectStreamSource:()=>be,disconnectStreamSource:()=>we,navigator:()=>me,registerAdapter:()=>ge,renderStreamMessage:()=>ye,session:()=>pe,setConfirmMethod:()=>$e,setProgressBarDelay:()=>Ee,start:()=>fe,visit:()=>ve}),function(){if(void 0===window.Reflect||void 0===window.customElements||window.customElements.polyfillWrapFlushCallback)return;const e=HTMLElement,t=function(){return Reflect.construct(e,[],this.constructor)};window.HTMLElement=t,HTMLElement.prototype=e.prototype,HTMLElement.prototype.constructor=HTMLElement,Object.setPrototypeOf(HTMLElement,e)}(),function(e){function t(e,t,n){throw new e("Failed to execute 'requestSubmit' on 'HTMLFormElement': "+t+".",n)}"function"!=typeof e.requestSubmit&&(e.requestSubmit=function(e){e?(!function(e,n){e instanceof HTMLElement||t(TypeError,"parameter 1 is not of type 'HTMLElement'"),"submit"==e.type||t(TypeError,"The specified element is not a submit button"),e.form==n||t(DOMException,"The specified element is not owned by this form element","NotFoundError")}(e,this),e.click()):((e=document.createElement("input")).type="submit",e.hidden=!0,this.appendChild(e),e.click(),this.removeChild(e))})}(HTMLFormElement.prototype);const t=new WeakMap;function s(e){const n=function(e){const t=e instanceof Element?e:e instanceof Node?e.parentElement:null,n=t?t.closest("input, button"):null;return"submit"==(null==n?void 0:n.type)?n:null}(e.target);n&&n.form&&t.set(n.form,n)}var i,r,o,a,l,c;!function(){if("submitter"in Event.prototype)return;let e;if("SubmitEvent"in window&&/Apple Computer/.test(navigator.vendor))e=window.SubmitEvent.prototype;else{if("SubmitEvent"in window)return;e=window.Event.prototype}addEventListener("click",s,!0),Object.defineProperty(e,"submitter",{get(){if("submit"==this.type&&this.target instanceof HTMLFormElement)return t.get(this.target)}})}(),function(e){e.eager="eager",e.lazy="lazy"}(i||(i={}));class d extends HTMLElement{constructor(){super(),this.loaded=Promise.resolve(),this.delegate=new d.delegateConstructor(this)}static get observedAttributes(){return["disabled","loading","src"]}connectedCallback(){this.delegate.connect()}disconnectedCallback(){this.delegate.disconnect()}reload(){const{src:e}=this;this.src=null,this.src=e}attributeChangedCallback(e){"loading"==e?this.delegate.loadingStyleChanged():"src"==e?this.delegate.sourceURLChanged():this.delegate.disabledChanged()}get src(){return this.getAttribute("src")}set src(e){e?this.setAttribute("src",e):this.removeAttribute("src")}get loading(){return function(e){switch(e.toLowerCase()){case"lazy":return i.lazy;default:return i.eager}}(this.getAttribute("loading")||"")}set loading(e){e?this.setAttribute("loading",e):this.removeAttribute("loading")}get disabled(){return this.hasAttribute("disabled")}set disabled(e){e?this.setAttribute("disabled",""):this.removeAttribute("disabled")}get autoscroll(){return this.hasAttribute("autoscroll")}set autoscroll(e){e?this.setAttribute("autoscroll",""):this.removeAttribute("autoscroll")}get complete(){return!this.delegate.isLoading}get isActive(){return this.ownerDocument===document&&!this.isPreview}get isPreview(){var e,t;return null===(t=null===(e=this.ownerDocument)||void 0===e?void 0:e.documentElement)||void 0===t?void 0:t.hasAttribute("data-turbo-preview")}}function h(e){return new URL(e.toString(),document.baseURI)}function u(e){let t;return e.hash?e.hash.slice(1):(t=e.href.match(/#(.*)$/))?t[1]:void 0}function p(e,t){return h((null==t?void 0:t.getAttribute("formaction"))||e.getAttribute("action")||e.action)}function m(e){return(function(e){return function(e){return e.pathname.split("/").slice(1)}(e).slice(-1)[0]}(e).match(/\.[^.]*$/)||[])[0]||""}function f(e,t){const n=function(e){return t=e.origin+e.pathname,t.endsWith("/")?t:t+"/";var t}(t);return e.href===h(n).href||e.href.startsWith(n)}function g(e,t){return f(e,t)&&!!m(e).match(/^(?:|\.(?:htm|html|xhtml))$/)}function v(e){const t=u(e);return null!=t?e.href.slice(0,-(t.length+1)):e.href}function b(e){return v(e)}class w{constructor(e){this.response=e}get succeeded(){return this.response.ok}get failed(){return!this.succeeded}get clientError(){return this.statusCode>=400&&this.statusCode<=499}get serverError(){return this.statusCode>=500&&this.statusCode<=599}get redirected(){return this.response.redirected}get location(){return h(this.response.url)}get isHTML(){return this.contentType&&this.contentType.match(/^(?:text\/([^\s;,]+\b)?html|application\/xhtml\+xml)\b/)}get statusCode(){return this.response.status}get contentType(){return this.header("Content-Type")}get responseText(){return this.response.clone().text()}get responseHTML(){return this.isHTML?this.response.clone().text():Promise.resolve(void 0)}header(e){return this.response.headers.get(e)}}function y(e,{target:t,cancelable:n,detail:s}={}){const i=new CustomEvent(e,{cancelable:n,bubbles:!0,detail:s});return t&&t.isConnected?t.dispatchEvent(i):document.documentElement.dispatchEvent(i),i}function S(){return new Promise((e=>requestAnimationFrame((()=>e()))))}function E(e=""){return(new DOMParser).parseFromString(e,"text/html")}function $(e,...t){const n=function(e,t){return e.reduce(((e,n,s)=>e+n+(null==t[s]?"":t[s])),"")}(e,t).replace(/^\n/,"").split("\n"),s=n[0].match(/^\s+/),i=s?s[0].length:0;return n.map((e=>e.slice(i))).join("\n")}function C(){return Array.apply(null,{length:36}).map(((e,t)=>8==t||13==t||18==t||23==t?"-":14==t?"4":19==t?(Math.floor(4*Math.random())+8).toString(16):Math.floor(15*Math.random()).toString(16))).join("")}function L(e,...t){for(const n of t.map((t=>null==t?void 0:t.getAttribute(e))))if("string"==typeof n)return n;return null}function k(...e){for(const t of e)"turbo-frame"==t.localName&&t.setAttribute("busy",""),t.setAttribute("aria-busy","true")}function T(...e){for(const t of e)"turbo-frame"==t.localName&&t.removeAttribute("busy"),t.removeAttribute("aria-busy")}!function(e){e[e.get=0]="get",e[e.post=1]="post",e[e.put=2]="put",e[e.patch=3]="patch",e[e.delete=4]="delete"}(r||(r={}));class R{constructor(e,t,n,s=new URLSearchParams,i=null){this.abortController=new AbortController,this.resolveRequestPromise=e=>{},this.delegate=e,this.method=t,this.headers=this.defaultHeaders,this.body=s,this.url=n,this.target=i}get location(){return this.url}get params(){return this.url.searchParams}get entries(){return this.body?Array.from(this.body.entries()):[]}cancel(){this.abortController.abort()}async perform(){var e,t;const{fetchOptions:n}=this;null===(t=(e=this.delegate).prepareHeadersForRequest)||void 0===t||t.call(e,this.headers,this),await this.allowRequestToBeIntercepted(n);try{this.delegate.requestStarted(this);const e=await fetch(this.url.href,n);return await this.receive(e)}catch(e){if("AbortError"!==e.name)throw this.delegate.requestErrored(this,e),e}finally{this.delegate.requestFinished(this)}}async receive(e){const t=new w(e);return y("turbo:before-fetch-response",{cancelable:!0,detail:{fetchResponse:t},target:this.target}).defaultPrevented?this.delegate.requestPreventedHandlingResponse(this,t):t.succeeded?this.delegate.requestSucceededWithResponse(this,t):this.delegate.requestFailedWithResponse(this,t),t}get fetchOptions(){var e;return{method:r[this.method].toUpperCase(),credentials:"same-origin",headers:this.headers,redirect:"follow",body:this.isIdempotent?null:this.body,signal:this.abortSignal,referrer:null===(e=this.delegate.referrer)||void 0===e?void 0:e.href}}get defaultHeaders(){return{Accept:"text/html, application/xhtml+xml"}}get isIdempotent(){return this.method==r.get}get abortSignal(){return this.abortController.signal}async allowRequestToBeIntercepted(e){const t=new Promise((e=>this.resolveRequestPromise=e));y("turbo:before-fetch-request",{cancelable:!0,detail:{fetchOptions:e,url:this.url,resume:this.resolveRequestPromise},target:this.target}).defaultPrevented&&await t}}class _{constructor(e,t){this.started=!1,this.intersect=e=>{const t=e.slice(-1)[0];(null==t?void 0:t.isIntersecting)&&this.delegate.elementAppearedInViewport(this.element)},this.delegate=e,this.element=t,this.intersectionObserver=new IntersectionObserver(this.intersect)}start(){this.started||(this.started=!0,this.intersectionObserver.observe(this.element))}stop(){this.started&&(this.started=!1,this.intersectionObserver.unobserve(this.element))}}class A{constructor(e){this.templateElement=document.createElement("template"),this.templateElement.innerHTML=e}static wrap(e){return"string"==typeof e?new this(e):e}get fragment(){const e=document.createDocumentFragment();for(const t of this.foreignElements)e.appendChild(document.importNode(t,!0));return e}get foreignElements(){return this.templateChildren.reduce(((e,t)=>"turbo-stream"==t.tagName.toLowerCase()?[...e,t]:e),[])}get templateChildren(){return Array.from(this.templateElement.content.children)}}A.contentType="text/vnd.turbo-stream.html",function(e){e[e.initialized=0]="initialized",e[e.requesting=1]="requesting",e[e.waiting=2]="waiting",e[e.receiving=3]="receiving",e[e.stopping=4]="stopping",e[e.stopped=5]="stopped"}(o||(o={})),function(e){e.urlEncoded="application/x-www-form-urlencoded",e.multipart="multipart/form-data",e.plain="text/plain"}(a||(a={}));class x{constructor(e,t,n,s=!1){this.state=o.initialized,this.delegate=e,this.formElement=t,this.submitter=n,this.formData=function(e,t){const n=new FormData(e),s=null==t?void 0:t.getAttribute("name"),i=null==t?void 0:t.getAttribute("value");s&&null!=i&&n.get(s)!=i&&n.append(s,i);return n}(t,n),this.location=h(this.action),this.method==r.get&&function(e,t){const n=new URLSearchParams;for(const[e,s]of t)s instanceof File||n.append(e,s);e.search=n.toString()}(this.location,[...this.body.entries()]),this.fetchRequest=new R(this,this.method,this.location,this.body,this.formElement),this.mustRedirect=s}static confirmMethod(e,t){return confirm(e)}get method(){var e;return function(e){switch(e.toLowerCase()){case"get":return r.get;case"post":return r.post;case"put":return r.put;case"patch":return r.patch;case"delete":return r.delete}}(((null===(e=this.submitter)||void 0===e?void 0:e.getAttribute("formmethod"))||this.formElement.getAttribute("method")||"").toLowerCase())||r.get}get action(){var e;const t="string"==typeof this.formElement.action?this.formElement.action:null;return(null===(e=this.submitter)||void 0===e?void 0:e.getAttribute("formaction"))||this.formElement.getAttribute("action")||t||""}get body(){return this.enctype==a.urlEncoded||this.method==r.get?new URLSearchParams(this.stringFormData):this.formData}get enctype(){var e;return function(e){switch(e.toLowerCase()){case a.multipart:return a.multipart;case a.plain:return a.plain;default:return a.urlEncoded}}((null===(e=this.submitter)||void 0===e?void 0:e.getAttribute("formenctype"))||this.formElement.enctype)}get isIdempotent(){return this.fetchRequest.isIdempotent}get stringFormData(){return[...this.formData].reduce(((e,[t,n])=>e.concat("string"==typeof n?[[t,n]]:[])),[])}get confirmationMessage(){return this.formElement.getAttribute("data-turbo-confirm")}get needsConfirmation(){return null!==this.confirmationMessage}async start(){const{initialized:e,requesting:t}=o;if(this.needsConfirmation){if(!x.confirmMethod(this.confirmationMessage,this.formElement))return}if(this.state==e)return this.state=t,this.fetchRequest.perform()}stop(){const{stopping:e,stopped:t}=o;if(this.state!=e&&this.state!=t)return this.state=e,this.fetchRequest.cancel(),!0}prepareHeadersForRequest(e,t){if(!t.isIdempotent){const t=function(e){if(null!=e){const t=(document.cookie?document.cookie.split("; "):[]).find((t=>t.startsWith(e)));if(t){const e=t.split("=").slice(1).join("=");return e?decodeURIComponent(e):void 0}}}(P("csrf-param"))||P("csrf-token");t&&(e["X-CSRF-Token"]=t),e.Accept=[A.contentType,e.Accept].join(", ")}}requestStarted(e){var t;this.state=o.waiting,null===(t=this.submitter)||void 0===t||t.setAttribute("disabled",""),y("turbo:submit-start",{target:this.formElement,detail:{formSubmission:this}}),this.delegate.formSubmissionStarted(this)}requestPreventedHandlingResponse(e,t){this.result={success:t.succeeded,fetchResponse:t}}requestSucceededWithResponse(e,t){if(t.clientError||t.serverError)this.delegate.formSubmissionFailedWithResponse(this,t);else if(this.requestMustRedirect(e)&&function(e){return 200==e.statusCode&&!e.redirected}(t)){const e=new Error("Form responses must redirect to another location");this.delegate.formSubmissionErrored(this,e)}else this.state=o.receiving,this.result={success:!0,fetchResponse:t},this.delegate.formSubmissionSucceededWithResponse(this,t)}requestFailedWithResponse(e,t){this.result={success:!1,fetchResponse:t},this.delegate.formSubmissionFailedWithResponse(this,t)}requestErrored(e,t){this.result={success:!1,error:t},this.delegate.formSubmissionErrored(this,t)}requestFinished(e){var t;this.state=o.stopped,null===(t=this.submitter)||void 0===t||t.removeAttribute("disabled"),y("turbo:submit-end",{target:this.formElement,detail:Object.assign({formSubmission:this},this.result)}),this.delegate.formSubmissionFinished(this)}requestMustRedirect(e){return!e.isIdempotent&&this.mustRedirect}}function P(e){const t=document.querySelector(`meta[name="${e}"]`);return t&&t.content}class D{constructor(e){this.element=e}get children(){return[...this.element.children]}hasAnchor(e){return null!=this.getElementForAnchor(e)}getElementForAnchor(e){return e?this.element.querySelector(`[id='${e}'], a[name='${e}']`):null}get isConnected(){return this.element.isConnected}get firstAutofocusableElement(){return this.element.querySelector("[autofocus]")}get permanentElements(){return[...this.element.querySelectorAll("[id][data-turbo-permanent]")]}getPermanentElementById(e){return this.element.querySelector(`#${e}[data-turbo-permanent]`)}getPermanentElementMapForSnapshot(e){const t={};for(const n of this.permanentElements){const{id:s}=n,i=e.getPermanentElementById(s);i&&(t[s]=[n,i])}return t}}class M{constructor(e,t){this.submitBubbled=e=>{const t=e.target;if(!e.defaultPrevented&&t instanceof HTMLFormElement&&t.closest("turbo-frame, html")==this.element){const n=e.submitter||void 0;"dialog"!=((null==n?void 0:n.getAttribute("formmethod"))||t.method)&&this.delegate.shouldInterceptFormSubmission(t,n)&&(e.preventDefault(),e.stopImmediatePropagation(),this.delegate.formSubmissionIntercepted(t,n))}},this.delegate=e,this.element=t}start(){this.element.addEventListener("submit",this.submitBubbled)}stop(){this.element.removeEventListener("submit",this.submitBubbled)}}class I{constructor(e,t){this.resolveRenderPromise=e=>{},this.resolveInterceptionPromise=e=>{},this.delegate=e,this.element=t}scrollToAnchor(e){const t=this.snapshot.getElementForAnchor(e);t?(this.scrollToElement(t),this.focusElement(t)):this.scrollToPosition({x:0,y:0})}scrollToAnchorFromLocation(e){this.scrollToAnchor(u(e))}scrollToElement(e){e.scrollIntoView()}focusElement(e){e instanceof HTMLElement&&(e.hasAttribute("tabindex")?e.focus():(e.setAttribute("tabindex","-1"),e.focus(),e.removeAttribute("tabindex")))}scrollToPosition({x:e,y:t}){this.scrollRoot.scrollTo(e,t)}scrollToTop(){this.scrollToPosition({x:0,y:0})}get scrollRoot(){return window}async render(e){const{isPreview:t,shouldRender:n,newSnapshot:s}=e;if(n)try{this.renderPromise=new Promise((e=>this.resolveRenderPromise=e)),this.renderer=e,this.prepareToRenderSnapshot(e);const n=new Promise((e=>this.resolveInterceptionPromise=e));this.delegate.allowsImmediateRender(s,this.resolveInterceptionPromise)||await n,await this.renderSnapshot(e),this.delegate.viewRenderedSnapshot(s,t),this.finishRenderingSnapshot(e)}finally{delete this.renderer,this.resolveRenderPromise(void 0),delete this.renderPromise}else this.invalidate()}invalidate(){this.delegate.viewInvalidated()}prepareToRenderSnapshot(e){this.markAsPreview(e.isPreview),e.prepareToRender()}markAsPreview(e){e?this.element.setAttribute("data-turbo-preview",""):this.element.removeAttribute("data-turbo-preview")}async renderSnapshot(e){await e.render()}finishRenderingSnapshot(e){e.finishRendering()}}class F extends I{invalidate(){this.element.innerHTML=""}get snapshot(){return new D(this.element)}}class q{constructor(e,t){this.clickBubbled=e=>{this.respondsToEventTarget(e.target)?this.clickEvent=e:delete this.clickEvent},this.linkClicked=e=>{this.clickEvent&&this.respondsToEventTarget(e.target)&&e.target instanceof Element&&this.delegate.shouldInterceptLinkClick(e.target,e.detail.url)&&(this.clickEvent.preventDefault(),e.preventDefault(),this.delegate.linkClickIntercepted(e.target,e.detail.url)),delete this.clickEvent},this.willVisit=()=>{delete this.clickEvent},this.delegate=e,this.element=t}start(){this.element.addEventListener("click",this.clickBubbled),document.addEventListener("turbo:click",this.linkClicked),document.addEventListener("turbo:before-visit",this.willVisit)}stop(){this.element.removeEventListener("click",this.clickBubbled),document.removeEventListener("turbo:click",this.linkClicked),document.removeEventListener("turbo:before-visit",this.willVisit)}respondsToEventTarget(e){const t=e instanceof Element?e:e instanceof Node?e.parentElement:null;return t&&t.closest("turbo-frame, html")==this.element}}class B{constructor(e,t,n,s=!0){this.currentSnapshot=e,this.newSnapshot=t,this.isPreview=n,this.willRender=s,this.promise=new Promise(((e,t)=>this.resolvingFunctions={resolve:e,reject:t}))}get shouldRender(){return!0}prepareToRender(){}finishRendering(){this.resolvingFunctions&&(this.resolvingFunctions.resolve(),delete this.resolvingFunctions)}createScriptElement(e){if("false"==e.getAttribute("data-turbo-eval"))return e;{const t=document.createElement("script");return this.cspNonce&&(t.nonce=this.cspNonce),t.textContent=e.textContent,t.async=!1,function(e,t){for(const{name:n,value:s}of[...t.attributes])e.setAttribute(n,s)}(t,e),t}}preservingPermanentElements(e){(class{constructor(e){this.permanentElementMap=e}static preservingPermanentElements(e,t){const n=new this(e);n.enter(),t(),n.leave()}enter(){for(const e in this.permanentElementMap){const[,t]=this.permanentElementMap[e];this.replaceNewPermanentElementWithPlaceholder(t)}}leave(){for(const e in this.permanentElementMap){const[t]=this.permanentElementMap[e];this.replaceCurrentPermanentElementWithClone(t),this.replacePlaceholderWithPermanentElement(t)}}replaceNewPermanentElementWithPlaceholder(e){const t=function(e){const t=document.createElement("meta");return t.setAttribute("name","turbo-permanent-placeholder"),t.setAttribute("content",e.id),t}(e);e.replaceWith(t)}replaceCurrentPermanentElementWithClone(e){const t=e.cloneNode(!0);e.replaceWith(t)}replacePlaceholderWithPermanentElement(e){const t=this.getPlaceholderById(e.id);null==t||t.replaceWith(e)}getPlaceholderById(e){return this.placeholders.find((t=>t.content==e))}get placeholders(){return[...document.querySelectorAll("meta[name=turbo-permanent-placeholder][content]")]}}).preservingPermanentElements(this.permanentElementMap,e)}focusFirstAutofocusableElement(){const e=this.connectedSnapshot.firstAutofocusableElement;(function(e){return e&&"function"==typeof e.focus})(e)&&e.focus()}get connectedSnapshot(){return this.newSnapshot.isConnected?this.newSnapshot:this.currentSnapshot}get currentElement(){return this.currentSnapshot.element}get newElement(){return this.newSnapshot.element}get permanentElementMap(){return this.currentSnapshot.getPermanentElementMapForSnapshot(this.newSnapshot)}get cspNonce(){var e;return null===(e=document.head.querySelector('meta[name="csp-nonce"]'))||void 0===e?void 0:e.getAttribute("content")}}class j extends B{get shouldRender(){return!0}async render(){await S(),this.preservingPermanentElements((()=>{this.loadFrameElement()})),this.scrollFrameIntoView(),await S(),this.focusFirstAutofocusableElement(),await S(),this.activateScriptElements()}loadFrameElement(){var e;const t=document.createRange();t.selectNodeContents(this.currentElement),t.deleteContents();const n=this.newElement,s=null===(e=n.ownerDocument)||void 0===e?void 0:e.createRange();s&&(s.selectNodeContents(n),this.currentElement.appendChild(s.extractContents()))}scrollFrameIntoView(){if(this.currentElement.autoscroll||this.newElement.autoscroll){const n=this.currentElement.firstElementChild,s=(e=this.currentElement.getAttribute("data-autoscroll-block"),t="end","end"==e||"start"==e||"center"==e||"nearest"==e?e:t);if(n)return n.scrollIntoView({block:s}),!0}var e,t;return!1}activateScriptElements(){for(const e of this.newScriptElements){const t=this.createScriptElement(e);e.replaceWith(t)}}get newScriptElements(){return this.currentElement.querySelectorAll("script")}}class O{constructor(){this.hiding=!1,this.value=0,this.visible=!1,this.trickle=()=>{this.setValue(this.value+Math.random()/100)},this.stylesheetElement=this.createStylesheetElement(),this.progressElement=this.createProgressElement(),this.installStylesheetElement(),this.setValue(0)}static get defaultCSS(){return $`
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PageRenderer": () => (/* binding */ PageRenderer),
+/* harmony export */   "PageSnapshot": () => (/* binding */ PageSnapshot),
+/* harmony export */   "clearCache": () => (/* binding */ clearCache),
+/* harmony export */   "connectStreamSource": () => (/* binding */ connectStreamSource),
+/* harmony export */   "disconnectStreamSource": () => (/* binding */ disconnectStreamSource),
+/* harmony export */   "navigator": () => (/* binding */ navigator$1),
+/* harmony export */   "registerAdapter": () => (/* binding */ registerAdapter),
+/* harmony export */   "renderStreamMessage": () => (/* binding */ renderStreamMessage),
+/* harmony export */   "session": () => (/* binding */ session),
+/* harmony export */   "setConfirmMethod": () => (/* binding */ setConfirmMethod),
+/* harmony export */   "setProgressBarDelay": () => (/* binding */ setProgressBarDelay),
+/* harmony export */   "start": () => (/* binding */ start),
+/* harmony export */   "visit": () => (/* binding */ visit)
+/* harmony export */ });
+/*
+Turbo 7.1.0
+Copyright © 2021 Basecamp, LLC
+ */
+(function () {
+    if (window.Reflect === undefined || window.customElements === undefined ||
+        window.customElements.polyfillWrapFlushCallback) {
+        return;
+    }
+    const BuiltInHTMLElement = HTMLElement;
+    const wrapperForTheName = {
+        'HTMLElement': function HTMLElement() {
+            return Reflect.construct(BuiltInHTMLElement, [], this.constructor);
+        }
+    };
+    window.HTMLElement =
+        wrapperForTheName['HTMLElement'];
+    HTMLElement.prototype = BuiltInHTMLElement.prototype;
+    HTMLElement.prototype.constructor = HTMLElement;
+    Object.setPrototypeOf(HTMLElement, BuiltInHTMLElement);
+})();
+
+/**
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2019 Javan Makhmali
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+(function(prototype) {
+  if (typeof prototype.requestSubmit == "function") return
+
+  prototype.requestSubmit = function(submitter) {
+    if (submitter) {
+      validateSubmitter(submitter, this);
+      submitter.click();
+    } else {
+      submitter = document.createElement("input");
+      submitter.type = "submit";
+      submitter.hidden = true;
+      this.appendChild(submitter);
+      submitter.click();
+      this.removeChild(submitter);
+    }
+  };
+
+  function validateSubmitter(submitter, form) {
+    submitter instanceof HTMLElement || raise(TypeError, "parameter 1 is not of type 'HTMLElement'");
+    submitter.type == "submit" || raise(TypeError, "The specified element is not a submit button");
+    submitter.form == form || raise(DOMException, "The specified element is not owned by this form element", "NotFoundError");
+  }
+
+  function raise(errorConstructor, message, name) {
+    throw new errorConstructor("Failed to execute 'requestSubmit' on 'HTMLFormElement': " + message + ".", name)
+  }
+})(HTMLFormElement.prototype);
+
+const submittersByForm = new WeakMap;
+function findSubmitterFromClickTarget(target) {
+    const element = target instanceof Element ? target : target instanceof Node ? target.parentElement : null;
+    const candidate = element ? element.closest("input, button") : null;
+    return (candidate === null || candidate === void 0 ? void 0 : candidate.type) == "submit" ? candidate : null;
+}
+function clickCaptured(event) {
+    const submitter = findSubmitterFromClickTarget(event.target);
+    if (submitter && submitter.form) {
+        submittersByForm.set(submitter.form, submitter);
+    }
+}
+(function () {
+    if ("submitter" in Event.prototype)
+        return;
+    let prototype;
+    if ("SubmitEvent" in window && /Apple Computer/.test(navigator.vendor)) {
+        prototype = window.SubmitEvent.prototype;
+    }
+    else if ("SubmitEvent" in window) {
+        return;
+    }
+    else {
+        prototype = window.Event.prototype;
+    }
+    addEventListener("click", clickCaptured, true);
+    Object.defineProperty(prototype, "submitter", {
+        get() {
+            if (this.type == "submit" && this.target instanceof HTMLFormElement) {
+                return submittersByForm.get(this.target);
+            }
+        }
+    });
+})();
+
+var FrameLoadingStyle;
+(function (FrameLoadingStyle) {
+    FrameLoadingStyle["eager"] = "eager";
+    FrameLoadingStyle["lazy"] = "lazy";
+})(FrameLoadingStyle || (FrameLoadingStyle = {}));
+class FrameElement extends HTMLElement {
+    constructor() {
+        super();
+        this.loaded = Promise.resolve();
+        this.delegate = new FrameElement.delegateConstructor(this);
+    }
+    static get observedAttributes() {
+        return ["disabled", "loading", "src"];
+    }
+    connectedCallback() {
+        this.delegate.connect();
+    }
+    disconnectedCallback() {
+        this.delegate.disconnect();
+    }
+    reload() {
+        const { src } = this;
+        this.src = null;
+        this.src = src;
+    }
+    attributeChangedCallback(name) {
+        if (name == "loading") {
+            this.delegate.loadingStyleChanged();
+        }
+        else if (name == "src") {
+            this.delegate.sourceURLChanged();
+        }
+        else {
+            this.delegate.disabledChanged();
+        }
+    }
+    get src() {
+        return this.getAttribute("src");
+    }
+    set src(value) {
+        if (value) {
+            this.setAttribute("src", value);
+        }
+        else {
+            this.removeAttribute("src");
+        }
+    }
+    get loading() {
+        return frameLoadingStyleFromString(this.getAttribute("loading") || "");
+    }
+    set loading(value) {
+        if (value) {
+            this.setAttribute("loading", value);
+        }
+        else {
+            this.removeAttribute("loading");
+        }
+    }
+    get disabled() {
+        return this.hasAttribute("disabled");
+    }
+    set disabled(value) {
+        if (value) {
+            this.setAttribute("disabled", "");
+        }
+        else {
+            this.removeAttribute("disabled");
+        }
+    }
+    get autoscroll() {
+        return this.hasAttribute("autoscroll");
+    }
+    set autoscroll(value) {
+        if (value) {
+            this.setAttribute("autoscroll", "");
+        }
+        else {
+            this.removeAttribute("autoscroll");
+        }
+    }
+    get complete() {
+        return !this.delegate.isLoading;
+    }
+    get isActive() {
+        return this.ownerDocument === document && !this.isPreview;
+    }
+    get isPreview() {
+        var _a, _b;
+        return (_b = (_a = this.ownerDocument) === null || _a === void 0 ? void 0 : _a.documentElement) === null || _b === void 0 ? void 0 : _b.hasAttribute("data-turbo-preview");
+    }
+}
+function frameLoadingStyleFromString(style) {
+    switch (style.toLowerCase()) {
+        case "lazy": return FrameLoadingStyle.lazy;
+        default: return FrameLoadingStyle.eager;
+    }
+}
+
+function expandURL(locatable) {
+    return new URL(locatable.toString(), document.baseURI);
+}
+function getAnchor(url) {
+    let anchorMatch;
+    if (url.hash) {
+        return url.hash.slice(1);
+    }
+    else if (anchorMatch = url.href.match(/#(.*)$/)) {
+        return anchorMatch[1];
+    }
+}
+function getAction(form, submitter) {
+    const action = (submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("formaction")) || form.getAttribute("action") || form.action;
+    return expandURL(action);
+}
+function getExtension(url) {
+    return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
+}
+function isHTML(url) {
+    return !!getExtension(url).match(/^(?:|\.(?:htm|html|xhtml))$/);
+}
+function isPrefixedBy(baseURL, url) {
+    const prefix = getPrefix(url);
+    return baseURL.href === expandURL(prefix).href || baseURL.href.startsWith(prefix);
+}
+function locationIsVisitable(location, rootLocation) {
+    return isPrefixedBy(location, rootLocation) && isHTML(location);
+}
+function getRequestURL(url) {
+    const anchor = getAnchor(url);
+    return anchor != null
+        ? url.href.slice(0, -(anchor.length + 1))
+        : url.href;
+}
+function toCacheKey(url) {
+    return getRequestURL(url);
+}
+function urlsAreEqual(left, right) {
+    return expandURL(left).href == expandURL(right).href;
+}
+function getPathComponents(url) {
+    return url.pathname.split("/").slice(1);
+}
+function getLastPathComponent(url) {
+    return getPathComponents(url).slice(-1)[0];
+}
+function getPrefix(url) {
+    return addTrailingSlash(url.origin + url.pathname);
+}
+function addTrailingSlash(value) {
+    return value.endsWith("/") ? value : value + "/";
+}
+
+class FetchResponse {
+    constructor(response) {
+        this.response = response;
+    }
+    get succeeded() {
+        return this.response.ok;
+    }
+    get failed() {
+        return !this.succeeded;
+    }
+    get clientError() {
+        return this.statusCode >= 400 && this.statusCode <= 499;
+    }
+    get serverError() {
+        return this.statusCode >= 500 && this.statusCode <= 599;
+    }
+    get redirected() {
+        return this.response.redirected;
+    }
+    get location() {
+        return expandURL(this.response.url);
+    }
+    get isHTML() {
+        return this.contentType && this.contentType.match(/^(?:text\/([^\s;,]+\b)?html|application\/xhtml\+xml)\b/);
+    }
+    get statusCode() {
+        return this.response.status;
+    }
+    get contentType() {
+        return this.header("Content-Type");
+    }
+    get responseText() {
+        return this.response.clone().text();
+    }
+    get responseHTML() {
+        if (this.isHTML) {
+            return this.response.clone().text();
+        }
+        else {
+            return Promise.resolve(undefined);
+        }
+    }
+    header(name) {
+        return this.response.headers.get(name);
+    }
+}
+
+function dispatch(eventName, { target, cancelable, detail } = {}) {
+    const event = new CustomEvent(eventName, { cancelable, bubbles: true, detail });
+    if (target && target.isConnected) {
+        target.dispatchEvent(event);
+    }
+    else {
+        document.documentElement.dispatchEvent(event);
+    }
+    return event;
+}
+function nextAnimationFrame() {
+    return new Promise(resolve => requestAnimationFrame(() => resolve()));
+}
+function nextEventLoopTick() {
+    return new Promise(resolve => setTimeout(() => resolve(), 0));
+}
+function nextMicrotask() {
+    return Promise.resolve();
+}
+function parseHTMLDocument(html = "") {
+    return new DOMParser().parseFromString(html, "text/html");
+}
+function unindent(strings, ...values) {
+    const lines = interpolate(strings, values).replace(/^\n/, "").split("\n");
+    const match = lines[0].match(/^\s+/);
+    const indent = match ? match[0].length : 0;
+    return lines.map(line => line.slice(indent)).join("\n");
+}
+function interpolate(strings, values) {
+    return strings.reduce((result, string, i) => {
+        const value = values[i] == undefined ? "" : values[i];
+        return result + string + value;
+    }, "");
+}
+function uuid() {
+    return Array.apply(null, { length: 36 }).map((_, i) => {
+        if (i == 8 || i == 13 || i == 18 || i == 23) {
+            return "-";
+        }
+        else if (i == 14) {
+            return "4";
+        }
+        else if (i == 19) {
+            return (Math.floor(Math.random() * 4) + 8).toString(16);
+        }
+        else {
+            return Math.floor(Math.random() * 15).toString(16);
+        }
+    }).join("");
+}
+function getAttribute(attributeName, ...elements) {
+    for (const value of elements.map(element => element === null || element === void 0 ? void 0 : element.getAttribute(attributeName))) {
+        if (typeof value == "string")
+            return value;
+    }
+    return null;
+}
+function markAsBusy(...elements) {
+    for (const element of elements) {
+        if (element.localName == "turbo-frame") {
+            element.setAttribute("busy", "");
+        }
+        element.setAttribute("aria-busy", "true");
+    }
+}
+function clearBusyState(...elements) {
+    for (const element of elements) {
+        if (element.localName == "turbo-frame") {
+            element.removeAttribute("busy");
+        }
+        element.removeAttribute("aria-busy");
+    }
+}
+
+var FetchMethod;
+(function (FetchMethod) {
+    FetchMethod[FetchMethod["get"] = 0] = "get";
+    FetchMethod[FetchMethod["post"] = 1] = "post";
+    FetchMethod[FetchMethod["put"] = 2] = "put";
+    FetchMethod[FetchMethod["patch"] = 3] = "patch";
+    FetchMethod[FetchMethod["delete"] = 4] = "delete";
+})(FetchMethod || (FetchMethod = {}));
+function fetchMethodFromString(method) {
+    switch (method.toLowerCase()) {
+        case "get": return FetchMethod.get;
+        case "post": return FetchMethod.post;
+        case "put": return FetchMethod.put;
+        case "patch": return FetchMethod.patch;
+        case "delete": return FetchMethod.delete;
+    }
+}
+class FetchRequest {
+    constructor(delegate, method, location, body = new URLSearchParams, target = null) {
+        this.abortController = new AbortController;
+        this.resolveRequestPromise = (value) => { };
+        this.delegate = delegate;
+        this.method = method;
+        this.headers = this.defaultHeaders;
+        this.body = body;
+        this.url = location;
+        this.target = target;
+    }
+    get location() {
+        return this.url;
+    }
+    get params() {
+        return this.url.searchParams;
+    }
+    get entries() {
+        return this.body ? Array.from(this.body.entries()) : [];
+    }
+    cancel() {
+        this.abortController.abort();
+    }
+    async perform() {
+        var _a, _b;
+        const { fetchOptions } = this;
+        (_b = (_a = this.delegate).prepareHeadersForRequest) === null || _b === void 0 ? void 0 : _b.call(_a, this.headers, this);
+        await this.allowRequestToBeIntercepted(fetchOptions);
+        try {
+            this.delegate.requestStarted(this);
+            const response = await fetch(this.url.href, fetchOptions);
+            return await this.receive(response);
+        }
+        catch (error) {
+            if (error.name !== 'AbortError') {
+                this.delegate.requestErrored(this, error);
+                throw error;
+            }
+        }
+        finally {
+            this.delegate.requestFinished(this);
+        }
+    }
+    async receive(response) {
+        const fetchResponse = new FetchResponse(response);
+        const event = dispatch("turbo:before-fetch-response", { cancelable: true, detail: { fetchResponse }, target: this.target });
+        if (event.defaultPrevented) {
+            this.delegate.requestPreventedHandlingResponse(this, fetchResponse);
+        }
+        else if (fetchResponse.succeeded) {
+            this.delegate.requestSucceededWithResponse(this, fetchResponse);
+        }
+        else {
+            this.delegate.requestFailedWithResponse(this, fetchResponse);
+        }
+        return fetchResponse;
+    }
+    get fetchOptions() {
+        var _a;
+        return {
+            method: FetchMethod[this.method].toUpperCase(),
+            credentials: "same-origin",
+            headers: this.headers,
+            redirect: "follow",
+            body: this.isIdempotent ? null : this.body,
+            signal: this.abortSignal,
+            referrer: (_a = this.delegate.referrer) === null || _a === void 0 ? void 0 : _a.href
+        };
+    }
+    get defaultHeaders() {
+        return {
+            "Accept": "text/html, application/xhtml+xml"
+        };
+    }
+    get isIdempotent() {
+        return this.method == FetchMethod.get;
+    }
+    get abortSignal() {
+        return this.abortController.signal;
+    }
+    async allowRequestToBeIntercepted(fetchOptions) {
+        const requestInterception = new Promise(resolve => this.resolveRequestPromise = resolve);
+        const event = dispatch("turbo:before-fetch-request", {
+            cancelable: true,
+            detail: {
+                fetchOptions,
+                url: this.url,
+                resume: this.resolveRequestPromise
+            },
+            target: this.target
+        });
+        if (event.defaultPrevented)
+            await requestInterception;
+    }
+}
+
+class AppearanceObserver {
+    constructor(delegate, element) {
+        this.started = false;
+        this.intersect = entries => {
+            const lastEntry = entries.slice(-1)[0];
+            if (lastEntry === null || lastEntry === void 0 ? void 0 : lastEntry.isIntersecting) {
+                this.delegate.elementAppearedInViewport(this.element);
+            }
+        };
+        this.delegate = delegate;
+        this.element = element;
+        this.intersectionObserver = new IntersectionObserver(this.intersect);
+    }
+    start() {
+        if (!this.started) {
+            this.started = true;
+            this.intersectionObserver.observe(this.element);
+        }
+    }
+    stop() {
+        if (this.started) {
+            this.started = false;
+            this.intersectionObserver.unobserve(this.element);
+        }
+    }
+}
+
+class StreamMessage {
+    constructor(html) {
+        this.templateElement = document.createElement("template");
+        this.templateElement.innerHTML = html;
+    }
+    static wrap(message) {
+        if (typeof message == "string") {
+            return new this(message);
+        }
+        else {
+            return message;
+        }
+    }
+    get fragment() {
+        const fragment = document.createDocumentFragment();
+        for (const element of this.foreignElements) {
+            fragment.appendChild(document.importNode(element, true));
+        }
+        return fragment;
+    }
+    get foreignElements() {
+        return this.templateChildren.reduce((streamElements, child) => {
+            if (child.tagName.toLowerCase() == "turbo-stream") {
+                return [...streamElements, child];
+            }
+            else {
+                return streamElements;
+            }
+        }, []);
+    }
+    get templateChildren() {
+        return Array.from(this.templateElement.content.children);
+    }
+}
+StreamMessage.contentType = "text/vnd.turbo-stream.html";
+
+var FormSubmissionState;
+(function (FormSubmissionState) {
+    FormSubmissionState[FormSubmissionState["initialized"] = 0] = "initialized";
+    FormSubmissionState[FormSubmissionState["requesting"] = 1] = "requesting";
+    FormSubmissionState[FormSubmissionState["waiting"] = 2] = "waiting";
+    FormSubmissionState[FormSubmissionState["receiving"] = 3] = "receiving";
+    FormSubmissionState[FormSubmissionState["stopping"] = 4] = "stopping";
+    FormSubmissionState[FormSubmissionState["stopped"] = 5] = "stopped";
+})(FormSubmissionState || (FormSubmissionState = {}));
+var FormEnctype;
+(function (FormEnctype) {
+    FormEnctype["urlEncoded"] = "application/x-www-form-urlencoded";
+    FormEnctype["multipart"] = "multipart/form-data";
+    FormEnctype["plain"] = "text/plain";
+})(FormEnctype || (FormEnctype = {}));
+function formEnctypeFromString(encoding) {
+    switch (encoding.toLowerCase()) {
+        case FormEnctype.multipart: return FormEnctype.multipart;
+        case FormEnctype.plain: return FormEnctype.plain;
+        default: return FormEnctype.urlEncoded;
+    }
+}
+class FormSubmission {
+    constructor(delegate, formElement, submitter, mustRedirect = false) {
+        this.state = FormSubmissionState.initialized;
+        this.delegate = delegate;
+        this.formElement = formElement;
+        this.submitter = submitter;
+        this.formData = buildFormData(formElement, submitter);
+        this.location = expandURL(this.action);
+        if (this.method == FetchMethod.get) {
+            mergeFormDataEntries(this.location, [...this.body.entries()]);
+        }
+        this.fetchRequest = new FetchRequest(this, this.method, this.location, this.body, this.formElement);
+        this.mustRedirect = mustRedirect;
+    }
+    static confirmMethod(message, element) {
+        return confirm(message);
+    }
+    get method() {
+        var _a;
+        const method = ((_a = this.submitter) === null || _a === void 0 ? void 0 : _a.getAttribute("formmethod")) || this.formElement.getAttribute("method") || "";
+        return fetchMethodFromString(method.toLowerCase()) || FetchMethod.get;
+    }
+    get action() {
+        var _a;
+        const formElementAction = typeof this.formElement.action === 'string' ? this.formElement.action : null;
+        return ((_a = this.submitter) === null || _a === void 0 ? void 0 : _a.getAttribute("formaction")) || this.formElement.getAttribute("action") || formElementAction || "";
+    }
+    get body() {
+        if (this.enctype == FormEnctype.urlEncoded || this.method == FetchMethod.get) {
+            return new URLSearchParams(this.stringFormData);
+        }
+        else {
+            return this.formData;
+        }
+    }
+    get enctype() {
+        var _a;
+        return formEnctypeFromString(((_a = this.submitter) === null || _a === void 0 ? void 0 : _a.getAttribute("formenctype")) || this.formElement.enctype);
+    }
+    get isIdempotent() {
+        return this.fetchRequest.isIdempotent;
+    }
+    get stringFormData() {
+        return [...this.formData].reduce((entries, [name, value]) => {
+            return entries.concat(typeof value == "string" ? [[name, value]] : []);
+        }, []);
+    }
+    get confirmationMessage() {
+        return this.formElement.getAttribute("data-turbo-confirm");
+    }
+    get needsConfirmation() {
+        return this.confirmationMessage !== null;
+    }
+    async start() {
+        const { initialized, requesting } = FormSubmissionState;
+        if (this.needsConfirmation) {
+            const answer = FormSubmission.confirmMethod(this.confirmationMessage, this.formElement);
+            if (!answer) {
+                return;
+            }
+        }
+        if (this.state == initialized) {
+            this.state = requesting;
+            return this.fetchRequest.perform();
+        }
+    }
+    stop() {
+        const { stopping, stopped } = FormSubmissionState;
+        if (this.state != stopping && this.state != stopped) {
+            this.state = stopping;
+            this.fetchRequest.cancel();
+            return true;
+        }
+    }
+    prepareHeadersForRequest(headers, request) {
+        if (!request.isIdempotent) {
+            const token = getCookieValue(getMetaContent("csrf-param")) || getMetaContent("csrf-token");
+            if (token) {
+                headers["X-CSRF-Token"] = token;
+            }
+            headers["Accept"] = [StreamMessage.contentType, headers["Accept"]].join(", ");
+        }
+    }
+    requestStarted(request) {
+        var _a;
+        this.state = FormSubmissionState.waiting;
+        (_a = this.submitter) === null || _a === void 0 ? void 0 : _a.setAttribute("disabled", "");
+        dispatch("turbo:submit-start", { target: this.formElement, detail: { formSubmission: this } });
+        this.delegate.formSubmissionStarted(this);
+    }
+    requestPreventedHandlingResponse(request, response) {
+        this.result = { success: response.succeeded, fetchResponse: response };
+    }
+    requestSucceededWithResponse(request, response) {
+        if (response.clientError || response.serverError) {
+            this.delegate.formSubmissionFailedWithResponse(this, response);
+        }
+        else if (this.requestMustRedirect(request) && responseSucceededWithoutRedirect(response)) {
+            const error = new Error("Form responses must redirect to another location");
+            this.delegate.formSubmissionErrored(this, error);
+        }
+        else {
+            this.state = FormSubmissionState.receiving;
+            this.result = { success: true, fetchResponse: response };
+            this.delegate.formSubmissionSucceededWithResponse(this, response);
+        }
+    }
+    requestFailedWithResponse(request, response) {
+        this.result = { success: false, fetchResponse: response };
+        this.delegate.formSubmissionFailedWithResponse(this, response);
+    }
+    requestErrored(request, error) {
+        this.result = { success: false, error };
+        this.delegate.formSubmissionErrored(this, error);
+    }
+    requestFinished(request) {
+        var _a;
+        this.state = FormSubmissionState.stopped;
+        (_a = this.submitter) === null || _a === void 0 ? void 0 : _a.removeAttribute("disabled");
+        dispatch("turbo:submit-end", { target: this.formElement, detail: Object.assign({ formSubmission: this }, this.result) });
+        this.delegate.formSubmissionFinished(this);
+    }
+    requestMustRedirect(request) {
+        return !request.isIdempotent && this.mustRedirect;
+    }
+}
+function buildFormData(formElement, submitter) {
+    const formData = new FormData(formElement);
+    const name = submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("name");
+    const value = submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("value");
+    if (name && value != null && formData.get(name) != value) {
+        formData.append(name, value);
+    }
+    return formData;
+}
+function getCookieValue(cookieName) {
+    if (cookieName != null) {
+        const cookies = document.cookie ? document.cookie.split("; ") : [];
+        const cookie = cookies.find((cookie) => cookie.startsWith(cookieName));
+        if (cookie) {
+            const value = cookie.split("=").slice(1).join("=");
+            return value ? decodeURIComponent(value) : undefined;
+        }
+    }
+}
+function getMetaContent(name) {
+    const element = document.querySelector(`meta[name="${name}"]`);
+    return element && element.content;
+}
+function responseSucceededWithoutRedirect(response) {
+    return response.statusCode == 200 && !response.redirected;
+}
+function mergeFormDataEntries(url, entries) {
+    const searchParams = new URLSearchParams;
+    for (const [name, value] of entries) {
+        if (value instanceof File)
+            continue;
+        searchParams.append(name, value);
+    }
+    url.search = searchParams.toString();
+    return url;
+}
+
+class Snapshot {
+    constructor(element) {
+        this.element = element;
+    }
+    get children() {
+        return [...this.element.children];
+    }
+    hasAnchor(anchor) {
+        return this.getElementForAnchor(anchor) != null;
+    }
+    getElementForAnchor(anchor) {
+        return anchor ? this.element.querySelector(`[id='${anchor}'], a[name='${anchor}']`) : null;
+    }
+    get isConnected() {
+        return this.element.isConnected;
+    }
+    get firstAutofocusableElement() {
+        return this.element.querySelector("[autofocus]");
+    }
+    get permanentElements() {
+        return [...this.element.querySelectorAll("[id][data-turbo-permanent]")];
+    }
+    getPermanentElementById(id) {
+        return this.element.querySelector(`#${id}[data-turbo-permanent]`);
+    }
+    getPermanentElementMapForSnapshot(snapshot) {
+        const permanentElementMap = {};
+        for (const currentPermanentElement of this.permanentElements) {
+            const { id } = currentPermanentElement;
+            const newPermanentElement = snapshot.getPermanentElementById(id);
+            if (newPermanentElement) {
+                permanentElementMap[id] = [currentPermanentElement, newPermanentElement];
+            }
+        }
+        return permanentElementMap;
+    }
+}
+
+class FormInterceptor {
+    constructor(delegate, element) {
+        this.submitBubbled = ((event) => {
+            const form = event.target;
+            if (!event.defaultPrevented && form instanceof HTMLFormElement && form.closest("turbo-frame, html") == this.element) {
+                const submitter = event.submitter || undefined;
+                const method = (submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("formmethod")) || form.method;
+                if (method != "dialog" && this.delegate.shouldInterceptFormSubmission(form, submitter)) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    this.delegate.formSubmissionIntercepted(form, submitter);
+                }
+            }
+        });
+        this.delegate = delegate;
+        this.element = element;
+    }
+    start() {
+        this.element.addEventListener("submit", this.submitBubbled);
+    }
+    stop() {
+        this.element.removeEventListener("submit", this.submitBubbled);
+    }
+}
+
+class View {
+    constructor(delegate, element) {
+        this.resolveRenderPromise = (value) => { };
+        this.resolveInterceptionPromise = (value) => { };
+        this.delegate = delegate;
+        this.element = element;
+    }
+    scrollToAnchor(anchor) {
+        const element = this.snapshot.getElementForAnchor(anchor);
+        if (element) {
+            this.scrollToElement(element);
+            this.focusElement(element);
+        }
+        else {
+            this.scrollToPosition({ x: 0, y: 0 });
+        }
+    }
+    scrollToAnchorFromLocation(location) {
+        this.scrollToAnchor(getAnchor(location));
+    }
+    scrollToElement(element) {
+        element.scrollIntoView();
+    }
+    focusElement(element) {
+        if (element instanceof HTMLElement) {
+            if (element.hasAttribute("tabindex")) {
+                element.focus();
+            }
+            else {
+                element.setAttribute("tabindex", "-1");
+                element.focus();
+                element.removeAttribute("tabindex");
+            }
+        }
+    }
+    scrollToPosition({ x, y }) {
+        this.scrollRoot.scrollTo(x, y);
+    }
+    scrollToTop() {
+        this.scrollToPosition({ x: 0, y: 0 });
+    }
+    get scrollRoot() {
+        return window;
+    }
+    async render(renderer) {
+        const { isPreview, shouldRender, newSnapshot: snapshot } = renderer;
+        if (shouldRender) {
+            try {
+                this.renderPromise = new Promise(resolve => this.resolveRenderPromise = resolve);
+                this.renderer = renderer;
+                this.prepareToRenderSnapshot(renderer);
+                const renderInterception = new Promise(resolve => this.resolveInterceptionPromise = resolve);
+                const immediateRender = this.delegate.allowsImmediateRender(snapshot, this.resolveInterceptionPromise);
+                if (!immediateRender)
+                    await renderInterception;
+                await this.renderSnapshot(renderer);
+                this.delegate.viewRenderedSnapshot(snapshot, isPreview);
+                this.finishRenderingSnapshot(renderer);
+            }
+            finally {
+                delete this.renderer;
+                this.resolveRenderPromise(undefined);
+                delete this.renderPromise;
+            }
+        }
+        else {
+            this.invalidate();
+        }
+    }
+    invalidate() {
+        this.delegate.viewInvalidated();
+    }
+    prepareToRenderSnapshot(renderer) {
+        this.markAsPreview(renderer.isPreview);
+        renderer.prepareToRender();
+    }
+    markAsPreview(isPreview) {
+        if (isPreview) {
+            this.element.setAttribute("data-turbo-preview", "");
+        }
+        else {
+            this.element.removeAttribute("data-turbo-preview");
+        }
+    }
+    async renderSnapshot(renderer) {
+        await renderer.render();
+    }
+    finishRenderingSnapshot(renderer) {
+        renderer.finishRendering();
+    }
+}
+
+class FrameView extends View {
+    invalidate() {
+        this.element.innerHTML = "";
+    }
+    get snapshot() {
+        return new Snapshot(this.element);
+    }
+}
+
+class LinkInterceptor {
+    constructor(delegate, element) {
+        this.clickBubbled = (event) => {
+            if (this.respondsToEventTarget(event.target)) {
+                this.clickEvent = event;
+            }
+            else {
+                delete this.clickEvent;
+            }
+        };
+        this.linkClicked = ((event) => {
+            if (this.clickEvent && this.respondsToEventTarget(event.target) && event.target instanceof Element) {
+                if (this.delegate.shouldInterceptLinkClick(event.target, event.detail.url)) {
+                    this.clickEvent.preventDefault();
+                    event.preventDefault();
+                    this.delegate.linkClickIntercepted(event.target, event.detail.url);
+                }
+            }
+            delete this.clickEvent;
+        });
+        this.willVisit = () => {
+            delete this.clickEvent;
+        };
+        this.delegate = delegate;
+        this.element = element;
+    }
+    start() {
+        this.element.addEventListener("click", this.clickBubbled);
+        document.addEventListener("turbo:click", this.linkClicked);
+        document.addEventListener("turbo:before-visit", this.willVisit);
+    }
+    stop() {
+        this.element.removeEventListener("click", this.clickBubbled);
+        document.removeEventListener("turbo:click", this.linkClicked);
+        document.removeEventListener("turbo:before-visit", this.willVisit);
+    }
+    respondsToEventTarget(target) {
+        const element = target instanceof Element
+            ? target
+            : target instanceof Node
+                ? target.parentElement
+                : null;
+        return element && element.closest("turbo-frame, html") == this.element;
+    }
+}
+
+class Bardo {
+    constructor(permanentElementMap) {
+        this.permanentElementMap = permanentElementMap;
+    }
+    static preservingPermanentElements(permanentElementMap, callback) {
+        const bardo = new this(permanentElementMap);
+        bardo.enter();
+        callback();
+        bardo.leave();
+    }
+    enter() {
+        for (const id in this.permanentElementMap) {
+            const [, newPermanentElement] = this.permanentElementMap[id];
+            this.replaceNewPermanentElementWithPlaceholder(newPermanentElement);
+        }
+    }
+    leave() {
+        for (const id in this.permanentElementMap) {
+            const [currentPermanentElement] = this.permanentElementMap[id];
+            this.replaceCurrentPermanentElementWithClone(currentPermanentElement);
+            this.replacePlaceholderWithPermanentElement(currentPermanentElement);
+        }
+    }
+    replaceNewPermanentElementWithPlaceholder(permanentElement) {
+        const placeholder = createPlaceholderForPermanentElement(permanentElement);
+        permanentElement.replaceWith(placeholder);
+    }
+    replaceCurrentPermanentElementWithClone(permanentElement) {
+        const clone = permanentElement.cloneNode(true);
+        permanentElement.replaceWith(clone);
+    }
+    replacePlaceholderWithPermanentElement(permanentElement) {
+        const placeholder = this.getPlaceholderById(permanentElement.id);
+        placeholder === null || placeholder === void 0 ? void 0 : placeholder.replaceWith(permanentElement);
+    }
+    getPlaceholderById(id) {
+        return this.placeholders.find(element => element.content == id);
+    }
+    get placeholders() {
+        return [...document.querySelectorAll("meta[name=turbo-permanent-placeholder][content]")];
+    }
+}
+function createPlaceholderForPermanentElement(permanentElement) {
+    const element = document.createElement("meta");
+    element.setAttribute("name", "turbo-permanent-placeholder");
+    element.setAttribute("content", permanentElement.id);
+    return element;
+}
+
+class Renderer {
+    constructor(currentSnapshot, newSnapshot, isPreview, willRender = true) {
+        this.currentSnapshot = currentSnapshot;
+        this.newSnapshot = newSnapshot;
+        this.isPreview = isPreview;
+        this.willRender = willRender;
+        this.promise = new Promise((resolve, reject) => this.resolvingFunctions = { resolve, reject });
+    }
+    get shouldRender() {
+        return true;
+    }
+    prepareToRender() {
+        return;
+    }
+    finishRendering() {
+        if (this.resolvingFunctions) {
+            this.resolvingFunctions.resolve();
+            delete this.resolvingFunctions;
+        }
+    }
+    createScriptElement(element) {
+        if (element.getAttribute("data-turbo-eval") == "false") {
+            return element;
+        }
+        else {
+            const createdScriptElement = document.createElement("script");
+            if (this.cspNonce) {
+                createdScriptElement.nonce = this.cspNonce;
+            }
+            createdScriptElement.textContent = element.textContent;
+            createdScriptElement.async = false;
+            copyElementAttributes(createdScriptElement, element);
+            return createdScriptElement;
+        }
+    }
+    preservingPermanentElements(callback) {
+        Bardo.preservingPermanentElements(this.permanentElementMap, callback);
+    }
+    focusFirstAutofocusableElement() {
+        const element = this.connectedSnapshot.firstAutofocusableElement;
+        if (elementIsFocusable(element)) {
+            element.focus();
+        }
+    }
+    get connectedSnapshot() {
+        return this.newSnapshot.isConnected ? this.newSnapshot : this.currentSnapshot;
+    }
+    get currentElement() {
+        return this.currentSnapshot.element;
+    }
+    get newElement() {
+        return this.newSnapshot.element;
+    }
+    get permanentElementMap() {
+        return this.currentSnapshot.getPermanentElementMapForSnapshot(this.newSnapshot);
+    }
+    get cspNonce() {
+        var _a;
+        return (_a = document.head.querySelector('meta[name="csp-nonce"]')) === null || _a === void 0 ? void 0 : _a.getAttribute("content");
+    }
+}
+function copyElementAttributes(destinationElement, sourceElement) {
+    for (const { name, value } of [...sourceElement.attributes]) {
+        destinationElement.setAttribute(name, value);
+    }
+}
+function elementIsFocusable(element) {
+    return element && typeof element.focus == "function";
+}
+
+class FrameRenderer extends Renderer {
+    get shouldRender() {
+        return true;
+    }
+    async render() {
+        await nextAnimationFrame();
+        this.preservingPermanentElements(() => {
+            this.loadFrameElement();
+        });
+        this.scrollFrameIntoView();
+        await nextAnimationFrame();
+        this.focusFirstAutofocusableElement();
+        await nextAnimationFrame();
+        this.activateScriptElements();
+    }
+    loadFrameElement() {
+        var _a;
+        const destinationRange = document.createRange();
+        destinationRange.selectNodeContents(this.currentElement);
+        destinationRange.deleteContents();
+        const frameElement = this.newElement;
+        const sourceRange = (_a = frameElement.ownerDocument) === null || _a === void 0 ? void 0 : _a.createRange();
+        if (sourceRange) {
+            sourceRange.selectNodeContents(frameElement);
+            this.currentElement.appendChild(sourceRange.extractContents());
+        }
+    }
+    scrollFrameIntoView() {
+        if (this.currentElement.autoscroll || this.newElement.autoscroll) {
+            const element = this.currentElement.firstElementChild;
+            const block = readScrollLogicalPosition(this.currentElement.getAttribute("data-autoscroll-block"), "end");
+            if (element) {
+                element.scrollIntoView({ block });
+                return true;
+            }
+        }
+        return false;
+    }
+    activateScriptElements() {
+        for (const inertScriptElement of this.newScriptElements) {
+            const activatedScriptElement = this.createScriptElement(inertScriptElement);
+            inertScriptElement.replaceWith(activatedScriptElement);
+        }
+    }
+    get newScriptElements() {
+        return this.currentElement.querySelectorAll("script");
+    }
+}
+function readScrollLogicalPosition(value, defaultValue) {
+    if (value == "end" || value == "start" || value == "center" || value == "nearest") {
+        return value;
+    }
+    else {
+        return defaultValue;
+    }
+}
+
+class ProgressBar {
+    constructor() {
+        this.hiding = false;
+        this.value = 0;
+        this.visible = false;
+        this.trickle = () => {
+            this.setValue(this.value + Math.random() / 100);
+        };
+        this.stylesheetElement = this.createStylesheetElement();
+        this.progressElement = this.createProgressElement();
+        this.installStylesheetElement();
+        this.setValue(0);
+    }
+    static get defaultCSS() {
+        return unindent `
       .turbo-progress-bar {
         position: fixed;
         display: block;
@@ -9,11 +1177,2176 @@
         background: #0076ff;
         z-index: 9999;
         transition:
-          width ${O.animationDuration}ms ease-out,
-          opacity ${O.animationDuration/2}ms ${O.animationDuration/2}ms ease-in;
+          width ${ProgressBar.animationDuration}ms ease-out,
+          opacity ${ProgressBar.animationDuration / 2}ms ${ProgressBar.animationDuration / 2}ms ease-in;
         transform: translate3d(0, 0, 0);
       }
-    `}show(){this.visible||(this.visible=!0,this.installProgressElement(),this.startTrickling())}hide(){this.visible&&!this.hiding&&(this.hiding=!0,this.fadeProgressElement((()=>{this.uninstallProgressElement(),this.stopTrickling(),this.visible=!1,this.hiding=!1})))}setValue(e){this.value=e,this.refresh()}installStylesheetElement(){document.head.insertBefore(this.stylesheetElement,document.head.firstChild)}installProgressElement(){this.progressElement.style.width="0",this.progressElement.style.opacity="1",document.documentElement.insertBefore(this.progressElement,document.body),this.refresh()}fadeProgressElement(e){this.progressElement.style.opacity="0",setTimeout(e,1.5*O.animationDuration)}uninstallProgressElement(){this.progressElement.parentNode&&document.documentElement.removeChild(this.progressElement)}startTrickling(){this.trickleInterval||(this.trickleInterval=window.setInterval(this.trickle,O.animationDuration))}stopTrickling(){window.clearInterval(this.trickleInterval),delete this.trickleInterval}refresh(){requestAnimationFrame((()=>{this.progressElement.style.width=10+90*this.value+"%"}))}createStylesheetElement(){const e=document.createElement("style");return e.type="text/css",e.textContent=O.defaultCSS,e}createProgressElement(){const e=document.createElement("div");return e.className="turbo-progress-bar",e}}O.animationDuration=300;class H extends D{constructor(){super(...arguments),this.detailsByOuterHTML=this.children.filter((e=>!function(e){return"noscript"==e.tagName.toLowerCase()}(e))).map((e=>function(e){e.hasAttribute("nonce")&&e.setAttribute("nonce","");return e}(e))).reduce(((e,t)=>{const{outerHTML:n}=t,s=n in e?e[n]:{type:N(t),tracked:V(t),elements:[]};return Object.assign(Object.assign({},e),{[n]:Object.assign(Object.assign({},s),{elements:[...s.elements,t]})})}),{})}get trackedElementSignature(){return Object.keys(this.detailsByOuterHTML).filter((e=>this.detailsByOuterHTML[e].tracked)).join("")}getScriptElementsNotInSnapshot(e){return this.getElementsMatchingTypeNotInSnapshot("script",e)}getStylesheetElementsNotInSnapshot(e){return this.getElementsMatchingTypeNotInSnapshot("stylesheet",e)}getElementsMatchingTypeNotInSnapshot(e,t){return Object.keys(this.detailsByOuterHTML).filter((e=>!(e in t.detailsByOuterHTML))).map((e=>this.detailsByOuterHTML[e])).filter((({type:t})=>t==e)).map((({elements:[e]})=>e))}get provisionalElements(){return Object.keys(this.detailsByOuterHTML).reduce(((e,t)=>{const{type:n,tracked:s,elements:i}=this.detailsByOuterHTML[t];return null!=n||s?i.length>1?[...e,...i.slice(1)]:e:[...e,...i]}),[])}getMetaValue(e){const t=this.findMetaElementByName(e);return t?t.getAttribute("content"):null}findMetaElementByName(e){return Object.keys(this.detailsByOuterHTML).reduce(((t,n)=>{const{elements:[s]}=this.detailsByOuterHTML[n];return function(e,t){return"meta"==e.tagName.toLowerCase()&&e.getAttribute("name")==t}(s,e)?s:t}),void 0)}}function N(e){return function(e){return"script"==e.tagName.toLowerCase()}(e)?"script":function(e){const t=e.tagName.toLowerCase();return"style"==t||"link"==t&&"stylesheet"==e.getAttribute("rel")}(e)?"stylesheet":void 0}function V(e){return"reload"==e.getAttribute("data-turbo-track")}class U extends D{constructor(e,t){super(e),this.headSnapshot=t}static fromHTMLString(e=""){return this.fromDocument(E(e))}static fromElement(e){return this.fromDocument(e.ownerDocument)}static fromDocument({head:e,body:t}){return new this(t,new H(e))}clone(){return new U(this.element.cloneNode(!0),this.headSnapshot)}get headElement(){return this.headSnapshot.element}get rootLocation(){var e;return h(null!==(e=this.getSetting("root"))&&void 0!==e?e:"/")}get cacheControlValue(){return this.getSetting("cache-control")}get isPreviewable(){return"no-preview"!=this.cacheControlValue}get isCacheable(){return"no-cache"!=this.cacheControlValue}get isVisitable(){return"reload"!=this.getSetting("visit-control")}getSetting(e){return this.headSnapshot.getMetaValue(`turbo-${e}`)}}!function(e){e.visitStart="visitStart",e.requestStart="requestStart",e.requestEnd="requestEnd",e.visitEnd="visitEnd"}(l||(l={})),function(e){e.initialized="initialized",e.started="started",e.canceled="canceled",e.failed="failed",e.completed="completed"}(c||(c={}));const W={action:"advance",historyChanged:!1,visitCachedSnapshot:()=>{},willRender:!0};var z,Y;!function(e){e[e.networkFailure=0]="networkFailure",e[e.timeoutFailure=-1]="timeoutFailure",e[e.contentTypeMismatch=-2]="contentTypeMismatch"}(z||(z={}));class K{constructor(e,t,n,s={}){this.identifier=C(),this.timingMetrics={},this.followedRedirect=!1,this.historyChanged=!1,this.scrolled=!1,this.snapshotCached=!1,this.state=c.initialized,this.delegate=e,this.location=t,this.restorationIdentifier=n||C();const{action:i,historyChanged:r,referrer:o,snapshotHTML:a,response:l,visitCachedSnapshot:d,willRender:h}=Object.assign(Object.assign({},W),s);this.action=i,this.historyChanged=r,this.referrer=o,this.snapshotHTML=a,this.response=l,this.isSamePage=this.delegate.locationWithActionIsSamePage(this.location,this.action),this.visitCachedSnapshot=d,this.willRender=h,this.scrolled=!h}get adapter(){return this.delegate.adapter}get view(){return this.delegate.view}get history(){return this.delegate.history}get restorationData(){return this.history.getRestorationDataForIdentifier(this.restorationIdentifier)}get silent(){return this.isSamePage}start(){this.state==c.initialized&&(this.recordTimingMetric(l.visitStart),this.state=c.started,this.adapter.visitStarted(this),this.delegate.visitStarted(this))}cancel(){this.state==c.started&&(this.request&&this.request.cancel(),this.cancelRender(),this.state=c.canceled)}complete(){this.state==c.started&&(this.recordTimingMetric(l.visitEnd),this.state=c.completed,this.adapter.visitCompleted(this),this.delegate.visitCompleted(this),this.followRedirect())}fail(){this.state==c.started&&(this.state=c.failed,this.adapter.visitFailed(this))}changeHistory(){var e;if(!this.historyChanged){const t=this.location.href===(null===(e=this.referrer)||void 0===e?void 0:e.href)?"replace":this.action,n=this.getHistoryMethodForAction(t);this.history.update(n,this.location,this.restorationIdentifier),this.historyChanged=!0}}issueRequest(){this.hasPreloadedResponse()?this.simulateRequest():this.shouldIssueRequest()&&!this.request&&(this.request=new R(this,r.get,this.location),this.request.perform())}simulateRequest(){this.response&&(this.startRequest(),this.recordResponse(),this.finishRequest())}startRequest(){this.recordTimingMetric(l.requestStart),this.adapter.visitRequestStarted(this)}recordResponse(e=this.response){if(this.response=e,e){const{statusCode:t}=e;J(t)?this.adapter.visitRequestCompleted(this):this.adapter.visitRequestFailedWithStatusCode(this,t)}}finishRequest(){this.recordTimingMetric(l.requestEnd),this.adapter.visitRequestFinished(this)}loadResponse(){if(this.response){const{statusCode:e,responseHTML:t}=this.response;this.render((async()=>{this.cacheSnapshot(),this.view.renderPromise&&await this.view.renderPromise,J(e)&&null!=t?(await this.view.renderPage(U.fromHTMLString(t),!1,this.willRender),this.adapter.visitRendered(this),this.complete()):(await this.view.renderError(U.fromHTMLString(t)),this.adapter.visitRendered(this),this.fail())}))}}getCachedSnapshot(){const e=this.view.getCachedSnapshotForLocation(this.location)||this.getPreloadedSnapshot();if(e&&(!u(this.location)||e.hasAnchor(u(this.location)))&&("restore"==this.action||e.isPreviewable))return e}getPreloadedSnapshot(){if(this.snapshotHTML)return U.fromHTMLString(this.snapshotHTML)}hasCachedSnapshot(){return null!=this.getCachedSnapshot()}loadCachedSnapshot(){const e=this.getCachedSnapshot();if(e){const t=this.shouldIssueRequest();this.render((async()=>{this.cacheSnapshot(),this.isSamePage?this.adapter.visitRendered(this):(this.view.renderPromise&&await this.view.renderPromise,await this.view.renderPage(e,t,this.willRender),this.adapter.visitRendered(this),t||this.complete())}))}}followRedirect(){var e;this.redirectedToLocation&&!this.followedRedirect&&(null===(e=this.response)||void 0===e?void 0:e.redirected)&&(this.adapter.visitProposedToLocation(this.redirectedToLocation,{action:"replace",response:this.response}),this.followedRedirect=!0)}goToSamePageAnchor(){this.isSamePage&&this.render((async()=>{this.cacheSnapshot(),this.adapter.visitRendered(this)}))}requestStarted(){this.startRequest()}requestPreventedHandlingResponse(e,t){}async requestSucceededWithResponse(e,t){const n=await t.responseHTML,{redirected:s,statusCode:i}=t;null==n?this.recordResponse({statusCode:z.contentTypeMismatch,redirected:s}):(this.redirectedToLocation=t.redirected?t.location:void 0,this.recordResponse({statusCode:i,responseHTML:n,redirected:s}))}async requestFailedWithResponse(e,t){const n=await t.responseHTML,{redirected:s,statusCode:i}=t;null==n?this.recordResponse({statusCode:z.contentTypeMismatch,redirected:s}):this.recordResponse({statusCode:i,responseHTML:n,redirected:s})}requestErrored(e,t){this.recordResponse({statusCode:z.networkFailure,redirected:!1})}requestFinished(){this.finishRequest()}performScroll(){this.scrolled||("restore"==this.action?this.scrollToRestoredPosition()||this.scrollToAnchor()||this.view.scrollToTop():this.scrollToAnchor()||this.view.scrollToTop(),this.isSamePage&&this.delegate.visitScrolledToSamePageLocation(this.view.lastRenderedLocation,this.location),this.scrolled=!0)}scrollToRestoredPosition(){const{scrollPosition:e}=this.restorationData;if(e)return this.view.scrollToPosition(e),!0}scrollToAnchor(){const e=u(this.location);if(null!=e)return this.view.scrollToAnchor(e),!0}recordTimingMetric(e){this.timingMetrics[e]=(new Date).getTime()}getTimingMetrics(){return Object.assign({},this.timingMetrics)}getHistoryMethodForAction(e){switch(e){case"replace":return history.replaceState;case"advance":case"restore":return history.pushState}}hasPreloadedResponse(){return"object"==typeof this.response}shouldIssueRequest(){return!this.isSamePage&&("restore"==this.action?!this.hasCachedSnapshot():this.willRender)}cacheSnapshot(){this.snapshotCached||(this.view.cacheSnapshot().then((e=>e&&this.visitCachedSnapshot(e))),this.snapshotCached=!0)}async render(e){this.cancelRender(),await new Promise((e=>{this.frame=requestAnimationFrame((()=>e()))})),await e(),delete this.frame,this.performScroll()}cancelRender(){this.frame&&(cancelAnimationFrame(this.frame),delete this.frame)}}function J(e){return e>=200&&e<300}class G{constructor(e){this.progressBar=new O,this.showProgressBar=()=>{this.progressBar.show()},this.session=e}visitProposedToLocation(e,t){this.navigator.startVisit(e,C(),t)}visitStarted(e){e.loadCachedSnapshot(),e.issueRequest(),e.changeHistory(),e.goToSamePageAnchor()}visitRequestStarted(e){this.progressBar.setValue(0),e.hasCachedSnapshot()||"restore"!=e.action?this.showVisitProgressBarAfterDelay():this.showProgressBar()}visitRequestCompleted(e){e.loadResponse()}visitRequestFailedWithStatusCode(e,t){switch(t){case z.networkFailure:case z.timeoutFailure:case z.contentTypeMismatch:return this.reload();default:return e.loadResponse()}}visitRequestFinished(e){this.progressBar.setValue(1),this.hideVisitProgressBar()}visitCompleted(e){}pageInvalidated(){this.reload()}visitFailed(e){}visitRendered(e){}formSubmissionStarted(e){this.progressBar.setValue(0),this.showFormProgressBarAfterDelay()}formSubmissionFinished(e){this.progressBar.setValue(1),this.hideFormProgressBar()}showVisitProgressBarAfterDelay(){this.visitProgressBarTimeout=window.setTimeout(this.showProgressBar,this.session.progressBarDelay)}hideVisitProgressBar(){this.progressBar.hide(),null!=this.visitProgressBarTimeout&&(window.clearTimeout(this.visitProgressBarTimeout),delete this.visitProgressBarTimeout)}showFormProgressBarAfterDelay(){null==this.formProgressBarTimeout&&(this.formProgressBarTimeout=window.setTimeout(this.showProgressBar,this.session.progressBarDelay))}hideFormProgressBar(){this.progressBar.hide(),null!=this.formProgressBarTimeout&&(window.clearTimeout(this.formProgressBarTimeout),delete this.formProgressBarTimeout)}reload(){window.location.reload()}get navigator(){return this.session.navigator}}class Q{constructor(){this.started=!1}start(){this.started||(this.started=!0,addEventListener("turbo:before-cache",this.removeStaleElements,!1))}stop(){this.started&&(this.started=!1,removeEventListener("turbo:before-cache",this.removeStaleElements,!1))}removeStaleElements(){const e=[...document.querySelectorAll('[data-turbo-cache="false"]')];for(const t of e)t.remove()}}class X{constructor(e){this.started=!1,this.submitCaptured=()=>{removeEventListener("submit",this.submitBubbled,!1),addEventListener("submit",this.submitBubbled,!1)},this.submitBubbled=e=>{if(!e.defaultPrevented){const t=e.target instanceof HTMLFormElement?e.target:void 0,n=e.submitter||void 0;if(t){"dialog"!=((null==n?void 0:n.getAttribute("formmethod"))||t.getAttribute("method"))&&this.delegate.willSubmitForm(t,n)&&(e.preventDefault(),this.delegate.formSubmitted(t,n))}}},this.delegate=e}start(){this.started||(addEventListener("submit",this.submitCaptured,!0),this.started=!0)}stop(){this.started&&(removeEventListener("submit",this.submitCaptured,!0),this.started=!1)}}class Z{constructor(e){this.element=e,this.linkInterceptor=new q(this,e),this.formInterceptor=new M(this,e)}start(){this.linkInterceptor.start(),this.formInterceptor.start()}stop(){this.linkInterceptor.stop(),this.formInterceptor.stop()}shouldInterceptLinkClick(e,t){return this.shouldRedirect(e)}linkClickIntercepted(e,t){const n=this.findFrameElement(e);n&&n.delegate.linkClickIntercepted(e,t)}shouldInterceptFormSubmission(e,t){return this.shouldSubmit(e,t)}formSubmissionIntercepted(e,t){const n=this.findFrameElement(e,t);n&&(n.removeAttribute("reloadable"),n.delegate.formSubmissionIntercepted(e,t))}shouldSubmit(e,t){var n;const s=p(e,t),i=this.element.ownerDocument.querySelector('meta[name="turbo-root"]'),r=h(null!==(n=null==i?void 0:i.content)&&void 0!==n?n:"/");return this.shouldRedirect(e,t)&&g(s,r)}shouldRedirect(e,t){const n=this.findFrameElement(e,t);return!!n&&n!=e.closest("turbo-frame")}findFrameElement(e,t){const n=(null==t?void 0:t.getAttribute("data-turbo-frame"))||e.getAttribute("data-turbo-frame");if(n&&"_top"!=n){const e=this.element.querySelector(`#${n}:not([disabled])`);if(e instanceof d)return e}}}class ee{constructor(e){this.restorationIdentifier=C(),this.restorationData={},this.started=!1,this.pageLoaded=!1,this.onPopState=e=>{if(this.shouldHandlePopState()){const{turbo:t}=e.state||{};if(t){this.location=new URL(window.location.href);const{restorationIdentifier:e}=t;this.restorationIdentifier=e,this.delegate.historyPoppedToLocationWithRestorationIdentifier(this.location,e)}}},this.onPageLoad=async e=>{await Promise.resolve(),this.pageLoaded=!0},this.delegate=e}start(){this.started||(addEventListener("popstate",this.onPopState,!1),addEventListener("load",this.onPageLoad,!1),this.started=!0,this.replace(new URL(window.location.href)))}stop(){this.started&&(removeEventListener("popstate",this.onPopState,!1),removeEventListener("load",this.onPageLoad,!1),this.started=!1)}push(e,t){this.update(history.pushState,e,t)}replace(e,t){this.update(history.replaceState,e,t)}update(e,t,n=C()){const s={turbo:{restorationIdentifier:n}};e.call(history,s,"",t.href),this.location=t,this.restorationIdentifier=n}getRestorationDataForIdentifier(e){return this.restorationData[e]||{}}updateRestorationData(e){const{restorationIdentifier:t}=this,n=this.restorationData[t];this.restorationData[t]=Object.assign(Object.assign({},n),e)}assumeControlOfScrollRestoration(){var e;this.previousScrollRestoration||(this.previousScrollRestoration=null!==(e=history.scrollRestoration)&&void 0!==e?e:"auto",history.scrollRestoration="manual")}relinquishControlOfScrollRestoration(){this.previousScrollRestoration&&(history.scrollRestoration=this.previousScrollRestoration,delete this.previousScrollRestoration)}shouldHandlePopState(){return this.pageIsLoaded()}pageIsLoaded(){return this.pageLoaded||"complete"==document.readyState}}class te{constructor(e){this.started=!1,this.clickCaptured=()=>{removeEventListener("click",this.clickBubbled,!1),addEventListener("click",this.clickBubbled,!1)},this.clickBubbled=e=>{if(this.clickEventIsSignificant(e)){const t=e.composedPath&&e.composedPath()[0]||e.target,n=this.findLinkFromClickTarget(t);if(n){const t=this.getLocationForLink(n);this.delegate.willFollowLinkToLocation(n,t)&&(e.preventDefault(),this.delegate.followedLinkToLocation(n,t))}}},this.delegate=e}start(){this.started||(addEventListener("click",this.clickCaptured,!0),this.started=!0)}stop(){this.started&&(removeEventListener("click",this.clickCaptured,!0),this.started=!1)}clickEventIsSignificant(e){return!(e.target&&e.target.isContentEditable||e.defaultPrevented||e.which>1||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)}findLinkFromClickTarget(e){if(e instanceof Element)return e.closest("a[href]:not([target^=_]):not([download])")}getLocationForLink(e){return h(e.getAttribute("href")||"")}}function ne(e){return"advance"==e||"replace"==e||"restore"==e}class se{constructor(e){this.delegate=e}proposeVisit(e,t={}){this.delegate.allowsVisitingLocationWithAction(e,t.action)&&(g(e,this.view.snapshot.rootLocation)?this.delegate.visitProposedToLocation(e,t):window.location.href=e.toString())}startVisit(e,t,n={}){this.stop(),this.currentVisit=new K(this,h(e),t,Object.assign({referrer:this.location},n)),this.currentVisit.start()}submitForm(e,t){this.stop(),this.formSubmission=new x(this,e,t,!0),this.formSubmission.start()}stop(){this.formSubmission&&(this.formSubmission.stop(),delete this.formSubmission),this.currentVisit&&(this.currentVisit.cancel(),delete this.currentVisit)}get adapter(){return this.delegate.adapter}get view(){return this.delegate.view}get history(){return this.delegate.history}formSubmissionStarted(e){"function"==typeof this.adapter.formSubmissionStarted&&this.adapter.formSubmissionStarted(e)}async formSubmissionSucceededWithResponse(e,t){if(e==this.formSubmission){const n=await t.responseHTML;if(n){e.method!=r.get&&this.view.clearSnapshotCache();const{statusCode:s,redirected:i}=t,o={action:this.getActionForFormSubmission(e),response:{statusCode:s,responseHTML:n,redirected:i}};this.proposeVisit(t.location,o)}}}async formSubmissionFailedWithResponse(e,t){const n=await t.responseHTML;if(n){const e=U.fromHTMLString(n);t.serverError?await this.view.renderError(e):await this.view.renderPage(e),this.view.scrollToTop(),this.view.clearSnapshotCache()}}formSubmissionErrored(e,t){console.error(t)}formSubmissionFinished(e){"function"==typeof this.adapter.formSubmissionFinished&&this.adapter.formSubmissionFinished(e)}visitStarted(e){this.delegate.visitStarted(e)}visitCompleted(e){this.delegate.visitCompleted(e)}locationWithActionIsSamePage(e,t){const n=u(e),s=u(this.view.lastRenderedLocation),i="restore"===t&&void 0===n;return"replace"!==t&&v(e)===v(this.view.lastRenderedLocation)&&(i||null!=n&&n!==s)}visitScrolledToSamePageLocation(e,t){this.delegate.visitScrolledToSamePageLocation(e,t)}get location(){return this.history.location}get restorationIdentifier(){return this.history.restorationIdentifier}getActionForFormSubmission(e){const{formElement:t,submitter:n}=e,s=L("data-turbo-action",n,t);return ne(s)?s:"advance"}}!function(e){e[e.initial=0]="initial",e[e.loading=1]="loading",e[e.interactive=2]="interactive",e[e.complete=3]="complete"}(Y||(Y={}));class ie{constructor(e){this.stage=Y.initial,this.started=!1,this.interpretReadyState=()=>{const{readyState:e}=this;"interactive"==e?this.pageIsInteractive():"complete"==e&&this.pageIsComplete()},this.pageWillUnload=()=>{this.delegate.pageWillUnload()},this.delegate=e}start(){this.started||(this.stage==Y.initial&&(this.stage=Y.loading),document.addEventListener("readystatechange",this.interpretReadyState,!1),addEventListener("pagehide",this.pageWillUnload,!1),this.started=!0)}stop(){this.started&&(document.removeEventListener("readystatechange",this.interpretReadyState,!1),removeEventListener("pagehide",this.pageWillUnload,!1),this.started=!1)}pageIsInteractive(){this.stage==Y.loading&&(this.stage=Y.interactive,this.delegate.pageBecameInteractive())}pageIsComplete(){this.pageIsInteractive(),this.stage==Y.interactive&&(this.stage=Y.complete,this.delegate.pageLoaded())}get readyState(){return document.readyState}}class re{constructor(e){this.started=!1,this.onScroll=()=>{this.updatePosition({x:window.pageXOffset,y:window.pageYOffset})},this.delegate=e}start(){this.started||(addEventListener("scroll",this.onScroll,!1),this.onScroll(),this.started=!0)}stop(){this.started&&(removeEventListener("scroll",this.onScroll,!1),this.started=!1)}updatePosition(e){this.delegate.scrollPositionChanged(e)}}class oe{constructor(e){this.sources=new Set,this.started=!1,this.inspectFetchResponse=e=>{const t=function(e){var t;const n=null===(t=e.detail)||void 0===t?void 0:t.fetchResponse;if(n instanceof w)return n}(e);t&&function(e){var t;return(null!==(t=e.contentType)&&void 0!==t?t:"").startsWith(A.contentType)}(t)&&(e.preventDefault(),this.receiveMessageResponse(t))},this.receiveMessageEvent=e=>{this.started&&"string"==typeof e.data&&this.receiveMessageHTML(e.data)},this.delegate=e}start(){this.started||(this.started=!0,addEventListener("turbo:before-fetch-response",this.inspectFetchResponse,!1))}stop(){this.started&&(this.started=!1,removeEventListener("turbo:before-fetch-response",this.inspectFetchResponse,!1))}connectStreamSource(e){this.streamSourceIsConnected(e)||(this.sources.add(e),e.addEventListener("message",this.receiveMessageEvent,!1))}disconnectStreamSource(e){this.streamSourceIsConnected(e)&&(this.sources.delete(e),e.removeEventListener("message",this.receiveMessageEvent,!1))}streamSourceIsConnected(e){return this.sources.has(e)}async receiveMessageResponse(e){const t=await e.responseHTML;t&&this.receiveMessageHTML(t)}receiveMessageHTML(e){this.delegate.receivedMessageFromStream(new A(e))}}class ae extends B{async render(){this.replaceHeadAndBody(),this.activateScriptElements()}replaceHeadAndBody(){const{documentElement:e,head:t,body:n}=document;e.replaceChild(this.newHead,t),e.replaceChild(this.newElement,n)}activateScriptElements(){for(const e of this.scriptElements){const t=e.parentNode;if(t){const n=this.createScriptElement(e);t.replaceChild(n,e)}}}get newHead(){return this.newSnapshot.headSnapshot.element}get scriptElements(){return[...document.documentElement.querySelectorAll("script")]}}class le extends B{get shouldRender(){return this.newSnapshot.isVisitable&&this.trackedElementsAreIdentical}prepareToRender(){this.mergeHead()}async render(){this.willRender&&this.replaceBody()}finishRendering(){super.finishRendering(),this.isPreview||this.focusFirstAutofocusableElement()}get currentHeadSnapshot(){return this.currentSnapshot.headSnapshot}get newHeadSnapshot(){return this.newSnapshot.headSnapshot}get newElement(){return this.newSnapshot.element}mergeHead(){this.copyNewHeadStylesheetElements(),this.copyNewHeadScriptElements(),this.removeCurrentHeadProvisionalElements(),this.copyNewHeadProvisionalElements()}replaceBody(){this.preservingPermanentElements((()=>{this.activateNewBody(),this.assignNewBody()}))}get trackedElementsAreIdentical(){return this.currentHeadSnapshot.trackedElementSignature==this.newHeadSnapshot.trackedElementSignature}copyNewHeadStylesheetElements(){for(const e of this.newHeadStylesheetElements)document.head.appendChild(e)}copyNewHeadScriptElements(){for(const e of this.newHeadScriptElements)document.head.appendChild(this.createScriptElement(e))}removeCurrentHeadProvisionalElements(){for(const e of this.currentHeadProvisionalElements)document.head.removeChild(e)}copyNewHeadProvisionalElements(){for(const e of this.newHeadProvisionalElements)document.head.appendChild(e)}activateNewBody(){document.adoptNode(this.newElement),this.activateNewBodyScriptElements()}activateNewBodyScriptElements(){for(const e of this.newBodyScriptElements){const t=this.createScriptElement(e);e.replaceWith(t)}}assignNewBody(){document.body&&this.newElement instanceof HTMLBodyElement?document.body.replaceWith(this.newElement):document.documentElement.appendChild(this.newElement)}get newHeadStylesheetElements(){return this.newHeadSnapshot.getStylesheetElementsNotInSnapshot(this.currentHeadSnapshot)}get newHeadScriptElements(){return this.newHeadSnapshot.getScriptElementsNotInSnapshot(this.currentHeadSnapshot)}get currentHeadProvisionalElements(){return this.currentHeadSnapshot.provisionalElements}get newHeadProvisionalElements(){return this.newHeadSnapshot.provisionalElements}get newBodyScriptElements(){return this.newElement.querySelectorAll("script")}}class ce{constructor(e){this.keys=[],this.snapshots={},this.size=e}has(e){return b(e)in this.snapshots}get(e){if(this.has(e)){const t=this.read(e);return this.touch(e),t}}put(e,t){return this.write(e,t),this.touch(e),t}clear(){this.snapshots={}}read(e){return this.snapshots[b(e)]}write(e,t){this.snapshots[b(e)]=t}touch(e){const t=b(e),n=this.keys.indexOf(t);n>-1&&this.keys.splice(n,1),this.keys.unshift(t),this.trim()}trim(){for(const e of this.keys.splice(this.size))delete this.snapshots[e]}}class de extends I{constructor(){super(...arguments),this.snapshotCache=new ce(10),this.lastRenderedLocation=new URL(location.href)}renderPage(e,t=!1,n=!0){const s=new le(this.snapshot,e,t,n);return this.render(s)}renderError(e){const t=new ae(this.snapshot,e,!1);return this.render(t)}clearSnapshotCache(){this.snapshotCache.clear()}async cacheSnapshot(){if(this.shouldCacheSnapshot){this.delegate.viewWillCacheSnapshot();const{snapshot:e,lastRenderedLocation:t}=this;await new Promise((e=>setTimeout((()=>e()),0)));const n=e.clone();return this.snapshotCache.put(t,n),n}}getCachedSnapshotForLocation(e){return this.snapshotCache.get(e)}get snapshot(){return U.fromElement(this.element)}get shouldCacheSnapshot(){return this.snapshot.isCacheable}}function he(e){Object.defineProperties(e,ue)}const ue={absoluteURL:{get(){return this.toString()}}},pe=new class{constructor(){this.navigator=new se(this),this.history=new ee(this),this.view=new de(this,document.documentElement),this.adapter=new G(this),this.pageObserver=new ie(this),this.cacheObserver=new Q,this.linkClickObserver=new te(this),this.formSubmitObserver=new X(this),this.scrollObserver=new re(this),this.streamObserver=new oe(this),this.frameRedirector=new Z(document.documentElement),this.drive=!0,this.enabled=!0,this.progressBarDelay=500,this.started=!1}start(){this.started||(this.pageObserver.start(),this.cacheObserver.start(),this.linkClickObserver.start(),this.formSubmitObserver.start(),this.scrollObserver.start(),this.streamObserver.start(),this.frameRedirector.start(),this.history.start(),this.started=!0,this.enabled=!0)}disable(){this.enabled=!1}stop(){this.started&&(this.pageObserver.stop(),this.cacheObserver.stop(),this.linkClickObserver.stop(),this.formSubmitObserver.stop(),this.scrollObserver.stop(),this.streamObserver.stop(),this.frameRedirector.stop(),this.history.stop(),this.started=!1)}registerAdapter(e){this.adapter=e}visit(e,t={}){this.navigator.proposeVisit(h(e),t)}connectStreamSource(e){this.streamObserver.connectStreamSource(e)}disconnectStreamSource(e){this.streamObserver.disconnectStreamSource(e)}renderStreamMessage(e){document.documentElement.appendChild(A.wrap(e).fragment)}clearCache(){this.view.clearSnapshotCache()}setProgressBarDelay(e){this.progressBarDelay=e}get location(){return this.history.location}get restorationIdentifier(){return this.history.restorationIdentifier}historyPoppedToLocationWithRestorationIdentifier(e,t){this.enabled?this.navigator.startVisit(e,t,{action:"restore",historyChanged:!0}):this.adapter.pageInvalidated()}scrollPositionChanged(e){this.history.updateRestorationData({scrollPosition:e})}willFollowLinkToLocation(e,t){return this.elementDriveEnabled(e)&&g(t,this.snapshot.rootLocation)&&this.applicationAllowsFollowingLinkToLocation(e,t)}followedLinkToLocation(e,t){const n=this.getActionForLink(e);this.convertLinkWithMethodClickToFormSubmission(e)||this.visit(t.href,{action:n})}convertLinkWithMethodClickToFormSubmission(e){const t=e.getAttribute("data-turbo-method");if(t){const n=document.createElement("form");n.method=t,n.action=e.getAttribute("href")||"undefined",n.hidden=!0,e.hasAttribute("data-turbo-confirm")&&n.setAttribute("data-turbo-confirm",e.getAttribute("data-turbo-confirm"));const s=this.getTargetFrameForLink(e);return s?(n.setAttribute("data-turbo-frame",s),n.addEventListener("turbo:submit-start",(()=>n.remove()))):n.addEventListener("submit",(()=>n.remove())),document.body.appendChild(n),y("submit",{cancelable:!0,target:n})}return!1}allowsVisitingLocationWithAction(e,t){return this.locationWithActionIsSamePage(e,t)||this.applicationAllowsVisitingLocation(e)}visitProposedToLocation(e,t){he(e),this.adapter.visitProposedToLocation(e,t)}visitStarted(e){he(e.location),e.silent||this.notifyApplicationAfterVisitingLocation(e.location,e.action)}visitCompleted(e){this.notifyApplicationAfterPageLoad(e.getTimingMetrics())}locationWithActionIsSamePage(e,t){return this.navigator.locationWithActionIsSamePage(e,t)}visitScrolledToSamePageLocation(e,t){this.notifyApplicationAfterVisitingSamePageLocation(e,t)}willSubmitForm(e,t){const n=p(e,t);return this.elementDriveEnabled(e)&&(!t||this.elementDriveEnabled(t))&&g(h(n),this.snapshot.rootLocation)}formSubmitted(e,t){this.navigator.submitForm(e,t)}pageBecameInteractive(){this.view.lastRenderedLocation=this.location,this.notifyApplicationAfterPageLoad()}pageLoaded(){this.history.assumeControlOfScrollRestoration()}pageWillUnload(){this.history.relinquishControlOfScrollRestoration()}receivedMessageFromStream(e){this.renderStreamMessage(e)}viewWillCacheSnapshot(){var e;(null===(e=this.navigator.currentVisit)||void 0===e?void 0:e.silent)||this.notifyApplicationBeforeCachingSnapshot()}allowsImmediateRender({element:e},t){return!this.notifyApplicationBeforeRender(e,t).defaultPrevented}viewRenderedSnapshot(e,t){this.view.lastRenderedLocation=this.history.location,this.notifyApplicationAfterRender()}viewInvalidated(){this.adapter.pageInvalidated()}frameLoaded(e){this.notifyApplicationAfterFrameLoad(e)}frameRendered(e,t){this.notifyApplicationAfterFrameRender(e,t)}applicationAllowsFollowingLinkToLocation(e,t){return!this.notifyApplicationAfterClickingLinkToLocation(e,t).defaultPrevented}applicationAllowsVisitingLocation(e){return!this.notifyApplicationBeforeVisitingLocation(e).defaultPrevented}notifyApplicationAfterClickingLinkToLocation(e,t){return y("turbo:click",{target:e,detail:{url:t.href},cancelable:!0})}notifyApplicationBeforeVisitingLocation(e){return y("turbo:before-visit",{detail:{url:e.href},cancelable:!0})}notifyApplicationAfterVisitingLocation(e,t){return k(document.documentElement),y("turbo:visit",{detail:{url:e.href,action:t}})}notifyApplicationBeforeCachingSnapshot(){return y("turbo:before-cache")}notifyApplicationBeforeRender(e,t){return y("turbo:before-render",{detail:{newBody:e,resume:t},cancelable:!0})}notifyApplicationAfterRender(){return y("turbo:render")}notifyApplicationAfterPageLoad(e={}){return T(document.documentElement),y("turbo:load",{detail:{url:this.location.href,timing:e}})}notifyApplicationAfterVisitingSamePageLocation(e,t){dispatchEvent(new HashChangeEvent("hashchange",{oldURL:e.toString(),newURL:t.toString()}))}notifyApplicationAfterFrameLoad(e){return y("turbo:frame-load",{target:e})}notifyApplicationAfterFrameRender(e,t){return y("turbo:frame-render",{detail:{fetchResponse:e},target:t,cancelable:!0})}elementDriveEnabled(e){const t=null==e?void 0:e.closest("[data-turbo]");return this.drive?!t||"false"!=t.getAttribute("data-turbo"):!!t&&"true"==t.getAttribute("data-turbo")}getActionForLink(e){const t=e.getAttribute("data-turbo-action");return ne(t)?t:"advance"}getTargetFrameForLink(e){const t=e.getAttribute("data-turbo-frame");if(t)return t;{const t=e.closest("turbo-frame");if(t)return t.id}}get snapshot(){return this.view.snapshot}},{navigator:me}=pe;function fe(){pe.start()}function ge(e){pe.registerAdapter(e)}function ve(e,t){pe.visit(e,t)}function be(e){pe.connectStreamSource(e)}function we(e){pe.disconnectStreamSource(e)}function ye(e){pe.renderStreamMessage(e)}function Se(){pe.clearCache()}function Ee(e){pe.setProgressBarDelay(e)}function $e(e){x.confirmMethod=e}var Ce=Object.freeze({__proto__:null,navigator:me,session:pe,PageRenderer:le,PageSnapshot:U,start:fe,registerAdapter:ge,visit:ve,connectStreamSource:be,disconnectStreamSource:we,renderStreamMessage:ye,clearCache:Se,setProgressBarDelay:Ee,setConfirmMethod:$e});class Le{constructor(e){this.visitCachedSnapshot=({element:e})=>{var t;const{id:n,clone:s}=this;null===(t=e.querySelector("#"+n))||void 0===t||t.replaceWith(s)},this.clone=e.cloneNode(!0),this.id=e.id}}function ke(e){if(null!=e){const t=document.getElementById(e);if(t instanceof d)return t}}function Te(e,t){if(e){const s=e.getAttribute("src");if(null!=s&&null!=t&&(n=t,h(s).href==h(n).href))throw new Error(`Matching <turbo-frame id="${e.id}"> element has a source URL which references itself`);if(e.ownerDocument!==document&&(e=document.importNode(e,!0)),e instanceof d)return e.connectedCallback(),e.disconnectedCallback(),e}var n}const Re={after(){this.targetElements.forEach((e=>{var t;return null===(t=e.parentElement)||void 0===t?void 0:t.insertBefore(this.templateContent,e.nextSibling)}))},append(){this.removeDuplicateTargetChildren(),this.targetElements.forEach((e=>e.append(this.templateContent)))},before(){this.targetElements.forEach((e=>{var t;return null===(t=e.parentElement)||void 0===t?void 0:t.insertBefore(this.templateContent,e)}))},prepend(){this.removeDuplicateTargetChildren(),this.targetElements.forEach((e=>e.prepend(this.templateContent)))},remove(){this.targetElements.forEach((e=>e.remove()))},replace(){this.targetElements.forEach((e=>e.replaceWith(this.templateContent)))},update(){this.targetElements.forEach((e=>{e.innerHTML="",e.append(this.templateContent)}))}};class _e extends HTMLElement{async connectedCallback(){try{await this.render()}catch(e){console.error(e)}finally{this.disconnect()}}async render(){var e;return null!==(e=this.renderPromise)&&void 0!==e?e:this.renderPromise=(async()=>{this.dispatchEvent(this.beforeRenderEvent)&&(await S(),this.performAction())})()}disconnect(){try{this.remove()}catch(e){}}removeDuplicateTargetChildren(){this.duplicateChildren.forEach((e=>e.remove()))}get duplicateChildren(){var e;const t=this.targetElements.flatMap((e=>[...e.children])).filter((e=>!!e.id)),n=[...null===(e=this.templateContent)||void 0===e?void 0:e.children].filter((e=>!!e.id)).map((e=>e.id));return t.filter((e=>n.includes(e.id)))}get performAction(){if(this.action){const e=Re[this.action];if(e)return e;this.raise("unknown action")}this.raise("action attribute is missing")}get targetElements(){return this.target?this.targetElementsById:this.targets?this.targetElementsByQuery:void this.raise("target or targets attribute is missing")}get templateContent(){return this.templateElement.content.cloneNode(!0)}get templateElement(){if(this.firstElementChild instanceof HTMLTemplateElement)return this.firstElementChild;this.raise("first child element must be a <template> element")}get action(){return this.getAttribute("action")}get target(){return this.getAttribute("target")}get targets(){return this.getAttribute("targets")}raise(e){throw new Error(`${this.description}: ${e}`)}get description(){var e,t;return null!==(t=(null!==(e=this.outerHTML.match(/<[^>]+>/))&&void 0!==e?e:[])[0])&&void 0!==t?t:"<turbo-stream>"}get beforeRenderEvent(){return new CustomEvent("turbo:before-stream-render",{bubbles:!0,cancelable:!0})}get targetElementsById(){var e;const t=null===(e=this.ownerDocument)||void 0===e?void 0:e.getElementById(this.target);return null!==t?[t]:[]}get targetElementsByQuery(){var e;const t=null===(e=this.ownerDocument)||void 0===e?void 0:e.querySelectorAll(this.targets);return 0!==t.length?Array.prototype.slice.call(t):[]}}d.delegateConstructor=class{constructor(e){this.fetchResponseLoaded=e=>{},this.currentFetchRequest=null,this.resolveVisitPromise=()=>{},this.connected=!1,this.hasBeenLoaded=!1,this.settingSourceURL=!1,this.element=e,this.view=new F(this,this.element),this.appearanceObserver=new _(this,this.element),this.linkInterceptor=new q(this,this.element),this.formInterceptor=new M(this,this.element)}connect(){this.connected||(this.connected=!0,this.reloadable=!1,this.loadingStyle==i.lazy&&this.appearanceObserver.start(),this.linkInterceptor.start(),this.formInterceptor.start(),this.sourceURLChanged())}disconnect(){this.connected&&(this.connected=!1,this.appearanceObserver.stop(),this.linkInterceptor.stop(),this.formInterceptor.stop())}disabledChanged(){this.loadingStyle==i.eager&&this.loadSourceURL()}sourceURLChanged(){(this.loadingStyle==i.eager||this.hasBeenLoaded)&&this.loadSourceURL()}loadingStyleChanged(){this.loadingStyle==i.lazy?this.appearanceObserver.start():(this.appearanceObserver.stop(),this.loadSourceURL())}async loadSourceURL(){if(!this.settingSourceURL&&this.enabled&&this.isActive&&(this.reloadable||this.sourceURL!=this.currentURL)){const e=this.currentURL;if(this.currentURL=this.sourceURL,this.sourceURL)try{this.element.loaded=this.visit(h(this.sourceURL)),this.appearanceObserver.stop(),await this.element.loaded,this.hasBeenLoaded=!0}catch(t){throw this.currentURL=e,t}}}async loadResponse(e){(e.redirected||e.succeeded&&e.isHTML)&&(this.sourceURL=e.response.url);try{const t=await e.responseHTML;if(t){const{body:n}=E(t),s=new D(await this.extractForeignFrameElement(n)),i=new j(this.view.snapshot,s,!1,!1);this.view.renderPromise&&await this.view.renderPromise,await this.view.render(i),pe.frameRendered(e,this.element),pe.frameLoaded(this.element),this.fetchResponseLoaded(e)}}catch(e){console.error(e),this.view.invalidate()}finally{this.fetchResponseLoaded=()=>{}}}elementAppearedInViewport(e){this.loadSourceURL()}shouldInterceptLinkClick(e,t){return!e.hasAttribute("data-turbo-method")&&this.shouldInterceptNavigation(e)}linkClickIntercepted(e,t){this.reloadable=!0,this.navigateFrame(e,t)}shouldInterceptFormSubmission(e,t){return this.shouldInterceptNavigation(e,t)}formSubmissionIntercepted(e,t){this.formSubmission&&this.formSubmission.stop(),this.reloadable=!1,this.formSubmission=new x(this,e,t);const{fetchRequest:n}=this.formSubmission;this.prepareHeadersForRequest(n.headers,n),this.formSubmission.start()}prepareHeadersForRequest(e,t){e["Turbo-Frame"]=this.id}requestStarted(e){k(this.element)}requestPreventedHandlingResponse(e,t){this.resolveVisitPromise()}async requestSucceededWithResponse(e,t){await this.loadResponse(t),this.resolveVisitPromise()}requestFailedWithResponse(e,t){console.error(t),this.resolveVisitPromise()}requestErrored(e,t){console.error(t),this.resolveVisitPromise()}requestFinished(e){T(this.element)}formSubmissionStarted({formElement:e}){k(e,this.findFrameElement(e))}formSubmissionSucceededWithResponse(e,t){const n=this.findFrameElement(e.formElement,e.submitter);this.proposeVisitIfNavigatedWithAction(n,e.formElement,e.submitter),n.delegate.loadResponse(t)}formSubmissionFailedWithResponse(e,t){this.element.delegate.loadResponse(t)}formSubmissionErrored(e,t){console.error(t)}formSubmissionFinished({formElement:e}){T(e,this.findFrameElement(e))}allowsImmediateRender(e,t){return!0}viewRenderedSnapshot(e,t){}viewInvalidated(){}async visit(e){var t;const n=new R(this,r.get,e,new URLSearchParams,this.element);return null===(t=this.currentFetchRequest)||void 0===t||t.cancel(),this.currentFetchRequest=n,new Promise((e=>{this.resolveVisitPromise=()=>{this.resolveVisitPromise=()=>{},this.currentFetchRequest=null,e()},n.perform()}))}navigateFrame(e,t,n){const s=this.findFrameElement(e,n);this.proposeVisitIfNavigatedWithAction(s,e,n),s.setAttribute("reloadable",""),s.src=t}proposeVisitIfNavigatedWithAction(e,t,n){const s=L("data-turbo-action",n,t,e);if(ne(s)){const{visitCachedSnapshot:t}=new Le(e);e.delegate.fetchResponseLoaded=n=>{if(e.src){const{statusCode:i,redirected:r}=n,o={statusCode:i,redirected:r,responseHTML:e.ownerDocument.documentElement.outerHTML};pe.visit(e.src,{action:s,response:o,visitCachedSnapshot:t,willRender:!1})}}}}findFrameElement(e,t){var n;return null!==(n=ke(L("data-turbo-frame",t,e)||this.element.getAttribute("target")))&&void 0!==n?n:this.element}async extractForeignFrameElement(e){let t;const n=CSS.escape(this.id);try{if(t=Te(e.querySelector(`turbo-frame#${n}`),this.currentURL))return t;if(t=Te(e.querySelector(`turbo-frame[src][recurse~=${n}]`),this.currentURL))return await t.loaded,await this.extractForeignFrameElement(t);console.error(`Response has no matching <turbo-frame id="${n}"> element`)}catch(e){console.error(e)}return new d}formActionIsVisitable(e,t){return g(h(p(e,t)),this.rootLocation)}shouldInterceptNavigation(e,t){const n=L("data-turbo-frame",t,e)||this.element.getAttribute("target");if(e instanceof HTMLFormElement&&!this.formActionIsVisitable(e,t))return!1;if(!this.enabled||"_top"==n)return!1;if(n){const e=ke(n);if(e)return!e.disabled}return!!pe.elementDriveEnabled(e)&&!(t&&!pe.elementDriveEnabled(t))}get id(){return this.element.id}get enabled(){return!this.element.disabled}get sourceURL(){if(this.element.src)return this.element.src}get reloadable(){return this.findFrameElement(this.element).hasAttribute("reloadable")}set reloadable(e){const t=this.findFrameElement(this.element);e?t.setAttribute("reloadable",""):t.removeAttribute("reloadable")}set sourceURL(e){this.settingSourceURL=!0,this.element.src=null!=e?e:null,this.currentURL=this.element.src,this.settingSourceURL=!1}get loadingStyle(){return this.element.loading}get isLoading(){return void 0!==this.formSubmission||void 0!==this.resolveVisitPromise()}get isActive(){return this.element.isActive&&this.connected}get rootLocation(){var e;const t=this.element.ownerDocument.querySelector('meta[name="turbo-root"]');return h(null!==(e=null==t?void 0:t.content)&&void 0!==e?e:"/")}},customElements.define("turbo-frame",d),customElements.define("turbo-stream",_e),(()=>{let e=document.currentScript;if(e&&!e.hasAttribute("data-turbo-suppress-warning"))for(;e=e.parentElement;)if(e==document.body)return console.warn($`
+    `;
+    }
+    show() {
+        if (!this.visible) {
+            this.visible = true;
+            this.installProgressElement();
+            this.startTrickling();
+        }
+    }
+    hide() {
+        if (this.visible && !this.hiding) {
+            this.hiding = true;
+            this.fadeProgressElement(() => {
+                this.uninstallProgressElement();
+                this.stopTrickling();
+                this.visible = false;
+                this.hiding = false;
+            });
+        }
+    }
+    setValue(value) {
+        this.value = value;
+        this.refresh();
+    }
+    installStylesheetElement() {
+        document.head.insertBefore(this.stylesheetElement, document.head.firstChild);
+    }
+    installProgressElement() {
+        this.progressElement.style.width = "0";
+        this.progressElement.style.opacity = "1";
+        document.documentElement.insertBefore(this.progressElement, document.body);
+        this.refresh();
+    }
+    fadeProgressElement(callback) {
+        this.progressElement.style.opacity = "0";
+        setTimeout(callback, ProgressBar.animationDuration * 1.5);
+    }
+    uninstallProgressElement() {
+        if (this.progressElement.parentNode) {
+            document.documentElement.removeChild(this.progressElement);
+        }
+    }
+    startTrickling() {
+        if (!this.trickleInterval) {
+            this.trickleInterval = window.setInterval(this.trickle, ProgressBar.animationDuration);
+        }
+    }
+    stopTrickling() {
+        window.clearInterval(this.trickleInterval);
+        delete this.trickleInterval;
+    }
+    refresh() {
+        requestAnimationFrame(() => {
+            this.progressElement.style.width = `${10 + (this.value * 90)}%`;
+        });
+    }
+    createStylesheetElement() {
+        const element = document.createElement("style");
+        element.type = "text/css";
+        element.textContent = ProgressBar.defaultCSS;
+        return element;
+    }
+    createProgressElement() {
+        const element = document.createElement("div");
+        element.className = "turbo-progress-bar";
+        return element;
+    }
+}
+ProgressBar.animationDuration = 300;
+
+class HeadSnapshot extends Snapshot {
+    constructor() {
+        super(...arguments);
+        this.detailsByOuterHTML = this.children
+            .filter((element) => !elementIsNoscript(element))
+            .map((element) => elementWithoutNonce(element))
+            .reduce((result, element) => {
+            const { outerHTML } = element;
+            const details = outerHTML in result
+                ? result[outerHTML]
+                : {
+                    type: elementType(element),
+                    tracked: elementIsTracked(element),
+                    elements: []
+                };
+            return Object.assign(Object.assign({}, result), { [outerHTML]: Object.assign(Object.assign({}, details), { elements: [...details.elements, element] }) });
+        }, {});
+    }
+    get trackedElementSignature() {
+        return Object.keys(this.detailsByOuterHTML)
+            .filter(outerHTML => this.detailsByOuterHTML[outerHTML].tracked)
+            .join("");
+    }
+    getScriptElementsNotInSnapshot(snapshot) {
+        return this.getElementsMatchingTypeNotInSnapshot("script", snapshot);
+    }
+    getStylesheetElementsNotInSnapshot(snapshot) {
+        return this.getElementsMatchingTypeNotInSnapshot("stylesheet", snapshot);
+    }
+    getElementsMatchingTypeNotInSnapshot(matchedType, snapshot) {
+        return Object.keys(this.detailsByOuterHTML)
+            .filter(outerHTML => !(outerHTML in snapshot.detailsByOuterHTML))
+            .map(outerHTML => this.detailsByOuterHTML[outerHTML])
+            .filter(({ type }) => type == matchedType)
+            .map(({ elements: [element] }) => element);
+    }
+    get provisionalElements() {
+        return Object.keys(this.detailsByOuterHTML).reduce((result, outerHTML) => {
+            const { type, tracked, elements } = this.detailsByOuterHTML[outerHTML];
+            if (type == null && !tracked) {
+                return [...result, ...elements];
+            }
+            else if (elements.length > 1) {
+                return [...result, ...elements.slice(1)];
+            }
+            else {
+                return result;
+            }
+        }, []);
+    }
+    getMetaValue(name) {
+        const element = this.findMetaElementByName(name);
+        return element
+            ? element.getAttribute("content")
+            : null;
+    }
+    findMetaElementByName(name) {
+        return Object.keys(this.detailsByOuterHTML).reduce((result, outerHTML) => {
+            const { elements: [element] } = this.detailsByOuterHTML[outerHTML];
+            return elementIsMetaElementWithName(element, name) ? element : result;
+        }, undefined);
+    }
+}
+function elementType(element) {
+    if (elementIsScript(element)) {
+        return "script";
+    }
+    else if (elementIsStylesheet(element)) {
+        return "stylesheet";
+    }
+}
+function elementIsTracked(element) {
+    return element.getAttribute("data-turbo-track") == "reload";
+}
+function elementIsScript(element) {
+    const tagName = element.tagName.toLowerCase();
+    return tagName == "script";
+}
+function elementIsNoscript(element) {
+    const tagName = element.tagName.toLowerCase();
+    return tagName == "noscript";
+}
+function elementIsStylesheet(element) {
+    const tagName = element.tagName.toLowerCase();
+    return tagName == "style" || (tagName == "link" && element.getAttribute("rel") == "stylesheet");
+}
+function elementIsMetaElementWithName(element, name) {
+    const tagName = element.tagName.toLowerCase();
+    return tagName == "meta" && element.getAttribute("name") == name;
+}
+function elementWithoutNonce(element) {
+    if (element.hasAttribute("nonce")) {
+        element.setAttribute("nonce", "");
+    }
+    return element;
+}
+
+class PageSnapshot extends Snapshot {
+    constructor(element, headSnapshot) {
+        super(element);
+        this.headSnapshot = headSnapshot;
+    }
+    static fromHTMLString(html = "") {
+        return this.fromDocument(parseHTMLDocument(html));
+    }
+    static fromElement(element) {
+        return this.fromDocument(element.ownerDocument);
+    }
+    static fromDocument({ head, body }) {
+        return new this(body, new HeadSnapshot(head));
+    }
+    clone() {
+        return new PageSnapshot(this.element.cloneNode(true), this.headSnapshot);
+    }
+    get headElement() {
+        return this.headSnapshot.element;
+    }
+    get rootLocation() {
+        var _a;
+        const root = (_a = this.getSetting("root")) !== null && _a !== void 0 ? _a : "/";
+        return expandURL(root);
+    }
+    get cacheControlValue() {
+        return this.getSetting("cache-control");
+    }
+    get isPreviewable() {
+        return this.cacheControlValue != "no-preview";
+    }
+    get isCacheable() {
+        return this.cacheControlValue != "no-cache";
+    }
+    get isVisitable() {
+        return this.getSetting("visit-control") != "reload";
+    }
+    getSetting(name) {
+        return this.headSnapshot.getMetaValue(`turbo-${name}`);
+    }
+}
+
+var TimingMetric;
+(function (TimingMetric) {
+    TimingMetric["visitStart"] = "visitStart";
+    TimingMetric["requestStart"] = "requestStart";
+    TimingMetric["requestEnd"] = "requestEnd";
+    TimingMetric["visitEnd"] = "visitEnd";
+})(TimingMetric || (TimingMetric = {}));
+var VisitState;
+(function (VisitState) {
+    VisitState["initialized"] = "initialized";
+    VisitState["started"] = "started";
+    VisitState["canceled"] = "canceled";
+    VisitState["failed"] = "failed";
+    VisitState["completed"] = "completed";
+})(VisitState || (VisitState = {}));
+const defaultOptions = {
+    action: "advance",
+    historyChanged: false,
+    visitCachedSnapshot: () => { },
+    willRender: true,
+};
+var SystemStatusCode;
+(function (SystemStatusCode) {
+    SystemStatusCode[SystemStatusCode["networkFailure"] = 0] = "networkFailure";
+    SystemStatusCode[SystemStatusCode["timeoutFailure"] = -1] = "timeoutFailure";
+    SystemStatusCode[SystemStatusCode["contentTypeMismatch"] = -2] = "contentTypeMismatch";
+})(SystemStatusCode || (SystemStatusCode = {}));
+class Visit {
+    constructor(delegate, location, restorationIdentifier, options = {}) {
+        this.identifier = uuid();
+        this.timingMetrics = {};
+        this.followedRedirect = false;
+        this.historyChanged = false;
+        this.scrolled = false;
+        this.snapshotCached = false;
+        this.state = VisitState.initialized;
+        this.delegate = delegate;
+        this.location = location;
+        this.restorationIdentifier = restorationIdentifier || uuid();
+        const { action, historyChanged, referrer, snapshotHTML, response, visitCachedSnapshot, willRender } = Object.assign(Object.assign({}, defaultOptions), options);
+        this.action = action;
+        this.historyChanged = historyChanged;
+        this.referrer = referrer;
+        this.snapshotHTML = snapshotHTML;
+        this.response = response;
+        this.isSamePage = this.delegate.locationWithActionIsSamePage(this.location, this.action);
+        this.visitCachedSnapshot = visitCachedSnapshot;
+        this.willRender = willRender;
+        this.scrolled = !willRender;
+    }
+    get adapter() {
+        return this.delegate.adapter;
+    }
+    get view() {
+        return this.delegate.view;
+    }
+    get history() {
+        return this.delegate.history;
+    }
+    get restorationData() {
+        return this.history.getRestorationDataForIdentifier(this.restorationIdentifier);
+    }
+    get silent() {
+        return this.isSamePage;
+    }
+    start() {
+        if (this.state == VisitState.initialized) {
+            this.recordTimingMetric(TimingMetric.visitStart);
+            this.state = VisitState.started;
+            this.adapter.visitStarted(this);
+            this.delegate.visitStarted(this);
+        }
+    }
+    cancel() {
+        if (this.state == VisitState.started) {
+            if (this.request) {
+                this.request.cancel();
+            }
+            this.cancelRender();
+            this.state = VisitState.canceled;
+        }
+    }
+    complete() {
+        if (this.state == VisitState.started) {
+            this.recordTimingMetric(TimingMetric.visitEnd);
+            this.state = VisitState.completed;
+            this.adapter.visitCompleted(this);
+            this.delegate.visitCompleted(this);
+            this.followRedirect();
+        }
+    }
+    fail() {
+        if (this.state == VisitState.started) {
+            this.state = VisitState.failed;
+            this.adapter.visitFailed(this);
+        }
+    }
+    changeHistory() {
+        var _a;
+        if (!this.historyChanged) {
+            const actionForHistory = this.location.href === ((_a = this.referrer) === null || _a === void 0 ? void 0 : _a.href) ? "replace" : this.action;
+            const method = this.getHistoryMethodForAction(actionForHistory);
+            this.history.update(method, this.location, this.restorationIdentifier);
+            this.historyChanged = true;
+        }
+    }
+    issueRequest() {
+        if (this.hasPreloadedResponse()) {
+            this.simulateRequest();
+        }
+        else if (this.shouldIssueRequest() && !this.request) {
+            this.request = new FetchRequest(this, FetchMethod.get, this.location);
+            this.request.perform();
+        }
+    }
+    simulateRequest() {
+        if (this.response) {
+            this.startRequest();
+            this.recordResponse();
+            this.finishRequest();
+        }
+    }
+    startRequest() {
+        this.recordTimingMetric(TimingMetric.requestStart);
+        this.adapter.visitRequestStarted(this);
+    }
+    recordResponse(response = this.response) {
+        this.response = response;
+        if (response) {
+            const { statusCode } = response;
+            if (isSuccessful(statusCode)) {
+                this.adapter.visitRequestCompleted(this);
+            }
+            else {
+                this.adapter.visitRequestFailedWithStatusCode(this, statusCode);
+            }
+        }
+    }
+    finishRequest() {
+        this.recordTimingMetric(TimingMetric.requestEnd);
+        this.adapter.visitRequestFinished(this);
+    }
+    loadResponse() {
+        if (this.response) {
+            const { statusCode, responseHTML } = this.response;
+            this.render(async () => {
+                this.cacheSnapshot();
+                if (this.view.renderPromise)
+                    await this.view.renderPromise;
+                if (isSuccessful(statusCode) && responseHTML != null) {
+                    await this.view.renderPage(PageSnapshot.fromHTMLString(responseHTML), false, this.willRender);
+                    this.adapter.visitRendered(this);
+                    this.complete();
+                }
+                else {
+                    await this.view.renderError(PageSnapshot.fromHTMLString(responseHTML));
+                    this.adapter.visitRendered(this);
+                    this.fail();
+                }
+            });
+        }
+    }
+    getCachedSnapshot() {
+        const snapshot = this.view.getCachedSnapshotForLocation(this.location) || this.getPreloadedSnapshot();
+        if (snapshot && (!getAnchor(this.location) || snapshot.hasAnchor(getAnchor(this.location)))) {
+            if (this.action == "restore" || snapshot.isPreviewable) {
+                return snapshot;
+            }
+        }
+    }
+    getPreloadedSnapshot() {
+        if (this.snapshotHTML) {
+            return PageSnapshot.fromHTMLString(this.snapshotHTML);
+        }
+    }
+    hasCachedSnapshot() {
+        return this.getCachedSnapshot() != null;
+    }
+    loadCachedSnapshot() {
+        const snapshot = this.getCachedSnapshot();
+        if (snapshot) {
+            const isPreview = this.shouldIssueRequest();
+            this.render(async () => {
+                this.cacheSnapshot();
+                if (this.isSamePage) {
+                    this.adapter.visitRendered(this);
+                }
+                else {
+                    if (this.view.renderPromise)
+                        await this.view.renderPromise;
+                    await this.view.renderPage(snapshot, isPreview, this.willRender);
+                    this.adapter.visitRendered(this);
+                    if (!isPreview) {
+                        this.complete();
+                    }
+                }
+            });
+        }
+    }
+    followRedirect() {
+        var _a;
+        if (this.redirectedToLocation && !this.followedRedirect && ((_a = this.response) === null || _a === void 0 ? void 0 : _a.redirected)) {
+            this.adapter.visitProposedToLocation(this.redirectedToLocation, {
+                action: 'replace',
+                response: this.response
+            });
+            this.followedRedirect = true;
+        }
+    }
+    goToSamePageAnchor() {
+        if (this.isSamePage) {
+            this.render(async () => {
+                this.cacheSnapshot();
+                this.adapter.visitRendered(this);
+            });
+        }
+    }
+    requestStarted() {
+        this.startRequest();
+    }
+    requestPreventedHandlingResponse(request, response) {
+    }
+    async requestSucceededWithResponse(request, response) {
+        const responseHTML = await response.responseHTML;
+        const { redirected, statusCode } = response;
+        if (responseHTML == undefined) {
+            this.recordResponse({ statusCode: SystemStatusCode.contentTypeMismatch, redirected });
+        }
+        else {
+            this.redirectedToLocation = response.redirected ? response.location : undefined;
+            this.recordResponse({ statusCode: statusCode, responseHTML, redirected });
+        }
+    }
+    async requestFailedWithResponse(request, response) {
+        const responseHTML = await response.responseHTML;
+        const { redirected, statusCode } = response;
+        if (responseHTML == undefined) {
+            this.recordResponse({ statusCode: SystemStatusCode.contentTypeMismatch, redirected });
+        }
+        else {
+            this.recordResponse({ statusCode: statusCode, responseHTML, redirected });
+        }
+    }
+    requestErrored(request, error) {
+        this.recordResponse({ statusCode: SystemStatusCode.networkFailure, redirected: false });
+    }
+    requestFinished() {
+        this.finishRequest();
+    }
+    performScroll() {
+        if (!this.scrolled) {
+            if (this.action == "restore") {
+                this.scrollToRestoredPosition() || this.scrollToAnchor() || this.view.scrollToTop();
+            }
+            else {
+                this.scrollToAnchor() || this.view.scrollToTop();
+            }
+            if (this.isSamePage) {
+                this.delegate.visitScrolledToSamePageLocation(this.view.lastRenderedLocation, this.location);
+            }
+            this.scrolled = true;
+        }
+    }
+    scrollToRestoredPosition() {
+        const { scrollPosition } = this.restorationData;
+        if (scrollPosition) {
+            this.view.scrollToPosition(scrollPosition);
+            return true;
+        }
+    }
+    scrollToAnchor() {
+        const anchor = getAnchor(this.location);
+        if (anchor != null) {
+            this.view.scrollToAnchor(anchor);
+            return true;
+        }
+    }
+    recordTimingMetric(metric) {
+        this.timingMetrics[metric] = new Date().getTime();
+    }
+    getTimingMetrics() {
+        return Object.assign({}, this.timingMetrics);
+    }
+    getHistoryMethodForAction(action) {
+        switch (action) {
+            case "replace": return history.replaceState;
+            case "advance":
+            case "restore": return history.pushState;
+        }
+    }
+    hasPreloadedResponse() {
+        return typeof this.response == "object";
+    }
+    shouldIssueRequest() {
+        if (this.isSamePage) {
+            return false;
+        }
+        else if (this.action == "restore") {
+            return !this.hasCachedSnapshot();
+        }
+        else {
+            return this.willRender;
+        }
+    }
+    cacheSnapshot() {
+        if (!this.snapshotCached) {
+            this.view.cacheSnapshot().then(snapshot => snapshot && this.visitCachedSnapshot(snapshot));
+            this.snapshotCached = true;
+        }
+    }
+    async render(callback) {
+        this.cancelRender();
+        await new Promise(resolve => {
+            this.frame = requestAnimationFrame(() => resolve());
+        });
+        await callback();
+        delete this.frame;
+        this.performScroll();
+    }
+    cancelRender() {
+        if (this.frame) {
+            cancelAnimationFrame(this.frame);
+            delete this.frame;
+        }
+    }
+}
+function isSuccessful(statusCode) {
+    return statusCode >= 200 && statusCode < 300;
+}
+
+class BrowserAdapter {
+    constructor(session) {
+        this.progressBar = new ProgressBar;
+        this.showProgressBar = () => {
+            this.progressBar.show();
+        };
+        this.session = session;
+    }
+    visitProposedToLocation(location, options) {
+        this.navigator.startVisit(location, uuid(), options);
+    }
+    visitStarted(visit) {
+        visit.loadCachedSnapshot();
+        visit.issueRequest();
+        visit.changeHistory();
+        visit.goToSamePageAnchor();
+    }
+    visitRequestStarted(visit) {
+        this.progressBar.setValue(0);
+        if (visit.hasCachedSnapshot() || visit.action != "restore") {
+            this.showVisitProgressBarAfterDelay();
+        }
+        else {
+            this.showProgressBar();
+        }
+    }
+    visitRequestCompleted(visit) {
+        visit.loadResponse();
+    }
+    visitRequestFailedWithStatusCode(visit, statusCode) {
+        switch (statusCode) {
+            case SystemStatusCode.networkFailure:
+            case SystemStatusCode.timeoutFailure:
+            case SystemStatusCode.contentTypeMismatch:
+                return this.reload();
+            default:
+                return visit.loadResponse();
+        }
+    }
+    visitRequestFinished(visit) {
+        this.progressBar.setValue(1);
+        this.hideVisitProgressBar();
+    }
+    visitCompleted(visit) {
+    }
+    pageInvalidated() {
+        this.reload();
+    }
+    visitFailed(visit) {
+    }
+    visitRendered(visit) {
+    }
+    formSubmissionStarted(formSubmission) {
+        this.progressBar.setValue(0);
+        this.showFormProgressBarAfterDelay();
+    }
+    formSubmissionFinished(formSubmission) {
+        this.progressBar.setValue(1);
+        this.hideFormProgressBar();
+    }
+    showVisitProgressBarAfterDelay() {
+        this.visitProgressBarTimeout = window.setTimeout(this.showProgressBar, this.session.progressBarDelay);
+    }
+    hideVisitProgressBar() {
+        this.progressBar.hide();
+        if (this.visitProgressBarTimeout != null) {
+            window.clearTimeout(this.visitProgressBarTimeout);
+            delete this.visitProgressBarTimeout;
+        }
+    }
+    showFormProgressBarAfterDelay() {
+        if (this.formProgressBarTimeout == null) {
+            this.formProgressBarTimeout = window.setTimeout(this.showProgressBar, this.session.progressBarDelay);
+        }
+    }
+    hideFormProgressBar() {
+        this.progressBar.hide();
+        if (this.formProgressBarTimeout != null) {
+            window.clearTimeout(this.formProgressBarTimeout);
+            delete this.formProgressBarTimeout;
+        }
+    }
+    reload() {
+        window.location.reload();
+    }
+    get navigator() {
+        return this.session.navigator;
+    }
+}
+
+class CacheObserver {
+    constructor() {
+        this.started = false;
+    }
+    start() {
+        if (!this.started) {
+            this.started = true;
+            addEventListener("turbo:before-cache", this.removeStaleElements, false);
+        }
+    }
+    stop() {
+        if (this.started) {
+            this.started = false;
+            removeEventListener("turbo:before-cache", this.removeStaleElements, false);
+        }
+    }
+    removeStaleElements() {
+        const staleElements = [...document.querySelectorAll('[data-turbo-cache="false"]')];
+        for (const element of staleElements) {
+            element.remove();
+        }
+    }
+}
+
+class FormSubmitObserver {
+    constructor(delegate) {
+        this.started = false;
+        this.submitCaptured = () => {
+            removeEventListener("submit", this.submitBubbled, false);
+            addEventListener("submit", this.submitBubbled, false);
+        };
+        this.submitBubbled = ((event) => {
+            if (!event.defaultPrevented) {
+                const form = event.target instanceof HTMLFormElement ? event.target : undefined;
+                const submitter = event.submitter || undefined;
+                if (form) {
+                    const method = (submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("formmethod")) || form.getAttribute("method");
+                    if (method != "dialog" && this.delegate.willSubmitForm(form, submitter)) {
+                        event.preventDefault();
+                        this.delegate.formSubmitted(form, submitter);
+                    }
+                }
+            }
+        });
+        this.delegate = delegate;
+    }
+    start() {
+        if (!this.started) {
+            addEventListener("submit", this.submitCaptured, true);
+            this.started = true;
+        }
+    }
+    stop() {
+        if (this.started) {
+            removeEventListener("submit", this.submitCaptured, true);
+            this.started = false;
+        }
+    }
+}
+
+class FrameRedirector {
+    constructor(element) {
+        this.element = element;
+        this.linkInterceptor = new LinkInterceptor(this, element);
+        this.formInterceptor = new FormInterceptor(this, element);
+    }
+    start() {
+        this.linkInterceptor.start();
+        this.formInterceptor.start();
+    }
+    stop() {
+        this.linkInterceptor.stop();
+        this.formInterceptor.stop();
+    }
+    shouldInterceptLinkClick(element, url) {
+        return this.shouldRedirect(element);
+    }
+    linkClickIntercepted(element, url) {
+        const frame = this.findFrameElement(element);
+        if (frame) {
+            frame.delegate.linkClickIntercepted(element, url);
+        }
+    }
+    shouldInterceptFormSubmission(element, submitter) {
+        return this.shouldSubmit(element, submitter);
+    }
+    formSubmissionIntercepted(element, submitter) {
+        const frame = this.findFrameElement(element, submitter);
+        if (frame) {
+            frame.removeAttribute("reloadable");
+            frame.delegate.formSubmissionIntercepted(element, submitter);
+        }
+    }
+    shouldSubmit(form, submitter) {
+        var _a;
+        const action = getAction(form, submitter);
+        const meta = this.element.ownerDocument.querySelector(`meta[name="turbo-root"]`);
+        const rootLocation = expandURL((_a = meta === null || meta === void 0 ? void 0 : meta.content) !== null && _a !== void 0 ? _a : "/");
+        return this.shouldRedirect(form, submitter) && locationIsVisitable(action, rootLocation);
+    }
+    shouldRedirect(element, submitter) {
+        const frame = this.findFrameElement(element, submitter);
+        return frame ? frame != element.closest("turbo-frame") : false;
+    }
+    findFrameElement(element, submitter) {
+        const id = (submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("data-turbo-frame")) || element.getAttribute("data-turbo-frame");
+        if (id && id != "_top") {
+            const frame = this.element.querySelector(`#${id}:not([disabled])`);
+            if (frame instanceof FrameElement) {
+                return frame;
+            }
+        }
+    }
+}
+
+class History {
+    constructor(delegate) {
+        this.restorationIdentifier = uuid();
+        this.restorationData = {};
+        this.started = false;
+        this.pageLoaded = false;
+        this.onPopState = (event) => {
+            if (this.shouldHandlePopState()) {
+                const { turbo } = event.state || {};
+                if (turbo) {
+                    this.location = new URL(window.location.href);
+                    const { restorationIdentifier } = turbo;
+                    this.restorationIdentifier = restorationIdentifier;
+                    this.delegate.historyPoppedToLocationWithRestorationIdentifier(this.location, restorationIdentifier);
+                }
+            }
+        };
+        this.onPageLoad = async (event) => {
+            await nextMicrotask();
+            this.pageLoaded = true;
+        };
+        this.delegate = delegate;
+    }
+    start() {
+        if (!this.started) {
+            addEventListener("popstate", this.onPopState, false);
+            addEventListener("load", this.onPageLoad, false);
+            this.started = true;
+            this.replace(new URL(window.location.href));
+        }
+    }
+    stop() {
+        if (this.started) {
+            removeEventListener("popstate", this.onPopState, false);
+            removeEventListener("load", this.onPageLoad, false);
+            this.started = false;
+        }
+    }
+    push(location, restorationIdentifier) {
+        this.update(history.pushState, location, restorationIdentifier);
+    }
+    replace(location, restorationIdentifier) {
+        this.update(history.replaceState, location, restorationIdentifier);
+    }
+    update(method, location, restorationIdentifier = uuid()) {
+        const state = { turbo: { restorationIdentifier } };
+        method.call(history, state, "", location.href);
+        this.location = location;
+        this.restorationIdentifier = restorationIdentifier;
+    }
+    getRestorationDataForIdentifier(restorationIdentifier) {
+        return this.restorationData[restorationIdentifier] || {};
+    }
+    updateRestorationData(additionalData) {
+        const { restorationIdentifier } = this;
+        const restorationData = this.restorationData[restorationIdentifier];
+        this.restorationData[restorationIdentifier] = Object.assign(Object.assign({}, restorationData), additionalData);
+    }
+    assumeControlOfScrollRestoration() {
+        var _a;
+        if (!this.previousScrollRestoration) {
+            this.previousScrollRestoration = (_a = history.scrollRestoration) !== null && _a !== void 0 ? _a : "auto";
+            history.scrollRestoration = "manual";
+        }
+    }
+    relinquishControlOfScrollRestoration() {
+        if (this.previousScrollRestoration) {
+            history.scrollRestoration = this.previousScrollRestoration;
+            delete this.previousScrollRestoration;
+        }
+    }
+    shouldHandlePopState() {
+        return this.pageIsLoaded();
+    }
+    pageIsLoaded() {
+        return this.pageLoaded || document.readyState == "complete";
+    }
+}
+
+class LinkClickObserver {
+    constructor(delegate) {
+        this.started = false;
+        this.clickCaptured = () => {
+            removeEventListener("click", this.clickBubbled, false);
+            addEventListener("click", this.clickBubbled, false);
+        };
+        this.clickBubbled = (event) => {
+            if (this.clickEventIsSignificant(event)) {
+                const target = (event.composedPath && event.composedPath()[0]) || event.target;
+                const link = this.findLinkFromClickTarget(target);
+                if (link) {
+                    const location = this.getLocationForLink(link);
+                    if (this.delegate.willFollowLinkToLocation(link, location)) {
+                        event.preventDefault();
+                        this.delegate.followedLinkToLocation(link, location);
+                    }
+                }
+            }
+        };
+        this.delegate = delegate;
+    }
+    start() {
+        if (!this.started) {
+            addEventListener("click", this.clickCaptured, true);
+            this.started = true;
+        }
+    }
+    stop() {
+        if (this.started) {
+            removeEventListener("click", this.clickCaptured, true);
+            this.started = false;
+        }
+    }
+    clickEventIsSignificant(event) {
+        return !((event.target && event.target.isContentEditable)
+            || event.defaultPrevented
+            || event.which > 1
+            || event.altKey
+            || event.ctrlKey
+            || event.metaKey
+            || event.shiftKey);
+    }
+    findLinkFromClickTarget(target) {
+        if (target instanceof Element) {
+            return target.closest("a[href]:not([target^=_]):not([download])");
+        }
+    }
+    getLocationForLink(link) {
+        return expandURL(link.getAttribute("href") || "");
+    }
+}
+
+function isAction(action) {
+    return action == "advance" || action == "replace" || action == "restore";
+}
+
+class Navigator {
+    constructor(delegate) {
+        this.delegate = delegate;
+    }
+    proposeVisit(location, options = {}) {
+        if (this.delegate.allowsVisitingLocationWithAction(location, options.action)) {
+            if (locationIsVisitable(location, this.view.snapshot.rootLocation)) {
+                this.delegate.visitProposedToLocation(location, options);
+            }
+            else {
+                window.location.href = location.toString();
+            }
+        }
+    }
+    startVisit(locatable, restorationIdentifier, options = {}) {
+        this.stop();
+        this.currentVisit = new Visit(this, expandURL(locatable), restorationIdentifier, Object.assign({ referrer: this.location }, options));
+        this.currentVisit.start();
+    }
+    submitForm(form, submitter) {
+        this.stop();
+        this.formSubmission = new FormSubmission(this, form, submitter, true);
+        this.formSubmission.start();
+    }
+    stop() {
+        if (this.formSubmission) {
+            this.formSubmission.stop();
+            delete this.formSubmission;
+        }
+        if (this.currentVisit) {
+            this.currentVisit.cancel();
+            delete this.currentVisit;
+        }
+    }
+    get adapter() {
+        return this.delegate.adapter;
+    }
+    get view() {
+        return this.delegate.view;
+    }
+    get history() {
+        return this.delegate.history;
+    }
+    formSubmissionStarted(formSubmission) {
+        if (typeof this.adapter.formSubmissionStarted === 'function') {
+            this.adapter.formSubmissionStarted(formSubmission);
+        }
+    }
+    async formSubmissionSucceededWithResponse(formSubmission, fetchResponse) {
+        if (formSubmission == this.formSubmission) {
+            const responseHTML = await fetchResponse.responseHTML;
+            if (responseHTML) {
+                if (formSubmission.method != FetchMethod.get) {
+                    this.view.clearSnapshotCache();
+                }
+                const { statusCode, redirected } = fetchResponse;
+                const action = this.getActionForFormSubmission(formSubmission);
+                const visitOptions = { action, response: { statusCode, responseHTML, redirected } };
+                this.proposeVisit(fetchResponse.location, visitOptions);
+            }
+        }
+    }
+    async formSubmissionFailedWithResponse(formSubmission, fetchResponse) {
+        const responseHTML = await fetchResponse.responseHTML;
+        if (responseHTML) {
+            const snapshot = PageSnapshot.fromHTMLString(responseHTML);
+            if (fetchResponse.serverError) {
+                await this.view.renderError(snapshot);
+            }
+            else {
+                await this.view.renderPage(snapshot);
+            }
+            this.view.scrollToTop();
+            this.view.clearSnapshotCache();
+        }
+    }
+    formSubmissionErrored(formSubmission, error) {
+        console.error(error);
+    }
+    formSubmissionFinished(formSubmission) {
+        if (typeof this.adapter.formSubmissionFinished === 'function') {
+            this.adapter.formSubmissionFinished(formSubmission);
+        }
+    }
+    visitStarted(visit) {
+        this.delegate.visitStarted(visit);
+    }
+    visitCompleted(visit) {
+        this.delegate.visitCompleted(visit);
+    }
+    locationWithActionIsSamePage(location, action) {
+        const anchor = getAnchor(location);
+        const currentAnchor = getAnchor(this.view.lastRenderedLocation);
+        const isRestorationToTop = action === 'restore' && typeof anchor === 'undefined';
+        return action !== "replace" &&
+            getRequestURL(location) === getRequestURL(this.view.lastRenderedLocation) &&
+            (isRestorationToTop || (anchor != null && anchor !== currentAnchor));
+    }
+    visitScrolledToSamePageLocation(oldURL, newURL) {
+        this.delegate.visitScrolledToSamePageLocation(oldURL, newURL);
+    }
+    get location() {
+        return this.history.location;
+    }
+    get restorationIdentifier() {
+        return this.history.restorationIdentifier;
+    }
+    getActionForFormSubmission(formSubmission) {
+        const { formElement, submitter } = formSubmission;
+        const action = getAttribute("data-turbo-action", submitter, formElement);
+        return isAction(action) ? action : "advance";
+    }
+}
+
+var PageStage;
+(function (PageStage) {
+    PageStage[PageStage["initial"] = 0] = "initial";
+    PageStage[PageStage["loading"] = 1] = "loading";
+    PageStage[PageStage["interactive"] = 2] = "interactive";
+    PageStage[PageStage["complete"] = 3] = "complete";
+})(PageStage || (PageStage = {}));
+class PageObserver {
+    constructor(delegate) {
+        this.stage = PageStage.initial;
+        this.started = false;
+        this.interpretReadyState = () => {
+            const { readyState } = this;
+            if (readyState == "interactive") {
+                this.pageIsInteractive();
+            }
+            else if (readyState == "complete") {
+                this.pageIsComplete();
+            }
+        };
+        this.pageWillUnload = () => {
+            this.delegate.pageWillUnload();
+        };
+        this.delegate = delegate;
+    }
+    start() {
+        if (!this.started) {
+            if (this.stage == PageStage.initial) {
+                this.stage = PageStage.loading;
+            }
+            document.addEventListener("readystatechange", this.interpretReadyState, false);
+            addEventListener("pagehide", this.pageWillUnload, false);
+            this.started = true;
+        }
+    }
+    stop() {
+        if (this.started) {
+            document.removeEventListener("readystatechange", this.interpretReadyState, false);
+            removeEventListener("pagehide", this.pageWillUnload, false);
+            this.started = false;
+        }
+    }
+    pageIsInteractive() {
+        if (this.stage == PageStage.loading) {
+            this.stage = PageStage.interactive;
+            this.delegate.pageBecameInteractive();
+        }
+    }
+    pageIsComplete() {
+        this.pageIsInteractive();
+        if (this.stage == PageStage.interactive) {
+            this.stage = PageStage.complete;
+            this.delegate.pageLoaded();
+        }
+    }
+    get readyState() {
+        return document.readyState;
+    }
+}
+
+class ScrollObserver {
+    constructor(delegate) {
+        this.started = false;
+        this.onScroll = () => {
+            this.updatePosition({ x: window.pageXOffset, y: window.pageYOffset });
+        };
+        this.delegate = delegate;
+    }
+    start() {
+        if (!this.started) {
+            addEventListener("scroll", this.onScroll, false);
+            this.onScroll();
+            this.started = true;
+        }
+    }
+    stop() {
+        if (this.started) {
+            removeEventListener("scroll", this.onScroll, false);
+            this.started = false;
+        }
+    }
+    updatePosition(position) {
+        this.delegate.scrollPositionChanged(position);
+    }
+}
+
+class StreamObserver {
+    constructor(delegate) {
+        this.sources = new Set;
+        this.started = false;
+        this.inspectFetchResponse = ((event) => {
+            const response = fetchResponseFromEvent(event);
+            if (response && fetchResponseIsStream(response)) {
+                event.preventDefault();
+                this.receiveMessageResponse(response);
+            }
+        });
+        this.receiveMessageEvent = (event) => {
+            if (this.started && typeof event.data == "string") {
+                this.receiveMessageHTML(event.data);
+            }
+        };
+        this.delegate = delegate;
+    }
+    start() {
+        if (!this.started) {
+            this.started = true;
+            addEventListener("turbo:before-fetch-response", this.inspectFetchResponse, false);
+        }
+    }
+    stop() {
+        if (this.started) {
+            this.started = false;
+            removeEventListener("turbo:before-fetch-response", this.inspectFetchResponse, false);
+        }
+    }
+    connectStreamSource(source) {
+        if (!this.streamSourceIsConnected(source)) {
+            this.sources.add(source);
+            source.addEventListener("message", this.receiveMessageEvent, false);
+        }
+    }
+    disconnectStreamSource(source) {
+        if (this.streamSourceIsConnected(source)) {
+            this.sources.delete(source);
+            source.removeEventListener("message", this.receiveMessageEvent, false);
+        }
+    }
+    streamSourceIsConnected(source) {
+        return this.sources.has(source);
+    }
+    async receiveMessageResponse(response) {
+        const html = await response.responseHTML;
+        if (html) {
+            this.receiveMessageHTML(html);
+        }
+    }
+    receiveMessageHTML(html) {
+        this.delegate.receivedMessageFromStream(new StreamMessage(html));
+    }
+}
+function fetchResponseFromEvent(event) {
+    var _a;
+    const fetchResponse = (_a = event.detail) === null || _a === void 0 ? void 0 : _a.fetchResponse;
+    if (fetchResponse instanceof FetchResponse) {
+        return fetchResponse;
+    }
+}
+function fetchResponseIsStream(response) {
+    var _a;
+    const contentType = (_a = response.contentType) !== null && _a !== void 0 ? _a : "";
+    return contentType.startsWith(StreamMessage.contentType);
+}
+
+class ErrorRenderer extends Renderer {
+    async render() {
+        this.replaceHeadAndBody();
+        this.activateScriptElements();
+    }
+    replaceHeadAndBody() {
+        const { documentElement, head, body } = document;
+        documentElement.replaceChild(this.newHead, head);
+        documentElement.replaceChild(this.newElement, body);
+    }
+    activateScriptElements() {
+        for (const replaceableElement of this.scriptElements) {
+            const parentNode = replaceableElement.parentNode;
+            if (parentNode) {
+                const element = this.createScriptElement(replaceableElement);
+                parentNode.replaceChild(element, replaceableElement);
+            }
+        }
+    }
+    get newHead() {
+        return this.newSnapshot.headSnapshot.element;
+    }
+    get scriptElements() {
+        return [...document.documentElement.querySelectorAll("script")];
+    }
+}
+
+class PageRenderer extends Renderer {
+    get shouldRender() {
+        return this.newSnapshot.isVisitable && this.trackedElementsAreIdentical;
+    }
+    prepareToRender() {
+        this.mergeHead();
+    }
+    async render() {
+        if (this.willRender) {
+            this.replaceBody();
+        }
+    }
+    finishRendering() {
+        super.finishRendering();
+        if (!this.isPreview) {
+            this.focusFirstAutofocusableElement();
+        }
+    }
+    get currentHeadSnapshot() {
+        return this.currentSnapshot.headSnapshot;
+    }
+    get newHeadSnapshot() {
+        return this.newSnapshot.headSnapshot;
+    }
+    get newElement() {
+        return this.newSnapshot.element;
+    }
+    mergeHead() {
+        this.copyNewHeadStylesheetElements();
+        this.copyNewHeadScriptElements();
+        this.removeCurrentHeadProvisionalElements();
+        this.copyNewHeadProvisionalElements();
+    }
+    replaceBody() {
+        this.preservingPermanentElements(() => {
+            this.activateNewBody();
+            this.assignNewBody();
+        });
+    }
+    get trackedElementsAreIdentical() {
+        return this.currentHeadSnapshot.trackedElementSignature == this.newHeadSnapshot.trackedElementSignature;
+    }
+    copyNewHeadStylesheetElements() {
+        for (const element of this.newHeadStylesheetElements) {
+            document.head.appendChild(element);
+        }
+    }
+    copyNewHeadScriptElements() {
+        for (const element of this.newHeadScriptElements) {
+            document.head.appendChild(this.createScriptElement(element));
+        }
+    }
+    removeCurrentHeadProvisionalElements() {
+        for (const element of this.currentHeadProvisionalElements) {
+            document.head.removeChild(element);
+        }
+    }
+    copyNewHeadProvisionalElements() {
+        for (const element of this.newHeadProvisionalElements) {
+            document.head.appendChild(element);
+        }
+    }
+    activateNewBody() {
+        document.adoptNode(this.newElement);
+        this.activateNewBodyScriptElements();
+    }
+    activateNewBodyScriptElements() {
+        for (const inertScriptElement of this.newBodyScriptElements) {
+            const activatedScriptElement = this.createScriptElement(inertScriptElement);
+            inertScriptElement.replaceWith(activatedScriptElement);
+        }
+    }
+    assignNewBody() {
+        if (document.body && this.newElement instanceof HTMLBodyElement) {
+            document.body.replaceWith(this.newElement);
+        }
+        else {
+            document.documentElement.appendChild(this.newElement);
+        }
+    }
+    get newHeadStylesheetElements() {
+        return this.newHeadSnapshot.getStylesheetElementsNotInSnapshot(this.currentHeadSnapshot);
+    }
+    get newHeadScriptElements() {
+        return this.newHeadSnapshot.getScriptElementsNotInSnapshot(this.currentHeadSnapshot);
+    }
+    get currentHeadProvisionalElements() {
+        return this.currentHeadSnapshot.provisionalElements;
+    }
+    get newHeadProvisionalElements() {
+        return this.newHeadSnapshot.provisionalElements;
+    }
+    get newBodyScriptElements() {
+        return this.newElement.querySelectorAll("script");
+    }
+}
+
+class SnapshotCache {
+    constructor(size) {
+        this.keys = [];
+        this.snapshots = {};
+        this.size = size;
+    }
+    has(location) {
+        return toCacheKey(location) in this.snapshots;
+    }
+    get(location) {
+        if (this.has(location)) {
+            const snapshot = this.read(location);
+            this.touch(location);
+            return snapshot;
+        }
+    }
+    put(location, snapshot) {
+        this.write(location, snapshot);
+        this.touch(location);
+        return snapshot;
+    }
+    clear() {
+        this.snapshots = {};
+    }
+    read(location) {
+        return this.snapshots[toCacheKey(location)];
+    }
+    write(location, snapshot) {
+        this.snapshots[toCacheKey(location)] = snapshot;
+    }
+    touch(location) {
+        const key = toCacheKey(location);
+        const index = this.keys.indexOf(key);
+        if (index > -1)
+            this.keys.splice(index, 1);
+        this.keys.unshift(key);
+        this.trim();
+    }
+    trim() {
+        for (const key of this.keys.splice(this.size)) {
+            delete this.snapshots[key];
+        }
+    }
+}
+
+class PageView extends View {
+    constructor() {
+        super(...arguments);
+        this.snapshotCache = new SnapshotCache(10);
+        this.lastRenderedLocation = new URL(location.href);
+    }
+    renderPage(snapshot, isPreview = false, willRender = true) {
+        const renderer = new PageRenderer(this.snapshot, snapshot, isPreview, willRender);
+        return this.render(renderer);
+    }
+    renderError(snapshot) {
+        const renderer = new ErrorRenderer(this.snapshot, snapshot, false);
+        return this.render(renderer);
+    }
+    clearSnapshotCache() {
+        this.snapshotCache.clear();
+    }
+    async cacheSnapshot() {
+        if (this.shouldCacheSnapshot) {
+            this.delegate.viewWillCacheSnapshot();
+            const { snapshot, lastRenderedLocation: location } = this;
+            await nextEventLoopTick();
+            const cachedSnapshot = snapshot.clone();
+            this.snapshotCache.put(location, cachedSnapshot);
+            return cachedSnapshot;
+        }
+    }
+    getCachedSnapshotForLocation(location) {
+        return this.snapshotCache.get(location);
+    }
+    get snapshot() {
+        return PageSnapshot.fromElement(this.element);
+    }
+    get shouldCacheSnapshot() {
+        return this.snapshot.isCacheable;
+    }
+}
+
+class Session {
+    constructor() {
+        this.navigator = new Navigator(this);
+        this.history = new History(this);
+        this.view = new PageView(this, document.documentElement);
+        this.adapter = new BrowserAdapter(this);
+        this.pageObserver = new PageObserver(this);
+        this.cacheObserver = new CacheObserver();
+        this.linkClickObserver = new LinkClickObserver(this);
+        this.formSubmitObserver = new FormSubmitObserver(this);
+        this.scrollObserver = new ScrollObserver(this);
+        this.streamObserver = new StreamObserver(this);
+        this.frameRedirector = new FrameRedirector(document.documentElement);
+        this.drive = true;
+        this.enabled = true;
+        this.progressBarDelay = 500;
+        this.started = false;
+    }
+    start() {
+        if (!this.started) {
+            this.pageObserver.start();
+            this.cacheObserver.start();
+            this.linkClickObserver.start();
+            this.formSubmitObserver.start();
+            this.scrollObserver.start();
+            this.streamObserver.start();
+            this.frameRedirector.start();
+            this.history.start();
+            this.started = true;
+            this.enabled = true;
+        }
+    }
+    disable() {
+        this.enabled = false;
+    }
+    stop() {
+        if (this.started) {
+            this.pageObserver.stop();
+            this.cacheObserver.stop();
+            this.linkClickObserver.stop();
+            this.formSubmitObserver.stop();
+            this.scrollObserver.stop();
+            this.streamObserver.stop();
+            this.frameRedirector.stop();
+            this.history.stop();
+            this.started = false;
+        }
+    }
+    registerAdapter(adapter) {
+        this.adapter = adapter;
+    }
+    visit(location, options = {}) {
+        this.navigator.proposeVisit(expandURL(location), options);
+    }
+    connectStreamSource(source) {
+        this.streamObserver.connectStreamSource(source);
+    }
+    disconnectStreamSource(source) {
+        this.streamObserver.disconnectStreamSource(source);
+    }
+    renderStreamMessage(message) {
+        document.documentElement.appendChild(StreamMessage.wrap(message).fragment);
+    }
+    clearCache() {
+        this.view.clearSnapshotCache();
+    }
+    setProgressBarDelay(delay) {
+        this.progressBarDelay = delay;
+    }
+    get location() {
+        return this.history.location;
+    }
+    get restorationIdentifier() {
+        return this.history.restorationIdentifier;
+    }
+    historyPoppedToLocationWithRestorationIdentifier(location, restorationIdentifier) {
+        if (this.enabled) {
+            this.navigator.startVisit(location, restorationIdentifier, { action: "restore", historyChanged: true });
+        }
+        else {
+            this.adapter.pageInvalidated();
+        }
+    }
+    scrollPositionChanged(position) {
+        this.history.updateRestorationData({ scrollPosition: position });
+    }
+    willFollowLinkToLocation(link, location) {
+        return this.elementDriveEnabled(link)
+            && locationIsVisitable(location, this.snapshot.rootLocation)
+            && this.applicationAllowsFollowingLinkToLocation(link, location);
+    }
+    followedLinkToLocation(link, location) {
+        const action = this.getActionForLink(link);
+        this.convertLinkWithMethodClickToFormSubmission(link) || this.visit(location.href, { action });
+    }
+    convertLinkWithMethodClickToFormSubmission(link) {
+        const linkMethod = link.getAttribute("data-turbo-method");
+        if (linkMethod) {
+            const form = document.createElement("form");
+            form.method = linkMethod;
+            form.action = link.getAttribute("href") || "undefined";
+            form.hidden = true;
+            if (link.hasAttribute("data-turbo-confirm")) {
+                form.setAttribute("data-turbo-confirm", link.getAttribute("data-turbo-confirm"));
+            }
+            const frame = this.getTargetFrameForLink(link);
+            if (frame) {
+                form.setAttribute("data-turbo-frame", frame);
+                form.addEventListener("turbo:submit-start", () => form.remove());
+            }
+            else {
+                form.addEventListener("submit", () => form.remove());
+            }
+            document.body.appendChild(form);
+            return dispatch("submit", { cancelable: true, target: form });
+        }
+        else {
+            return false;
+        }
+    }
+    allowsVisitingLocationWithAction(location, action) {
+        return this.locationWithActionIsSamePage(location, action) || this.applicationAllowsVisitingLocation(location);
+    }
+    visitProposedToLocation(location, options) {
+        extendURLWithDeprecatedProperties(location);
+        this.adapter.visitProposedToLocation(location, options);
+    }
+    visitStarted(visit) {
+        extendURLWithDeprecatedProperties(visit.location);
+        if (!visit.silent) {
+            this.notifyApplicationAfterVisitingLocation(visit.location, visit.action);
+        }
+    }
+    visitCompleted(visit) {
+        this.notifyApplicationAfterPageLoad(visit.getTimingMetrics());
+    }
+    locationWithActionIsSamePage(location, action) {
+        return this.navigator.locationWithActionIsSamePage(location, action);
+    }
+    visitScrolledToSamePageLocation(oldURL, newURL) {
+        this.notifyApplicationAfterVisitingSamePageLocation(oldURL, newURL);
+    }
+    willSubmitForm(form, submitter) {
+        const action = getAction(form, submitter);
+        return this.elementDriveEnabled(form)
+            && (!submitter || this.elementDriveEnabled(submitter))
+            && locationIsVisitable(expandURL(action), this.snapshot.rootLocation);
+    }
+    formSubmitted(form, submitter) {
+        this.navigator.submitForm(form, submitter);
+    }
+    pageBecameInteractive() {
+        this.view.lastRenderedLocation = this.location;
+        this.notifyApplicationAfterPageLoad();
+    }
+    pageLoaded() {
+        this.history.assumeControlOfScrollRestoration();
+    }
+    pageWillUnload() {
+        this.history.relinquishControlOfScrollRestoration();
+    }
+    receivedMessageFromStream(message) {
+        this.renderStreamMessage(message);
+    }
+    viewWillCacheSnapshot() {
+        var _a;
+        if (!((_a = this.navigator.currentVisit) === null || _a === void 0 ? void 0 : _a.silent)) {
+            this.notifyApplicationBeforeCachingSnapshot();
+        }
+    }
+    allowsImmediateRender({ element }, resume) {
+        const event = this.notifyApplicationBeforeRender(element, resume);
+        return !event.defaultPrevented;
+    }
+    viewRenderedSnapshot(snapshot, isPreview) {
+        this.view.lastRenderedLocation = this.history.location;
+        this.notifyApplicationAfterRender();
+    }
+    viewInvalidated() {
+        this.adapter.pageInvalidated();
+    }
+    frameLoaded(frame) {
+        this.notifyApplicationAfterFrameLoad(frame);
+    }
+    frameRendered(fetchResponse, frame) {
+        this.notifyApplicationAfterFrameRender(fetchResponse, frame);
+    }
+    applicationAllowsFollowingLinkToLocation(link, location) {
+        const event = this.notifyApplicationAfterClickingLinkToLocation(link, location);
+        return !event.defaultPrevented;
+    }
+    applicationAllowsVisitingLocation(location) {
+        const event = this.notifyApplicationBeforeVisitingLocation(location);
+        return !event.defaultPrevented;
+    }
+    notifyApplicationAfterClickingLinkToLocation(link, location) {
+        return dispatch("turbo:click", { target: link, detail: { url: location.href }, cancelable: true });
+    }
+    notifyApplicationBeforeVisitingLocation(location) {
+        return dispatch("turbo:before-visit", { detail: { url: location.href }, cancelable: true });
+    }
+    notifyApplicationAfterVisitingLocation(location, action) {
+        markAsBusy(document.documentElement);
+        return dispatch("turbo:visit", { detail: { url: location.href, action } });
+    }
+    notifyApplicationBeforeCachingSnapshot() {
+        return dispatch("turbo:before-cache");
+    }
+    notifyApplicationBeforeRender(newBody, resume) {
+        return dispatch("turbo:before-render", { detail: { newBody, resume }, cancelable: true });
+    }
+    notifyApplicationAfterRender() {
+        return dispatch("turbo:render");
+    }
+    notifyApplicationAfterPageLoad(timing = {}) {
+        clearBusyState(document.documentElement);
+        return dispatch("turbo:load", { detail: { url: this.location.href, timing } });
+    }
+    notifyApplicationAfterVisitingSamePageLocation(oldURL, newURL) {
+        dispatchEvent(new HashChangeEvent("hashchange", { oldURL: oldURL.toString(), newURL: newURL.toString() }));
+    }
+    notifyApplicationAfterFrameLoad(frame) {
+        return dispatch("turbo:frame-load", { target: frame });
+    }
+    notifyApplicationAfterFrameRender(fetchResponse, frame) {
+        return dispatch("turbo:frame-render", { detail: { fetchResponse }, target: frame, cancelable: true });
+    }
+    elementDriveEnabled(element) {
+        const container = element === null || element === void 0 ? void 0 : element.closest("[data-turbo]");
+        if (this.drive) {
+            if (container) {
+                return container.getAttribute("data-turbo") != "false";
+            }
+            else {
+                return true;
+            }
+        }
+        else {
+            if (container) {
+                return container.getAttribute("data-turbo") == "true";
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    getActionForLink(link) {
+        const action = link.getAttribute("data-turbo-action");
+        return isAction(action) ? action : "advance";
+    }
+    getTargetFrameForLink(link) {
+        const frame = link.getAttribute("data-turbo-frame");
+        if (frame) {
+            return frame;
+        }
+        else {
+            const container = link.closest("turbo-frame");
+            if (container) {
+                return container.id;
+            }
+        }
+    }
+    get snapshot() {
+        return this.view.snapshot;
+    }
+}
+function extendURLWithDeprecatedProperties(url) {
+    Object.defineProperties(url, deprecatedLocationPropertyDescriptors);
+}
+const deprecatedLocationPropertyDescriptors = {
+    absoluteURL: {
+        get() {
+            return this.toString();
+        }
+    }
+};
+
+const session = new Session;
+const { navigator: navigator$1 } = session;
+function start() {
+    session.start();
+}
+function registerAdapter(adapter) {
+    session.registerAdapter(adapter);
+}
+function visit(location, options) {
+    session.visit(location, options);
+}
+function connectStreamSource(source) {
+    session.connectStreamSource(source);
+}
+function disconnectStreamSource(source) {
+    session.disconnectStreamSource(source);
+}
+function renderStreamMessage(message) {
+    session.renderStreamMessage(message);
+}
+function clearCache() {
+    session.clearCache();
+}
+function setProgressBarDelay(delay) {
+    session.setProgressBarDelay(delay);
+}
+function setConfirmMethod(confirmMethod) {
+    FormSubmission.confirmMethod = confirmMethod;
+}
+
+var Turbo = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    navigator: navigator$1,
+    session: session,
+    PageRenderer: PageRenderer,
+    PageSnapshot: PageSnapshot,
+    start: start,
+    registerAdapter: registerAdapter,
+    visit: visit,
+    connectStreamSource: connectStreamSource,
+    disconnectStreamSource: disconnectStreamSource,
+    renderStreamMessage: renderStreamMessage,
+    clearCache: clearCache,
+    setProgressBarDelay: setProgressBarDelay,
+    setConfirmMethod: setConfirmMethod
+});
+
+class FrameController {
+    constructor(element) {
+        this.fetchResponseLoaded = (fetchResponse) => { };
+        this.currentFetchRequest = null;
+        this.resolveVisitPromise = () => { };
+        this.connected = false;
+        this.hasBeenLoaded = false;
+        this.settingSourceURL = false;
+        this.element = element;
+        this.view = new FrameView(this, this.element);
+        this.appearanceObserver = new AppearanceObserver(this, this.element);
+        this.linkInterceptor = new LinkInterceptor(this, this.element);
+        this.formInterceptor = new FormInterceptor(this, this.element);
+    }
+    connect() {
+        if (!this.connected) {
+            this.connected = true;
+            this.reloadable = false;
+            if (this.loadingStyle == FrameLoadingStyle.lazy) {
+                this.appearanceObserver.start();
+            }
+            this.linkInterceptor.start();
+            this.formInterceptor.start();
+            this.sourceURLChanged();
+        }
+    }
+    disconnect() {
+        if (this.connected) {
+            this.connected = false;
+            this.appearanceObserver.stop();
+            this.linkInterceptor.stop();
+            this.formInterceptor.stop();
+        }
+    }
+    disabledChanged() {
+        if (this.loadingStyle == FrameLoadingStyle.eager) {
+            this.loadSourceURL();
+        }
+    }
+    sourceURLChanged() {
+        if (this.loadingStyle == FrameLoadingStyle.eager || this.hasBeenLoaded) {
+            this.loadSourceURL();
+        }
+    }
+    loadingStyleChanged() {
+        if (this.loadingStyle == FrameLoadingStyle.lazy) {
+            this.appearanceObserver.start();
+        }
+        else {
+            this.appearanceObserver.stop();
+            this.loadSourceURL();
+        }
+    }
+    async loadSourceURL() {
+        if (!this.settingSourceURL && this.enabled && this.isActive && (this.reloadable || this.sourceURL != this.currentURL)) {
+            const previousURL = this.currentURL;
+            this.currentURL = this.sourceURL;
+            if (this.sourceURL) {
+                try {
+                    this.element.loaded = this.visit(expandURL(this.sourceURL));
+                    this.appearanceObserver.stop();
+                    await this.element.loaded;
+                    this.hasBeenLoaded = true;
+                }
+                catch (error) {
+                    this.currentURL = previousURL;
+                    throw error;
+                }
+            }
+        }
+    }
+    async loadResponse(fetchResponse) {
+        if (fetchResponse.redirected || (fetchResponse.succeeded && fetchResponse.isHTML)) {
+            this.sourceURL = fetchResponse.response.url;
+        }
+        try {
+            const html = await fetchResponse.responseHTML;
+            if (html) {
+                const { body } = parseHTMLDocument(html);
+                const snapshot = new Snapshot(await this.extractForeignFrameElement(body));
+                const renderer = new FrameRenderer(this.view.snapshot, snapshot, false, false);
+                if (this.view.renderPromise)
+                    await this.view.renderPromise;
+                await this.view.render(renderer);
+                session.frameRendered(fetchResponse, this.element);
+                session.frameLoaded(this.element);
+                this.fetchResponseLoaded(fetchResponse);
+            }
+        }
+        catch (error) {
+            console.error(error);
+            this.view.invalidate();
+        }
+        finally {
+            this.fetchResponseLoaded = () => { };
+        }
+    }
+    elementAppearedInViewport(element) {
+        this.loadSourceURL();
+    }
+    shouldInterceptLinkClick(element, url) {
+        if (element.hasAttribute("data-turbo-method")) {
+            return false;
+        }
+        else {
+            return this.shouldInterceptNavigation(element);
+        }
+    }
+    linkClickIntercepted(element, url) {
+        this.reloadable = true;
+        this.navigateFrame(element, url);
+    }
+    shouldInterceptFormSubmission(element, submitter) {
+        return this.shouldInterceptNavigation(element, submitter);
+    }
+    formSubmissionIntercepted(element, submitter) {
+        if (this.formSubmission) {
+            this.formSubmission.stop();
+        }
+        this.reloadable = false;
+        this.formSubmission = new FormSubmission(this, element, submitter);
+        const { fetchRequest } = this.formSubmission;
+        this.prepareHeadersForRequest(fetchRequest.headers, fetchRequest);
+        this.formSubmission.start();
+    }
+    prepareHeadersForRequest(headers, request) {
+        headers["Turbo-Frame"] = this.id;
+    }
+    requestStarted(request) {
+        markAsBusy(this.element);
+    }
+    requestPreventedHandlingResponse(request, response) {
+        this.resolveVisitPromise();
+    }
+    async requestSucceededWithResponse(request, response) {
+        await this.loadResponse(response);
+        this.resolveVisitPromise();
+    }
+    requestFailedWithResponse(request, response) {
+        console.error(response);
+        this.resolveVisitPromise();
+    }
+    requestErrored(request, error) {
+        console.error(error);
+        this.resolveVisitPromise();
+    }
+    requestFinished(request) {
+        clearBusyState(this.element);
+    }
+    formSubmissionStarted({ formElement }) {
+        markAsBusy(formElement, this.findFrameElement(formElement));
+    }
+    formSubmissionSucceededWithResponse(formSubmission, response) {
+        const frame = this.findFrameElement(formSubmission.formElement, formSubmission.submitter);
+        this.proposeVisitIfNavigatedWithAction(frame, formSubmission.formElement, formSubmission.submitter);
+        frame.delegate.loadResponse(response);
+    }
+    formSubmissionFailedWithResponse(formSubmission, fetchResponse) {
+        this.element.delegate.loadResponse(fetchResponse);
+    }
+    formSubmissionErrored(formSubmission, error) {
+        console.error(error);
+    }
+    formSubmissionFinished({ formElement }) {
+        clearBusyState(formElement, this.findFrameElement(formElement));
+    }
+    allowsImmediateRender(snapshot, resume) {
+        return true;
+    }
+    viewRenderedSnapshot(snapshot, isPreview) {
+    }
+    viewInvalidated() {
+    }
+    async visit(url) {
+        var _a;
+        const request = new FetchRequest(this, FetchMethod.get, url, new URLSearchParams, this.element);
+        (_a = this.currentFetchRequest) === null || _a === void 0 ? void 0 : _a.cancel();
+        this.currentFetchRequest = request;
+        return new Promise(resolve => {
+            this.resolveVisitPromise = () => {
+                this.resolveVisitPromise = () => { };
+                this.currentFetchRequest = null;
+                resolve();
+            };
+            request.perform();
+        });
+    }
+    navigateFrame(element, url, submitter) {
+        const frame = this.findFrameElement(element, submitter);
+        this.proposeVisitIfNavigatedWithAction(frame, element, submitter);
+        frame.setAttribute("reloadable", "");
+        frame.src = url;
+    }
+    proposeVisitIfNavigatedWithAction(frame, element, submitter) {
+        const action = getAttribute("data-turbo-action", submitter, element, frame);
+        if (isAction(action)) {
+            const { visitCachedSnapshot } = new SnapshotSubstitution(frame);
+            frame.delegate.fetchResponseLoaded = (fetchResponse) => {
+                if (frame.src) {
+                    const { statusCode, redirected } = fetchResponse;
+                    const responseHTML = frame.ownerDocument.documentElement.outerHTML;
+                    const response = { statusCode, redirected, responseHTML };
+                    session.visit(frame.src, { action, response, visitCachedSnapshot, willRender: false });
+                }
+            };
+        }
+    }
+    findFrameElement(element, submitter) {
+        var _a;
+        const id = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
+        return (_a = getFrameElementById(id)) !== null && _a !== void 0 ? _a : this.element;
+    }
+    async extractForeignFrameElement(container) {
+        let element;
+        const id = CSS.escape(this.id);
+        try {
+            if (element = activateElement(container.querySelector(`turbo-frame#${id}`), this.currentURL)) {
+                return element;
+            }
+            if (element = activateElement(container.querySelector(`turbo-frame[src][recurse~=${id}]`), this.currentURL)) {
+                await element.loaded;
+                return await this.extractForeignFrameElement(element);
+            }
+            console.error(`Response has no matching <turbo-frame id="${id}"> element`);
+        }
+        catch (error) {
+            console.error(error);
+        }
+        return new FrameElement();
+    }
+    formActionIsVisitable(form, submitter) {
+        const action = getAction(form, submitter);
+        return locationIsVisitable(expandURL(action), this.rootLocation);
+    }
+    shouldInterceptNavigation(element, submitter) {
+        const id = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
+        if (element instanceof HTMLFormElement && !this.formActionIsVisitable(element, submitter)) {
+            return false;
+        }
+        if (!this.enabled || id == "_top") {
+            return false;
+        }
+        if (id) {
+            const frameElement = getFrameElementById(id);
+            if (frameElement) {
+                return !frameElement.disabled;
+            }
+        }
+        if (!session.elementDriveEnabled(element)) {
+            return false;
+        }
+        if (submitter && !session.elementDriveEnabled(submitter)) {
+            return false;
+        }
+        return true;
+    }
+    get id() {
+        return this.element.id;
+    }
+    get enabled() {
+        return !this.element.disabled;
+    }
+    get sourceURL() {
+        if (this.element.src) {
+            return this.element.src;
+        }
+    }
+    get reloadable() {
+        const frame = this.findFrameElement(this.element);
+        return frame.hasAttribute("reloadable");
+    }
+    set reloadable(value) {
+        const frame = this.findFrameElement(this.element);
+        if (value) {
+            frame.setAttribute("reloadable", "");
+        }
+        else {
+            frame.removeAttribute("reloadable");
+        }
+    }
+    set sourceURL(sourceURL) {
+        this.settingSourceURL = true;
+        this.element.src = sourceURL !== null && sourceURL !== void 0 ? sourceURL : null;
+        this.currentURL = this.element.src;
+        this.settingSourceURL = false;
+    }
+    get loadingStyle() {
+        return this.element.loading;
+    }
+    get isLoading() {
+        return this.formSubmission !== undefined || this.resolveVisitPromise() !== undefined;
+    }
+    get isActive() {
+        return this.element.isActive && this.connected;
+    }
+    get rootLocation() {
+        var _a;
+        const meta = this.element.ownerDocument.querySelector(`meta[name="turbo-root"]`);
+        const root = (_a = meta === null || meta === void 0 ? void 0 : meta.content) !== null && _a !== void 0 ? _a : "/";
+        return expandURL(root);
+    }
+}
+class SnapshotSubstitution {
+    constructor(element) {
+        this.visitCachedSnapshot = ({ element }) => {
+            var _a;
+            const { id, clone } = this;
+            (_a = element.querySelector("#" + id)) === null || _a === void 0 ? void 0 : _a.replaceWith(clone);
+        };
+        this.clone = element.cloneNode(true);
+        this.id = element.id;
+    }
+}
+function getFrameElementById(id) {
+    if (id != null) {
+        const element = document.getElementById(id);
+        if (element instanceof FrameElement) {
+            return element;
+        }
+    }
+}
+function activateElement(element, currentURL) {
+    if (element) {
+        const src = element.getAttribute("src");
+        if (src != null && currentURL != null && urlsAreEqual(src, currentURL)) {
+            throw new Error(`Matching <turbo-frame id="${element.id}"> element has a source URL which references itself`);
+        }
+        if (element.ownerDocument !== document) {
+            element = document.importNode(element, true);
+        }
+        if (element instanceof FrameElement) {
+            element.connectedCallback();
+            element.disconnectedCallback();
+            return element;
+        }
+    }
+}
+
+const StreamActions = {
+    after() {
+        this.targetElements.forEach(e => { var _a; return (_a = e.parentElement) === null || _a === void 0 ? void 0 : _a.insertBefore(this.templateContent, e.nextSibling); });
+    },
+    append() {
+        this.removeDuplicateTargetChildren();
+        this.targetElements.forEach(e => e.append(this.templateContent));
+    },
+    before() {
+        this.targetElements.forEach(e => { var _a; return (_a = e.parentElement) === null || _a === void 0 ? void 0 : _a.insertBefore(this.templateContent, e); });
+    },
+    prepend() {
+        this.removeDuplicateTargetChildren();
+        this.targetElements.forEach(e => e.prepend(this.templateContent));
+    },
+    remove() {
+        this.targetElements.forEach(e => e.remove());
+    },
+    replace() {
+        this.targetElements.forEach(e => e.replaceWith(this.templateContent));
+    },
+    update() {
+        this.targetElements.forEach(e => {
+            e.innerHTML = "";
+            e.append(this.templateContent);
+        });
+    }
+};
+
+class StreamElement extends HTMLElement {
+    async connectedCallback() {
+        try {
+            await this.render();
+        }
+        catch (error) {
+            console.error(error);
+        }
+        finally {
+            this.disconnect();
+        }
+    }
+    async render() {
+        var _a;
+        return (_a = this.renderPromise) !== null && _a !== void 0 ? _a : (this.renderPromise = (async () => {
+            if (this.dispatchEvent(this.beforeRenderEvent)) {
+                await nextAnimationFrame();
+                this.performAction();
+            }
+        })());
+    }
+    disconnect() {
+        try {
+            this.remove();
+        }
+        catch (_a) { }
+    }
+    removeDuplicateTargetChildren() {
+        this.duplicateChildren.forEach(c => c.remove());
+    }
+    get duplicateChildren() {
+        var _a;
+        const existingChildren = this.targetElements.flatMap(e => [...e.children]).filter(c => !!c.id);
+        const newChildrenIds = [...(_a = this.templateContent) === null || _a === void 0 ? void 0 : _a.children].filter(c => !!c.id).map(c => c.id);
+        return existingChildren.filter(c => newChildrenIds.includes(c.id));
+    }
+    get performAction() {
+        if (this.action) {
+            const actionFunction = StreamActions[this.action];
+            if (actionFunction) {
+                return actionFunction;
+            }
+            this.raise("unknown action");
+        }
+        this.raise("action attribute is missing");
+    }
+    get targetElements() {
+        if (this.target) {
+            return this.targetElementsById;
+        }
+        else if (this.targets) {
+            return this.targetElementsByQuery;
+        }
+        else {
+            this.raise("target or targets attribute is missing");
+        }
+    }
+    get templateContent() {
+        return this.templateElement.content.cloneNode(true);
+    }
+    get templateElement() {
+        if (this.firstElementChild instanceof HTMLTemplateElement) {
+            return this.firstElementChild;
+        }
+        this.raise("first child element must be a <template> element");
+    }
+    get action() {
+        return this.getAttribute("action");
+    }
+    get target() {
+        return this.getAttribute("target");
+    }
+    get targets() {
+        return this.getAttribute("targets");
+    }
+    raise(message) {
+        throw new Error(`${this.description}: ${message}`);
+    }
+    get description() {
+        var _a, _b;
+        return (_b = ((_a = this.outerHTML.match(/<[^>]+>/)) !== null && _a !== void 0 ? _a : [])[0]) !== null && _b !== void 0 ? _b : "<turbo-stream>";
+    }
+    get beforeRenderEvent() {
+        return new CustomEvent("turbo:before-stream-render", { bubbles: true, cancelable: true });
+    }
+    get targetElementsById() {
+        var _a;
+        const element = (_a = this.ownerDocument) === null || _a === void 0 ? void 0 : _a.getElementById(this.target);
+        if (element !== null) {
+            return [element];
+        }
+        else {
+            return [];
+        }
+    }
+    get targetElementsByQuery() {
+        var _a;
+        const elements = (_a = this.ownerDocument) === null || _a === void 0 ? void 0 : _a.querySelectorAll(this.targets);
+        if (elements.length !== 0) {
+            return Array.prototype.slice.call(elements);
+        }
+        else {
+            return [];
+        }
+    }
+}
+
+FrameElement.delegateConstructor = FrameController;
+customElements.define("turbo-frame", FrameElement);
+customElements.define("turbo-stream", StreamElement);
+
+(() => {
+    let element = document.currentScript;
+    if (!element)
+        return;
+    if (element.hasAttribute("data-turbo-suppress-warning"))
+        return;
+    while (element = element.parentElement) {
+        if (element == document.body) {
+            return console.warn(unindent `
         You are loading Turbo from a <script> element inside the <body> element. This is probably not what you meant to do!
 
         Load your application’s JavaScript bundle inside the <head> element instead. <script> elements in <body> are evaluated with each page change.
@@ -22,4 +3355,4745 @@
 
         ——
         Suppress this warning by adding a "data-turbo-suppress-warning" attribute to: %s
-      `,e.outerHTML)})(),window.Turbo=Ce,fe(),window.Turbo=e,fe()})(),document.addEventListener("turbo:load",(function(){$(".lightGallery").length&&$(".lightgallery").lightGallery({mode:"lg-slide-circular",counter:!1})})),(()=>{"use strict";window.isEmpty=function(e){return null==e||""===e},window.randomCode=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:6;return Math.random().toString(36).slice(-e)},window.listen=function(e,t,n){$(document).on(e,t,n)},window.listenClick=function(e,t){$(document).on("click",e,t)},window.listenSubmit=function(e,t){$(document).on("submit",e,t)},window.listenHiddenBsModal=function(e,t){$(document).on("hidden.bs.modal",e,t)},window.listenChange=function(e,t){$(document).on("change",e,t)},window.listenKeyup=function(e,t){$(document).on("keyup",e,t)},window.listenShownBsModal=function(e,t){$(document).on("shown.bs.modal",e,t)}})(),(()=>{"use strict";var e=n(2743),t=$('meta[name="csrf-token"]').attr("content");$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),document.addEventListener("turbo:load",(function(){$('[data-control="select2"]').each((function(){$(this).select2()})),t=$('meta[name="csrf-token"]').attr("content"),$.ajaxSetup({headers:{"X-CSRF-TOKEN":t}}),$(".alert").delay(5e3).slideUp(300),s(),i(),IOInitImageComponent(),IOInitSidebar()}));$(".getLanguage").val();var s=function(){$((function(){$(".modal").on("shown.bs.modal",(function(){$(this).find("input:text").first().focus()}))}))},i=function(){$('input:text:not([readonly="readonly"]):not([name="search"]):not(.front-input)').first().focus()};$(document).on("keydown",(function(e){27===e.keyCode&&$(".modal").modal("hide")})),$('input:text:not([readonly="readonly"])').first().focus(),$(document).on("select2:open",(function(){var e=document.querySelectorAll(".select2-container--open .select2-search__field");e[e.length-1].focus()})),$('[data-control="select2"]').each((function(){$(this).select2()})),document.addEventListener("livewire:load",(function(){window.livewire.hook("message.processed",(function(){$('[data-control="select2"]').each((function(){$(this).select2()}))}))})),$(document).on("focus",".select2.select2-container",(function(e){var t=e.originalEvent,n=$(this).find(".select2-selection--single").length>0;t&&n&&$(this).siblings("select:enabled").select2("open")})),$(document).ready((function(){$('[data-bs-toggle="tooltip"]').tooltip(),$(document).find(".nav-item.nav-dropdown ul li.nav-item").hasClass("active")&&$(document).find(".nav-item.nav-dropdown ul li.nav-item.active").parent("ul").parent("li").addClass("open"),listenClick(".nav-item.nav-dropdown",(function(){$(document).find(".nav-item.nav-dropdown").hasClass("open")&&$(this).hasClass("open")?setTimeout((function(){$(this).removeClass("open")}),1e3):$(document).find(".nav-item.nav-dropdown").removeClass("open")})),listenKeyup('input[name="email"]',(function(){this.value=this.value.toLowerCase()})),$('input[name="email"]').keypress((function(e){if(32===e.which)return!1}))})),$((function(){listenShownBsModal(".modal",(function(){$(this).find("input:text").first().focus()})),listenHiddenBsModal(".modal",(function(){$(".image-input.image-input-empty").attr("style","display:inline-block")}))})),window.resetModalForm=function(e,t){var n=$(e)[0].elements;$.each(n,(function(e,t){void 0!==t._flatpickr&&(t._flatpickr.clear(),t._flatpickr.setDate(new Date))})),$(e)[0].reset(),$("select.select2Selector").each((function(e,t){var n="#"+$(this).attr("id");$(n).val(""),$(n).trigger("change")})),$(t).hide()},window.processingBtn=function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null,s=$(e).find(t);"loading"===n?s.button("loading"):s.button("reset")},window.printErrorMessage=function(e,t){displayErrorMessage(t.responseJSON.message)},toastr.options={closeButton:!0,debug:!1,newestOnTop:!1,progressBar:!0,positionClass:"toast-top-right",preventDuplicates:!1,onclick:null,showDuration:"300",hideDuration:"1000",timeOut:"5000",extendedTimeOut:"1000",showEasing:"swing",hideEasing:"linear",showMethod:"fadeIn",hideMethod:"fadeOut"},window.manageAjaxErrors=function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"editValidationErrorsBox";404==e.status?toastr.error(e.responseJSON.message):printErrorMessage("#"+t,e)},window.displaySuccessMessage=function(e){toastr.success(e)},window.displayErrorMessage=function(e){toastr.error(e)},window.displayPhoto=function(e,t){var n=!0;if(e.files&&e.files[0]){var s=new FileReader;s.onload=function(e){var s=new Image;s.src=e.target.result,s.onload=function(){$(t).attr("src",e.target.result),n=!0}},n&&(s.readAsDataURL(e.files[0]),$(t).show())}},window.isValidFile=function(e,t){var n=$(e).val().split(".").pop().toLowerCase();return-1==$.inArray(n,["gif","png","jpg","jpeg"])?($(e).val(""),$(t).html(Lang.get("js.validate_image_type")).removeClass("d-none").show(),setTimeout((function(){$(t).slideUp(300)}),5e3),!1):($(t).addClass("d-none"),!0)},window.format=function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"YYYY-MM-DD";return moment(e).format(t)},window.DatetimepickerDefaults=function(e){return $.extend({},{sideBySide:!0,ignoreReadonly:!0,icons:{up:"icon-arrow-up-circle icons font-2xl",down:"icon-arrow-down-circle icons font-2xl",previous:"icon-arrow-left icons",next:"icon-arrow-right icons",time:"fa fa-clock-o",date:"fa fa-calendar",today:"fa fa-crosshairs",clear:"fa fa-trash",close:"fa fa-times"}},e)},window.screenLock=function(){$("#overlay-screen-lock").show(),$("body").css({"pointer-events":"none",opacity:"0.6"})},window.screenUnLock=function(){$("body").css({"pointer-events":"auto",opacity:"1"}),$("#overlay-screen-lock").hide()},window.prepareTemplateRender=function(t,n){return e.templates(t).render(n)},window.getCurrentCurrencyClass=function(){return"<b>"+$(".currentCurrency").val()+"</b>"},window.getCurrentCurrency=function(){return $(".getCurrentCurrency").val()},window.hideDropdownManually=function(e,t){e.removeClass("show"),t.removeClass("show")},window.displayDocument=function(e,t,n){var s=!0;if(e.files&&e.files[0]){var i=new FileReader;i.onload=function(e){var i=new Image;-1==$.inArray(n,["pdf","doc","docx","mp3","mp4"])?i.src=e.target.result:"pdf"==n?($("#editPhoto").css("background-image",'url("'+$(".pdfDocumentImageUrl").val()+'")'),i.src=$(".pdfDocumentImageUrl").val()):i.src="mp3"==n?$(".audioDocumentImageUrl").val():"mp4"==n?$(".videoDocumentImageUrl").val():$(".docxDocumentImageUrl").val(),i.onload=function(){$(t).attr("src",i.src),$(t).css("background-image",'url("'+i.src+'")'),s=!0}},s&&(i.readAsDataURL(e.files[0]),$(t).show())}};$(".ajaxCallIsRunning").val();window.ajaxCallInProgress=function(){!0},window.ajaxCallCompleted=function(){!1},window.UnprocessableInputError=function(e){toastr.error(e.responseJSON.message)},window.setValueOfEmptySpan=function(){$("span.showSpan").each((function(){$(this).text()||$(this).text(Lang.get("js.n/a"))}))},window.addCommas=function(e){for(var t=(e+="").split("."),n=t[0],s=t.length>1?"."+t[1]:"",i=/(\d+)(\d{3})/;i.test(n);)n=n.replace(i,"$1,$2");return n+s},$((function(){listenClick(".notification",(function(e){e.stopPropagation();var t=$(this).data("id"),n=$(this);$('[data-toggle="tooltip"]').tooltip("hide"),$.ajax({type:"get",url:"/notification/"+t+"/read",success:function(){n.remove(),displaySuccessMessage(Lang.get("js.notification_read_successfully"));var e=document.getElementsByClassName("notification").length;$("#counter").text(e),0==e&&($(".read-all-notification").addClass("d-none"),$(".empty-state").removeClass("d-none"),$("#counter").text(e),$(".notification-count").addClass("d-none"))},error:function(e){manageAjaxErrors(e)}})})),listenClick("#readAllNotification",(function(e){e.stopPropagation(),$.ajax({type:"post",url:"/read-all-notification",success:function(){$(".notification").remove();var e=document.getElementsByClassName("notification").length;$("#counter").text(e),$("#readAllNotification").addClass("d-none"),$(".empty-state").addClass("d-none"),$(".empty-state.empty-notification").removeClass("d-none"),$(".notification-count").addClass("d-none"),displaySuccessMessage(Lang.get("js.all_notification_read_successfully"))},error:function(e){manageAjaxErrors(e)}})}))})),window.avoidSpace=function(e){if(32==(e?e.which:window.event.keyCode)&&e.path[0].value.length<=0)return!1};var r="asset('assets/img/avatar.png')";window.defaultImagePreview=function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;1==t?$(e).css("background-image",'url("'+r+'")'):$(e).css("background-image",'url("'+$(".defaultDocumentImageUrl").val()+'")')},window.cancelAppointment=function(e,t,n,s){swal({title:Lang.get("js.cancel")+" "+Lang.get("js.appointment"),text:Lang.get("js.are_you_sure_want_to_cancel")+" "+n+" ?",type:"warning",icon:"warning",closeOnConfirm:!1,confirmButtonColor:"#000000",showLoaderOnConfirm:!0,buttons:{confirm:Lang.get("js.yes"),cancel:Lang.get("js.no")}}).then((function(t){t&&function(e,t,n,s){$.ajax({url:e,type:"POST",success:function(e){e.success&&Livewire.emit("refresh"),swal({title:Lang.get("js.canceled")+" "+Lang.get("js.appointment"),text:n+Lang.get("js.has_been_cancelled"),icon:"success",confirmButtonColor:"#D9214E",buttons:{confirm:Lang.get("js.ok")},timer:2e3})},error:function(e){swal({title:"Error",icon:"error",text:e.responseJSON.message,type:"error",confirmButtonColor:"#D9214E",buttons:{confirm:Lang.get("js.ok")},timer:5e3})}})}(e,0,n)}))}})(),document.addEventListener("turbo:load",(function(){$(".doctor-name-filter").selectize(),$.datepicker.setDefaults($.datepicker.regional[$(".userCurrentLanguage").val()]),$(".datepicker").datepicker({minDate:new Date,isRTL:!1,dateFormat:"dd/mm/yy"}),$(window).on("scroll",(function(){var e=$(window).scrollTop();e>600&&$(".go-top").addClass("active"),e<600&&$(".go-top").removeClass("active")})),$(".go-top").on("click",(function(){$("html, body").animate({scrollTop:"0"},500)})),$(".testimonial-slider").length&&($(".slick-slider").slick({slidesToShow:4,infinite:!0,slidesToScroll:1,autoplay:!1,autoplaySpeed:1500,dots:!0,arrows:!1,responsive:[{breakpoint:1400,settings:{slidesToShow:3,slidesToScroll:1}},{breakpoint:992,settings:{slidesToShow:2,slidesToScroll:1}},{breakpoint:480,settings:{slidesToShow:1,slidesToScroll:1}}]}),$(".testimonial-slider").slick({slidesToShow:1,infinite:!0,slidesToScroll:1,autoplaySpeed:1500,dots:!0,arrows:!0,prevArrow:'<span class="prev-arrow"><i class="fas fa-chevron-left fs-5"></i></span>',nextArrow:'<span class="next-arrow"><i class="fas fa-chevron-right fs-5"></i></span>',responsive:[{breakpoint:767,settings:{arrows:!1}}]}))})),(()=>{"use strict";var e,t;document.addEventListener("turbo:load",(function(){if(!$("#webAppointmentFormSubmit").length)return;$("#customFieldDate").val();var s=$("#customFieldDateTime").val();if($("#customFieldDate").datepicker({format:"Y-m-d",useCurrent:!1,sideBySide:!0,minDate:s||new Date}),$("#customFieldDateTime").datepicker({format:"Y-m-d H:i",useCurrent:!1,sideBySide:!0,minDate:s||new Date}),$(".custom-field-select").selectize(),$(".custom-field-multi-select").selectize(),!$("#opdDate").length)return;$("#advancePaymentPatientId").selectize(),$("#webDepartmentId").selectize(),$("#appointmentDoctorId").selectize();var i=$("#doctor").val();Lang.setLocale($(".userCurrentLanguage").val());var r,c=$("#opdDate").datepicker({useCurrent:!1,sideBySide:!0,isRTL:!1,minDate:new Date,onSelect:function(s,i){var l=s;if(s,$(".doctor-schedule").css("display","none"),$(".error-message").css("display","none"),$(".available-slot-heading").css("display","none"),$(".color-information").css("display","none"),$(".time-slot").remove(),""==$("#webDepartmentId").val())return $("#validationErrorsBox").show().html(Lang.get("js.please_select_doctor_department")),$("#validationErrorsBox").delay(5e3).fadeOut(),$("#opdDate").val(""),!1;if(""==$("#appointmentDoctorId").val())return $("#validationErrorsBox").show().html(Lang.get("js.please_select_doctor")),$("#validationErrorsBox").delay(5e3).fadeOut(),$("#opdDate").val(""),!1;new Date(s);var c=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][$(this).datepicker("getDate").getDay()];if(s=i,null==c||""==c)return!1;if($.ajax({type:"GET",url:$("#homeDoctorScheduleList").val(),data:{day_name:c,doctor_id:n},success:function(t){if(t.success&&""!=t.data)if(0!=t.data.scheduleDay.length){var n="";n=moment(new Date).format("MM/DD/YYYY")===l?moment(new Date).format("H:mm:ss"):t.data.scheduleDay[0].available_from;var i=s+" "+n,r=s+" "+t.data.scheduleDay[0].available_to,c=t.data.perPatientTime[0].per_patient_time.split(":"),d=60*+c[0]+ +c[1],h=o(i),u=new Date;s.selectedDay==u.getDate()&&h.setTime(h.getTime()+6e4);var p=o(r);if((e=a(h,p,d)).length>0){var m;$(".available-slot-heading").css("display","block"),$(".color-information").css("display","block");var f="";for(m=0;m<e.length;++m){var g=[{index:m,timeSlot:e[m]}];f+=prepareTemplateRender("#appointmentSlotTemplate",g)}$(".available-slot").append(f)}"00:00:00"!=n&&"00:00:00"!=t.data.scheduleDay[0].available_to&&i!=r?($(".doctor-schedule").css("display","block"),$(".color-information").css("display","block"),$(".day-name").html(t.data.scheduleDay[0].available_on),$(".schedule-time").html("["+n+" - "+t.data.scheduleDay[0].available_to+"]")):($(".doctor-schedule").css("display","none"),$(".color-information").css("display","none"),$(".error-message").css("display","block"),$(".error-message").html(Lang.get("js.doctor_schedule_not_available_on_this_date")))}else $(".doctor-schedule").css("display","none"),$(".color-information").css("display","none"),$(".error-message").css("display","block"),$(".error-message").html(Lang.get("js.doctor_schedule_not_available_on_this_date"))},error:function(e){displayErrorMessage(e.responseJSON.message)}}),$("#homeIsCreate").val()||$("#homeIsEdit").val()){setTimeout((function(){d=$("#homeIsCreate").val()?{editSelectedDate:moment($("#opdDate").datepicker("getDate")).format("MM/DD/YYYY"),doctor_id:n}:{editSelectedDate:moment($("#opdDate").datepicker("getDate")).format("MM/DD/YYYY"),editId:appointmentEditId,doctor_id:n},$.ajax({url:$("#homeGetBookingSlot").val(),type:"GET",data:d,success:function(n){t=n.data.bookingSlotArr,n.data.hasOwnProperty("onlyTime")?(n.data.bookingSlotArr.length>0&&(r=n.data.onlyTime.toString(),$.each(n.data.bookingSlotArr,(function(t,n){$.each(e,(function(e,t){n==t&&$(".time-interval").each((function(){$(this).data("id")==e&&$(this).html()!=r&&($(this).parent().css({"background-color":"#ffa721",border:"1px solid #ffa721",color:"#ffffff"}),$(this).parent().addClass("booked"),$(this).parent().children().prop("disabled",!0))}))}))}))),$(".time-interval").each((function(){$(this).html()==r&&n.data.bookingSlotArr.length>0&&($(this).parent().addClass("time-slot-book"),$(this).parent().removeClass("booked"),$(this).parent().children().prop("disabled",!1),$(this).click())}))):t.length>0&&$.each(t,(function(t,n){$.each(e,(function(e,t){n===t&&$(".time-interval").each((function(){$(this).data("id")===e&&($(this).parent().addClass("time-slot-book"),$(".time-slot-book").css({"background-color":"#FF8E4B",border:"1px solid #FF8E4B",color:"#ffffff"}),$(this).parent().addClass("booked"),$(this).parent().children().prop("disabled",!0))}))}))}))}})}),200);var d=null}}});$("#homeIsEdit").val()&&($("#appointmentDoctorId").trigger("change",(function(e){n=$(this).val()})),$("#opdDate").trigger("dp.change",(function(){new Date($(this).val())})));if($(".old-patient-email").focusout((function(){var e=$(".old-patient-email").val();l&&""!=e&&$.ajax({url:"appointments/"+e+"/patient-detail",type:"get",success:function(e){null!=e.data?($("#patient").empty(),$.each(e.data,(function(e,t){$("#patientName").val(t),$("#patient").val(e)}))):displayErrorMessage(Lang.get("js.patient_not_exists_or_status_is_not_active"))}})})),!$("#appointmentDate").val())return;var d=$("#appointmentDate").val();null!==d&&function(){if(c.datepicker("setDate",d),null!==c){Date;var s=c,l=d;$(".doctor-schedule").css("display","none"),$(".error-message").css("display","none"),$(".available-slot-heading").css("display","none"),$(".color-information").css("display","none"),$(".time-slot").remove();var h=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],u=(new Date(l),h[c.datepicker("getDate").getDay()]);if(l=s,null==u||""==u)return!1;if($.ajax({type:"GET",url:$("#homeDoctorScheduleList").val(),data:{day_name:u,doctor_id:i},success:function(t){if(t.success&&""!=t.data)if(0!=t.data.scheduleDay.length){var n="";moment(new Date).format("MM/DD/YYYY")===d?(n=moment().ceil(moment.duration(t.data.perPatientTime[0].per_patient_time).asMinutes(),"minute"),n=moment(n.toString()).format("H:mm:ss")):n=t.data.scheduleDay[0].available_from;var s=l+" "+n,i=l+" "+t.data.scheduleDay[0].available_to,r=t.data.perPatientTime[0].per_patient_time.split(":"),c=60*+r[0]+ +r[1],h=o(s),u=o(i);if((e=a(h,u,c)).length>0){var p;$(".available-slot-heading").css("display","block"),$(".color-information").css("display","block");var m="";for(p=0;p<e.length;++p){var f=[{index:p,timeSlot:e[p]}];m+=prepareTemplateRender("#appointmentSlotTemplate",f)}$(".available-slot").append(m)}"00:00:00"!=n&&"00:00:00"!=t.data.scheduleDay[0].available_to&&s!=i?($(".doctor-schedule").css("display","block"),$(".color-information").css("display","block"),$(".day-name").html(t.data.scheduleDay[0].available_on),$(".schedule-time").html("["+n+" - "+t.data.scheduleDay[0].available_to+"]")):($(".doctor-schedule").css("display","none"),$(".color-information").css("display","none"),$(".error-message").css("display","block"),$(".error-message").html(Lang.get("js.doctor_schedule_not_available_on_this_date")))}else $(".doctor-schedule").css("display","none"),$(".color-information").css("display","none"),$(".error-message").css("display","block"),$(".error-message").html(Lang.get("js.doctor_schedule_not_available_on_this_date"))}}),$("#homeIsCreate").val()||$("#homeIsEdit").val()){setTimeout((function(){p=$("#homeIsCreate").val()?{editSelectedDate:moment($("#opdDate").datepicker("getDate")).format("MM/DD/YYYY"),doctor_id:n}:{editSelectedDate:moment($("#opdDate").datepicker("getDate")).format("MM/DD/YYYY"),editId:appointmentEditId,doctor_id:n},$.ajax({url:$("#homeGetBookingSlot").val(),type:"GET",data:p,success:function(n){t=n.data.bookingSlotArr,n.data.hasOwnProperty("onlyTime")?(n.data.bookingSlotArr.length>0&&(r=n.data.onlyTime.toString(),$.each(n.data.bookingSlotArr,(function(t,n){$.each(e,(function(e,t){n==t&&$(".time-interval").each((function(){$(this).data("id")==e&&$(this).html()!=r&&($(this).parent().css({"background-color":"#ffa721",border:"1px solid #ffa721",color:"#ffffff"}),$(this).parent().addClass("booked"),$(this).parent().children().prop("disabled",!0))}))}))}))),$(".time-interval").each((function(){$(this).html()==r&&n.data.bookingSlotArr.length>0&&($(this).parent().addClass("time-slot-book"),$(this).parent().removeClass("booked"),$(this).parent().children().prop("disabled",!1),$(this).click())}))):t.length>0&&$.each(t,(function(t,n){$.each(e,(function(e,t){n===t&&$(".time-interval").each((function(){$(this).data("id")===e&&($(this).parent().addClass("time-slot-book"),$(".time-slot-book").css({"background-color":"#FF8E4B",border:"1px solid #FF8E4B",color:"#ffffff"}),$(this).parent().addClass("booked"),$(this).parent().children().prop("disabled",!0))}))}))}))}})}),200);var p=null}}}()})),Lang.setLocale($(".userCurrentLanguage").val()),$("#patientId").first().focus();var n,s,i=$("#doctor").val(),r=($("#appointmentDate").val(),!1);function o(e){var t=new Date;return t.setHours(e.substring(16,18)),t.setMinutes(e.substring(19,21)),t}function a(e,t,n){var s=[];if(new Date>$("#opdDate").datepicker("getDate")&&(new Date).getTime()>t.getTime())return s;if(new Date>new Date($("#appointmentDate").val())&&(new Date).getTime()>t.getTime())return s;for(;e<t;)s.push(e.toTimeString().substring(0,5)),e.setMinutes(e.getMinutes()+n);return s}listenChange("#webDepartmentId",(function(){$(".error-message").css("display","none"),$("#appointmentDoctorId")[0].selectize.clearOptions(),$("#opdDate").val(""),$.ajax({url:$("#homeDoctorDepartmentUrl").val(),type:"get",dataType:"json",data:{id:$(this).val()},success:function(e){$("#appointmentDoctorId").empty(),$("#appointmentDoctorId").append($('<option value="">Select Doctor</option>')),$.each(e.data,(function(e,t){$("#appointmentDoctorId").append($("<option></option>").attr("value",e).text(t))}));var t=$(document.getElementById("appointmentDoctorId")).selectize()[0].selectize;$.each(e.data,(function(e,n){t.addOption({value:e,text:n})})),t.refreshOptions()}})})),listenChange("#appointmentDoctorId",(function(){r&&($(".error-message").css("display","none"),$("#opdDate").val(""),$(".doctor-schedule").css("display","none"),$(".error-message").css("display","none"),$(".available-slot-heading").css("display","none"),$(".color-information").css("display","none"),$(".time-slot").remove(),r=!0),$(".error-message").css("display","none"),n=$(this).val(),r=!0})),listenClick(".time-interval",(function(e){var t=$(e.currentTarget).attr("data-id");$(this).data("id")==t&&$(this).parent().hasClass("booked")&&$(".time-slot-book").css("background-color","#ffa0a0"),s=$(this).text(),$(".time-slot").removeClass("time-slot-book"),$(this).parent().addClass("time-slot-book")})),listenClick(".time-interval",(function(){$(this).text()}));var l=!1;listenChange(".new-patient-radio",(function(){$(this).is(":checked")&&($(".old-patient").addClass("d-none"),$(".first-name-div").removeClass("d-none"),$(".last-name-div").removeClass("d-none"),$(".gender-div").removeClass("d-none"),$(".password-div").removeClass("d-none"),$(".confirm-password-div").removeClass("d-none"),$(".appointment-slot").removeClass("d-none"),$("#firstName").prop("required",!0),$("#lastName").prop("required",!0),$("#password").prop("required",!0),$("#confirmPassword").prop("required",!0),l=!1)})),listenChange(".old-patient-radio",(function(){$(this).is(":checked")&&($(".old-patient").removeClass("d-none"),$(".first-name-div").addClass("d-none"),$(".last-name-div").addClass("d-none"),$(".gender-div").addClass("d-none"),$(".password-div").addClass("d-none"),$(".confirm-password-div").addClass("d-none"),$(".appointment-slot").removeClass("d-none"),$("#firstName").prop("required",!1),$("#lastName").prop("required",!1),$("#password").prop("required",!1),$("#confirmPassword").prop("required",!1),l=!0)})),$.ajax({url:$("#homeDoctorUrl").val(),type:"get",dataType:"json",data:{id:i},success:function(e){$("#appointmentDoctorId").empty();var t=$(document.getElementById("appointmentDoctorId")).selectize()[0].selectize;$.each(e.data,(function(e,n){t.addOption({value:e,text:n}),t.setValue(e)}))}}),listenSubmit("#webAppointmentFormSubmit",(function(e){if((e.preventDefault(),!l)&&!function(){var e=$("#password").val(),t=$("#confirmPassword").val();if(""==e||""==t)return displayErrorMessage(Lang.get("js.please_fill_all_the_required_fields")),!1;if(e!==t)return displayErrorMessage(Lang.get("js.password_and_confirm_password_not_match")),!1;return!0}())return!1;var t=!0;if($(".dynamic-field").each((function(){var e=$(this).val(),n=$(this).closest(".form-group").find("label").text().replace(":","").trim();if($(this).is(':input[type="text"], :input[type="number"], textarea')){if(!e||""===e.trim())return displayErrorMessage(n+" field is required."),t=!1,!1}else if($(this).is(':input[type="toggle"]')){if(!$(this).is(":checked"))return displayErrorMessage(n+" field is required."),t=!1,!1}else if($(this).is("select")&&!e&&0===$(this).val().length&&""===e.trim())return displayErrorMessage(n+" field is required."),t=!1,!1})),null==s||""===s)return displayErrorMessage(Lang.get("js.please_select_appointment_time_slot")),!1;if($("#opdDate").val(moment($("#opdDate").datepicker("getDate")).format("MM/DD/YYYY")),1==t){var n=$(this).serialize()+"&time="+s;$.ajax({url:$("#homeAppointmentSaveUrl").val(),type:"POST",dataType:"json",data:n,success:function(e){displaySuccessMessage(Lang.get("js.appointment")+" "+Lang.get("js.saved_successfully")),$("#webAppointmentFormSubmit")[0].reset(),$("#webDepartmentId").selectize()[0].selectize.clear(),$("#appointmentDoctorId").selectize()[0].selectize.clear(),$(".custom-field-select").selectize()[0].selectize.clear(),$(".custom-field-multi-select").selectize()[0].selectize.clear(),$(".appointment-slot").addClass("d-none"),$(".old-patient").addClass("d-none"),$(".first-name-div").removeClass("d-none"),$(".last-name-div").removeClass("d-none"),$(".gender-div").removeClass("d-none"),$(".password-div").removeClass("d-none"),$(".confirm-password-div").removeClass("d-none"),$(".appointment-slot").removeClass("d-none"),$("#firstName").prop("required",!0),$("#lastName").prop("required",!0),$("#password").prop("required",!0),$("#confirmPassword").prop("required",!0)},error:function(e){displayErrorMessage(e.responseJSON.message),$("#webAppointmentFormSubmit")[0].reset(),$(".appointment-slot").addClass("d-none")}})}}))})(),document.addEventListener("turbo:load",(function(){if(Lang.setLocale($(".userCurrentLanguage").val()),!$(".phoneNumber").length)return!1;var e=document.querySelector(".phoneNumber"),t=document.querySelector(".error-msg"),n=document.querySelector(".valid-msg"),s=[Lang.get("js.invalid_number"),Lang.get("js.invalid_country_code"),Lang.get("js.too_short"),Lang.get("js.too_long"),Lang.get("js.invalid_number")],i=window.intlTelInput(e,{initialCountry:"auto",separateDialCode:!0,geoIpLookup:function(e,t){$.get("https://ipinfo.io",(function(){}),"jsonp").always((function(t){var n=t&&t.country?t.country:"";e(n)}))},utilsScript:$(".utilsScript").val()}),r=function(){e.classList.remove("error"),t.innerHTML="",t.classList.add("d-none"),n.classList.add("d-none")};e.addEventListener("blur",(function(){if(r(),e.value.trim())if(i.isValidNumber())n.classList.remove("d-none");else{e.classList.add("error");var o=i.getValidationError();t.innerHTML=s[o],t.classList.remove("d-none")}})),e.addEventListener("change",r),e.addEventListener("keyup",r);var o=$(".phoneNo").val();if(void 0!==o&&""!==o&&setTimeout((function(){$(".phoneNumber").trigger("change")}),500),listen("blur keyup change countrychange",(function(){void 0!==o&&""!==o&&(i.setNumber("+"+o),function(e){throw new TypeError('"'+e+'" is read-only')}("phoneNo"));var e=i.selectedCountryData.dialCode;$(".prefix_code").val(e)})),$(".isEdit").val()){var a=i.selectedCountryData.dialCode;$(".prefix_code").val(a)}$(".phoneNumber").focus(),$(".phoneNumber").blur();var l=$(".phoneNumber").val().replace(/\s/g,"");$(".phoneNumber").val(l)})),document.addEventListener("turbo:load",(function(){if(Lang.setLocale($(".userCurrentLanguage").val()),$("#contactUsGeneral").length)return!!$(".phoneNumber").length&&($("#contactUsGeneral").selectize(),void($("#g-recaptcha").length&&grecaptcha.render("g-recaptcha",{sitekey:$("#adminRecaptcha").val()})))})),listenSubmit("#enquiryCreateForm",(function(e){if(e.preventDefault(),""!==$(".error-msg").text())return $(".phoneNumber").focus(),!1;$.ajax({url:$("#frontInquiryUrl").val(),type:"POST",data:$(this).serialize(),success:function(e){e.success?(displaySuccessMessage(e.message),setTimeout((function(){$("#enquiryCreateForm")[0].reset(),$(".error-msg").addClass("d-none"),$(".valid-msg").addClass("d-none"),$("#contactUsGeneral").selectize()[0].selectize.setValue(1,!0),grecaptcha.reset()}),5e3)):(displayErrorMessage(e.message),setTimeout((function(){$("#enquiryCreateForm")[0].reset(),$(".contactUsGeneral").val(1).trigger("change"),grecaptcha.reset()}),5e3))},error:function(e){displayErrorMessage(e.responseJSON.message),grecaptcha.reset()},complete:function(){}})}))})();
+      `, element.outerHTML);
+        }
+    }
+})();
+
+window.Turbo = Turbo;
+start();
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/jsrender/jsrender.js":
+/*!*******************************************!*\
+  !*** ./node_modules/jsrender/jsrender.js ***!
+  \*******************************************/
+/***/ ((module) => {
+
+/*! JsRender v1.0.7: http://jsviews.com/#jsrender */
+/*! **VERSION FOR WEB** (For NODE.JS see http://jsviews.com/download/jsrender-node.js) */
+/*
+ * Best-of-breed templating in browser or on Node.js.
+ * Does not require jQuery, or HTML DOM
+ * Integrates with JsViews (http://jsviews.com/#jsviews)
+ *
+ * Copyright 2020, Boris Moore
+ * Released under the MIT License.
+ */
+
+//jshint -W018, -W041, -W120
+
+(function(factory, global) {
+	// global var is the this object, which is window when running in the usual browser environment
+	var $ = global.jQuery;
+
+	if (true) { // CommonJS e.g. Browserify
+		module.exports = $
+			? factory(global, $)
+			: function($) { // If no global jQuery, take optional jQuery passed as parameter: require('jsrender')(jQuery)
+				if ($ && !$.fn) {
+					throw "Provide jQuery or null";
+				}
+				return factory(global, $);
+			};
+	} else {}
+} (
+
+// factory (for jsrender.js)
+function(global, $) {
+"use strict";
+
+//========================== Top-level vars ==========================
+
+// global var is the this object, which is window when running in the usual browser environment
+var setGlobals = $ === false; // Only set globals if script block in browser (not AMD and not CommonJS)
+
+$ = $ && $.fn ? $ : global.jQuery; // $ is jQuery passed in by CommonJS loader (Browserify), or global jQuery.
+
+var versionNumber = "v1.0.7",
+	jsvStoreName, rTag, rTmplString, topView, $views, $expando,
+	_ocp = "_ocp",      // Observable contextual parameter
+
+	$isFunction, $isArray, $templates, $converters, $helpers, $tags, $sub, $subSettings, $subSettingsAdvanced, $viewsSettings,
+	delimOpenChar0, delimOpenChar1, delimCloseChar0, delimCloseChar1, linkChar, setting, baseOnError,
+
+	isRenderCall,
+	rNewLine = /[ \t]*(\r\n|\n|\r)/g,
+	rUnescapeQuotes = /\\(['"\\])/g, // Unescape quotes and trim
+	rEscapeQuotes = /['"\\]/g, // Escape quotes and \ character
+	rBuildHash = /(?:\x08|^)(onerror:)?(?:(~?)(([\w$.]+):)?([^\x08]+))\x08(,)?([^\x08]+)/gi,
+	rTestElseIf = /^if\s/,
+	rFirstElem = /<(\w+)[>\s]/,
+	rAttrEncode = /[\x00`><"'&=]/g, // Includes > encoding since rConvertMarkers in JsViews does not skip > characters in attribute strings
+	rIsHtml = /[\x00`><\"'&=]/,
+	rHasHandlers = /^on[A-Z]|^convert(Back)?$/,
+	rWrappedInViewMarker = /^\#\d+_`[\s\S]*\/\d+_`$/,
+	rHtmlEncode = rAttrEncode,
+	rDataEncode = /[&<>]/g,
+	rDataUnencode = /&(amp|gt|lt);/g,
+	rBracketQuote = /\[['"]?|['"]?\]/g,
+	viewId = 0,
+	charEntities = {
+		"&": "&amp;",
+		"<": "&lt;",
+		">": "&gt;",
+		"\x00": "&#0;",
+		"'": "&#39;",
+		'"': "&#34;",
+		"`": "&#96;",
+		"=": "&#61;"
+	},
+	charsFromEntities = {
+		amp: "&",
+		gt: ">",
+		lt: "<"
+	},
+	HTML = "html",
+	OBJECT = "object",
+	tmplAttr = "data-jsv-tmpl",
+	jsvTmpl = "jsvTmpl",
+	indexStr = "For #index in nested block use #getIndex().",
+	cpFnStore = {},     // Compiled furnctions for computed values in template expressions (properties, methods, helpers)
+	$render = {},
+
+	jsr = global.jsrender,
+	jsrToJq = jsr && $ && !$.render, // JsRender already loaded, without jQuery. but we will re-load it now to attach to jQuery
+
+	jsvStores = {
+		template: {
+			compile: compileTmpl
+		},
+		tag: {
+			compile: compileTag
+		},
+		viewModel: {
+			compile: compileViewModel
+		},
+		helper: {},
+		converter: {}
+	};
+
+	// views object ($.views if jQuery is loaded, jsrender.views if no jQuery, e.g. in Node.js)
+	$views = {
+		jsviews: versionNumber,
+		sub: {
+			// subscription, e.g. JsViews integration
+			rPath: /^(!*?)(?:null|true|false|\d[\d.]*|([\w$]+|\.|~([\w$]+)|#(view|([\w$]+))?)([\w$.^]*?)(?:[.[^]([\w$]+)\]?)?)$/g,
+			//        not                               object     helper    view  viewProperty pathTokens      leafToken
+
+			rPrm: /(\()(?=\s*\()|(?:([([])\s*)?(?:(\^?)(~?[\w$.^]+)?\s*((\+\+|--)|\+|-|~(?![\w$])|&&|\|\||===|!==|==|!=|<=|>=|[<>%*:?\/]|(=))\s*|(!*?(@)?[#~]?[\w$.^]+)([([])?)|(,\s*)|(?:(\()\s*)?\\?(?:(')|("))|(?:\s*(([)\]])(?=[.^]|\s*$|[^([])|[)\]])([([]?))|(\s+)/g,
+			//   lftPrn0           lftPrn         bound     path               operator     err                                          eq      path2 late            prn      comma  lftPrn2          apos quot        rtPrn  rtPrnDot                  prn2     space
+
+			View: View,
+			Err: JsViewsError,
+			tmplFn: tmplFn,
+			parse: parseParams,
+			extend: $extend,
+			extendCtx: extendCtx,
+			syntaxErr: syntaxError,
+			onStore: {
+				template: function(name, item) {
+					if (item === null) {
+						delete $render[name];
+					} else if (name) {
+						$render[name] = item;
+					}
+				}
+			},
+			addSetting: addSetting,
+			settings: {
+				allowCode: false
+			},
+			advSet: noop, // Update advanced settings
+			_thp: tagHandlersFromProps,
+			_gm: getMethod,
+			_tg: function() {}, // Constructor for tagDef
+			_cnvt: convertVal,
+			_tag: renderTag,
+			_er: error,
+			_err: onRenderError,
+			_cp: retVal, // Get observable contextual parameters (or properties) ~foo=expr. In JsRender, simply returns val.
+			_sq: function(token) {
+				if (token === "constructor") {
+					syntaxError("");
+				}
+				return token;
+			}
+		},
+		settings: {
+			delimiters: $viewsDelimiters,
+			advanced: function(value) {
+				return value
+					? (
+							$extend($subSettingsAdvanced, value),
+							$sub.advSet(),
+							$viewsSettings
+						)
+						: $subSettingsAdvanced;
+				}
+		},
+		map: dataMap // If jsObservable loaded first, use that definition of dataMap
+	};
+
+function getDerivedMethod(baseMethod, method) {
+	return function() {
+		var ret,
+			tag = this,
+			prevBase = tag.base;
+
+		tag.base = baseMethod; // Within method call, calling this.base will call the base method
+		ret = method.apply(tag, arguments); // Call the method
+		tag.base = prevBase; // Replace this.base to be the base method of the previous call, for chained calls
+		return ret;
+	};
+}
+
+function getMethod(baseMethod, method) {
+	// For derived methods (or handlers declared declaratively as in {{:foo onChange=~fooChanged}} replace by a derived method, to allow using this.base(...)
+	// or this.baseApply(arguments) to call the base implementation. (Equivalent to this._super(...) and this._superApply(arguments) in jQuery UI)
+	if ($isFunction(method)) {
+		method = getDerivedMethod(
+				!baseMethod
+					? noop // no base method implementation, so use noop as base method
+					: baseMethod._d
+						? baseMethod // baseMethod is a derived method, so use it
+						: getDerivedMethod(noop, baseMethod), // baseMethod is not derived so make its base method be the noop method
+				method
+			);
+		method._d = (baseMethod && baseMethod._d || 0) + 1; // Add flag for derived method (incremented for derived of derived...)
+	}
+	return method;
+}
+
+function tagHandlersFromProps(tag, tagCtx) {
+	var prop,
+		props = tagCtx.props;
+	for (prop in props) {
+		if (rHasHandlers.test(prop) && !(tag[prop] && tag[prop].fix)) { // Don't override handlers with fix expando (used in datepicker and spinner)
+			tag[prop] = prop !== "convert" ? getMethod(tag.constructor.prototype[prop], props[prop]) : props[prop];
+			// Copy over the onFoo props, convert and convertBack from tagCtx.props to tag (overrides values in tagDef).
+			// Note: unsupported scenario: if handlers are dynamically added ^onFoo=expression this will work, but dynamically removing will not work.
+		}
+	}
+}
+
+function retVal(val) {
+	return val;
+}
+
+function noop() {
+	return "";
+}
+
+function dbgBreak(val) {
+	// Usage examples: {{dbg:...}}, {{:~dbg(...)}}, {{dbg .../}}, {^{for ... onAfterLink=~dbg}} etc.
+	try {
+		console.log("JsRender dbg breakpoint: " + val);
+		throw "dbg breakpoint"; // To break here, stop on caught exceptions.
+	}
+	catch (e) {}
+	return this.base ? this.baseApply(arguments) : val;
+}
+
+function JsViewsError(message) {
+	// Error exception type for JsViews/JsRender
+	// Override of $.views.sub.Error is possible
+	this.name = ($.link ? "JsViews" : "JsRender") + " Error";
+	this.message = message || this.name;
+}
+
+function $extend(target, source) {
+	if (target) {
+		for (var name in source) {
+			target[name] = source[name];
+		}
+		return target;
+	}
+}
+
+(JsViewsError.prototype = new Error()).constructor = JsViewsError;
+
+//========================== Top-level functions ==========================
+
+//===================
+// views.delimiters
+//===================
+
+	/**
+	* Set the tag opening and closing delimiters and 'link' character. Default is "{{", "}}" and "^"
+	* openChars, closeChars: opening and closing strings, each with two characters
+	* $.views.settings.delimiters(...)
+	*
+	* @param {string}   openChars
+	* @param {string}   [closeChars]
+	* @param {string}   [link]
+	* @returns {Settings}
+	*
+	* Get delimiters
+	* delimsArray = $.views.settings.delimiters()
+	*
+	* @returns {string[]}
+	*/
+function $viewsDelimiters(openChars, closeChars, link) {
+	if (!openChars) {
+		return $subSettings.delimiters;
+	}
+	if ($isArray(openChars)) {
+		return $viewsDelimiters.apply($views, openChars);
+	}
+	linkChar = link ? link[0] : linkChar;
+	if (!/^(\W|_){5}$/.test(openChars + closeChars + linkChar)) {
+		error("Invalid delimiters"); // Must be non-word characters, and openChars and closeChars must each be length 2
+	}
+	delimOpenChar0 = openChars[0];
+	delimOpenChar1 = openChars[1];
+	delimCloseChar0 = closeChars[0];
+	delimCloseChar1 = closeChars[1];
+
+	$subSettings.delimiters = [delimOpenChar0 + delimOpenChar1, delimCloseChar0 + delimCloseChar1, linkChar];
+
+	// Escape the characters - since they could be regex special characters
+	openChars = "\\" + delimOpenChar0 + "(\\" + linkChar + ")?\\" + delimOpenChar1; // Default is "{^{"
+	closeChars = "\\" + delimCloseChar0 + "\\" + delimCloseChar1;                   // Default is "}}"
+	// Build regex with new delimiters
+	//          [tag    (followed by / space or })  or cvtr+colon or html or code] followed by space+params then convertBack?
+	rTag = "(?:(\\w+(?=[\\/\\s\\" + delimCloseChar0 + "]))|(\\w+)?(:)|(>)|(\\*))\\s*((?:[^\\"
+		+ delimCloseChar0 + "]|\\" + delimCloseChar0 + "(?!\\" + delimCloseChar1 + "))*?)";
+
+	// Make rTag available to JsViews (or other components) for parsing binding expressions
+	$sub.rTag = "(?:" + rTag + ")";
+	//                        { ^? {   tag+params slash?  or closingTag                                                   or comment
+	rTag = new RegExp("(?:" + openChars + rTag + "(\\/)?|\\" + delimOpenChar0 + "(\\" + linkChar + ")?\\" + delimOpenChar1 + "(?:(?:\\/(\\w+))\\s*|!--[\\s\\S]*?--))" + closeChars, "g");
+
+	// Default:  bind     tagName         cvt   cln html code    params            slash   bind2         closeBlk  comment
+	//      /(?:{(\^)?{(?:(\w+(?=[\/\s}]))|(\w+)?(:)|(>)|(\*))\s*((?:[^}]|}(?!}))*?)(\/)?|{(\^)?{(?:(?:\/(\w+))\s*|!--[\s\S]*?--))}}
+
+	$sub.rTmpl = new RegExp("^\\s|\\s$|<.*>|([^\\\\]|^)[{}]|" + openChars + ".*" + closeChars);
+	// $sub.rTmpl looks for initial or final white space, html tags or { or } char not preceded by \\, or JsRender tags {{xxx}}.
+	// Each of these strings are considered NOT to be jQuery selectors
+	return $viewsSettings;
+}
+
+//=========
+// View.get
+//=========
+
+function getView(inner, type) { //view.get(inner, type)
+	if (!type && inner !== true) {
+		// view.get(type)
+		type = inner;
+		inner = undefined;
+	}
+
+	var views, i, l, found,
+		view = this,
+		root = type === "root";
+		// view.get("root") returns view.root, view.get() returns view.parent, view.get(true) returns view.views[0].
+
+	if (inner) {
+		// Go through views - this one, and all nested ones, depth-first - and return first one with given type.
+		// If type is undefined, i.e. view.get(true), return first child view.
+		found = type && view.type === type && view;
+		if (!found) {
+			views = view.views;
+			if (view._.useKey) {
+				for (i in views) {
+					if (found = type ? views[i].get(inner, type) : views[i]) {
+						break;
+					}
+				}
+			} else {
+				for (i = 0, l = views.length; !found && i < l; i++) {
+					found = type ? views[i].get(inner, type) : views[i];
+				}
+			}
+		}
+	} else if (root) {
+		// Find root view. (view whose parent is top view)
+		found = view.root;
+	} else if (type) {
+		while (view && !found) {
+			// Go through views - this one, and all parent ones - and return first one with given type.
+			found = view.type === type ? view : undefined;
+			view = view.parent;
+		}
+	} else {
+		found = view.parent;
+	}
+	return found || undefined;
+}
+
+function getNestedIndex() {
+	var view = this.get("item");
+	return view ? view.index : undefined;
+}
+
+getNestedIndex.depends = function() {
+	return [this.get("item"), "index"];
+};
+
+function getIndex() {
+	return this.index;
+}
+
+getIndex.depends = "index";
+
+//==================
+// View.ctxPrm, etc.
+//==================
+
+/* Internal private: view._getOb() */
+function getPathObject(ob, path, ltOb, fn) {
+	// Iterate through path to late paths: @a.b.c paths
+	// Return "" (or noop if leaf is a function @a.b.c(...) ) if intermediate object not yet available
+	var prevOb, tokens, l,
+		i = 0;
+	if (ltOb === 1) {
+		fn = 1;
+		ltOb = undefined;
+	}
+	// Paths like ^a^b^c or ~^a^b^c will not throw if an object in path is undefined.
+	if (path) {
+		tokens = path.split(".");
+		l = tokens.length;
+
+		for (; ob && i < l; i++) {
+			prevOb = ob;
+			ob = tokens[i] ? ob[tokens[i]] : ob;
+		}
+	}
+	if (ltOb) {
+		ltOb.lt = ltOb.lt || i<l; // If i < l there was an object in the path not yet available
+	}
+	return ob === undefined
+		? fn ? noop : ""
+		: fn ? function() {
+			return ob.apply(prevOb, arguments);
+		} : ob;
+}
+
+function contextParameter(key, value, get) {
+	// Helper method called as view.ctxPrm(key) for helpers or template parameters ~foo - from compiled template or from context callback
+	var wrapped, deps, res, obsCtxPrm, tagElse, callView, newRes,
+		storeView = this,
+		isUpdate = !isRenderCall && arguments.length > 1,
+		store = storeView.ctx;
+	if (key) {
+		if (!storeView._) { // tagCtx.ctxPrm() call
+			tagElse = storeView.index;
+			storeView = storeView.tag;
+		}
+		callView = storeView;
+		if (store && store.hasOwnProperty(key) || (store = $helpers).hasOwnProperty(key)) {
+			res = store[key];
+			if (key === "tag" || key === "tagCtx" || key === "root" || key === "parentTags") {
+				return res;
+			}
+		} else {
+			store = undefined;
+		}
+		if (!isRenderCall && storeView.tagCtx || storeView.linked) { // Data-linked view, or tag instance
+			if (!res || !res._cxp) {
+				// Not a contextual parameter
+				// Set storeView to tag (if this is a tag.ctxPrm() call) or to root view ("data" view of linked template)
+				storeView = storeView.tagCtx || $isFunction(res)
+					? storeView // Is a tag, not a view, or is a computed contextual parameter, so scope to the callView, no the 'scope view'
+					: (storeView = storeView.scope || storeView,
+						!storeView.isTop && storeView.ctx.tag // If this view is in a tag, set storeView to the tag
+							|| storeView);
+				if (res !== undefined && storeView.tagCtx) {
+					// If storeView is a tag, but the contextual parameter has been set at at higher level (e.g. helpers)...
+					storeView = storeView.tagCtx.view.scope; // then move storeView to the outer level (scope of tag container view)
+				}
+				store = storeView._ocps;
+				res = store && store.hasOwnProperty(key) && store[key] || res;
+				if (!(res && res._cxp) && (get || isUpdate)) {
+					// Create observable contextual parameter
+					(store || (storeView._ocps = storeView._ocps || {}))[key]
+						= res
+						= [{
+							_ocp: res, // The observable contextual parameter value
+							_vw: callView,
+							_key: key
+						}];
+					res._cxp = {
+						path: _ocp,
+						ind: 0,
+						updateValue: function(val, path) {
+							$.observable(res[0]).setProperty(_ocp, val); // Set the value (res[0]._ocp)
+							return this;
+						}
+					};
+				}
+			}
+			if (obsCtxPrm = res && res._cxp) {
+				// If this helper resource is an observable contextual parameter
+				if (arguments.length > 2) {
+					deps = res[1] ? $sub._ceo(res[1].deps) : [_ocp]; // fn deps (with any exprObs cloned using $sub._ceo)
+					deps.unshift(res[0]); // view
+					deps._cxp = obsCtxPrm;
+					// In a context callback for a contextual param, we set get = true, to get ctxPrm [view, dependencies...] array - needed for observe call
+					return deps;
+				}
+				tagElse = obsCtxPrm.tagElse;
+				newRes = res[1] // linkFn for compiled expression
+					? obsCtxPrm.tag && obsCtxPrm.tag.cvtArgs
+						? obsCtxPrm.tag.cvtArgs(tagElse, 1)[obsCtxPrm.ind] // = tag.bndArgs() - for tag contextual parameter
+						: res[1](res[0].data, res[0], $sub) // = fn(data, view, $sub) for compiled binding expression
+					: res[0]._ocp; // Observable contextual parameter (uninitialized, or initialized as static expression, so no path dependencies)
+				if (isUpdate) {
+					$sub._ucp(key, value, storeView, obsCtxPrm); // Update observable contextual parameter
+					return storeView;
+				}
+				res = newRes;
+			}
+		}
+		if (res && $isFunction(res)) {
+			// If a helper is of type function we will wrap it, so if called with no this pointer it will be called with the
+			// view as 'this' context. If the helper ~foo() was in a data-link expression, the view will have a 'temporary' linkCtx property too.
+			// Note that helper functions on deeper paths will have specific this pointers, from the preceding path.
+			// For example, ~util.foo() will have the ~util object as 'this' pointer
+			wrapped = function() {
+				return res.apply((!this || this === global) ? callView : this, arguments);
+			};
+			$extend(wrapped, res); // Attach same expandos (if any) to the wrapped function
+		}
+		return wrapped || res;
+	}
+}
+
+/* Internal private: view._getTmpl() */
+function getTemplate(tmpl) {
+	return tmpl && (tmpl.fn
+		? tmpl
+		: this.getRsc("templates", tmpl) || $templates(tmpl)); // not yet compiled
+}
+
+//==============
+// views._cnvt
+//==============
+
+function convertVal(converter, view, tagCtx, onError) {
+	// Called from compiled template code for {{:}}
+	// self is template object or linkCtx object
+	var tag, linkCtx, value, argsLen, bindTo,
+		// If tagCtx is an integer, then it is the key for the compiled function to return the boundTag tagCtx
+		boundTag = typeof tagCtx === "number" && view.tmpl.bnds[tagCtx-1];
+
+	if (onError === undefined && boundTag && boundTag._lr) { // lateRender
+		onError = "";
+	}
+	if (onError !== undefined) {
+		tagCtx = onError = {props: {}, args: [onError]};
+	} else if (boundTag) {
+		tagCtx = boundTag(view.data, view, $sub);
+	}
+	boundTag = boundTag._bd && boundTag;
+	if (converter || boundTag) {
+		linkCtx = view._lc; // For data-link="{cvt:...}"... See onDataLinkedTagChange
+		tag = linkCtx && linkCtx.tag;
+		tagCtx.view = view;
+		if (!tag) {
+			tag = $extend(new $sub._tg(), {
+				_: {
+					bnd: boundTag,
+					unlinked: true,
+					lt: tagCtx.lt // If a late path @some.path has not returned @some object, mark tag as late
+				},
+				inline: !linkCtx,
+				tagName: ":",
+				convert: converter,
+				onArrayChange: true,
+				flow: true,
+				tagCtx: tagCtx,
+				tagCtxs: [tagCtx],
+				_is: "tag"
+			});
+			argsLen = tagCtx.args.length;
+			if (argsLen>1) {
+				bindTo = tag.bindTo = [];
+				while (argsLen--) {
+					bindTo.unshift(argsLen); // Bind to all the arguments - generate bindTo array: [0,1,2...]
+				}
+			}
+			if (linkCtx) {
+				linkCtx.tag = tag;
+				tag.linkCtx = linkCtx;
+			}
+			tagCtx.ctx = extendCtx(tagCtx.ctx, (linkCtx ? linkCtx.view : view).ctx);
+			tagHandlersFromProps(tag, tagCtx);
+		}
+		tag._er = onError && value;
+		tag.ctx = tagCtx.ctx || tag.ctx || {};
+		tagCtx.ctx = undefined;
+		value = tag.cvtArgs()[0]; // If there is a convertBack but no convert, converter will be "true"
+		tag._er = onError && value;
+	} else {
+		value = tagCtx.args[0];
+	}
+
+	// Call onRender (used by JsViews if present, to add binding annotations around rendered content)
+	value = boundTag && view._.onRender
+		? view._.onRender(value, view, tag)
+		: value;
+	return value != undefined ? value : "";
+}
+
+function convertArgs(tagElse, bound) { // tag.cvtArgs() or tag.cvtArgs(tagElse?, true?)
+	var l, key, boundArgs, args, bindFrom, tag, converter,
+		tagCtx = this;
+
+	if (tagCtx.tagName) {
+		tag = tagCtx;
+		tagCtx = (tag.tagCtxs || [tagCtx])[tagElse||0];
+		if (!tagCtx) {
+			return;
+		}
+	} else {
+		tag = tagCtx.tag;
+	}
+
+	bindFrom = tag.bindFrom;
+	args = tagCtx.args;
+
+	if ((converter = tag.convert) && "" + converter === converter) {
+		converter = converter === "true"
+			? undefined
+			: (tagCtx.view.getRsc("converters", converter) || error("Unknown converter: '" + converter + "'"));
+	}
+
+	if (converter && !bound) { // If there is a converter, use a copy of the tagCtx.args array for rendering, and replace the args[0] in
+		args = args.slice(); // the copied array with the converted value. But we do not modify the value of tag.tagCtx.args[0] (the original args array)
+	}
+	if (bindFrom) { // Get the values of the boundArgs
+		boundArgs = [];
+		l = bindFrom.length;
+		while (l--) {
+			key = bindFrom[l];
+			boundArgs.unshift(argOrProp(tagCtx, key));
+		}
+		if (bound) {
+			args = boundArgs; // Call to bndArgs() - returns the boundArgs
+		}
+	}
+	if (converter) {
+		converter = converter.apply(tag, boundArgs || args);
+		if (converter === undefined) {
+			return args; // Returning undefined from a converter is equivalent to not having a converter.
+		}
+		bindFrom = bindFrom || [0];
+		l = bindFrom.length;
+		if (!$isArray(converter) || converter.length !== l) {
+			converter = [converter];
+			bindFrom = [0];
+			l = 1;
+		}
+		if (bound) {        // Call to bndArgs() - so apply converter to all boundArgs
+			args = converter; // The array of values returned from the converter
+		} else {            // Call to cvtArgs()
+			while (l--) {
+				key = bindFrom[l];
+				if (+key === key) {
+					args[key] = converter[l];
+				}
+			}
+		}
+	}
+	return args;
+}
+
+function argOrProp(context, key) {
+	context = context[+key === key ? "args" : "props"];
+	return context && context[key];
+}
+
+function convertBoundArgs(tagElse) { // tag.bndArgs()
+	return this.cvtArgs(tagElse, 1);
+}
+
+//=============
+// views.tag
+//=============
+
+/* view.getRsc() */
+function getResource(resourceType, itemName) {
+	var res, store,
+		view = this;
+	if ("" + itemName === itemName) {
+		while ((res === undefined) && view) {
+			store = view.tmpl && view.tmpl[resourceType];
+			res = store && store[itemName];
+			view = view.parent;
+		}
+		return res || $views[resourceType][itemName];
+	}
+}
+
+function renderTag(tagName, parentView, tmpl, tagCtxs, isUpdate, onError) {
+	function bindToOrBindFrom(type) {
+		var bindArray = tag[type];
+
+		if (bindArray !== undefined) {
+			bindArray = $isArray(bindArray) ? bindArray : [bindArray];
+			m = bindArray.length;
+			while (m--) {
+				key = bindArray[m];
+				if (!isNaN(parseInt(key))) {
+					bindArray[m] = parseInt(key); // Convert "0" to 0, etc.
+				}
+			}
+		}
+
+		return bindArray || [0];
+	}
+
+	parentView = parentView || topView;
+	var tag, tagDef, template, tags, attr, parentTag, l, m, n, itemRet, tagCtx, tagCtxCtx, ctxPrm, bindTo, bindFrom, initVal,
+		content, callInit, mapDef, thisMap, args, bdArgs, props, tagDataMap, contentCtx, key, bindFromLength, bindToLength, linkedElement, defaultCtx,
+		i = 0,
+		ret = "",
+		linkCtx = parentView._lc || false, // For data-link="{myTag...}"... See onDataLinkedTagChange
+		ctx = parentView.ctx,
+		parentTmpl = tmpl || parentView.tmpl,
+		// If tagCtxs is an integer, then it is the key for the compiled function to return the boundTag tagCtxs
+		boundTag = typeof tagCtxs === "number" && parentView.tmpl.bnds[tagCtxs-1];
+
+	if (tagName._is === "tag") {
+		tag = tagName;
+		tagName = tag.tagName;
+		tagCtxs = tag.tagCtxs;
+		template = tag.template;
+	} else {
+		tagDef = parentView.getRsc("tags", tagName) || error("Unknown tag: {{" + tagName + "}} ");
+		template = tagDef.template;
+	}
+	if (onError === undefined && boundTag && (boundTag._lr = (tagDef.lateRender && boundTag._lr!== false || boundTag._lr))) {
+		onError = ""; // If lateRender, set temporary onError, to skip initial rendering (and render just "")
+	}
+	if (onError !== undefined) {
+		ret += onError;
+		tagCtxs = onError = [{props: {}, args: [], params: {props:{}}}];
+	} else if (boundTag) {
+		tagCtxs = boundTag(parentView.data, parentView, $sub);
+	}
+
+	l = tagCtxs.length;
+	for (; i < l; i++) {
+		tagCtx = tagCtxs[i];
+		content = tagCtx.tmpl;
+		if (!linkCtx || !linkCtx.tag || i && !linkCtx.tag.inline || tag._er || content && +content===content) {
+			// Initialize tagCtx
+			// For block tags, tagCtx.tmpl is an integer > 0
+			if (content && parentTmpl.tmpls) {
+				tagCtx.tmpl = tagCtx.content = parentTmpl.tmpls[content - 1]; // Set the tmpl property to the content of the block tag
+			}
+			tagCtx.index = i;
+			tagCtx.ctxPrm = contextParameter;
+			tagCtx.render = renderContent;
+			tagCtx.cvtArgs = convertArgs;
+			tagCtx.bndArgs = convertBoundArgs;
+			tagCtx.view = parentView;
+			tagCtx.ctx = extendCtx(extendCtx(tagCtx.ctx, tagDef && tagDef.ctx), ctx); // Clone and extend parentView.ctx
+		}
+		if (tmpl = tagCtx.props.tmpl) {
+			// If the tmpl property is overridden, set the value (when initializing, or, in case of binding: ^tmpl=..., when updating)
+			tagCtx.tmpl = parentView._getTmpl(tmpl);
+			tagCtx.content = tagCtx.content || tagCtx.tmpl;
+		}
+
+		if (!tag) {
+			// This will only be hit for initial tagCtx (not for {{else}}) - if the tag instance does not exist yet
+			// If the tag has not already been instantiated, we will create a new instance.
+			// ~tag will access the tag, even within the rendering of the template content of this tag.
+			// From child/descendant tags, can access using ~tag.parent, or ~parentTags.tagName
+			tag = new tagDef._ctr();
+			callInit = !!tag.init;
+
+			tag.parent = parentTag = ctx && ctx.tag;
+			tag.tagCtxs = tagCtxs;
+
+			if (linkCtx) {
+				tag.inline = false;
+				linkCtx.tag = tag;
+			}
+			tag.linkCtx = linkCtx;
+			if (tag._.bnd = boundTag || linkCtx.fn) {
+				// Bound if {^{tag...}} or data-link="{tag...}"
+				tag._.ths = tagCtx.params.props.this; // Tag has a this=expr binding, to get javascript reference to tag instance
+				tag._.lt = tagCtxs.lt; // If a late path @some.path has not returned @some object, mark tag as late
+				tag._.arrVws = {};
+			} else if (tag.dataBoundOnly) {
+				error(tagName + " must be data-bound:\n{^{" + tagName + "}}");
+			}
+			//TODO better perf for childTags() - keep child tag.tags array, (and remove child, when disposed)
+			// tag.tags = [];
+		} else if (linkCtx && linkCtx.fn._lr) {
+			callInit = !!tag.init;
+		}
+		tagDataMap = tag.dataMap;
+
+		tagCtx.tag = tag;
+		if (tagDataMap && tagCtxs) {
+			tagCtx.map = tagCtxs[i].map; // Copy over the compiled map instance from the previous tagCtxs to the refreshed ones
+		}
+		if (!tag.flow) {
+			tagCtxCtx = tagCtx.ctx = tagCtx.ctx || {};
+
+			// tags hash: tag.ctx.tags, merged with parentView.ctx.tags,
+			tags = tag.parents = tagCtxCtx.parentTags = ctx && extendCtx(tagCtxCtx.parentTags, ctx.parentTags) || {};
+			if (parentTag) {
+				tags[parentTag.tagName] = parentTag;
+				//TODO better perf for childTags: parentTag.tags.push(tag);
+			}
+			tags[tag.tagName] = tagCtxCtx.tag = tag;
+			tagCtxCtx.tagCtx = tagCtx;
+		}
+	}
+	if (!(tag._er = onError)) {
+		tagHandlersFromProps(tag, tagCtxs[0]);
+		tag.rendering = {rndr: tag.rendering}; // Provide object for state during render calls to tag and elses. (Used by {{if}} and {{for}}...)
+		for (i = 0; i < l; i++) { // Iterate tagCtx for each {{else}} block
+			tagCtx = tag.tagCtx = tagCtxs[i];
+			props = tagCtx.props;
+			tag.ctx = tagCtx.ctx;
+
+			if (!i) {
+				if (callInit) {
+					tag.init(tagCtx, linkCtx, tag.ctx);
+					callInit = undefined;
+				}
+				if (!tagCtx.args.length && tagCtx.argDefault !== false && tag.argDefault !== false) {
+					tagCtx.args = args = [tagCtx.view.data]; // Missing first arg defaults to the current data context
+					tagCtx.params.args = ["#data"];
+				}
+
+				bindTo = bindToOrBindFrom("bindTo");
+
+				if (tag.bindTo !== undefined) {
+					tag.bindTo = bindTo;
+				}
+
+				if (tag.bindFrom !== undefined) {
+					tag.bindFrom = bindToOrBindFrom("bindFrom");
+				} else if (tag.bindTo) {
+					tag.bindFrom = tag.bindTo = bindTo;
+				}
+				bindFrom = tag.bindFrom || bindTo;
+
+				bindToLength = bindTo.length;
+				bindFromLength = bindFrom.length;
+
+				if (tag._.bnd && (linkedElement = tag.linkedElement)) {
+					tag.linkedElement = linkedElement = $isArray(linkedElement) ? linkedElement: [linkedElement];
+
+					if (bindToLength !== linkedElement.length) {
+						error("linkedElement not same length as bindTo");
+					}
+				}
+				if (linkedElement = tag.linkedCtxParam) {
+					tag.linkedCtxParam = linkedElement = $isArray(linkedElement) ? linkedElement: [linkedElement];
+
+					if (bindFromLength !== linkedElement.length) {
+						error("linkedCtxParam not same length as bindFrom/bindTo");
+					}
+				}
+
+				if (bindFrom) {
+					tag._.fromIndex = {}; // Hash of bindFrom index which has same path value as bindTo index. fromIndex = tag._.fromIndex[toIndex]
+					tag._.toIndex = {}; // Hash of bindFrom index which has same path value as bindTo index. fromIndex = tag._.fromIndex[toIndex]
+					n = bindFromLength;
+					while (n--) {
+						key = bindFrom[n];
+						m = bindToLength;
+						while (m--) {
+							if (key === bindTo[m]) {
+								tag._.fromIndex[m] = n;
+								tag._.toIndex[n] = m;
+							}
+						}
+					}
+				}
+
+				if (linkCtx) {
+					// Set attr on linkCtx to ensure outputting to the correct target attribute.
+					// Setting either linkCtx.attr or this.attr in the init() allows per-instance choice of target attrib.
+					linkCtx.attr = tag.attr = linkCtx.attr || tag.attr || linkCtx._dfAt;
+				}
+				attr = tag.attr;
+				tag._.noVws = attr && attr !== HTML;
+			}
+			args = tag.cvtArgs(i);
+			if (tag.linkedCtxParam) {
+				bdArgs = tag.cvtArgs(i, 1);
+				m = bindFromLength;
+				defaultCtx = tag.constructor.prototype.ctx;
+				while (m--) {
+					if (ctxPrm = tag.linkedCtxParam[m]) {
+						key = bindFrom[m];
+						initVal = bdArgs[m];
+						// Create tag contextual parameter
+						tagCtx.ctx[ctxPrm] = $sub._cp(
+							defaultCtx && initVal === undefined ? defaultCtx[ctxPrm]: initVal,
+							initVal !== undefined && argOrProp(tagCtx.params, key),
+							tagCtx.view,
+							tag._.bnd && {tag: tag, cvt: tag.convert, ind: m, tagElse: i}
+						);
+					}
+				}
+			}
+			if ((mapDef = props.dataMap || tagDataMap) && (args.length || props.dataMap)) {
+				thisMap = tagCtx.map;
+				if (!thisMap || thisMap.src !== args[0] || isUpdate) {
+					if (thisMap && thisMap.src) {
+						thisMap.unmap(); // only called if observable map - not when only used in JsRender, e.g. by {{props}}
+					}
+					mapDef.map(args[0], tagCtx, thisMap, !tag._.bnd);
+					thisMap = tagCtx.map;
+				}
+				args = [thisMap.tgt];
+			}
+
+			itemRet = undefined;
+			if (tag.render) {
+				itemRet = tag.render.apply(tag, args);
+				if (parentView.linked && itemRet && !rWrappedInViewMarker.test(itemRet)) {
+					// When a tag renders content from the render method, with data linking then we need to wrap with view markers, if absent,
+					// to provide a contentView for the tag, which will correctly dispose bindings if deleted. The 'tmpl' for this view will
+					// be a dumbed-down template which will always return the itemRet string (no matter what the data is). The itemRet string
+					// is not compiled as template markup, so can include "{{" or "}}" without triggering syntax errors
+					tmpl = { // 'Dumbed-down' template which always renders 'static' itemRet string
+						links: []
+					};
+					tmpl.render = tmpl.fn = function() {
+						return itemRet;
+					};
+					itemRet = renderWithViews(tmpl, parentView.data, undefined, true, parentView, undefined, undefined, tag);
+				}
+			}
+			if (!args.length) {
+				args = [parentView]; // no arguments - (e.g. {{else}}) get data context from view.
+			}
+			if (itemRet === undefined) {
+				contentCtx = args[0]; // Default data context for wrapped block content is the first argument
+				if (tag.contentCtx) { // Set tag.contentCtx to true, to inherit parent context, or to a function to provide alternate context.
+					contentCtx = tag.contentCtx === true ? parentView : tag.contentCtx(contentCtx);
+				}
+				itemRet = tagCtx.render(contentCtx, true) || (isUpdate ? undefined : "");
+			}
+			ret = ret
+				? ret + (itemRet || "")
+				: itemRet !== undefined
+					? "" + itemRet
+					: undefined; // If no return value from render, and no template/content tagCtx.render(...), return undefined
+		}
+		tag.rendering = tag.rendering.rndr; // Remove tag.rendering object (if this is outermost render call. (In case of nested calls)
+	}
+	tag.tagCtx = tagCtxs[0];
+	tag.ctx = tag.tagCtx.ctx;
+
+	if (tag._.noVws && tag.inline) {
+		// inline tag with attr set to "text" will insert HTML-encoded content - as if it was element-based innerText
+		ret = attr === "text"
+			? $converters.html(ret)
+			: "";
+	}
+	return boundTag && parentView._.onRender
+		// Call onRender (used by JsViews if present, to add binding annotations around rendered content)
+		? parentView._.onRender(ret, parentView, tag)
+		: ret;
+}
+
+//=================
+// View constructor
+//=================
+
+function View(context, type, parentView, data, template, key, onRender, contentTmpl) {
+	// Constructor for view object in view hierarchy. (Augmented by JsViews if JsViews is loaded)
+	var views, parentView_, tag, self_,
+		self = this,
+		isArray = type === "array";
+		// If the data is an array, this is an 'array view' with a views array for each child 'item view'
+		// If the data is not an array, this is an 'item view' with a views 'hash' object for any child nested views
+
+	self.content = contentTmpl;
+	self.views = isArray ? [] : {};
+	self.data = data;
+	self.tmpl = template;
+	self_ = self._ = {
+		key: 0,
+		// ._.useKey is non zero if is not an 'array view' (owning a data array). Use this as next key for adding to child views hash
+		useKey: isArray ? 0 : 1,
+		id: "" + viewId++,
+		onRender: onRender,
+		bnds: {}
+	};
+	self.linked = !!onRender;
+	self.type = type || "top";
+	if (type) {
+		self.cache = {_ct: $subSettings._cchCt}; // Used for caching results of computed properties and helpers (view.getCache)
+	}
+
+	if (!parentView || parentView.type === "top") {
+		(self.ctx = context || {}).root = self.data;
+	}
+
+	if (self.parent = parentView) {
+		self.root = parentView.root || self; // view whose parent is top view
+		views = parentView.views;
+		parentView_ = parentView._;
+		self.isTop = parentView_.scp; // Is top content view of a link("#container", ...) call
+		self.scope = (!context.tag || context.tag === parentView.ctx.tag) && !self.isTop && parentView.scope || self;
+		// Scope for contextParams - closest non flow tag ancestor or root view
+		if (parentView_.useKey) {
+			// Parent is not an 'array view'. Add this view to its views object
+			// self._key = is the key in the parent view hash
+			views[self_.key = "_" + parentView_.useKey++] = self;
+			self.index = indexStr;
+			self.getIndex = getNestedIndex;
+		} else if (views.length === (self_.key = self.index = key)) { // Parent is an 'array view'. Add this view to its views array
+			views.push(self); // Adding to end of views array. (Using push when possible - better perf than splice)
+		} else {
+			views.splice(key, 0, self); // Inserting in views array
+		}
+		// If no context was passed in, use parent context
+		// If context was passed in, it should have been merged already with parent context
+		self.ctx = context || parentView.ctx;
+	} else if (type) {
+		self.root = self; // view whose parent is top view
+	}
+}
+
+View.prototype = {
+	get: getView,
+	getIndex: getIndex,
+	ctxPrm: contextParameter,
+	getRsc: getResource,
+	_getTmpl: getTemplate,
+	_getOb: getPathObject,
+	getCache: function(key) { // Get cached value of computed value
+		if ($subSettings._cchCt > this.cache._ct) {
+			this.cache = {_ct: $subSettings._cchCt};
+		}
+		return this.cache[key] || (this.cache[key] = cpFnStore[key](this.data, this, $sub));
+	},
+	_is: "view"
+};
+
+//====================================================
+// Registration
+//====================================================
+
+function compileChildResources(parentTmpl) {
+	var storeName, storeNames, resources;
+	for (storeName in jsvStores) {
+		storeNames = storeName + "s";
+		if (parentTmpl[storeNames]) {
+			resources = parentTmpl[storeNames];        // Resources not yet compiled
+			parentTmpl[storeNames] = {};               // Remove uncompiled resources
+			$views[storeNames](resources, parentTmpl); // Add back in the compiled resources
+		}
+	}
+}
+
+//===============
+// compileTag
+//===============
+
+function compileTag(name, tagDef, parentTmpl) {
+	var tmpl, baseTag, prop,
+		compiledDef = new $sub._tg();
+
+	function Tag() {
+		var tag = this;
+		tag._ = {
+			unlinked: true
+		};
+		tag.inline = true;
+		tag.tagName = name;
+	}
+
+	if ($isFunction(tagDef)) {
+		// Simple tag declared as function. No presenter instantation.
+		tagDef = {
+			depends: tagDef.depends,
+			render: tagDef
+		};
+	} else if ("" + tagDef === tagDef) {
+		tagDef = {template: tagDef};
+	}
+
+	if (baseTag = tagDef.baseTag) {
+		tagDef.flow = !!tagDef.flow; // Set flow property, so defaults to false even if baseTag has flow=true
+		baseTag = "" + baseTag === baseTag
+			? (parentTmpl && parentTmpl.tags[baseTag] || $tags[baseTag])
+			: baseTag;
+		if (!baseTag) {
+			error('baseTag: "' + tagDef.baseTag + '" not found');
+		}
+		compiledDef = $extend(compiledDef, baseTag);
+
+		for (prop in tagDef) {
+			compiledDef[prop] = getMethod(baseTag[prop], tagDef[prop]);
+		}
+	} else {
+		compiledDef = $extend(compiledDef, tagDef);
+	}
+
+	// Tag declared as object, used as the prototype for tag instantiation (control/presenter)
+	if ((tmpl = compiledDef.template) !== undefined) {
+		compiledDef.template = "" + tmpl === tmpl ? ($templates[tmpl] || $templates(tmpl)) : tmpl;
+	}
+	(Tag.prototype = compiledDef).constructor = compiledDef._ctr = Tag;
+
+	if (parentTmpl) {
+		compiledDef._parentTmpl = parentTmpl;
+	}
+	return compiledDef;
+}
+
+function baseApply(args) {
+	// In derived method (or handler declared declaratively as in {{:foo onChange=~fooChanged}} can call base method,
+	// using this.baseApply(arguments) (Equivalent to this._superApply(arguments) in jQuery UI)
+	return this.base.apply(this, args);
+}
+
+//===============
+// compileTmpl
+//===============
+
+function compileTmpl(name, tmpl, parentTmpl, options) {
+	// tmpl is either a template object, a selector for a template script block, or the name of a compiled template
+
+	//==== nested functions ====
+	function lookupTemplate(value) {
+		// If value is of type string - treat as selector, or name of compiled template
+		// Return the template object, if already compiled, or the markup string
+		var currentName, tmpl;
+		if (("" + value === value) || value.nodeType > 0 && (elem = value)) {
+			if (!elem) {
+				if (/^\.?\/[^\\:*?"<>]*$/.test(value)) {
+					// value="./some/file.html" (or "/some/file.html")
+					// If the template is not named, use "./some/file.html" as name.
+					if (tmpl = $templates[name = name || value]) {
+						value = tmpl;
+					} else {
+						// BROWSER-SPECIFIC CODE (not on Node.js):
+						// Look for server-generated script block with id "./some/file.html"
+						elem = document.getElementById(value);
+					}
+				} else if ($.fn && !$sub.rTmpl.test(value)) {
+					try {
+						elem = $(value, document)[0]; // if jQuery is loaded, test for selector returning elements, and get first element
+					} catch (e) {}
+				}// END BROWSER-SPECIFIC CODE
+			} //BROWSER-SPECIFIC CODE
+			if (elem) {
+				if (elem.tagName !== "SCRIPT") {
+					error(value + ": Use script block, not " + elem.tagName);
+				}
+				if (options) {
+					// We will compile a new template using the markup in the script element
+					value = elem.innerHTML;
+				} else {
+					// We will cache a single copy of the compiled template, and associate it with the name
+					// (renaming from a previous name if there was one).
+					currentName = elem.getAttribute(tmplAttr);
+					if (currentName) {
+						if (currentName !== jsvTmpl) {
+							value = $templates[currentName];
+							delete $templates[currentName];
+						} else if ($.fn) {
+							value = $.data(elem)[jsvTmpl]; // Get cached compiled template
+						}
+					}
+					if (!currentName || !value) { // Not yet compiled, or cached version lost
+						name = name || ($.fn ? jsvTmpl : value);
+						value = compileTmpl(name, elem.innerHTML, parentTmpl, options);
+					}
+					value.tmplName = name = name || currentName;
+					if (name !== jsvTmpl) {
+						$templates[name] = value;
+					}
+					elem.setAttribute(tmplAttr, name);
+					if ($.fn) {
+						$.data(elem, jsvTmpl, value);
+					}
+				}
+			} // END BROWSER-SPECIFIC CODE
+			elem = undefined;
+		} else if (!value.fn) {
+			value = undefined;
+			// If value is not a string. HTML element, or compiled template, return undefined
+		}
+		return value;
+	}
+
+	var elem, compiledTmpl,
+		tmplOrMarkup = tmpl = tmpl || "";
+	$sub._html = $converters.html;
+
+	//==== Compile the template ====
+	if (options === 0) {
+		options = undefined;
+		tmplOrMarkup = lookupTemplate(tmplOrMarkup); // Top-level compile so do a template lookup
+	}
+
+	// If options, then this was already compiled from a (script) element template declaration.
+	// If not, then if tmpl is a template object, use it for options
+	options = options || (tmpl.markup
+		? tmpl.bnds
+			? $extend({}, tmpl)
+			: tmpl
+		: {}
+	);
+
+	options.tmplName = options.tmplName || name || "unnamed";
+	if (parentTmpl) {
+		options._parentTmpl = parentTmpl;
+	}
+	// If tmpl is not a markup string or a selector string, then it must be a template object
+	// In that case, get it from the markup property of the object
+	if (!tmplOrMarkup && tmpl.markup && (tmplOrMarkup = lookupTemplate(tmpl.markup)) && tmplOrMarkup.fn) {
+		// If the string references a compiled template object, need to recompile to merge any modified options
+		tmplOrMarkup = tmplOrMarkup.markup;
+	}
+	if (tmplOrMarkup !== undefined) {
+		if (tmplOrMarkup.render || tmpl.render) {
+			// tmpl is already compiled, so use it
+			if (tmplOrMarkup.tmpls) {
+				compiledTmpl = tmplOrMarkup;
+			}
+		} else {
+			// tmplOrMarkup is a markup string, not a compiled template
+			// Create template object
+			tmpl = tmplObject(tmplOrMarkup, options);
+			// Compile to AST and then to compiled function
+			tmplFn(tmplOrMarkup.replace(rEscapeQuotes, "\\$&"), tmpl);
+		}
+		if (!compiledTmpl) {
+			compiledTmpl = $extend(function() {
+				return compiledTmpl.render.apply(compiledTmpl, arguments);
+			}, tmpl);
+
+			compileChildResources(compiledTmpl);
+		}
+		return compiledTmpl;
+	}
+}
+
+//==== /end of function compileTmpl ====
+
+//=================
+// compileViewModel
+//=================
+
+function getDefaultVal(defaultVal, data) {
+	return $isFunction(defaultVal)
+		? defaultVal.call(data)
+		: defaultVal;
+}
+
+function addParentRef(ob, ref, parent) {
+	Object.defineProperty(ob, ref, {
+		value: parent,
+		configurable: true
+	});
+}
+
+function compileViewModel(name, type) {
+	var i, constructor, parent,
+		viewModels = this,
+		getters = type.getters,
+		extend = type.extend,
+		id = type.id,
+		proto = $.extend({
+			_is: name || "unnamed",
+			unmap: unmap,
+			merge: merge
+		}, extend),
+		args = "",
+		cnstr = "",
+		getterCount = getters ? getters.length : 0,
+		$observable = $.observable,
+		getterNames = {};
+
+	function JsvVm(args) {
+		constructor.apply(this, args);
+	}
+
+	function vm() {
+		return new JsvVm(arguments);
+	}
+
+	function iterate(data, action) {
+		var getterType, defaultVal, prop, ob, parentRef,
+			j = 0;
+		for (; j < getterCount; j++) {
+			prop = getters[j];
+			getterType = undefined;
+			if (prop + "" !== prop) {
+				getterType = prop;
+				prop = getterType.getter;
+				parentRef = getterType.parentRef;
+			}
+			if ((ob = data[prop]) === undefined && getterType && (defaultVal = getterType.defaultVal) !== undefined) {
+				ob = getDefaultVal(defaultVal, data);
+			}
+			action(ob, getterType && viewModels[getterType.type], prop, parentRef);
+		}
+	}
+
+	function map(data) {
+		data = data + "" === data
+			? JSON.parse(data) // Accept JSON string
+			: data;            // or object/array
+		var l, prop, childOb, parentRef,
+			j = 0,
+			ob = data,
+			arr = [];
+
+		if ($isArray(data)) {
+			data = data || [];
+			l = data.length;
+			for (; j<l; j++) {
+				arr.push(this.map(data[j]));
+			}
+			arr._is = name;
+			arr.unmap = unmap;
+			arr.merge = merge;
+			return arr;
+		}
+
+		if (data) {
+			iterate(data, function(ob, viewModel) {
+				if (viewModel) { // Iterate to build getters arg array (value, or mapped value)
+					ob = viewModel.map(ob);
+				}
+				arr.push(ob);
+			});
+			ob = this.apply(this, arr); // Instantiate this View Model, passing getters args array to constructor
+			j = getterCount;
+			while (j--) {
+				childOb = arr[j];
+				parentRef = getters[j].parentRef;
+				if (parentRef && childOb && childOb.unmap) {
+					if ($isArray(childOb)) {
+						l = childOb.length;
+						while (l--) {
+							addParentRef(childOb[l], parentRef, ob);
+						}
+					} else {
+						addParentRef(childOb, parentRef, ob);
+					}
+				}
+			}
+			for (prop in data) { // Copy over any other properties. that are not get/set properties
+				if (prop !== $expando && !getterNames[prop]) {
+					ob[prop] = data[prop];
+				}
+			}
+		}
+		return ob;
+	}
+
+	function merge(data, parent, parentRef) {
+		data = data + "" === data
+			? JSON.parse(data) // Accept JSON string
+			: data;            // or object/array
+
+		var j, l, m, prop, mod, found, assigned, ob, newModArr, childOb,
+			k = 0,
+			model = this;
+
+		if ($isArray(model)) {
+			assigned = {};
+			newModArr = [];
+			l = data.length;
+			m = model.length;
+			for (; k<l; k++) {
+				ob = data[k];
+				found = false;
+				for (j=0; j<m && !found; j++) {
+					if (assigned[j]) {
+						continue;
+					}
+					mod = model[j];
+
+					if (id) {
+						assigned[j] = found = id + "" === id
+						? (ob[id] && (getterNames[id] ? mod[id]() : mod[id]) === ob[id])
+						: id(mod, ob);
+					}
+				}
+				if (found) {
+					mod.merge(ob);
+					newModArr.push(mod);
+				} else {
+					newModArr.push(childOb = vm.map(ob));
+					if (parentRef) {
+						addParentRef(childOb, parentRef, parent);
+					}
+				}
+			}
+			if ($observable) {
+				$observable(model).refresh(newModArr, true);
+			} else {
+				model.splice.apply(model, [0, model.length].concat(newModArr));
+			}
+			return;
+		}
+		iterate(data, function(ob, viewModel, getter, parentRef) {
+			if (viewModel) {
+				model[getter]().merge(ob, model, parentRef); // Update typed property
+			} else if (model[getter]() !== ob) {
+				model[getter](ob); // Update non-typed property
+			}
+		});
+		for (prop in data) {
+			if (prop !== $expando && !getterNames[prop]) {
+				model[prop] = data[prop];
+			}
+		}
+	}
+
+	function unmap() {
+		var ob, prop, getterType, arr, value,
+			k = 0,
+			model = this;
+
+		function unmapArray(modelArr) {
+			var arr = [],
+				i = 0,
+				l = modelArr.length;
+			for (; i<l; i++) {
+				arr.push(modelArr[i].unmap());
+			}
+			return arr;
+		}
+
+		if ($isArray(model)) {
+			return unmapArray(model);
+		}
+		ob = {};
+		for (; k < getterCount; k++) {
+			prop = getters[k];
+			getterType = undefined;
+			if (prop + "" !== prop) {
+				getterType = prop;
+				prop = getterType.getter;
+			}
+			value = model[prop]();
+			ob[prop] = getterType && value && viewModels[getterType.type]
+				? $isArray(value)
+					? unmapArray(value)
+					: value.unmap()
+				: value;
+		}
+		for (prop in model) {
+			if (model.hasOwnProperty(prop) && (prop.charAt(0) !== "_" || !getterNames[prop.slice(1)]) && prop !== $expando && !$isFunction(model[prop])) {
+				ob[prop] = model[prop];
+			}
+		}
+		return ob;
+	}
+
+	JsvVm.prototype = proto;
+
+	for (i=0; i < getterCount; i++) {
+		(function(getter) {
+			getter = getter.getter || getter;
+			getterNames[getter] = i+1;
+			var privField = "_" + getter;
+
+			args += (args ? "," : "") + getter;
+			cnstr += "this." + privField + " = " + getter + ";\n";
+			proto[getter] = proto[getter] || function(val) {
+				if (!arguments.length) {
+					return this[privField]; // If there is no argument, use as a getter
+				}
+				if ($observable) {
+					$observable(this).setProperty(getter, val);
+				} else {
+					this[privField] = val;
+				}
+			};
+
+			if ($observable) {
+				proto[getter].set = proto[getter].set || function(val) {
+					this[privField] = val; // Setter called by observable property change
+				};
+			}
+		})(getters[i]);
+	}
+
+	// Constructor for new viewModel instance.
+	cnstr = new Function(args, cnstr);
+
+	constructor = function() {
+		cnstr.apply(this, arguments);
+		// Pass additional parentRef str and parent obj to have a parentRef pointer on instance
+		if (parent = arguments[getterCount + 1]) {
+			addParentRef(this, arguments[getterCount], parent);
+		}
+	};
+
+	constructor.prototype = proto;
+	proto.constructor = constructor;
+
+	vm.map = map;
+	vm.getters = getters;
+	vm.extend = extend;
+	vm.id = id;
+	return vm;
+}
+
+function tmplObject(markup, options) {
+	// Template object constructor
+	var htmlTag,
+		wrapMap = $subSettingsAdvanced._wm || {}, // Only used in JsViews. Otherwise empty: {}
+		tmpl = {
+			tmpls: [],
+			links: {}, // Compiled functions for link expressions
+			bnds: [],
+			_is: "template",
+			render: renderContent
+		};
+
+	if (options) {
+		tmpl = $extend(tmpl, options);
+	}
+
+	tmpl.markup = markup;
+	if (!tmpl.htmlTag) {
+		// Set tmpl.tag to the top-level HTML tag used in the template, if any...
+		htmlTag = rFirstElem.exec(markup);
+		tmpl.htmlTag = htmlTag ? htmlTag[1].toLowerCase() : "";
+	}
+	htmlTag = wrapMap[tmpl.htmlTag];
+	if (htmlTag && htmlTag !== wrapMap.div) {
+		// When using JsViews, we trim templates which are inserted into HTML contexts where text nodes are not rendered (i.e. not 'Phrasing Content').
+		// Currently not trimmed for <li> tag. (Not worth adding perf cost)
+		tmpl.markup = $.trim(tmpl.markup);
+	}
+
+	return tmpl;
+}
+
+//==============
+// registerStore
+//==============
+
+/**
+* Internal. Register a store type (used for template, tags, helpers, converters)
+*/
+function registerStore(storeName, storeSettings) {
+
+/**
+* Generic store() function to register item, named item, or hash of items
+* Also used as hash to store the registered items
+* Used as implementation of $.templates(), $.views.templates(), $.views.tags(), $.views.helpers() and $.views.converters()
+*
+* @param {string|hash} name         name - or selector, in case of $.templates(). Or hash of items
+* @param {any}         [item]       (e.g. markup for named template)
+* @param {template}    [parentTmpl] For item being registered as private resource of template
+* @returns {any|$.views} item, e.g. compiled template - or $.views in case of registering hash of items
+*/
+	function theStore(name, item, parentTmpl) {
+		// The store is also the function used to add items to the store. e.g. $.templates, or $.views.tags
+
+		// For store of name 'thing', Call as:
+		//    $.views.things(items[, parentTmpl]),
+		// or $.views.things(name[, item, parentTmpl])
+
+		var compile, itemName, thisStore, cnt,
+			onStore = $sub.onStore[storeName];
+
+		if (name && typeof name === OBJECT && !name.nodeType && !name.markup && !name.getTgt && !(storeName === "viewModel" && name.getters || name.extend)) {
+			// Call to $.views.things(items[, parentTmpl]),
+
+			// Adding items to the store
+			// If name is a hash, then item is parentTmpl. Iterate over hash and call store for key.
+			for (itemName in name) {
+				theStore(itemName, name[itemName], item);
+			}
+			return item || $views;
+		}
+		// Adding a single unnamed item to the store
+		if (name && "" + name !== name) { // name must be a string
+			parentTmpl = item;
+			item = name;
+			name = undefined;
+		}
+		thisStore = parentTmpl
+			? storeName === "viewModel"
+				? parentTmpl
+				: (parentTmpl[storeNames] = parentTmpl[storeNames] || {})
+			: theStore;
+		compile = storeSettings.compile;
+
+		if (item === undefined) {
+			item = compile ? name : thisStore[name];
+			name = undefined;
+		}
+		if (item === null) {
+			// If item is null, delete this entry
+			if (name) {
+				delete thisStore[name];
+			}
+		} else {
+			if (compile) {
+				item = compile.call(thisStore, name, item, parentTmpl, 0) || {};
+				item._is = storeName; // Only do this for compiled objects (tags, templates...)
+			}
+			if (name) {
+				thisStore[name] = item;
+			}
+		}
+		if (onStore) {
+			// e.g. JsViews integration
+			onStore(name, item, parentTmpl, compile);
+		}
+		return item;
+	}
+
+	var storeNames = storeName + "s";
+	$views[storeNames] = theStore;
+}
+
+/**
+* Add settings such as:
+* $.views.settings.allowCode(true)
+* @param {boolean} value
+* @returns {Settings}
+*
+* allowCode = $.views.settings.allowCode()
+* @returns {boolean}
+*/
+function addSetting(st) {
+	$viewsSettings[st] = $viewsSettings[st] || function(value) {
+		return arguments.length
+			? ($subSettings[st] = value, $viewsSettings)
+			: $subSettings[st];
+	};
+}
+
+//========================
+// dataMap for render only
+//========================
+
+function dataMap(mapDef) {
+	function Map(source, options) {
+		this.tgt = mapDef.getTgt(source, options);
+		options.map = this;
+	}
+
+	if ($isFunction(mapDef)) {
+		// Simple map declared as function
+		mapDef = {
+			getTgt: mapDef
+		};
+	}
+
+	if (mapDef.baseMap) {
+		mapDef = $extend($extend({}, mapDef.baseMap), mapDef);
+	}
+
+	mapDef.map = function(source, options) {
+		return new Map(source, options);
+	};
+	return mapDef;
+}
+
+//==============
+// renderContent
+//==============
+
+/** Render the template as a string, using the specified data and helpers/context
+* $("#tmpl").render(), tmpl.render(), tagCtx.render(), $.render.namedTmpl()
+*
+* @param {any}        data
+* @param {hash}       [context]           helpers or context
+* @param {boolean}    [noIteration]
+* @param {View}       [parentView]        internal
+* @param {string}     [key]               internal
+* @param {function}   [onRender]          internal
+* @returns {string}   rendered template   internal
+*/
+function renderContent(data, context, noIteration, parentView, key, onRender) {
+	var i, l, tag, tmpl, tagCtx, isTopRenderCall, prevData, prevIndex,
+		view = parentView,
+		result = "";
+
+	if (context === true) {
+		noIteration = context; // passing boolean as second param - noIteration
+		context = undefined;
+	} else if (typeof context !== OBJECT) {
+		context = undefined; // context must be a boolean (noIteration) or a plain object
+	}
+
+	if (tag = this.tag) {
+		// This is a call from renderTag or tagCtx.render(...)
+		tagCtx = this;
+		view = view || tagCtx.view;
+		tmpl = view._getTmpl(tag.template || tagCtx.tmpl);
+		if (!arguments.length) {
+			data = tag.contentCtx && $isFunction(tag.contentCtx)
+				? data = tag.contentCtx(data)
+				: view; // Default data context for wrapped block content is the first argument
+		}
+	} else {
+		// This is a template.render(...) call
+		tmpl = this;
+	}
+
+	if (tmpl) {
+		if (!parentView && data && data._is === "view") {
+			view = data; // When passing in a view to render or link (and not passing in a parent view) use the passed-in view as parentView
+		}
+
+		if (view && data === view) {
+			// Inherit the data from the parent view.
+			data = view.data;
+		}
+
+		isTopRenderCall = !view;
+		isRenderCall = isRenderCall || isTopRenderCall;
+		if (isTopRenderCall) {
+			(context = context || {}).root = data; // Provide ~root as shortcut to top-level data.
+		}
+		if (!isRenderCall || $subSettingsAdvanced.useViews || tmpl.useViews || view && view !== topView) {
+			result = renderWithViews(tmpl, data, context, noIteration, view, key, onRender, tag);
+		} else {
+			if (view) { // In a block
+				prevData = view.data;
+				prevIndex = view.index;
+				view.index = indexStr;
+			} else {
+				view = topView;
+				prevData = view.data;
+				view.data = data;
+				view.ctx = context;
+			}
+			if ($isArray(data) && !noIteration) {
+				// Create a view for the array, whose child views correspond to each data item. (Note: if key and parentView are passed in
+				// along with parent view, treat as insert -e.g. from view.addViews - so parentView is already the view item for array)
+				for (i = 0, l = data.length; i < l; i++) {
+					view.index = i;
+					view.data = data[i];
+					result += tmpl.fn(data[i], view, $sub);
+				}
+			} else {
+				view.data = data;
+				result += tmpl.fn(data, view, $sub);
+			}
+			view.data = prevData;
+			view.index = prevIndex;
+		}
+		if (isTopRenderCall) {
+			isRenderCall = undefined;
+		}
+	}
+	return result;
+}
+
+function renderWithViews(tmpl, data, context, noIteration, view, key, onRender, tag) {
+	// Render template against data as a tree of subviews (nested rendered template instances), or as a string (top-level template).
+	// If the data is the parent view, treat as noIteration, re-render with the same data context.
+	// tmpl can be a string (e.g. rendered by a tag.render() method), or a compiled template.
+	var i, l, newView, childView, itemResult, swapContent, contentTmpl, outerOnRender, tmplName, itemVar, newCtx, tagCtx, noLinking,
+		result = "";
+
+	if (tag) {
+		// This is a call from renderTag or tagCtx.render(...)
+		tmplName = tag.tagName;
+		tagCtx = tag.tagCtx;
+		context = context ? extendCtx(context, tag.ctx) : tag.ctx;
+
+		if (tmpl === view.content) { // {{xxx tmpl=#content}}
+			contentTmpl = tmpl !== view.ctx._wrp // We are rendering the #content
+				? view.ctx._wrp // #content was the tagCtx.props.tmpl wrapper of the block content - so within this view, #content will now be the view.ctx._wrp block content
+				: undefined; // #content was the view.ctx._wrp block content - so within this view, there is no longer any #content to wrap.
+		} else if (tmpl !== tagCtx.content) {
+			if (tmpl === tag.template) { // Rendering {{tag}} tag.template, replacing block content.
+				contentTmpl = tagCtx.tmpl; // Set #content to block content (or wrapped block content if tagCtx.props.tmpl is set)
+				context._wrp = tagCtx.content; // Pass wrapped block content to nested views
+			} else { // Rendering tagCtx.props.tmpl wrapper
+				contentTmpl = tagCtx.content || view.content; // Set #content to wrapped block content
+			}
+		} else {
+			contentTmpl = view.content; // Nested views inherit same wrapped #content property
+		}
+
+		if (tagCtx.props.link === false) {
+			// link=false setting on block tag
+			// We will override inherited value of link by the explicit setting link=false taken from props
+			// The child views of an unlinked view are also unlinked. So setting child back to true will not have any effect.
+			context = context || {};
+			context.link = false;
+		}
+	}
+
+	if (view) {
+		onRender = onRender || view._.onRender;
+		noLinking = context && context.link === false;
+
+		if (noLinking && view._.nl) {
+			onRender = undefined;
+		}
+
+		context = extendCtx(context, view.ctx);
+		tagCtx = !tag && view.tag
+			? view.tag.tagCtxs[view.tagElse]
+			: tagCtx;
+	}
+
+	if (itemVar = tagCtx && tagCtx.props.itemVar) {
+		if (itemVar[0] !== "~") {
+			syntaxError("Use itemVar='~myItem'");
+		}
+		itemVar = itemVar.slice(1);
+	}
+
+	if (key === true) {
+		swapContent = true;
+		key = 0;
+	}
+
+	// If link===false, do not call onRender, so no data-linking marker nodes
+	if (onRender && tag && tag._.noVws) {
+		onRender = undefined;
+	}
+	outerOnRender = onRender;
+	if (onRender === true) {
+		// Used by view.refresh(). Don't create a new wrapper view.
+		outerOnRender = undefined;
+		onRender = view._.onRender;
+	}
+	// Set additional context on views created here, (as modified context inherited from the parent, and to be inherited by child views)
+	context = tmpl.helpers
+		? extendCtx(tmpl.helpers, context)
+		: context;
+
+	newCtx = context;
+	if ($isArray(data) && !noIteration) {
+		// Create a view for the array, whose child views correspond to each data item. (Note: if key and view are passed in
+		// along with parent view, treat as insert -e.g. from view.addViews - so view is already the view item for array)
+		newView = swapContent
+			? view
+			: (key !== undefined && view)
+				|| new View(context, "array", view, data, tmpl, key, onRender, contentTmpl);
+		newView._.nl= noLinking;
+		if (view && view._.useKey) {
+			// Parent is not an 'array view'
+			newView._.bnd = !tag || tag._.bnd && tag; // For array views that are data bound for collection change events, set the
+			// view._.bnd property to true for top-level link() or data-link="{for}", or to the tag instance for a data-bound tag, e.g. {^{for ...}}
+			newView.tag = tag;
+		}
+		for (i = 0, l = data.length; i < l; i++) {
+			// Create a view for each data item.
+			childView = new View(newCtx, "item", newView, data[i], tmpl, (key || 0) + i, onRender, newView.content);
+			if (itemVar) {
+				(childView.ctx = $extend({}, newCtx))[itemVar] = $sub._cp(data[i], "#data", childView);
+			}
+			itemResult = tmpl.fn(data[i], childView, $sub);
+			result += newView._.onRender ? newView._.onRender(itemResult, childView) : itemResult;
+		}
+	} else {
+		// Create a view for singleton data object. The type of the view will be the tag name, e.g. "if" or "mytag" except for
+		// "item", "array" and "data" views. A "data" view is from programmatic render(object) against a 'singleton'.
+		newView = swapContent ? view : new View(newCtx, tmplName || "data", view, data, tmpl, key, onRender, contentTmpl);
+
+		if (itemVar) {
+			(newView.ctx = $extend({}, newCtx))[itemVar] = $sub._cp(data, "#data", newView);
+		}
+
+		newView.tag = tag;
+		newView._.nl = noLinking;
+		result += tmpl.fn(data, newView, $sub);
+	}
+	if (tag) {
+		newView.tagElse = tagCtx.index;
+		tagCtx.contentView = newView;
+	}
+	return outerOnRender ? outerOnRender(result, newView) : result;
+}
+
+//===========================
+// Build and compile template
+//===========================
+
+// Generate a reusable function that will serve to render a template against data
+// (Compile AST then build template function)
+
+function onRenderError(e, view, fallback) {
+	var message = fallback !== undefined
+		? $isFunction(fallback)
+			? fallback.call(view.data, e, view)
+			: fallback || ""
+		: "{Error: " + (e.message||e) + "}";
+
+	if ($subSettings.onError && (fallback = $subSettings.onError.call(view.data, e, fallback && message, view)) !== undefined) {
+		message = fallback; // There is a settings.debugMode(handler) onError override. Call it, and use return value (if any) to replace message
+	}
+	return view && !view._lc ? $converters.html(message) : message; // For data-link=\"{... onError=...}"... See onDataLinkedTagChange
+}
+
+function error(message) {
+	throw new $sub.Err(message);
+}
+
+function syntaxError(message) {
+	error("Syntax error\n" + message);
+}
+
+function tmplFn(markup, tmpl, isLinkExpr, convertBack, hasElse) {
+	// Compile markup to AST (abtract syntax tree) then build the template function code from the AST nodes
+	// Used for compiling templates, and also by JsViews to build functions for data link expressions
+
+	//==== nested functions ====
+	function pushprecedingContent(shift) {
+		shift -= loc;
+		if (shift) {
+			content.push(markup.substr(loc, shift).replace(rNewLine, "\\n"));
+		}
+	}
+
+	function blockTagCheck(tagName, block) {
+		if (tagName) {
+			tagName += '}}';
+			//			'{{include}} block has {{/for}} with no open {{for}}'
+			syntaxError((
+				block
+					? '{{' + block + '}} block has {{/' + tagName + ' without {{' + tagName
+					: 'Unmatched or missing {{/' + tagName) + ', in template:\n' + markup);
+		}
+	}
+
+	function parseTag(all, bind, tagName, converter, colon, html, codeTag, params, slash, bind2, closeBlock, index) {
+/*
+
+     bind     tagName         cvt   cln html code    params            slash   bind2         closeBlk  comment
+/(?:{(\^)?{(?:(\w+(?=[\/\s}]))|(\w+)?(:)|(>)|(\*))\s*((?:[^}]|}(?!}))*?)(\/)?|{(\^)?{(?:(?:\/(\w+))\s*|!--[\s\S]*?--))}}/g
+
+(?:
+  {(\^)?{            bind
+  (?:
+    (\w+             tagName
+      (?=[\/\s}])
+    )
+    |
+    (\w+)?(:)        converter colon
+    |
+    (>)              html
+    |
+    (\*)             codeTag
+  )
+  \s*
+  (                  params
+    (?:[^}]|}(?!}))*?
+  )
+  (\/)?              slash
+  |
+  {(\^)?{            bind2
+  (?:
+    (?:\/(\w+))\s*   closeBlock
+    |
+    !--[\s\S]*?--    comment
+  )
+)
+}}/g
+
+*/
+		if (codeTag && bind || slash && !tagName || params && params.slice(-1) === ":" || bind2) {
+			syntaxError(all);
+		}
+
+		// Build abstract syntax tree (AST): [tagName, converter, params, content, hash, bindings, contentMarkup]
+		if (html) {
+			colon = ":";
+			converter = HTML;
+		}
+		slash = slash || isLinkExpr && !hasElse;
+
+		var late, openTagName, isLateOb,
+			pathBindings = (bind || isLinkExpr) && [[]], // pathBindings is an array of arrays for arg bindings and a hash of arrays for prop bindings
+			props = "",
+			args = "",
+			ctxProps = "",
+			paramsArgs = "",
+			paramsProps = "",
+			paramsCtxProps = "",
+			onError = "",
+			useTrigger = "",
+			// Block tag if not self-closing and not {{:}} or {{>}} (special case) and not a data-link expression
+			block = !slash && !colon;
+
+		//==== nested helper function ====
+		tagName = tagName || (params = params || "#data", colon); // {{:}} is equivalent to {{:#data}}
+		pushprecedingContent(index);
+		loc = index + all.length; // location marker - parsed up to here
+		if (codeTag) {
+			if (allowCode) {
+				content.push(["*", "\n" + params.replace(/^:/, "ret+= ").replace(rUnescapeQuotes, "$1") + ";\n"]);
+			}
+		} else if (tagName) {
+			if (tagName === "else") {
+				if (rTestElseIf.test(params)) {
+					syntaxError('For "{{else if expr}}" use "{{else expr}}"');
+				}
+				pathBindings = current[9] && [[]];
+				current[10] = markup.substring(current[10], index); // contentMarkup for block tag
+				openTagName = current[11] || current[0] || syntaxError("Mismatched: " + all);
+				// current[0] is tagName, but for {{else}} nodes, current[11] is tagName of preceding open tag
+				current = stack.pop();
+				content = current[2];
+				block = true;
+			}
+			if (params) {
+				// remove newlines from the params string, to avoid compiled code errors for unterminated strings
+				parseParams(params.replace(rNewLine, " "), pathBindings, tmpl, isLinkExpr)
+					.replace(rBuildHash, function(all, onerror, isCtxPrm, key, keyToken, keyValue, arg, param) {
+						if (key === "this:") {
+							keyValue = "undefined"; // this=some.path is always a to parameter (one-way), so don't need to compile/evaluate some.path initialization
+						}
+						if (param) {
+							isLateOb = isLateOb || param[0] === "@";
+						}
+						key = "'" + keyToken + "':";
+						if (arg) {
+							args += isCtxPrm + keyValue + ",";
+							paramsArgs += "'" + param + "',";
+						} else if (isCtxPrm) { // Contextual parameter, ~foo=expr
+							ctxProps += key + 'j._cp(' + keyValue + ',"' + param + '",view),';
+							// Compiled code for evaluating tagCtx on a tag will have: ctx:{'foo':j._cp(compiledExpr, "expr", view)}
+							paramsCtxProps += key + "'" + param + "',";
+						} else if (onerror) {
+							onError += keyValue;
+						} else {
+							if (keyToken === "trigger") {
+								useTrigger += keyValue;
+							}
+							if (keyToken === "lateRender") {
+								late = param !== "false"; // Render after first pass
+							}
+							props += key + keyValue + ",";
+							paramsProps += key + "'" + param + "',";
+							hasHandlers = hasHandlers || rHasHandlers.test(keyToken);
+						}
+						return "";
+					}).slice(0, -1);
+			}
+
+			if (pathBindings && pathBindings[0]) {
+				pathBindings.pop(); // Remove the binding that was prepared for next arg. (There is always an extra one ready).
+			}
+
+			newNode = [
+					tagName,
+					converter || !!convertBack || hasHandlers || "",
+					block && [],
+					parsedParam(paramsArgs || (tagName === ":" ? "'#data'," : ""), paramsProps, paramsCtxProps), // {{:}} equivalent to {{:#data}}
+					parsedParam(args || (tagName === ":" ? "data," : ""), props, ctxProps),
+					onError,
+					useTrigger,
+					late,
+					isLateOb,
+					pathBindings || 0
+				];
+			content.push(newNode);
+			if (block) {
+				stack.push(current);
+				current = newNode;
+				current[10] = loc; // Store current location of open tag, to be able to add contentMarkup when we reach closing tag
+				current[11] = openTagName; // Used for checking syntax (matching close tag)
+			}
+		} else if (closeBlock) {
+			blockTagCheck(closeBlock !== current[0] && closeBlock !== current[11] && closeBlock, current[0]); // Check matching close tag name
+			current[10] = markup.substring(current[10], index); // contentMarkup for block tag
+			current = stack.pop();
+		}
+		blockTagCheck(!current && closeBlock);
+		content = current[2];
+	}
+	//==== /end of nested functions ====
+
+	var i, result, newNode, hasHandlers, bindings,
+		allowCode = $subSettings.allowCode || tmpl && tmpl.allowCode
+			|| $viewsSettings.allowCode === true, // include direct setting of settings.allowCode true for backward compat only
+		astTop = [],
+		loc = 0,
+		stack = [],
+		content = astTop,
+		current = [,,astTop];
+
+	if (allowCode && tmpl._is) {
+		tmpl.allowCode = allowCode;
+	}
+
+//TODO	result = tmplFnsCache[markup]; // Only cache if template is not named and markup length < ...,
+//and there are no bindings or subtemplates?? Consider standard optimization for data-link="a.b.c"
+//		if (result) {
+//			tmpl.fn = result;
+//		} else {
+
+//		result = markup;
+	if (isLinkExpr) {
+		if (convertBack !== undefined) {
+			markup = markup.slice(0, -convertBack.length - 2) + delimCloseChar0;
+		}
+		markup = delimOpenChar0 + markup + delimCloseChar1;
+	}
+
+	blockTagCheck(stack[0] && stack[0][2].pop()[0]);
+	// Build the AST (abstract syntax tree) under astTop
+	markup.replace(rTag, parseTag);
+
+	pushprecedingContent(markup.length);
+
+	if (loc = astTop[astTop.length - 1]) {
+		blockTagCheck("" + loc !== loc && (+loc[10] === loc[10]) && loc[0]);
+	}
+//			result = tmplFnsCache[markup] = buildCode(astTop, tmpl);
+//		}
+
+	if (isLinkExpr) {
+		result = buildCode(astTop, markup, isLinkExpr);
+		bindings = [];
+		i = astTop.length;
+		while (i--) {
+			bindings.unshift(astTop[i][9]); // With data-link expressions, pathBindings array for tagCtx[i] is astTop[i][9]
+		}
+		setPaths(result, bindings);
+	} else {
+		result = buildCode(astTop, tmpl);
+	}
+	return result;
+}
+
+function setPaths(fn, pathsArr) {
+	var key, paths,
+		i = 0,
+		l = pathsArr.length;
+	fn.deps = [];
+	fn.paths = []; // The array of path binding (array/dictionary)s for each tag/else block's args and props
+	for (; i < l; i++) {
+		fn.paths.push(paths = pathsArr[i]);
+		for (key in paths) {
+			if (key !== "_jsvto" && paths.hasOwnProperty(key) && paths[key].length && !paths[key].skp) {
+				fn.deps = fn.deps.concat(paths[key]); // deps is the concatenation of the paths arrays for the different bindings
+			}
+		}
+	}
+}
+
+function parsedParam(args, props, ctx) {
+	return [args.slice(0, -1), props.slice(0, -1), ctx.slice(0, -1)];
+}
+
+function paramStructure(paramCode, paramVals) {
+	return '\n\tparams:{args:[' + paramCode[0] + '],\n\tprops:{' + paramCode[1] + '}'
+		+ (paramCode[2] ? ',\n\tctx:{' + paramCode[2] + '}' : "")
+		+ '},\n\targs:[' + paramVals[0] + '],\n\tprops:{' + paramVals[1] + '}'
+		+ (paramVals[2] ? ',\n\tctx:{' + paramVals[2] + '}' : "");
+}
+
+function parseParams(params, pathBindings, tmpl, isLinkExpr) {
+
+	function parseTokens(all, lftPrn0, lftPrn, bound, path, operator, err, eq, path2, late, prn,
+												comma, lftPrn2, apos, quot, rtPrn, rtPrnDot, prn2, space, index, full) {
+	// /(\()(?=\s*\()|(?:([([])\s*)?(?:(\^?)(~?[\w$.^]+)?\s*((\+\+|--)|\+|-|~(?![\w$])|&&|\|\||===|!==|==|!=|<=|>=|[<>%*:?\/]|(=))\s*|(!*?(@)?[#~]?[\w$.^]+)([([])?)|(,\s*)|(?:(\()\s*)?\\?(?:(')|("))|(?:\s*(([)\]])(?=[.^]|\s*$|[^([])|[)\]])([([]?))|(\s+)/g,
+	//lftPrn0           lftPrn         bound     path               operator     err                                          eq      path2 late            prn      comma  lftPrn2          apos quot        rtPrn  rtPrnDot                  prn2     space
+	// (left paren? followed by (path? followed by operator) or (path followed by paren?)) or comma or apos or quot or right paren or space
+
+		function parsePath(allPath, not, object, helper, view, viewProperty, pathTokens, leafToken) {
+			// /^(!*?)(?:null|true|false|\d[\d.]*|([\w$]+|\.|~([\w$]+)|#(view|([\w$]+))?)([\w$.^]*?)(?:[.[^]([\w$]+)\]?)?)$/g,
+			//    not                               object     helper    view  viewProperty pathTokens      leafToken
+			subPath = object === ".";
+			if (object) {
+				path = path.slice(not.length);
+				if (/^\.?constructor$/.test(leafToken||path)) {
+					syntaxError(allPath);
+				}
+				if (!subPath) {
+					allPath = (late // late path @a.b.c: not throw on 'property of undefined' if a undefined, and will use _getOb() after linking to resolve late.
+							? (isLinkExpr ? '' : '(ltOb.lt=ltOb.lt||') + '(ob='
+							: ""
+						)
+						+ (helper
+							? 'view.ctxPrm("' + helper + '")'
+							: view
+								? "view"
+								: "data")
+						+ (late
+							? ')===undefined' + (isLinkExpr ? '' : ')') + '?"":view._getOb(ob,"'
+							: ""
+						)
+						+ (leafToken
+							? (viewProperty
+								? "." + viewProperty
+								: helper
+									? ""
+									: (view ? "" : "." + object)
+								) + (pathTokens || "")
+							: (leafToken = helper ? "" : view ? viewProperty || "" : object, ""));
+					allPath = allPath + (leafToken ? "." + leafToken : "");
+
+					allPath = not + (allPath.slice(0, 9) === "view.data"
+						? allPath.slice(5) // convert #view.data... to data...
+						: allPath)
+					+ (late
+							? (isLinkExpr ? '"': '",ltOb') + (prn ? ',1)':')')
+							: ""
+						);
+				}
+				if (bindings) {
+					binds = named === "_linkTo" ? (bindto = pathBindings._jsvto = pathBindings._jsvto || []) : bndCtx.bd;
+					if (theOb = subPath && binds[binds.length-1]) {
+						if (theOb._cpfn) { // Computed property exprOb
+							while (theOb.sb) {
+								theOb = theOb.sb;
+							}
+							if (theOb.prm) {
+								if (theOb.bnd) {
+									path = "^" + path.slice(1);
+								}
+								theOb.sb = path;
+								theOb.bnd = theOb.bnd || path[0] === "^";
+							}
+						}
+					} else {
+						binds.push(path);
+					}
+					if (prn && !subPath) {
+						pathStart[fnDp] = ind;
+						compiledPathStart[fnDp] = compiledPath[fnDp].length;
+					}
+				}
+			}
+			return allPath;
+		}
+
+		//bound = bindings && bound;
+		if (bound && !eq) {
+			path = bound + path; // e.g. some.fn(...)^some.path - so here path is "^some.path"
+		}
+		operator = operator || "";
+		lftPrn2 = lftPrn2 || "";
+		lftPrn = lftPrn || lftPrn0 || lftPrn2;
+		path = path || path2;
+
+		if (late && (late = !/\)|]/.test(full[index-1]))) {
+			path = path.slice(1).split(".").join("^"); // Late path @z.b.c. Use "^" rather than "." to ensure that deep binding will be used
+		}
+		// Could do this - but not worth perf cost?? :-
+		// if (!path.lastIndexOf("#data.", 0)) { path = path.slice(6); } // If path starts with "#data.", remove that.
+		prn = prn || prn2 || "";
+		var expr, binds, theOb, newOb, subPath, lftPrnFCall, ret,
+			ind = index;
+
+		if (!aposed && !quoted) {
+			if (err) {
+				syntaxError(params);
+			}
+			if (rtPrnDot && bindings) {
+				// This is a binding to a path in which an object is returned by a helper/data function/expression, e.g. foo()^x.y or (a?b:c)^x.y
+				// We create a compiled function to get the object instance (which will be called when the dependent data of the subexpression changes, to return the new object, and trigger re-binding of the subsequent path)
+				expr = pathStart[fnDp-1];
+				if (full.length - 1 > ind - (expr || 0)) { // We need to compile a subexpression
+					expr = $.trim(full.slice(expr, ind + all.length));
+					binds = bindto || bndStack[fnDp-1].bd;
+					// Insert exprOb object, to be used during binding to return the computed object
+					theOb = binds[binds.length-1];
+					if (theOb && theOb.prm) {
+						while (theOb.sb && theOb.sb.prm) {
+							theOb = theOb.sb;
+						}
+						newOb = theOb.sb = {path: theOb.sb, bnd: theOb.bnd};
+					} else {
+						binds.push(newOb = {path: binds.pop()}); // Insert exprOb object, to be used during binding to return the computed object
+					}
+					if (theOb && theOb.sb === newOb) {
+						compiledPath[fnDp] = compiledPath[fnDp-1].slice(theOb._cpPthSt) + compiledPath[fnDp];
+						compiledPath[fnDp-1] = compiledPath[fnDp-1].slice(0, theOb._cpPthSt);
+					}
+					newOb._cpPthSt = compiledPathStart[fnDp-1];
+					newOb._cpKey = expr;
+
+					compiledPath[fnDp] += full.slice(prevIndex, index);
+					prevIndex = index;
+
+					newOb._cpfn = cpFnStore[expr] = cpFnStore[expr] || // Compiled function for computed value: get from store, or compile and store
+						new Function("data,view,j", // Compiled function for computed value in template
+					"//" + expr + "\nvar v;\nreturn ((v=" + compiledPath[fnDp] + (rtPrn === "]" ? ")]" : rtPrn) + ")!=null?v:null);");
+
+					compiledPath[fnDp-1] += (fnCall[prnDp] && $subSettingsAdvanced.cache ? "view.getCache(\"" + expr.replace(rEscapeQuotes, "\\$&") + "\"" : compiledPath[fnDp]);
+
+					newOb.prm = bndCtx.bd;
+					newOb.bnd = newOb.bnd || newOb.path && newOb.path.indexOf("^") >= 0;
+				}
+				compiledPath[fnDp] = "";
+			}
+			if (prn === "[") {
+				prn = "[j._sq(";
+			}
+			if (lftPrn === "[") {
+				lftPrn = "[j._sq(";
+			}
+		}
+		ret = (aposed
+			// within single-quoted string
+			? (aposed = !apos, (aposed ? all : lftPrn2 + '"'))
+			: quoted
+			// within double-quoted string
+				? (quoted = !quot, (quoted ? all : lftPrn2 + '"'))
+				:
+			(
+				(lftPrn
+					? (
+						prnStack[++prnDp] = true,
+						prnInd[prnDp] = 0,
+						bindings && (
+							pathStart[fnDp++] = ind++,
+							bndCtx = bndStack[fnDp] = {bd: []},
+							compiledPath[fnDp] = "",
+							compiledPathStart[fnDp] = 1
+						),
+						lftPrn) // Left paren, (not a function call paren)
+					: "")
+				+ (space
+					? (prnDp
+						? "" // A space within parens or within function call parens, so not a separator for tag args
+			// New arg or prop - so insert backspace \b (\x08) as separator for named params, used subsequently by rBuildHash, and prepare new bindings array
+						: (paramIndex = full.slice(paramIndex, ind), named
+							? (named = boundName = bindto = false, "\b")
+							: "\b,") + paramIndex + (paramIndex = ind + all.length, bindings && pathBindings.push(bndCtx.bd = []), "\b")
+					)
+					: eq
+			// named param. Remove bindings for arg and create instead bindings array for prop
+						? (fnDp && syntaxError(params), bindings && pathBindings.pop(), named = "_" + path, boundName = bound, paramIndex = ind + all.length,
+								bindings && ((bindings = bndCtx.bd = pathBindings[named] = []), bindings.skp = !bound), path + ':')
+						: path
+			// path
+							? (path.split("^").join(".").replace($sub.rPath, parsePath)
+								+ (prn || operator)
+							)
+							: operator
+			// operator
+								? operator
+								: rtPrn
+			// function
+									? rtPrn === "]" ? ")]" : ")"
+									: comma
+										? (fnCall[prnDp] || syntaxError(params), ",") // We don't allow top-level literal arrays or objects
+										: lftPrn0
+											? ""
+											: (aposed = apos, quoted = quot, '"')
+			))
+		);
+
+		if (!aposed && !quoted) {
+			if (rtPrn) {
+				fnCall[prnDp] = false;
+				prnDp--;
+			}
+		}
+
+		if (bindings) {
+			if (!aposed && !quoted) {
+				if (rtPrn) {
+					if (prnStack[prnDp+1]) {
+						bndCtx = bndStack[--fnDp];
+						prnStack[prnDp+1] = false;
+					}
+					prnStart = prnInd[prnDp+1];
+				}
+				if (prn) {
+					prnInd[prnDp+1] = compiledPath[fnDp].length + (lftPrn ? 1 : 0);
+					if (path || rtPrn) {
+						bndCtx = bndStack[++fnDp] = {bd: []};
+						prnStack[prnDp+1] = true;
+					}
+				}
+			}
+
+			compiledPath[fnDp] = (compiledPath[fnDp]||"") + full.slice(prevIndex, index);
+			prevIndex = index+all.length;
+
+			if (!aposed && !quoted) {
+				if (lftPrnFCall = lftPrn && prnStack[prnDp+1]) {
+					compiledPath[fnDp-1] += lftPrn;
+					compiledPathStart[fnDp-1]++;
+				}
+				if (prn === "(" && subPath && !newOb) {
+					compiledPath[fnDp] = compiledPath[fnDp-1].slice(prnStart) + compiledPath[fnDp];
+					compiledPath[fnDp-1] = compiledPath[fnDp-1].slice(0, prnStart);
+				}
+			}
+			compiledPath[fnDp] += lftPrnFCall ? ret.slice(1) : ret;
+		}
+
+		if (!aposed && !quoted && prn) {
+			prnDp++;
+			if (path && prn === "(") {
+				fnCall[prnDp] = true;
+			}
+		}
+
+		if (!aposed && !quoted && prn2) {
+			if (bindings) {
+				compiledPath[fnDp] += prn;
+			}
+			ret += prn;
+		}
+		return ret;
+	}
+
+	var named, bindto, boundName, result,
+		quoted, // boolean for string content in double quotes
+		aposed, // or in single quotes
+		bindings = pathBindings && pathBindings[0], // bindings array for the first arg
+		bndCtx = {bd: bindings},
+		bndStack = {0: bndCtx},
+		paramIndex = 0, // list,
+		// The following are used for tracking path parsing including nested paths, such as "a.b(c^d + (e))^f", and chained computed paths such as
+		// "a.b().c^d().e.f().g" - which has four chained paths, "a.b()", "^c.d()", ".e.f()" and ".g"
+		prnDp = 0,     // For tracking paren depth (not function call parens)
+		fnDp = 0,      // For tracking depth of function call parens
+		prnInd = {},   // We are in a function call
+		prnStart = 0,  // tracks the start of the current path such as c^d() in the above example
+		prnStack = {}, // tracks parens which are not function calls, and so are associated with new bndStack contexts
+		fnCall = {},   // We are in a function call
+		pathStart = {},// tracks the start of the current path such as c^d() in the above example
+		compiledPathStart = {0: 0},
+		compiledPath = {0:""},
+		prevIndex = 0;
+
+	if (params[0] === "@") {
+		params = params.replace(rBracketQuote, ".");
+	}
+	result = (params + (tmpl ? " " : "")).replace($sub.rPrm, parseTokens);
+
+	if (bindings) {
+		result = compiledPath[0];
+	}
+
+	return !prnDp && result || syntaxError(params); // Syntax error if unbalanced parens in params expression
+}
+
+function buildCode(ast, tmpl, isLinkExpr) {
+	// Build the template function code from the AST nodes, and set as property on the passed-in template object
+	// Used for compiling templates, and also by JsViews to build functions for data link expressions
+	var i, node, tagName, converter, tagCtx, hasTag, hasEncoder, getsVal, hasCnvt, useCnvt, tmplBindings, pathBindings, params, boundOnErrStart,
+		boundOnErrEnd, tagRender, nestedTmpls, tmplName, nestedTmpl, tagAndElses, content, markup, nextIsElse, oldCode, isElse, isGetVal, tagCtxFn,
+		onError, tagStart, trigger, lateRender, retStrOpen, retStrClose,
+		tmplBindingKey = 0,
+		useViews = $subSettingsAdvanced.useViews || tmpl.useViews || tmpl.tags || tmpl.templates || tmpl.helpers || tmpl.converters,
+		code = "",
+		tmplOptions = {},
+		l = ast.length;
+
+	if ("" + tmpl === tmpl) {
+		tmplName = isLinkExpr ? 'data-link="' + tmpl.replace(rNewLine, " ").slice(1, -1) + '"' : tmpl;
+		tmpl = 0;
+	} else {
+		tmplName = tmpl.tmplName || "unnamed";
+		if (tmpl.allowCode) {
+			tmplOptions.allowCode = true;
+		}
+		if (tmpl.debug) {
+			tmplOptions.debug = true;
+		}
+		tmplBindings = tmpl.bnds;
+		nestedTmpls = tmpl.tmpls;
+	}
+	for (i = 0; i < l; i++) {
+		// AST nodes: [0: tagName, 1: converter, 2: content, 3: params, 4: code, 5: onError, 6: trigger, 7:pathBindings, 8: contentMarkup]
+		node = ast[i];
+
+		// Add newline for each callout to t() c() etc. and each markup string
+		if ("" + node === node) {
+			// a markup string to be inserted
+			code += '+"' + node + '"';
+		} else {
+			// a compiled tag expression to be inserted
+			tagName = node[0];
+			if (tagName === "*") {
+				// Code tag: {{* }}
+				code += ";\n" + node[1] + "\nret=ret";
+			} else {
+				converter = node[1];
+				content = !isLinkExpr && node[2];
+				tagCtx = paramStructure(node[3], params = node[4]);
+				trigger = node[6];
+				lateRender = node[7];
+				if (node[8]) { // latePath @a.b.c or @~a.b.c
+					retStrOpen = "\nvar ob,ltOb={},ctxs=";
+					retStrClose = ";\nctxs.lt=ltOb.lt;\nreturn ctxs;";
+				} else {
+					retStrOpen = "\nreturn ";
+					retStrClose = "";
+				}
+				markup = node[10] && node[10].replace(rUnescapeQuotes, "$1");
+				if (isElse = tagName === "else") {
+					if (pathBindings) {
+						pathBindings.push(node[9]);
+					}
+				} else {
+					onError = node[5] || $subSettings.debugMode !== false && "undefined"; // If debugMode not false, set default onError handler on tag to "undefined" (see onRenderError)
+					if (tmplBindings && (pathBindings = node[9])) { // Array of paths, or false if not data-bound
+						pathBindings = [pathBindings];
+						tmplBindingKey = tmplBindings.push(1); // Add placeholder in tmplBindings for compiled function
+					}
+				}
+				useViews = useViews || params[1] || params[2] || pathBindings || /view.(?!index)/.test(params[0]);
+				// useViews is for perf optimization. For render() we only use views if necessary - for the more advanced scenarios.
+				// We use views if there are props, contextual properties or args with #... (other than #index) - but you can force
+				// using the full view infrastructure, (and pay a perf price) by opting in: Set useViews: true on the template, manually...
+				if (isGetVal = tagName === ":") {
+					if (converter) {
+						tagName = converter === HTML ? ">" : converter + tagName;
+					}
+				} else {
+					if (content) { // TODO optimize - if content.length === 0 or if there is a tmpl="..." specified - set content to null / don't run this compilation code - since content won't get used!!
+						// Create template object for nested template
+						nestedTmpl = tmplObject(markup, tmplOptions);
+						nestedTmpl.tmplName = tmplName + "/" + tagName;
+						// Compile to AST and then to compiled function
+						nestedTmpl.useViews = nestedTmpl.useViews || useViews;
+						buildCode(content, nestedTmpl);
+						useViews = nestedTmpl.useViews;
+						nestedTmpls.push(nestedTmpl);
+					}
+
+					if (!isElse) {
+						// This is not an else tag.
+						tagAndElses = tagName;
+						useViews = useViews || tagName && (!$tags[tagName] || !$tags[tagName].flow);
+						// Switch to a new code string for this bound tag (and its elses, if it has any) - for returning the tagCtxs array
+						oldCode = code;
+						code = "";
+					}
+					nextIsElse = ast[i + 1];
+					nextIsElse = nextIsElse && nextIsElse[0] === "else";
+				}
+				tagStart = onError ? ";\ntry{\nret+=" : "\n+";
+				boundOnErrStart = "";
+				boundOnErrEnd = "";
+
+				if (isGetVal && (pathBindings || trigger || converter && converter !== HTML || lateRender)) {
+					// For convertVal we need a compiled function to return the new tagCtx(s)
+					tagCtxFn = new Function("data,view,j", "// " + tmplName + " " + (++tmplBindingKey) + " " + tagName
+						+ retStrOpen + "{" + tagCtx + "};" + retStrClose);
+					tagCtxFn._er = onError;
+					tagCtxFn._tag = tagName;
+					tagCtxFn._bd = !!pathBindings; // data-linked tag {^{.../}}
+					tagCtxFn._lr = lateRender;
+
+					if (isLinkExpr) {
+						return tagCtxFn;
+					}
+
+					setPaths(tagCtxFn, pathBindings);
+					tagRender = 'c("' + converter + '",view,';
+					useCnvt = true;
+					boundOnErrStart = tagRender + tmplBindingKey + ",";
+					boundOnErrEnd = ")";
+				}
+				code += (isGetVal
+					? (isLinkExpr ? (onError ? "try{\n" : "") + "return " : tagStart) + (useCnvt // Call _cnvt if there is a converter: {{cnvt: ... }} or {^{cnvt: ... }}
+						? (useCnvt = undefined, useViews = hasCnvt = true, tagRender + (tagCtxFn
+							? ((tmplBindings[tmplBindingKey - 1] = tagCtxFn), tmplBindingKey) // Store the compiled tagCtxFn in tmpl.bnds, and pass the key to convertVal()
+							: "{" + tagCtx + "}") + ")")
+						: tagName === ">"
+							? (hasEncoder = true, "h(" + params[0] + ")")
+							: (getsVal = true, "((v=" + params[0] + ')!=null?v:' + (isLinkExpr ? 'null)' : '"")'))
+							// Non strict equality so data-link="title{:expr}" with expr=null/undefined removes title attribute
+					)
+					: (hasTag = true, "\n{view:view,content:false,tmpl:" // Add this tagCtx to the compiled code for the tagCtxs to be passed to renderTag()
+						+ (content ? nestedTmpls.length : "false") + "," // For block tags, pass in the key (nestedTmpls.length) to the nested content template
+						+ tagCtx + "},"));
+
+				if (tagAndElses && !nextIsElse) {
+					// This is a data-link expression or an inline tag without any elses, or the last {{else}} of an inline tag
+					// We complete the code for returning the tagCtxs array
+					code = "[" + code.slice(0, -1) + "]";
+					tagRender = 't("' + tagAndElses + '",view,this,';
+					if (isLinkExpr || pathBindings) {
+						// This is a bound tag (data-link expression or inline bound tag {^{tag ...}}) so we store a compiled tagCtxs function in tmp.bnds
+						code = new Function("data,view,j", " // " + tmplName + " " + tmplBindingKey + " " + tagAndElses + retStrOpen + code
+							+ retStrClose);
+						code._er = onError;
+						code._tag = tagAndElses;
+						if (pathBindings) {
+							setPaths(tmplBindings[tmplBindingKey - 1] = code, pathBindings);
+						}
+						code._lr = lateRender;
+						if (isLinkExpr) {
+							return code; // For a data-link expression we return the compiled tagCtxs function
+						}
+						boundOnErrStart = tagRender + tmplBindingKey + ",undefined,";
+						boundOnErrEnd = ")";
+					}
+
+					// This is the last {{else}} for an inline tag.
+					// For a bound tag, pass the tagCtxs fn lookup key to renderTag.
+					// For an unbound tag, include the code directly for evaluating tagCtxs array
+					code = oldCode + tagStart + tagRender + (pathBindings && tmplBindingKey || code) + ")";
+					pathBindings = 0;
+					tagAndElses = 0;
+				}
+				if (onError && !nextIsElse) {
+					useViews = true;
+					code += ';\n}catch(e){ret' + (isLinkExpr ? "urn " : "+=") + boundOnErrStart + 'j._err(e,view,' + onError + ')' + boundOnErrEnd + ';}' + (isLinkExpr ? "" : '\nret=ret');
+				}
+			}
+		}
+	}
+	// Include only the var references that are needed in the code
+	code = "// " + tmplName
+		+ (tmplOptions.debug ? "\ndebugger;" : "")
+		+ "\nvar v"
+		+ (hasTag ? ",t=j._tag" : "")                // has tag
+		+ (hasCnvt ? ",c=j._cnvt" : "")              // converter
+		+ (hasEncoder ? ",h=j._html" : "")           // html converter
+		+ (isLinkExpr
+				? (node[8] // late @... path?
+						? ", ob"
+						: ""
+					) + ";\n"
+				: ',ret=""')
+		+ code
+		+ (isLinkExpr ? "\n" : ";\nreturn ret;");
+
+	try {
+		code = new Function("data,view,j", code);
+	} catch (e) {
+		syntaxError("Compiled template code:\n\n" + code + '\n: "' + (e.message||e) + '"');
+	}
+	if (tmpl) {
+		tmpl.fn = code;
+		tmpl.useViews = !!useViews;
+	}
+	return code;
+}
+
+//==========
+// Utilities
+//==========
+
+// Merge objects, in particular contexts which inherit from parent contexts
+function extendCtx(context, parentContext) {
+	// Return copy of parentContext, unless context is defined and is different, in which case return a new merged context
+	// If neither context nor parentContext are defined, return undefined
+	return context && context !== parentContext
+		? (parentContext
+			? $extend($extend({}, parentContext), context)
+			: context)
+		: parentContext && $extend({}, parentContext);
+}
+
+function getTargetProps(source, tagCtx) {
+	// this pointer is theMap - which has tagCtx.props too
+	// arguments: tagCtx.args.
+	var key, prop,
+		map = tagCtx.map,
+		propsArr = map && map.propsArr;
+
+	if (!propsArr) { // map.propsArr is the full array of {key:..., prop:...} objects
+		propsArr = [];
+		if (typeof source === OBJECT || $isFunction(source)) {
+			for (key in source) {
+				prop = source[key];
+				if (key !== $expando && source.hasOwnProperty(key) && (!tagCtx.props.noFunctions || !$.isFunction(prop))) {
+					propsArr.push({key: key, prop: prop});
+				}
+			}
+		}
+		if (map) {
+			map.propsArr = map.options && propsArr; // If bound {^{props}} and not isRenderCall, store propsArr on map (map.options is defined only for bound, && !isRenderCall)
+		}
+	}
+	return getTargetSorted(propsArr, tagCtx); // Obtains map.tgt, by filtering, sorting and splicing the full propsArr
+}
+
+function getTargetSorted(value, tagCtx) {
+	// getTgt
+	var mapped, start, end,
+		tag = tagCtx.tag,
+		props = tagCtx.props,
+		propParams = tagCtx.params.props,
+		filter = props.filter,
+		sort = props.sort,
+		directSort = sort === true,
+		step = parseInt(props.step),
+		reverse = props.reverse ? -1 : 1;
+
+	if (!$isArray(value)) {
+		return value;
+	}
+	if (directSort || sort && "" + sort === sort) {
+		// Temporary mapped array holds objects with index and sort-value
+		mapped = value.map(function(item, i) {
+			item = directSort ? item : getPathObject(item, sort);
+			return {i: i, v: "" + item === item ? item.toLowerCase() : item};
+		});
+		// Sort mapped array
+		mapped.sort(function(a, b) {
+			return a.v > b.v ? reverse : a.v < b.v ? -reverse : 0;
+		});
+		// Map to new array with resulting order
+		value = mapped.map(function(item){
+			return value[item.i];
+		});
+	} else if ((sort || reverse < 0) && !tag.dataMap) {
+		value = value.slice(); // Clone array first if not already a new array
+	}
+	if ($isFunction(sort)) {
+		value = value.sort(function() { // Wrap the sort function to provide tagCtx as 'this' pointer
+			return sort.apply(tagCtx, arguments);
+		});
+	}
+	if (reverse < 0 && (!sort || $isFunction(sort))) { // Reverse result if not already reversed in sort
+		value = value.reverse();
+	}
+
+	if (value.filter && filter) { // IE8 does not support filter
+		value = value.filter(filter, tagCtx);
+		if (tagCtx.tag.onFilter) {
+			tagCtx.tag.onFilter(tagCtx);
+		}
+	}
+
+	if (propParams.sorted) {
+		mapped = (sort || reverse < 0) ? value : value.slice();
+		if (tag.sorted) {
+			$.observable(tag.sorted).refresh(mapped); // Note that this might cause the start and end props to be modified - e.g. by pager tag control
+		} else {
+			tagCtx.map.sorted = mapped;
+		}
+	}
+
+	start = props.start; // Get current value - after possible changes triggered by tag.sorted refresh() above
+	end = props.end;
+	if (propParams.start && start === undefined || propParams.end && end === undefined) {
+		start = end = 0;
+	}
+	if (!isNaN(start) || !isNaN(end)) { // start or end specified, but not the auto-create Number array scenario of {{for start=xxx end=yyy}}
+		start = +start || 0;
+		end = end === undefined || end > value.length ? value.length : +end;
+		value = value.slice(start, end);
+	}
+	if (step > 1) {
+		start = 0;
+		end = value.length;
+		mapped = [];
+		for (; start<end; start+=step) {
+			mapped.push(value[start]);
+		}
+		value = mapped;
+	}
+	if (propParams.paged && tag.paged) {
+		$observable(tag.paged).refresh(value);
+	}
+
+	return value;
+}
+
+/** Render the template as a string, using the specified data and helpers/context
+* $("#tmpl").render()
+*
+* @param {any}        data
+* @param {hash}       [helpersOrContext]
+* @param {boolean}    [noIteration]
+* @returns {string}   rendered template
+*/
+function $fnRender(data, context, noIteration) {
+	var tmplElem = this.jquery && (this[0] || error('Unknown template')), // Targeted element not found for jQuery template selector such as "#myTmpl"
+		tmpl = tmplElem.getAttribute(tmplAttr);
+
+	return renderContent.call(tmpl && $.data(tmplElem)[jsvTmpl] || $templates(tmplElem),
+		data, context, noIteration);
+}
+
+//========================== Register converters ==========================
+
+function getCharEntity(ch) {
+	// Get character entity for HTML, Attribute and optional data encoding
+	return charEntities[ch] || (charEntities[ch] = "&#" + ch.charCodeAt(0) + ";");
+}
+
+function getCharFromEntity(match, token) {
+	// Get character from HTML entity, for optional data unencoding
+	return charsFromEntities[token] || "";
+}
+
+function htmlEncode(text) {
+	// HTML encode: Replace < > & ' " ` etc. by corresponding entities.
+	return text != undefined ? rIsHtml.test(text) && ("" + text).replace(rHtmlEncode, getCharEntity) || text : "";
+}
+
+function dataEncode(text) {
+	// Encode just < > and & - intended for 'safe data' along with {{:}} rather than {{>}}
+  return "" + text === text ? text.replace(rDataEncode, getCharEntity) : text;
+}
+
+function dataUnencode(text) {
+  // Unencode just < > and & - intended for 'safe data' along with {{:}} rather than {{>}}
+  return "" + text === text ? text.replace(rDataUnencode, getCharFromEntity) : text;
+}
+
+//========================== Initialize ==========================
+
+$sub = $views.sub;
+$viewsSettings = $views.settings;
+
+if (!(jsr || $ && $.render)) {
+	// JsRender/JsViews not already loaded (or loaded without jQuery, and we are now moving from jsrender namespace to jQuery namepace)
+	for (jsvStoreName in jsvStores) {
+		registerStore(jsvStoreName, jsvStores[jsvStoreName]);
+	}
+
+	$converters = $views.converters;
+	$helpers = $views.helpers;
+	$tags = $views.tags;
+
+	$sub._tg.prototype = {
+		baseApply: baseApply,
+		cvtArgs: convertArgs,
+		bndArgs: convertBoundArgs,
+		ctxPrm: contextParameter
+	};
+
+	topView = $sub.topView = new View();
+
+	//BROWSER-SPECIFIC CODE
+	if ($) {
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		// jQuery (= $) is loaded
+
+		$.fn.render = $fnRender;
+		$expando = $.expando;
+		if ($.observable) {
+			if (versionNumber !== (versionNumber = $.views.jsviews)) {
+				// Different version of jsRender was loaded
+				throw "jquery.observable.js requires jsrender.js " + versionNumber;
+			}
+			$extend($sub, $.views.sub); // jquery.observable.js was loaded before jsrender.js
+			$views.map = $.views.map;
+		}
+
+	} else {
+		////////////////////////////////////////////////////////////////////////////////////////////////
+		// jQuery is not loaded.
+
+		$ = {};
+
+		if (setGlobals) {
+			global.jsrender = $; // We are loading jsrender.js from a script element, not AMD or CommonJS, so set global
+		}
+
+		// Error warning if jsrender.js is used as template engine on Node.js (e.g. Express or Hapi...)
+		// Use jsrender-node.js instead...
+		$.renderFile = $.__express = $.compile = function() { throw "Node.js: use npm jsrender, or jsrender-node.js"; };
+
+		//END BROWSER-SPECIFIC CODE
+		$.isFunction = function(ob) {
+			return typeof ob === "function";
+		};
+
+		$.isArray = Array.isArray || function(obj) {
+			return ({}.toString).call(obj) === "[object Array]";
+		};
+
+		$sub._jq = function(jq) { // private method to move from JsRender APIs from jsrender namespace to jQuery namespace
+			if (jq !== $) {
+				$extend(jq, $); // map over from jsrender namespace to jQuery namespace
+				$ = jq;
+				$.fn.render = $fnRender;
+				delete $.jsrender;
+				$expando = $.expando;
+			}
+		};
+
+		$.jsrender = versionNumber;
+	}
+	$subSettings = $sub.settings;
+	$subSettings.allowCode = false;
+	$isFunction = $.isFunction;
+	$.render = $render;
+	$.views = $views;
+	$.templates = $templates = $views.templates;
+
+	for (setting in $subSettings) {
+		addSetting(setting);
+	}
+
+	/**
+	* $.views.settings.debugMode(true)
+	* @param {boolean} debugMode
+	* @returns {Settings}
+	*
+	* debugMode = $.views.settings.debugMode()
+	* @returns {boolean}
+	*/
+	($viewsSettings.debugMode = function(debugMode) {
+		return debugMode === undefined
+			? $subSettings.debugMode
+			: (
+				$subSettings._clFns && $subSettings._clFns(), // Clear linkExprStore (cached compiled expressions), since debugMode setting affects compilation for expressions
+				$subSettings.debugMode = debugMode,
+				$subSettings.onError = debugMode + "" === debugMode
+					? function() { return debugMode; }
+					: $isFunction(debugMode)
+						? debugMode
+						: undefined,
+				$viewsSettings);
+	})(false); // jshint ignore:line
+
+	$subSettingsAdvanced = $subSettings.advanced = {
+		cache: true, // By default use cached values of computed values (Otherwise, set advanced cache setting to false)
+		useViews: false,
+		_jsv: false // For global access to JsViews store
+	};
+
+	//========================== Register tags ==========================
+
+	$tags({
+		"if": {
+			render: function(val) {
+				// This function is called once for {{if}} and once for each {{else}}.
+				// We will use the tag.rendering object for carrying rendering state across the calls.
+				// If not done (a previous block has not been rendered), look at expression for this block and render the block if expression is truthy
+				// Otherwise return ""
+				var self = this,
+					tagCtx = self.tagCtx,
+					ret = (self.rendering.done || !val && (tagCtx.args.length || !tagCtx.index))
+						? ""
+						: (self.rendering.done = true,
+							self.selected = tagCtx.index,
+							undefined); // Test is satisfied, so render content on current context
+				return ret;
+			},
+			contentCtx: true, // Inherit parent view data context
+			flow: true
+		},
+		"for": {
+			sortDataMap: dataMap(getTargetSorted),
+			init: function(val, cloned) {
+				this.setDataMap(this.tagCtxs);
+			},
+			render: function(val) {
+				// This function is called once for {{for}} and once for each {{else}}.
+				// We will use the tag.rendering object for carrying rendering state across the calls.
+				var value, filter, srtField, isArray, i, sorted, end, step,
+					self = this,
+					tagCtx = self.tagCtx,
+					range = tagCtx.argDefault === false,
+					props = tagCtx.props,
+					iterate = range || tagCtx.args.length, // Not final else and not auto-create range
+					result = "",
+					done = 0;
+
+				if (!self.rendering.done) {
+					value = iterate ? val : tagCtx.view.data; // For the final else, defaults to current data without iteration.
+
+					if (range) {
+						range = props.reverse ? "unshift" : "push";
+						end = +props.end;
+						step = +props.step || 1;
+						value = []; // auto-create integer array scenario of {{for start=xxx end=yyy}}
+						for (i = +props.start || 0; (end - i) * step > 0; i += step) {
+							value[range](i);
+						}
+					}
+					if (value !== undefined) {
+						isArray = $isArray(value);
+						result += tagCtx.render(value, !iterate || props.noIteration);
+						// Iterates if data is an array, except on final else - or if noIteration property
+						// set to true. (Use {{include}} to compose templates without array iteration)
+						done += isArray ? value.length : 1;
+					}
+					if (self.rendering.done = done) {
+						self.selected = tagCtx.index;
+					}
+					// If nothing was rendered we will look at the next {{else}}. Otherwise, we are done.
+				}
+				return result;
+			},
+			setDataMap: function(tagCtxs) {
+				var tagCtx, props, paramsProps,
+					self = this,
+					l = tagCtxs.length;
+				while (l--) {
+					tagCtx = tagCtxs[l];
+					props = tagCtx.props;
+					paramsProps = tagCtx.params.props;
+					tagCtx.argDefault = props.end === undefined || tagCtx.args.length > 0; // Default to #data except for auto-create range scenario {{for start=xxx end=yyy step=zzz}}
+					props.dataMap = (tagCtx.argDefault !== false && $isArray(tagCtx.args[0]) &&
+						(paramsProps.sort || paramsProps.start || paramsProps.end || paramsProps.step || paramsProps.filter || paramsProps.reverse
+						|| props.sort || props.start || props.end || props.step || props.filter || props.reverse))
+						&& self.sortDataMap;
+				}
+			},
+			flow: true
+		},
+		props: {
+			baseTag: "for",
+			dataMap: dataMap(getTargetProps),
+			init: noop, // Don't execute the base init() of the "for" tag
+			flow: true
+		},
+		include: {
+			flow: true
+		},
+		"*": {
+			// {{* code... }} - Ignored if template.allowCode and $.views.settings.allowCode are false. Otherwise include code in compiled template
+			render: retVal,
+			flow: true
+		},
+		":*": {
+			// {{:* returnedExpression }} - Ignored if template.allowCode and $.views.settings.allowCode are false. Otherwise include code in compiled template
+			render: retVal,
+			flow: true
+		},
+		dbg: $helpers.dbg = $converters.dbg = dbgBreak // Register {{dbg/}}, {{dbg:...}} and ~dbg() to throw and catch, as breakpoints for debugging.
+	});
+
+	$converters({
+		html: htmlEncode,
+		attr: htmlEncode, // Includes > encoding since rConvertMarkers in JsViews does not skip > characters in attribute strings
+		encode: dataEncode,
+		unencode: dataUnencode, // Includes > encoding since rConvertMarkers in JsViews does not skip > characters in attribute strings
+		url: function(text) {
+			// URL encoding helper.
+			return text != undefined ? encodeURI("" + text) : text === null ? text : ""; // null returns null, e.g. to remove attribute. undefined returns ""
+		}
+	});
+}
+//========================== Define default delimiters ==========================
+$subSettings = $sub.settings;
+$isArray = ($||jsr).isArray;
+$viewsSettings.delimiters("{{", "}}", "^");
+
+if (jsrToJq) { // Moving from jsrender namespace to jQuery namepace - copy over the stored items (templates, converters, helpers...)
+	jsr.views.sub._jq($);
+}
+return $ || jsr;
+}, window));
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+var __webpack_exports__ = {};
+/*!**************************************!*\
+  !*** ./resources/assets/js/turbo.js ***!
+  \**************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _hotwired_turbo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @hotwired/turbo */ "./node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js");
+
+
+
+window.Turbo = _hotwired_turbo__WEBPACK_IMPORTED_MODULE_0__;
+_hotwired_turbo__WEBPACK_IMPORTED_MODULE_0__.start();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_hotwired_turbo__WEBPACK_IMPORTED_MODULE_0__);
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+(() => {
+/*!*******************************************!*\
+  !*** ./resources/assets/js/web/plugin.js ***!
+  \*******************************************/
+document.addEventListener('turbo:load', loadPluginLightGallery);
+
+function loadPluginLightGallery() {
+  if (!$('.lightGallery').length) {
+    return;
+  }
+
+  $('.lightgallery').lightGallery({
+    mode: 'lg-slide-circular',
+    counter: false
+  });
+}
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!***********************************************!*\
+  !*** ./resources/assets/js/custom/helpers.js ***!
+  \***********************************************/
+
+
+window.isEmpty = function (value) {
+  return value === undefined || value === null || value === '';
+};
+
+window.randomCode = function () {
+  var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 6;
+  return Math.random().toString(36).slice(-length);
+};
+
+window.listen = function (event, selector, callback) {
+  $(document).on(event, selector, callback);
+};
+
+window.listenClick = function (selector, callback) {
+  $(document).on('click', selector, callback);
+};
+
+window.listenSubmit = function (selector, callback) {
+  $(document).on('submit', selector, callback);
+};
+
+window.listenHiddenBsModal = function (selector, callback) {
+  $(document).on('hidden.bs.modal', selector, callback);
+};
+
+window.listenChange = function (selector, callback) {
+  $(document).on('change', selector, callback);
+};
+
+window.listenKeyup = function (selector, callback) {
+  $(document).on('keyup', selector, callback);
+};
+
+window.listenShownBsModal = function (selector, callback) {
+  $(document).on('shown.bs.modal', selector, callback);
+};
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!**********************************************!*\
+  !*** ./resources/assets/js/custom/custom.js ***!
+  \**********************************************/
+
+
+var jsrender = __webpack_require__(/*! jsrender */ "./node_modules/jsrender/jsrender.js");
+
+var csrfToken = $('meta[name="csrf-token"]').attr("content"); // console.log(csrfToken);
+
+$.ajaxSetup({
+  headers: {
+    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+  }
+});
+document.addEventListener("turbo:load", initAllComponents);
+
+function initAllComponents() {
+  select2initialize();
+  refreshCsrfToken();
+  alertInitialize();
+  modalInputFocus();
+  inputFocus();
+  IOInitImageComponent();
+  IOInitSidebar();
+}
+
+var firstTime = true;
+
+function select2initialize() {
+  $('[data-control="select2"]').each(function () {
+    $(this).select2();
+  });
+}
+
+$(".getLanguage").val();
+
+function refreshCsrfToken() {
+  csrfToken = $('meta[name="csrf-token"]').attr("content");
+  $.ajaxSetup({
+    headers: {
+      "X-CSRF-TOKEN": csrfToken
+    }
+  });
+}
+
+function alertInitialize() {
+  $(".alert").delay(5000).slideUp(300);
+}
+
+var modalInputFocus = function modalInputFocus() {
+  $(function () {
+    $(".modal").on("shown.bs.modal", function () {
+      $(this).find("input:text").first().focus();
+    });
+  });
+};
+
+var inputFocus = function inputFocus() {
+  $('input:text:not([readonly="readonly"]):not([name="search"]):not(.front-input)').first().focus();
+};
+
+$(document).on("keydown", function (e) {
+  if (e.keyCode === 27) {
+    $(".modal").modal("hide");
+  }
+});
+$('input:text:not([readonly="readonly"])').first().focus();
+$(document).on("select2:open", function () {
+  var allFound = document.querySelectorAll(".select2-container--open .select2-search__field");
+  allFound[allFound.length - 1].focus();
+});
+$('[data-control="select2"]').each(function () {
+  $(this).select2();
+});
+document.addEventListener("livewire:load", function () {
+  window.livewire.hook("message.processed", function () {
+    $('[data-control="select2"]').each(function () {
+      $(this).select2();
+    });
+  });
+});
+$(document).on("focus", ".select2.select2-container", function (e) {
+  var isOriginalEvent = e.originalEvent; // don't re-open on closing focus event
+
+  var isSingleSelect = $(this).find(".select2-selection--single").length > 0; // multi-select will pass focus to input
+
+  if (isOriginalEvent && isSingleSelect) {
+    $(this).siblings("select:enabled").select2("open");
+  }
+});
+$(document).ready(function () {
+  // initializer script for bootstrap 4 tooltip
+  $('[data-bs-toggle="tooltip"]').tooltip();
+
+  function tooltip() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  } // script to active parent menu if sub menu has currently active
+
+
+  var hasActiveMenu = $(document).find(".nav-item.nav-dropdown ul li.nav-item").hasClass("active");
+  if (hasActiveMenu) $(document).find(".nav-item.nav-dropdown ul li.nav-item.active").parent("ul").parent("li").addClass("open");
+  listenClick(".nav-item.nav-dropdown", function () {
+    var openLiSelector = $(document).find(".nav-item.nav-dropdown").hasClass("open");
+    if (openLiSelector && $(this).hasClass("open")) setTimeout(function () {
+      $(this).removeClass("open");
+    }, 1000);else $(document).find(".nav-item.nav-dropdown").removeClass("open");
+  }); // remove capital letters from email validation script.
+
+  listenKeyup('input[name="email"]', function () {
+    this.value = this.value.toLowerCase();
+  });
+  $('input[name="email"]').keypress(function (e) {
+    if (e.which === 32) return false;
+  });
+});
+$(function () {
+  listenShownBsModal(".modal", function () {
+    $(this).find("input:text").first().focus();
+  });
+  listenHiddenBsModal(".modal", function () {
+    $(".image-input.image-input-empty").attr("style", "display:inline-block");
+  });
+});
+
+window.resetModalForm = function (formId, validationBox) {
+  var inputs = $(formId)[0].elements;
+  $.each(inputs, function (index, value) {
+    if (typeof value._flatpickr !== "undefined") {
+      value._flatpickr.clear();
+
+      value._flatpickr.setDate(new Date());
+    }
+  });
+  $(formId)[0].reset();
+  $("select.select2Selector").each(function (index, element) {
+    var drpSelector = "#" + $(this).attr("id");
+    $(drpSelector).val("");
+    $(drpSelector).trigger("change");
+  });
+  $(validationBox).hide();
+};
+
+window.processingBtn = function (selecter, btnId) {
+  var state = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var loadingButton = $(selecter).find(btnId);
+
+  if (state === "loading") {
+    loadingButton.button("loading");
+  } else {
+    loadingButton.button("reset");
+  }
+};
+
+window.printErrorMessage = function (selector, errorResult) {
+  // $(selector).show().html("");
+  // $(selector).text(errorResult.responseJSON.message);
+  displayErrorMessage(errorResult.responseJSON.message);
+};
+
+toastr.options = {
+  closeButton: true,
+  debug: false,
+  newestOnTop: false,
+  progressBar: true,
+  positionClass: "toast-top-right",
+  preventDuplicates: false,
+  onclick: null,
+  showDuration: "300",
+  hideDuration: "1000",
+  timeOut: "5000",
+  extendedTimeOut: "1000",
+  showEasing: "swing",
+  hideEasing: "linear",
+  showMethod: "fadeIn",
+  hideMethod: "fadeOut"
+};
+
+window.manageAjaxErrors = function (data) {
+  var errorDivId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "editValidationErrorsBox";
+
+  if (data.status == 404) {
+    toastr.error(data.responseJSON.message);
+  } else {
+    printErrorMessage("#" + errorDivId, data);
+  }
+};
+
+window.displaySuccessMessage = function (message) {
+  toastr.success(message);
+};
+
+window.displayErrorMessage = function (message) {
+  toastr.error(message);
+};
+
+window.displayPhoto = function (input, selector) {
+  var displayPreview = true;
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      var image = new Image();
+      image.src = e.target.result;
+
+      image.onload = function () {
+        $(selector).attr("src", e.target.result);
+        displayPreview = true;
+      };
+    };
+
+    if (displayPreview) {
+      reader.readAsDataURL(input.files[0]);
+      $(selector).show();
+    }
+  }
+};
+
+window.isValidFile = function (inputSelector, validationMessageSelector) {
+  var ext = $(inputSelector).val().split(".").pop().toLowerCase();
+
+  if ($.inArray(ext, ["gif", "png", "jpg", "jpeg"]) == -1) {
+    $(inputSelector).val("");
+    $(validationMessageSelector).html(Lang.get("js.validate_image_type")).removeClass("d-none").show();
+    setTimeout(function () {
+      $(validationMessageSelector).slideUp(300);
+    }, 5000);
+    return false;
+  }
+
+  $(validationMessageSelector).addClass("d-none");
+  return true;
+};
+
+window.format = function (dateTime) {
+  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "YYYY-MM-DD";
+  return moment(dateTime).format(format);
+};
+
+window.DatetimepickerDefaults = function (opts) {
+  return $.extend({}, {
+    sideBySide: true,
+    ignoreReadonly: true,
+    icons: {
+      up: "icon-arrow-up-circle icons font-2xl",
+      down: "icon-arrow-down-circle icons font-2xl",
+      previous: "icon-arrow-left icons",
+      next: "icon-arrow-right icons",
+      time: "fa fa-clock-o",
+      date: "fa fa-calendar",
+      today: "fa fa-crosshairs",
+      clear: "fa fa-trash",
+      close: "fa fa-times"
+    }
+  }, opts);
+};
+
+window.screenLock = function () {
+  $("#overlay-screen-lock").show();
+  $("body").css({
+    "pointer-events": "none",
+    opacity: "0.6"
+  });
+};
+
+window.screenUnLock = function () {
+  $("body").css({
+    "pointer-events": "auto",
+    opacity: "1"
+  });
+  $("#overlay-screen-lock").hide();
+};
+
+window.prepareTemplateRender = function (templateSelector, data) {
+  var template = jsrender.templates(templateSelector);
+  return template.render(data);
+};
+/**
+ * @return string
+ */
+
+
+window.getCurrentCurrencyClass = function () {
+  return "<b>" + $(".currentCurrency").val() + "</b>";
+};
+/**
+ * @return string
+ */
+
+
+window.getCurrentCurrency = function () {
+  return $(".getCurrentCurrency").val();
+};
+
+window.hideDropdownManually = function (dropdownBtnEle, dropdownEle) {
+  dropdownBtnEle.removeClass("show");
+  dropdownEle.removeClass("show");
+};
+
+window.displayDocument = function (input, selector, extension) {
+  var displayPreview = true;
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      var image = new Image();
+
+      if ($.inArray(extension, ["pdf", "doc", "docx", "mp3", "mp4"]) == -1) {
+        image.src = e.target.result;
+      } else {
+        if (extension == "pdf") {
+          $("#editPhoto").css("background-image", 'url("' + $(".pdfDocumentImageUrl").val() + '")');
+          image.src = $(".pdfDocumentImageUrl").val();
+        } else if (extension == "mp3") {
+          image.src = $(".audioDocumentImageUrl").val();
+        } else if (extension == "mp4") {
+          image.src = $(".videoDocumentImageUrl").val();
+        } else {
+          image.src = $(".docxDocumentImageUrl").val();
+        }
+      }
+
+      image.onload = function () {
+        $(selector).attr("src", image.src);
+        $(selector).css("background-image", 'url("' + image.src + '")');
+        displayPreview = true;
+      };
+    };
+
+    if (displayPreview) {
+      reader.readAsDataURL(input.files[0]);
+      $(selector).show();
+    }
+  }
+};
+
+var ajaxCallIsRunning = $(".ajaxCallIsRunning").val();
+
+window.ajaxCallInProgress = function () {
+  ajaxCallIsRunning = true;
+};
+
+window.ajaxCallCompleted = function () {
+  ajaxCallIsRunning = false;
+};
+
+window.UnprocessableInputError = function (data) {
+  toastr.error(data.responseJSON.message);
+}; // set N/A if span tag is empty
+
+
+window.setValueOfEmptySpan = function () {
+  $("span.showSpan").each(function () {
+    if (!$(this).text()) {
+      $(this).text(Lang.get("js.n/a"));
+    }
+  });
+}; // Add comma into numbers
+
+
+window.addCommas = function (number) {
+  number += "";
+  var x = number.split(".");
+  var x1 = x[0];
+  var x2 = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, "$1" + "," + "$2");
+  }
+
+  return x1 + x2;
+};
+
+$(function () {
+  listenClick(".notification", function (e) {
+    e.stopPropagation();
+    var notificationId = $(this).data("id");
+    var notification = $(this);
+    $('[data-toggle="tooltip"]').tooltip("hide");
+    $.ajax({
+      type: "get",
+      url: "/notification/" + notificationId + "/read",
+      success: function success() {
+        notification.remove();
+        displaySuccessMessage(Lang.get("js.notification_read_successfully"));
+        var notificationCounter = document.getElementsByClassName("notification").length;
+        $("#counter").text(notificationCounter);
+
+        if (notificationCounter == 0) {
+          $(".read-all-notification").addClass("d-none");
+          $(".empty-state").removeClass("d-none");
+          $("#counter").text(notificationCounter);
+          $(".notification-count").addClass("d-none");
+        }
+      },
+      error: function error(result) {
+        manageAjaxErrors(result);
+      }
+    });
+  });
+  listenClick("#readAllNotification", function (e) {
+    e.stopPropagation();
+    $.ajax({
+      type: "post",
+      url: "/read-all-notification",
+      success: function success() {
+        $(".notification").remove();
+        var notificationCounter = document.getElementsByClassName("notification").length;
+        $("#counter").text(notificationCounter);
+        $("#readAllNotification").addClass("d-none");
+        $(".empty-state").addClass("d-none");
+        $(".empty-state.empty-notification").removeClass("d-none");
+        $(".notification-count").addClass("d-none");
+        displaySuccessMessage(Lang.get("js.all_notification_read_successfully"));
+      },
+      error: function error(result) {
+        manageAjaxErrors(result);
+      }
+    });
+  });
+});
+
+window.avoidSpace = function (event) {
+  var k = event ? event.which : window.event.keyCode;
+
+  if (k == 32 && event.path[0].value.length <= 0) {
+    return false;
+  }
+};
+
+var defaultAvatarImageUrl = "asset('assets/img/avatar.png')";
+
+window.defaultImagePreview = function (imagePreviewSelector) {
+  var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+  if (id == 1) {
+    $(imagePreviewSelector).css("background-image", 'url("' + defaultAvatarImageUrl + '")');
+  } else {
+    $(imagePreviewSelector).css("background-image", 'url("' + $(".defaultDocumentImageUrl").val() + '")');
+  }
+};
+
+window.cancelAppointment = function (url, tableId, header, appointmentId) {
+  swal({
+    title: Lang.get("js.cancel") + " " + Lang.get("js.appointment"),
+    text: Lang.get("js.are_you_sure_want_to_cancel") + " " + header + " ?",
+    type: "warning",
+    icon: "warning",
+    closeOnConfirm: false,
+    confirmButtonColor: "#000000",
+    showLoaderOnConfirm: true,
+    buttons: {
+      confirm: Lang.get("js.yes"),
+      cancel: Lang.get("js.no")
+    }
+  }).then(function (result) {
+    if (result) {
+      cancelAppointmentAjax(url, tableId, header, appointmentId);
+    }
+  });
+};
+
+function cancelAppointmentAjax(url, tableId, header, appointmentId) {
+  $.ajax({
+    url: url,
+    type: "POST",
+    success: function success(obj) {
+      if (obj.success) {
+        Livewire.emit("refresh");
+      }
+
+      swal({
+        title: Lang.get("js.canceled") + " " + Lang.get("js.appointment"),
+        text: header + Lang.get("js.has_been_cancelled"),
+        icon: "success",
+        confirmButtonColor: "#D9214E",
+        buttons: {
+          confirm: Lang.get("js.ok")
+        },
+        timer: 2000
+      });
+    },
+    error: function error(data) {
+      swal({
+        title: "Error",
+        icon: "error",
+        text: data.responseJSON.message,
+        type: "error",
+        confirmButtonColor: "#D9214E",
+        buttons: {
+          confirm: Lang.get("js.ok")
+        },
+        timer: 5000
+      });
+    }
+  });
+}
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+(() => {
+/*!****************************************!*\
+  !*** ./resources/assets/js/web/web.js ***!
+  \****************************************/
+document.addEventListener('turbo:load', loadWebContentData);
+
+function loadWebContentData() {
+  // if(!$('.doctor-name-filter').length) {
+  //     return
+  // }
+  //
+  // if(!$('.datepicker').length) {
+  //     return
+  // }
+  $('.doctor-name-filter').selectize();
+  $.datepicker.setDefaults($.datepicker.regional[$('.userCurrentLanguage').val()]);
+  $('.datepicker').datepicker({
+    minDate: new Date(),
+    isRTL: false,
+    dateFormat: 'dd/mm/yy'
+  });
+  $(window).on('scroll', function () {
+    var scrolled = $(window).scrollTop();
+    if (scrolled > 600) $('.go-top').addClass('active');
+    if (scrolled < 600) $('.go-top').removeClass('active');
+  });
+  $('.go-top').on('click', function () {
+    $("html, body").animate({
+      scrollTop: "0"
+    }, 500);
+  });
+
+  if (!$(".testimonial-slider").length) {
+    return;
+  }
+
+  $(".slick-slider").slick({
+    slidesToShow: 4,
+    infinite: true,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 1500,
+    dots: true,
+    arrows: false,
+    responsive: [{
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1
+      }
+    }, {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }, {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }]
+  });
+  $(".testimonial-slider").slick({
+    slidesToShow: 1,
+    infinite: true,
+    slidesToScroll: 1,
+    // autoplay: true,
+    autoplaySpeed: 1500,
+    dots: true,
+    arrows: true,
+    prevArrow: '<span class="prev-arrow"><i class="fas fa-chevron-left fs-5"></i></span>',
+    nextArrow: '<span class="next-arrow"><i class="fas fa-chevron-right fs-5"></i></span>',
+    responsive: [{
+      breakpoint: 767,
+      settings: {
+        arrows: false
+      }
+    }]
+  });
+}
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!************************************************!*\
+  !*** ./resources/assets/js/web/appointment.js ***!
+  \************************************************/
+
+
+document.addEventListener('turbo:load', loadWebAppointmentDate);
+
+function loadWebAppointmentDate() {
+  if (!$('#webAppointmentFormSubmit').length) {
+    return;
+  }
+
+  var customDate = $('#customFieldDate').val();
+  var customDateTime = $('#customFieldDateTime').val();
+  $('#customFieldDate').datepicker({
+    format: 'Y-m-d',
+    useCurrent: false,
+    sideBySide: true,
+    minDate: customDateTime ? customDateTime : new Date()
+  });
+  $('#customFieldDateTime').datepicker({
+    format: "Y-m-d H:i",
+    useCurrent: false,
+    sideBySide: true,
+    minDate: customDateTime ? customDateTime : new Date()
+  });
+  $('.custom-field-select').selectize();
+  $('.custom-field-multi-select').selectize();
+
+  if (!$('#opdDate').length) {
+    return;
+  }
+
+  $('#advancePaymentPatientId').selectize();
+  $('#webDepartmentId').selectize();
+  $('#appointmentDoctorId').selectize();
+  var doctor = $('#doctor').val();
+  Lang.setLocale($('.userCurrentLanguage').val());
+  var opdDate = $('#opdDate').datepicker({
+    useCurrent: false,
+    sideBySide: true,
+    isRTL: false,
+    minDate: new Date(),
+    // dateFormat: 'dd/mm/yy',
+    onSelect: function onSelect(selectedDate, dateStr) {
+      var selectDate = selectedDate;
+      dateSelectSlot = selectedDate;
+      $('.doctor-schedule').css('display', 'none');
+      $('.error-message').css('display', 'none');
+      $('.available-slot-heading').css('display', 'none');
+      $('.color-information').css('display', 'none');
+      $('.time-slot').remove();
+
+      if ($('#webDepartmentId').val() == '') {
+        $('#validationErrorsBox').show().html(Lang.get('js.please_select_doctor_department'));
+        $('#validationErrorsBox').delay(5000).fadeOut();
+        $('#opdDate').val(''); // opdDate.clear();
+
+        return false;
+      } else if ($('#appointmentDoctorId').val() == '') {
+        $('#validationErrorsBox').show().html(Lang.get('js.please_select_doctor'));
+        $('#validationErrorsBox').delay(5000).fadeOut();
+        $('#opdDate').val(''); // opdDate.clear();
+
+        return false;
+      }
+
+      var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var selected = new Date(selectedDate);
+      var selectedAppDate = $(this).datepicker('getDate');
+      var dayName = weekday[selectedAppDate.getDay()];
+      selectedDate = dateStr; //if dayName is blank, then ajax call not run.
+
+      if (dayName == null || dayName == '') {
+        return false;
+      } //get doctor schedule list with time slot.
+
+
+      $.ajax({
+        type: 'GET',
+        url: $('#homeDoctorScheduleList').val(),
+        data: {
+          day_name: dayName,
+          doctor_id: doctorId
+        },
+        success: function success(result) {
+          if (result.success) {
+            if (result.data != '') {
+              if (result.data.scheduleDay.length != 0) {
+                var availableFrom = '';
+
+                if (moment(new Date()).format('MM/DD/YYYY') === selectDate) {
+                  availableFrom = moment(new Date()).format('H:mm:ss'); // availableFrom = moment.duration(
+                  //     result.data.perPatientTime[0].per_patient_time).
+                  //     asMinutes()
+                  // availableFrom = moment(
+                  //     availableFrom.toString()).
+                  //     format('H:mm:ss')
+                  // availableFrom = moment().ceil(moment.duration( result.data.perPatientTime[0].per_patient_time).asMinutes(), 'minute');
+                  // availableFrom = moment.duration( result.data.perPatientTime[0].per_patient_time).asMinutes();
+                  // availableFrom = moment(availableFrom.toString()).format('H:mm:ss');
+                  // console.log(availableFrom)
+                  // availableFrom = moment(new Date()).
+                  //     add(result.data.perPatientTime[0].per_patient_time,
+                  //         'minutes').
+                  //     format('H:mm:ss')
+                } else {
+                  availableFrom = result.data.scheduleDay[0].available_from;
+                }
+
+                var doctorStartTime = selectedDate + ' ' + availableFrom;
+                var doctorEndTime = selectedDate + ' ' + result.data.scheduleDay[0].available_to;
+                var doctorPatientTime = result.data.perPatientTime[0].per_patient_time; // console.log(moment(new Date()).format('LTS'))
+                // console.log(result.data.scheduleDay[0].available_to)
+                // console.log(moment(new Date()).format('LTS') > result.data.scheduleDay[0].available_to)
+                //perPatientTime convert to Minute
+
+                var a = doctorPatientTime.split(':'); // split it at the colons
+
+                var minutes = +a[0] * 60 + +a[1]; // convert to minute
+                //parse In
+
+                var startTime = parseIn(doctorStartTime);
+                var now = new Date();
+
+                if (selectedDate.selectedDay == now.getDate()) {
+                  startTime.setTime(startTime.getTime() + 1000 * 60);
+                }
+
+                var endTime = parseIn(doctorEndTime); //call to getTimeIntervals function
+
+                intervals = getTimeIntervals(startTime, endTime, minutes); //if intervals array length is grater then 0 then process
+
+                if (intervals.length > 0) {
+                  $('.available-slot-heading').css('display', 'block');
+                  $('.color-information').css('display', 'block');
+                  var index;
+                  var timeStlots = '';
+
+                  for (index = 0; index < intervals.length; ++index) {
+                    var data = [{
+                      'index': index,
+                      'timeSlot': intervals[index]
+                    }];
+                    var timeSlot = prepareTemplateRender('#appointmentSlotTemplate', data);
+                    timeStlots += timeSlot;
+                  }
+
+                  $('.available-slot').append(timeStlots);
+                } // display Day Name and time
+
+
+                if (availableFrom != '00:00:00' && result.data.scheduleDay[0].available_to != '00:00:00' && doctorStartTime != doctorEndTime) {
+                  $('.doctor-schedule').css('display', 'block');
+                  $('.color-information').css('display', 'block');
+                  $('.day-name').html(result.data.scheduleDay[0].available_on);
+                  $('.schedule-time').html('[' + availableFrom + ' - ' + result.data.scheduleDay[0].available_to + ']');
+                } else {
+                  $('.doctor-schedule').css('display', 'none');
+                  $('.color-information').css('display', 'none');
+                  $('.error-message').css('display', 'block');
+                  $('.error-message').html(Lang.get('js.doctor_schedule_not_available_on_this_date'));
+                }
+              } else {
+                $('.doctor-schedule').css('display', 'none');
+                $('.color-information').css('display', 'none');
+                $('.error-message').css('display', 'block');
+                $('.error-message').html(Lang.get('js.doctor_schedule_not_available_on_this_date'));
+              }
+            }
+          }
+        },
+        error: function error(result) {
+          displayErrorMessage(result.responseJSON.message);
+        }
+      });
+
+      if ($('#homeIsCreate').val() || $('#homeIsEdit').val()) {
+        var getCreateTimeSlot = function getCreateTimeSlot() {
+          if ($('#homeIsCreate').val()) {
+            slotsData = {
+              editSelectedDate: moment($('#opdDate').datepicker('getDate')).format('MM/DD/YYYY'),
+              doctor_id: doctorId
+            };
+          } else {
+            slotsData = {
+              editSelectedDate: moment($('#opdDate').datepicker('getDate')).format('MM/DD/YYYY'),
+              editId: appointmentEditId,
+              doctor_id: doctorId
+            };
+          }
+
+          $.ajax({
+            url: $('#homeGetBookingSlot').val(),
+            type: 'GET',
+            data: slotsData,
+            success: function success(result) {
+              alreadyCreateTimeSlot = result.data.bookingSlotArr;
+
+              if (result.data.hasOwnProperty('onlyTime')) {
+                if (result.data.bookingSlotArr.length > 0) {
+                  editTimeSlot = result.data.onlyTime.toString();
+                  $.each(result.data.bookingSlotArr, function (index, value) {
+                    $.each(intervals, function (i, v) {
+                      if (value == v) {
+                        $('.time-interval').each(function () {
+                          if ($(this).data('id') == i) {
+                            if ($(this).html() != editTimeSlot) {
+                              $(this).parent().css({
+                                'background-color': '#ffa721',
+                                'border': '1px solid #ffa721',
+                                'color': '#ffffff'
+                              });
+                              $(this).parent().addClass('booked');
+                              $(this).parent().children().prop('disabled', true);
+                            }
+                          }
+                        });
+                      }
+                    });
+                  });
+                }
+
+                $('.time-interval').each(function () {
+                  if ($(this).html() == editTimeSlot && result.data.bookingSlotArr.length > 0) {
+                    $(this).parent().addClass('time-slot-book');
+                    $(this).parent().removeClass('booked');
+                    $(this).parent().children().prop('disabled', false);
+                    $(this).click();
+                  }
+                });
+              } else if (alreadyCreateTimeSlot.length > 0) {
+                $.each(alreadyCreateTimeSlot, function (index, value) {
+                  $.each(intervals, function (i, v) {
+                    if (value === v) {
+                      $('.time-interval').each(function () {
+                        if ($(this).data('id') === i) {
+                          $(this).parent().addClass('time-slot-book');
+                          $('.time-slot-book').css({
+                            'background-color': '#FF8E4B',
+                            'border': '1px solid #FF8E4B',
+                            'color': '#ffffff'
+                          });
+                          $(this).parent().addClass('booked');
+                          $(this).parent().children().prop('disabled', true);
+                        }
+                      });
+                    }
+                  });
+                });
+              }
+            }
+          });
+        };
+
+        var delayCall = 200;
+        setTimeout(getCreateTimeSlot, delayCall);
+        var slotsData = null;
+      }
+    }
+  }); // opdDate.datepicker(
+  //     $.extend({}, $.datepicker.regional[$('.userCurrentLanguage').val()]))
+  // if edit record then trigger change
+
+  var editTimeSlot;
+
+  if ($('#homeIsEdit').val()) {
+    $('#appointmentDoctorId').trigger('change', function (event) {
+      doctorId = $(this).val();
+    });
+    $('#opdDate').trigger('dp.change', function () {
+      var selected = new Date($(this).val());
+    });
+  }
+
+  $('.old-patient-email').focusout(function () {
+    var email = $('.old-patient-email').val();
+
+    if (oldPatient && email != '') {
+      $.ajax({
+        url: 'appointments' + '/' + email + '/patient-detail',
+        type: 'get',
+        success: function success(result) {
+          if (result.data != null) {
+            $('#patient').empty();
+            $.each(result.data, function (index, value) {
+              $('#patientName').val(value);
+              $('#patient').val(index);
+            });
+          } else {
+            displayErrorMessage(Lang.get('js.patient_not_exists_or_status_is_not_active'));
+          }
+        }
+      });
+    }
+  });
+
+  if (!$('#appointmentDate').val()) {
+    return;
+  }
+
+  var appointmentDate = $('#appointmentDate').val(); // var doctor = $('#doctor').val()
+
+  if (appointmentDate !== null) {
+    loadAppointmentDate();
+  }
+
+  function loadAppointmentDate() {
+    opdDate.datepicker('setDate', appointmentDate); // opdDate.datepicker($.extend({},
+    //     $.datepicker.regional[$('.userCurrentLanguage').val()]))
+
+    if (opdDate !== null) {
+      opdDate instanceof Date;
+      var dateStr = opdDate;
+      var _selectedDate = appointmentDate;
+      $('.doctor-schedule').css('display', 'none');
+      $('.error-message').css('display', 'none');
+      $('.available-slot-heading').css('display', 'none');
+      $('.color-information').css('display', 'none');
+      $('.time-slot').remove(); // if ($('#departmentId').val() == '') {
+      //     $('#validationErrorsBox').
+      //         show().
+      //         html('Please select Doctor Department');
+      //     $('#validationErrorsBox').delay(5000).fadeOut();
+      //     $('#opdDate').val('');
+      //     // opdDate.clear();
+      //     return false;
+      // } else if ($('#doctorId').val() == '') {
+      //     $('#validationErrorsBox').show().html('Please select Doctor');
+      //     $('#validationErrorsBox').delay(5000).fadeOut();
+      //     $('#opdDate').val('');
+      //     // opdDate.clear();
+      //     return false;
+      // }
+
+      var weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      var selected = new Date(_selectedDate);
+      var selectedAppDate = opdDate.datepicker('getDate');
+      var dayName = weekday[selectedAppDate.getDay()]; // let dayName = weekday[selected.getDay()]
+
+      _selectedDate = dateStr; //if dayName is blank, then ajax call not run.
+
+      if (dayName == null || dayName == '') {
+        return false;
+      } //get doctor schedule list with time slot.
+
+
+      $.ajax({
+        type: 'GET',
+        url: $('#homeDoctorScheduleList').val(),
+        data: {
+          day_name: dayName,
+          doctor_id: doctor
+        },
+        success: function success(result) {
+          if (result.success) {
+            if (result.data != '') {
+              if (result.data.scheduleDay.length != 0) {
+                var availableFrom = '';
+
+                if (moment(new Date()).format('MM/DD/YYYY') === appointmentDate) {
+                  // availableFrom = moment(new Date()).
+                  // add(result.data.perPatientTime[0].per_patient_time,
+                  //     'minutes').
+                  // format('H:mm:ss')
+                  // availableFrom = moment.duration(
+                  //     result.data.perPatientTime[0].per_patient_time).
+                  //     asMinutes()
+                  // availableFrom = moment(
+                  //     availableFrom.toString()).
+                  //     format('H:mm:ss')
+                  availableFrom = moment().ceil(moment.duration(result.data.perPatientTime[0].per_patient_time).asMinutes(), 'minute'); // availableFrom = moment.duration( result.data.perPatientTime[0].per_patient_time).asMinutes();
+
+                  availableFrom = moment(availableFrom.toString()).format('H:mm:ss'); // availableFrom = moment(new Date()).
+                  //     add(result.data.perPatientTime[0].per_patient_time,
+                  //         'minutes').
+                  //     format('H:mm:ss')
+                } else {
+                  availableFrom = result.data.scheduleDay[0].available_from;
+                }
+
+                var doctorStartTime = _selectedDate + ' ' + availableFrom;
+                var doctorEndTime = _selectedDate + ' ' + result.data.scheduleDay[0].available_to;
+                var doctorPatientTime = result.data.perPatientTime[0].per_patient_time; //perPatientTime convert to Minute
+
+                var a = doctorPatientTime.split(':'); // split it at the colons
+
+                var minutes = +a[0] * 60 + +a[1]; // convert to minute
+                //parse In
+
+                var startTime = parseIn(doctorStartTime);
+                var endTime = parseIn(doctorEndTime); //call to getTimeIntervals function
+
+                intervals = getTimeIntervals(startTime, endTime, minutes); //if intervals array length is grater then 0 then process
+
+                if (intervals.length > 0) {
+                  $('.available-slot-heading').css('display', 'block');
+                  $('.color-information').css('display', 'block');
+                  var index;
+                  var timeStlots = '';
+
+                  for (index = 0; index < intervals.length; ++index) {
+                    var data = [{
+                      'index': index,
+                      'timeSlot': intervals[index]
+                    }];
+                    var timeSlot = prepareTemplateRender('#appointmentSlotTemplate', data);
+                    timeStlots += timeSlot;
+                  }
+
+                  $('.available-slot').append(timeStlots);
+                } // display Day Name and time
+
+
+                if (availableFrom != '00:00:00' && result.data.scheduleDay[0].available_to != '00:00:00' && doctorStartTime != doctorEndTime) {
+                  $('.doctor-schedule').css('display', 'block');
+                  $('.color-information').css('display', 'block');
+                  $('.day-name').html(result.data.scheduleDay[0].available_on);
+                  $('.schedule-time').html('[' + availableFrom + ' - ' + result.data.scheduleDay[0].available_to + ']');
+                } else {
+                  $('.doctor-schedule').css('display', 'none');
+                  $('.color-information').css('display', 'none');
+                  $('.error-message').css('display', 'block');
+                  $('.error-message').html(Lang.get('js.doctor_schedule_not_available_on_this_date'));
+                }
+              } else {
+                $('.doctor-schedule').css('display', 'none');
+                $('.color-information').css('display', 'none');
+                $('.error-message').css('display', 'block');
+                $('.error-message').html(Lang.get('js.doctor_schedule_not_available_on_this_date'));
+              }
+            }
+          }
+        }
+      });
+
+      if ($('#homeIsCreate').val() || $('#homeIsEdit').val()) {
+        var getCreateTimeSlot = function getCreateTimeSlot() {
+          if ($('#homeIsCreate').val()) {
+            slotsData = {
+              editSelectedDate: moment($('#opdDate').datepicker('getDate')).format('MM/DD/YYYY'),
+              doctor_id: doctorId
+            };
+          } else {
+            slotsData = {
+              editSelectedDate: moment($('#opdDate').datepicker('getDate')).format('MM/DD/YYYY'),
+              editId: appointmentEditId,
+              doctor_id: doctorId
+            };
+          }
+
+          $.ajax({
+            url: $('#homeGetBookingSlot').val(),
+            type: 'GET',
+            data: slotsData,
+            success: function success(result) {
+              alreadyCreateTimeSlot = result.data.bookingSlotArr;
+
+              if (result.data.hasOwnProperty('onlyTime')) {
+                if (result.data.bookingSlotArr.length > 0) {
+                  editTimeSlot = result.data.onlyTime.toString();
+                  $.each(result.data.bookingSlotArr, function (index, value) {
+                    $.each(intervals, function (i, v) {
+                      if (value == v) {
+                        $('.time-interval').each(function () {
+                          if ($(this).data('id') == i) {
+                            if ($(this).html() != editTimeSlot) {
+                              $(this).parent().css({
+                                'background-color': '#ffa721',
+                                'border': '1px solid #ffa721',
+                                'color': '#ffffff'
+                              });
+                              $(this).parent().addClass('booked');
+                              $(this).parent().children().prop('disabled', true);
+                            }
+                          }
+                        });
+                      }
+                    });
+                  });
+                }
+
+                $('.time-interval').each(function () {
+                  if ($(this).html() == editTimeSlot && result.data.bookingSlotArr.length > 0) {
+                    $(this).parent().addClass('time-slot-book');
+                    $(this).parent().removeClass('booked');
+                    $(this).parent().children().prop('disabled', false);
+                    $(this).click();
+                  }
+                });
+              } else if (alreadyCreateTimeSlot.length > 0) {
+                $.each(alreadyCreateTimeSlot, function (index, value) {
+                  $.each(intervals, function (i, v) {
+                    if (value === v) {
+                      $('.time-interval').each(function () {
+                        if ($(this).data('id') === i) {
+                          $(this).parent().addClass('time-slot-book');
+                          $('.time-slot-book').css({
+                            'background-color': '#FF8E4B',
+                            'border': '1px solid #FF8E4B',
+                            'color': '#ffffff'
+                          });
+                          $(this).parent().addClass('booked');
+                          $(this).parent().children().prop('disabled', true);
+                        }
+                      });
+                    }
+                  });
+                });
+              }
+            }
+          });
+        };
+
+        var delayCall = 200;
+        setTimeout(getCreateTimeSlot, delayCall);
+        var slotsData = null;
+      }
+    }
+  }
+}
+
+var selectedDate;
+var intervals;
+var alreadyCreateTimeSlot;
+var dateSelectSlot;
+Lang.setLocale($('.userCurrentLanguage').val());
+$('#patientId').first().focus();
+var doctor = $('#doctor').val();
+var appointmentDate = $('#appointmentDate').val();
+var doctorId;
+var doctorChange = false;
+listenChange('#webDepartmentId', function () {
+  $('.error-message').css('display', 'none');
+  var selectize = $('#appointmentDoctorId')[0].selectize;
+  selectize.clearOptions();
+  $('#opdDate').val(''); // opdDate.clear();
+
+  $.ajax({
+    url: $('#homeDoctorDepartmentUrl').val(),
+    type: 'get',
+    dataType: 'json',
+    data: {
+      id: $(this).val()
+    },
+    success: function success(data) {
+      $('#appointmentDoctorId').empty();
+      $('#appointmentDoctorId').append($('<option value="">Select Doctor</option>'));
+      $.each(data.data, function (i, v) {
+        $('#appointmentDoctorId').append($('<option></option>').attr('value', i).text(v));
+      });
+      var $select = $(document.getElementById('appointmentDoctorId')).selectize();
+      var selectize = $select[0].selectize;
+      $.each(data.data, function (i, v) {
+        selectize.addOption({
+          value: i,
+          text: v
+        });
+      });
+      selectize.refreshOptions();
+    }
+  });
+});
+listenChange('#appointmentDoctorId', function () {
+  if (doctorChange) {
+    $('.error-message').css('display', 'none');
+    $('#opdDate').val(''); // opdDate.clear();
+
+    $('.doctor-schedule').css('display', 'none');
+    $('.error-message').css('display', 'none');
+    $('.available-slot-heading').css('display', 'none');
+    $('.color-information').css('display', 'none');
+    $('.time-slot').remove();
+    doctorChange = true;
+  }
+
+  $('.error-message').css('display', 'none');
+  doctorId = $(this).val();
+  doctorChange = true;
+}); //parseIn date_time
+
+function parseIn(date_time) {
+  var d = new Date();
+  d.setHours(date_time.substring(16, 18));
+  d.setMinutes(date_time.substring(19, 21));
+  return d;
+} //make time slot list
+
+
+function getTimeIntervals(time1, time2, duration) {
+  var arr = [];
+
+  if (new Date() > $('#opdDate').datepicker('getDate') && new Date().getTime() > time2.getTime()) {
+    return arr;
+  } else if (new Date() > new Date($('#appointmentDate').val()) && new Date().getTime() > time2.getTime()) {
+    return arr;
+  } else {
+    while (time1 < time2) {
+      arr.push(time1.toTimeString().substring(0, 5));
+      time1.setMinutes(time1.getMinutes() + duration);
+    }
+
+    return arr;
+  }
+} //slot click change color
+
+
+var selectedTime;
+listenClick('.time-interval', function (event) {
+  var appointmentId = $(event.currentTarget).attr('data-id');
+
+  if ($(this).data('id') == appointmentId) {
+    if ($(this).parent().hasClass('booked')) {
+      $('.time-slot-book').css('background-color', '#ffa0a0');
+    }
+  }
+
+  selectedTime = $(this).text();
+  $('.time-slot').removeClass('time-slot-book');
+  $(this).parent().addClass('time-slot-book');
+});
+var editTimeSlot;
+listenClick('.time-interval', function () {
+  editTimeSlot = $(this).text();
+});
+var oldPatient = false;
+listenChange('.new-patient-radio', function () {
+  // loadAppointmentDate();
+  if ($(this).is(':checked')) {
+    $('.old-patient').addClass('d-none');
+    $('.first-name-div').removeClass('d-none');
+    $('.last-name-div').removeClass('d-none');
+    $('.gender-div').removeClass('d-none');
+    $('.password-div').removeClass('d-none');
+    $('.confirm-password-div').removeClass('d-none');
+    $('.appointment-slot').removeClass('d-none');
+    $('#firstName').prop('required', true);
+    $('#lastName').prop('required', true);
+    $('#password').prop('required', true);
+    $('#confirmPassword').prop('required', true);
+    oldPatient = false;
+  }
+}); // console.log($('.old-patient-radio').val())
+
+listenChange('.old-patient-radio', function () {
+  // console.log('radio button change')
+  if ($(this).is(':checked')) {
+    $('.old-patient').removeClass('d-none');
+    $('.first-name-div').addClass('d-none');
+    $('.last-name-div').addClass('d-none');
+    $('.gender-div').addClass('d-none');
+    $('.password-div').addClass('d-none');
+    $('.confirm-password-div').addClass('d-none');
+    $('.appointment-slot').removeClass('d-none');
+    $('#firstName').prop('required', false);
+    $('#lastName').prop('required', false);
+    $('#password').prop('required', false);
+    $('#confirmPassword').prop('required', false);
+    oldPatient = true;
+  }
+}); // function showScreenLoader () {
+//     $('#overlay-screen-lock').removeClass('d-none');
+// }
+//
+// function hideScreenLoader () {
+//     $('#overlay-screen-lock').addClass('d-none');
+// }
+// listen('keypress', '#firstName, #lastName', function (e) {
+//     if (e.which === 32)
+//         return false;
+// });
+
+$.ajax({
+  url: $('#homeDoctorUrl').val(),
+  type: 'get',
+  dataType: 'json',
+  data: {
+    id: doctor
+  },
+  success: function success(data) {
+    $('#appointmentDoctorId').empty();
+    var $select = $(document.getElementById('appointmentDoctorId')).selectize();
+    var selectize = $select[0].selectize;
+    $.each(data.data, function (i, v) {
+      selectize.addOption({
+        value: i,
+        text: v
+      });
+      selectize.setValue(i);
+    });
+  }
+});
+
+function formReset() {
+  $('.old-patient').addClass('d-none');
+  $('.first-name-div').removeClass('d-none');
+  $('.last-name-div').removeClass('d-none');
+  $('.gender-div').removeClass('d-none');
+  $('.password-div').removeClass('d-none');
+  $('.confirm-password-div').removeClass('d-none');
+  $('.appointment-slot').removeClass('d-none');
+  $('#firstName').prop('required', true);
+  $('#lastName').prop('required', true);
+  $('#password').prop('required', true);
+  $('#confirmPassword').prop('required', true);
+} //create appointment
+
+
+listenSubmit('#webAppointmentFormSubmit', function (event) {
+  event.preventDefault();
+
+  if (!oldPatient) {
+    var isValidate = validatePassword();
+
+    if (!isValidate) {
+      return false;
+    }
+  }
+
+  var isValid = true;
+  $(".dynamic-field").each(function () {
+    var fieldValue = $(this).val();
+    var fieldLabel = $(this).closest(".form-group").find("label").text().replace(":", "").trim();
+
+    if ($(this).is(':input[type="text"], :input[type="number"], textarea')) {
+      if (!fieldValue || fieldValue.trim() === "") {
+        displayErrorMessage(fieldLabel + " field is required.");
+        isValid = false;
+        return false;
+      }
+    } else if ($(this).is(':input[type="toggle"]')) {
+      if (!$(this).is(":checked")) {
+        displayErrorMessage(fieldLabel + " field is required.");
+        isValid = false;
+        return false;
+      }
+    } else if ($(this).is("select")) {
+      if (!fieldValue && $(this).val().length === 0 && fieldValue.trim() === "") {
+        displayErrorMessage(fieldLabel + " field is required.");
+        isValid = false;
+        return false;
+      }
+    }
+  });
+
+  if (selectedTime == null || selectedTime === '') {
+    displayErrorMessage(Lang.get('js.please_select_appointment_time_slot'));
+    return false;
+  }
+
+  $('#opdDate').val(moment($('#opdDate').datepicker('getDate')).format('MM/DD/YYYY'));
+
+  if (isValid == true) {
+    var formData = $(this).serialize() + '&time=' + selectedTime;
+    $.ajax({
+      url: $('#homeAppointmentSaveUrl').val(),
+      type: 'POST',
+      dataType: 'json',
+      data: formData,
+      success: function success(result) {
+        displaySuccessMessage(Lang.get('js.appointment') + ' ' + Lang.get('js.saved_successfully'));
+        $('#webAppointmentFormSubmit')[0].reset();
+        var $select = $('#webDepartmentId').selectize();
+        var control = $select[0].selectize;
+        control.clear();
+        var $selectOne = $('#appointmentDoctorId').selectize();
+        var controlOne = $selectOne[0].selectize;
+        controlOne.clear();
+        var $selectTwo = $('.custom-field-select').selectize();
+        var controlTwo = $selectTwo[0].selectize;
+        controlTwo.clear();
+        var $selectThree = $('.custom-field-multi-select').selectize();
+        var controlThree = $selectThree[0].selectize;
+        controlThree.clear();
+        $('.appointment-slot').addClass('d-none');
+        formReset();
+      },
+      error: function error(result) {
+        // console.log(result.responseJSON.message)
+        displayErrorMessage(result.responseJSON.message);
+        $('#webAppointmentFormSubmit')[0].reset();
+        $('.appointment-slot').addClass('d-none');
+      }
+    });
+  }
+});
+
+function validatePassword() {
+  var password = $('#password').val();
+  var confirmPassword = $('#confirmPassword').val();
+
+  if (password == '' || confirmPassword == '') {
+    displayErrorMessage(Lang.get('js.please_fill_all_the_required_fields'));
+    return false;
+  }
+
+  if (password !== confirmPassword) {
+    displayErrorMessage(Lang.get('js.password_and_confirm_password_not_match'));
+    return false;
+  }
+
+  return true;
+}
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+(() => {
+/*!****************************************************************************!*\
+  !*** ./resources/assets/js/custom/front-side-phone-number-country-code.js ***!
+  \****************************************************************************/
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
+document.addEventListener("turbo:load", loadFrontPhoneNumberCountryCodeData);
+
+function loadFrontPhoneNumberCountryCodeData() {
+  Lang.setLocale($(".userCurrentLanguage").val());
+
+  if (!$(".phoneNumber").length) {
+    return false;
+  }
+
+  var input = document.querySelector(".phoneNumber"),
+      errorMsg = document.querySelector(".error-msg"),
+      validMsg = document.querySelector(".valid-msg");
+  var errorMap = [Lang.get("js.invalid_number"), Lang.get("js.invalid_country_code"), Lang.get("js.too_short"), Lang.get("js.too_long"), Lang.get("js.invalid_number")]; // initialise plugin
+
+  var intl = window.intlTelInput(input, {
+    initialCountry: "auto",
+    separateDialCode: true,
+    geoIpLookup: function geoIpLookup(success, failure) {
+      $.get("https://ipinfo.io", function () {}, "jsonp").always(function (resp) {
+        var countryCode = resp && resp.country ? resp.country : "";
+        success(countryCode);
+      });
+    },
+    utilsScript: $(".utilsScript").val()
+  });
+
+  var reset = function reset() {
+    input.classList.remove("error");
+    errorMsg.innerHTML = "";
+    errorMsg.classList.add("d-none");
+    validMsg.classList.add("d-none");
+  };
+
+  input.addEventListener("blur", function () {
+    reset();
+
+    if (input.value.trim()) {
+      if (intl.isValidNumber()) {
+        validMsg.classList.remove("d-none");
+      } else {
+        input.classList.add("error");
+        var errorCode = intl.getValidationError();
+        errorMsg.innerHTML = errorMap[errorCode];
+        errorMsg.classList.remove("d-none");
+      }
+    }
+  }); // on keyup / change flag: reset
+
+  input.addEventListener("change", reset);
+  input.addEventListener("keyup", reset);
+  var phoneNo = $(".phoneNo").val();
+
+  if (typeof phoneNo != "undefined" && phoneNo !== "") {
+    setTimeout(function () {
+      $(".phoneNumber").trigger("change");
+    }, 500);
+  }
+
+  listen("blur keyup change countrychange", function () {
+    if (typeof phoneNo != "undefined" && phoneNo !== "") {
+      intl.setNumber("+" + phoneNo);
+      "", _readOnlyError("phoneNo");
+    }
+
+    var getCode = intl.selectedCountryData["dialCode"];
+    $(".prefix_code").val(getCode);
+  });
+
+  if ($(".isEdit").val()) {
+    var getCode = intl.selectedCountryData["dialCode"];
+    $(".prefix_code").val(getCode);
+  }
+
+  $(".phoneNumber").focus();
+  $(".phoneNumber").blur();
+  var getPhoneNumber = $(".phoneNumber").val();
+  var removeSpacePhoneNumber = getPhoneNumber.replace(/\s/g, "");
+  $(".phoneNumber").val(removeSpacePhoneNumber);
+}
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+(() => {
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/front_settings/contact_us.js ***!
+  \**********************************************************/
+document.addEventListener("turbo:load", loadFrontSettingContactData);
+
+function loadFrontSettingContactData() {
+  Lang.setLocale($(".userCurrentLanguage").val());
+
+  if (!$("#contactUsGeneral").length) {
+    return;
+  }
+
+  if (!$(".phoneNumber").length) {
+    return false;
+  }
+
+  $("#contactUsGeneral").selectize();
+
+  if ($("#g-recaptcha").length) {
+    grecaptcha.render("g-recaptcha", {
+      sitekey: $("#adminRecaptcha").val()
+    });
+  }
+}
+
+listenSubmit("#enquiryCreateForm", function (e) {
+  e.preventDefault();
+  var response = "";
+
+  if ($(".error-msg").text() !== "") {
+    $(".phoneNumber").focus();
+    return false;
+  }
+
+  $.ajax({
+    url: $("#frontInquiryUrl").val(),
+    type: "POST",
+    data: $(this).serialize(),
+    success: function success(result) {
+      if (result.success) {
+        displaySuccessMessage(result.message); // resetModalForm('#enquiryCreateForm')
+
+        setTimeout(function () {
+          $("#enquiryCreateForm")[0].reset();
+          $(".error-msg").addClass("d-none");
+          $(".valid-msg").addClass("d-none");
+          var $select = $("#contactUsGeneral").selectize();
+          var control = $select[0].selectize;
+          control.setValue(1, true);
+          grecaptcha.reset();
+        }, 5000);
+      } else {
+        displayErrorMessage(result.message);
+        setTimeout(function () {
+          $("#enquiryCreateForm")[0].reset();
+          $(".contactUsGeneral").val(1).trigger("change");
+          grecaptcha.reset();
+        }, 5000);
+      }
+    },
+    error: function error(result) {
+      displayErrorMessage(result.responseJSON.message);
+      grecaptcha.reset();
+    },
+    complete: function complete() {// setTimeout(
+      //     function(){$(".general").val("").change();},
+      //     5000
+      // );
+      // $('.general').val("")
+    }
+  });
+});
+})();
+
+/******/ })()
+;
