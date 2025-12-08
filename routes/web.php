@@ -126,7 +126,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/users/creates', function () {
     return view('users.new_create');
 });
-
+Route::get('/reset', function () {
+    \Artisan::call('config:clear');
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('route:clear');
+    \Artisan::call('view:clear');
+    return "All cache cleared";
+});
 // Routes for Landing Page starts
 Route::middleware('setLanguage')->group(function () {
     Route::get('/', [Web\WebController::class, 'index'])->name('front');
