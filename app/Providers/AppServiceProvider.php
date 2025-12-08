@@ -14,6 +14,7 @@ use Illuminate\Support\ServiceProvider;
 use Mariuzzo\LaravelJsLocalization\Commands\LangJsCommand;
 use Mariuzzo\LaravelJsLocalization\Generators\LangJsGenerator;
 use Schema;
+use Illuminate\Support\Facades\URL; 
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -61,5 +62,9 @@ class AppServiceProvider extends ServiceProvider
 
             return false;
         });
+        // 🔐 Force HTTPS only in production
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
