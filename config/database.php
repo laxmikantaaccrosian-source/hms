@@ -46,8 +46,8 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => tramway.proxy.rlwy.net,
-            'port' => 37877,
+            'host' => 'tramway.proxy.rlwy.net',
+            'port' => '37877',
             'database' => env('DB_DATABASE'),
             'username' => env('DB_USERNAME'),
             'password' => env('DB_PASSWORD'),
