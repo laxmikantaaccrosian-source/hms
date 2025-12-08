@@ -127,12 +127,17 @@ Route::get('/users/creates', function () {
     return view('users.new_create');
 });
 
-Route::get('/fix-cache', function () {
+Route::get('/reset', function () {
+    putenv('APP_ENV=local');
+    putenv('APP_DEBUG=true');
+
     \Artisan::call('config:clear');
+    \Artisan::call('config:cache');
     \Artisan::call('cache:clear');
     \Artisan::call('route:clear');
     \Artisan::call('view:clear');
-    return 'Cache cleared!';
+
+    return "Cache cleared";
 });
 
 // Routes for Landing Page starts
